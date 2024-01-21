@@ -1,12 +1,12 @@
 import './App.css';
 import Header from './components/Header/Header.js';
-import Maps from './components/Maps/Maps.js';
+import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <Maps/>
+      <GoogleMaps/>
     </div>
   );
 }

@@ -2,7 +2,10 @@ import './Header.css';
 
 function Header(){
     return(
-        <h1 className="Header">Tourbook</h1>
+        <h1 
+            className="Header">
+            Tourbook
+        </h1>
     )
 }
 
