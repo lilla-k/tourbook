@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import './GoogleMaps.css';
 
