@@ -1,4 +1,5 @@
 const tours=[{
+    id: 1,
     destination: "Jordánia",
     type: "egyéni, autót béreltünk",
     destinationDetails: "Jordánia közel-keleti arab ország, lakossága nagyrészt iszlám követő, hivatalos nyelve az arab. 2020-as években II. Abdulláh király az államfő.",
@@ -12,3 +13,5 @@ const tours=[{
         {cityName:"Akaba", images:["/hajon", "/tenger"], details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
     ]
 }]
+
+export default tours;
