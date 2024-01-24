@@ -1,4 +1,4 @@
-// import Autocomplete from '@mui/material/Autocomplete';
+import { useNavigate } from "react-router-dom";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -8,12 +8,13 @@ import './Header.css';
 
 function Header(){
 
+    const navigate = useNavigate();
 
     return(
       <div className="Header">
         <div className="Header-title">Tourbook</div>
         <div className="Header-icons">
-          <div className="Header-icon-container">
+          <div className="Header-icon-container" onClick={()=>navigate("/tours")}>
             <ViewListIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >List view</div>
           </div>

@@ -4,15 +4,24 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import '@fontsource/roboto/700.css';
 import App from './App';
+import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 import Tour from './components/Tour/Tour.js';
+import Tours from './components/Tours/Tours.js';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
     children: [
+      {
+        path: "/",
+        element: <GoogleMaps />,
+      },
+      {
+        path: "tours",
+        element: <Tours />,
+      },
       {
         path: "tours/:tourId",
         element: <Tour />,
