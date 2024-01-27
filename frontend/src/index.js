@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from './App';
+import Root from './components/Root/Root';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 import Tour from './components/Tour/Tour.js';
 import Tours from './components/Tours/Tours.js';
@@ -12,7 +12,7 @@ import Tours from './components/Tours/Tours.js';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <Root/>,
     children: [
       {
         path: "/",

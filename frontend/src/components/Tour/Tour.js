@@ -1,9 +1,15 @@
 import './Tour.css';
-import '../../tours.js'
 
-function Tour(){
+
+function Tour({name, image, type}){
+    console.log(image);
+
     return(
-        <h1>Hello</h1>
+        <div className="Tour">
+            <img src={image}/>
+            <div>{name}</div>
+            <div>{type}</div>
+        </div>
     )
 }
 
