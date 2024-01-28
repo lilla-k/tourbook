@@ -10,28 +10,29 @@ import './Header.css';
 
 function Header(){
 
+  console.log(window.location.pathname);
     const navigate = useNavigate();
-    const [view, setView] = useState("list") 
+    // const [view, setView] = useState("list") 
 
-    function clickViewHandler(){
-      navigate("/tours");
-      setView("map");
-    }
+    // function clickViewHandler(){
+    //   navigate("/tours");
+    //   setView("map");
+    // }
 
-    function clickMapHandler(){
-      navigate("/");
-      setView("list");
-    }
+    // function clickMapHandler(){
+    //   navigate("/");
+    //   setView("list");
+    // }
 
     return(
       <div className="Header">
         <div className="Header-title">Tourbook</div>
         <div className="Header-icons">
-          {view==="list" && <div className="Header-icon-container" onClick={clickViewHandler}>
+          {window.location.pathname==="/" && <div className="Header-icon-container" onClick={()=>navigate("/tours")}>
             <ViewListIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >List view</div>
           </div>}
-          {view==="map" && <div className="Header-icon-container" onClick={clickMapHandler}>
+          {window.location.pathname !=="/" && <div className="Header-icon-container" onClick={()=>navigate("/")}>
             <PlaceIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >Map view</div>
           </div>}
