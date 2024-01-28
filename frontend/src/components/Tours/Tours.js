@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 function Tours(){
     
     const tours = useOutletContext();
-    
+
     return(
         <div className="Tours">
             <div className="Tours-title">All tours</div>
@@ -15,6 +15,7 @@ function Tours(){
                 name={tour.destination}
                 type={tour.type}
                 image={tour.imgURL}
+                startDate={tour.start}
                 />)}
 
             </div>

@@ -1,14 +1,18 @@
 import './Tour.css';
 
 
-function Tour({name, image, type}){
-    console.log(image);
+function Tour({name, image, type, startDate}){
 
     return(
         <div className="Tour">
-            <img src={image}/>
-            <div>{name}</div>
-            <div>{type}</div>
+            <div className="Tour-info">
+                <img src={image}/>
+                <div className="Tour-details">
+                    <div>{name}</div>
+                    <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
+                </div>
+            </div>
+            <div>...</div>
         </div>
     )
 }
