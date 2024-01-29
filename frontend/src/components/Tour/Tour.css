@@ -17,8 +17,27 @@
 .Tour-info{
     display:flex;
     padding: 10px;
+    cursor: pointer;
+}
+
+.Tour-name{
+    font-weight: bold;
+}
+
+.Tour-name:hover{
+    text-decoration: underline;
+
 }
 
 .Tour-details{
     padding: 20px;
+}
+
+.Tour-next{
+    cursor: pointer;
+}
+.Tour-next:hover{
+    background-color: #E5E1DA;
+    padding: 3px;
+    border-radius: 50%;
 }

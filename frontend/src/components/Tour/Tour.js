@@ -1,4 +1,5 @@
 import './Tour.css';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 
 function Tour({name, image, type, startDate}){
@@ -8,11 +9,11 @@ function Tour({name, image, type, startDate}){
             <div className="Tour-info">
                 <img src={image}/>
                 <div className="Tour-details">
-                    <div>{name}</div>
+                    <div className="Tour-name">{name}</div>
                     <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
                 </div>
             </div>
-            <div>...</div>
+            <MoreHorizIcon className="Tour-next"/>
         </div>
     )
 }
