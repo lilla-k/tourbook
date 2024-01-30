@@ -10,7 +10,6 @@ import './Header.css';
 
 function Header(){
 
-  console.log(window.location.pathname);
     const navigate = useNavigate();
     // const [view, setView] = useState("list") 
 

@@ -1,0 +1,45 @@
+.TourCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color:#92C7CF;
+    width: calc(50% - 50px);
+    margin: 5px;
+    border: 1px solid #AAD7D9;
+    border-radius: 5px;
+}
+
+.TourCard img{
+    width: 100px;
+}
+
+.TourCard-info{
+    display:flex;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color:#92C7CF;
+}
+
+.TourCard-name{
+    font-weight: bold;
+}
+
+.TourCard-name:hover{
+    text-decoration: underline;
+
+}
+
+.TourCard-details{
+    padding: 20px;
+}
+
+.TourCard-next{
+    cursor: pointer;
+}
+.TourCard-next:hover{
+    background-color: #E5E1DA;
+    padding: 3px;
+    border-radius: 50%;
+}

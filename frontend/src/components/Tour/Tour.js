@@ -1,19 +1,19 @@
 import './Tour.css';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
+import { useParams, useOutletContext } from 'react-router-dom';
 
 
-function Tour({name, image, type, startDate}){
+function Tour(){
+
+    let {tourId} = useParams();
+    const tours = useOutletContext();
+    const selectedDestination = tours.find(tour=>tour.id===parseInt(tourId));
+        
 
     return(
         <div className="Tour">
-            <div className="Tour-info">
-                <img src={image}/>
-                <div className="Tour-details">
-                    <div className="Tour-name">{name}</div>
-                    <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
-                </div>
-            </div>
-            <MoreHorizIcon className="Tour-next"/>
+            <img src={selectedDestination.imgURL} className="Tour-img"/>
+            <div>Destination: <span>{selectedDestination.destination}</span></div>
         </div>
     )
 }

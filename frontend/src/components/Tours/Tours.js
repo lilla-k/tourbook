@@ -1,5 +1,5 @@
 import './Tours.css';
-import Tour from '../Tour/Tour.js';
+import TourCard from '../TourCard/TourCard.js';
 import { useOutletContext } from 'react-router-dom';
 
 function Tours(){
@@ -11,7 +11,8 @@ function Tours(){
             <div className="Tours-title">All tours</div>
             <div className="Tours-container">
                 {tours.map(tour => 
-                <Tour 
+                <TourCard 
+                id={tour.id}
                 name={tour.destination}
                 type={tour.type}
                 image={tour.imgURL}
