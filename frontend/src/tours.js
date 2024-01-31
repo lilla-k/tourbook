@@ -1,6 +1,7 @@
 const tours=[{
     id: 1,
     destination: "Jordánia",
+    coordinates: {lat: 30.585164, lng: 36.238414},
     imgURL:"/images/Jordan.jpg",
     type: "egyéni, autót béreltünk",
     destinationDetails: "Jordánia közel-keleti arab ország, lakossága nagyrészt iszlám követő, hivatalos nyelve az arab. 2020-as években II. Abdulláh király az államfő.",
@@ -16,6 +17,7 @@ const tours=[{
 }, {
     id: 2,
     destination: "Izrael",
+    coordinates: {lat: 31.046051, lng: 34.851612},
     imgURL:"/images/Izrael.jpg",
     type: "egyéni, metrózós + egy buszos nap",
     destinationDetails: "Izrael Állam a közel-kelet egyik legfejlettebb országa, 1948-ban alapították. Lakosság nagy része zsidó, vagy arab, akik a zsidó állam megszűnése után telepedtek be.",
@@ -31,6 +33,7 @@ const tours=[{
 },{
     id: 3,
     destination: "Spanyolország",
+    coordinates: {lat: 40.463667, lng: -3.74922},
     imgURL:"/images/Spain.jpg",
     type: "egyéni repülős út Milánóval összekötve",
     destinationDetails: "Spanyolország dél-Európai város a Földközi-tenger partján",

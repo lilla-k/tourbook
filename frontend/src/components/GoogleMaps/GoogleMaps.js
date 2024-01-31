@@ -1,26 +1,34 @@
 import React from 'react';
-import {useState} from 'react';
-import {APIProvider, Map, Marker, InfoWindow, useMarkerRef} from '@vis.gl/react-google-maps';
+import { useState } from 'react';
+import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
 import './GoogleMaps.css';
+import tours from '../../tours.js';
 
 function GoogleMaps() {
-    const positionJordania = {lat: 31.125, lng: 36.392};
+  console.log(tours)
 
-    const [showInfoWindow, setShowInfoWindow]=useState(false);
-    const [markerRef, marker] = useMarkerRef();
-  
-    return (
-      <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
-        <Map center={{lat: 40, lng: 10.00678}} zoom={2.2} className="map">
-          <Marker ref={markerRef} position={positionJordania} onMouseOver={()=>setShowInfoWindow(true)} onMouseOut={()=>setShowInfoWindow(false)}/>
-          {showInfoWindow &&
-          <InfoWindow anchor={marker} position={positionJordania}>
-            <h2>Jordánia</h2>
-            <img src="/images/Jordan.jpg" style={{height:150}} />
-          </InfoWindow>}
-        </Map>
-      </APIProvider>
-    );
-  }
-  
-  export default GoogleMaps;
+  const [selectedTour, setSelectedTour] = useState(null);
+  const [markerRef, marker] = useMarkerRef();
+
+  return (
+    <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
+      <Map center={{ lat: 40, lng: 10.00678 }} zoom={2.2} className="Map">
+        {tours.map(tour => {
+          return (
+            <>
+              <Marker ref={selectedTour===tour.id ? markerRef : null} position={tour.coordinates} onMouseOver={() => setSelectedTour(tour.id)} onMouseOut={() => setSelectedTour(null)} />
+              {selectedTour===tour.id &&
+                <InfoWindow className="Map-InfoWindow" anchor={marker}>
+                  <h2 className="Map-InfoWindow-title">{tour.destination}</h2>
+                  <img src={tour.imgURL} className="Map-InfoWindow-img" />
+                </InfoWindow>}
+              
+            </>
+          )
+        })}
+      </Map>
+    </APIProvider>
+  );
+}
+
+export default GoogleMaps;

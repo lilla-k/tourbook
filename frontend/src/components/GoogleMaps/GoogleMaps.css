@@ -1,8 +1,21 @@
-.map{
+.Map{
     height: 500px;
     margin: 50px;
 }
-
-.customMarker{
-    color: blue;
+.Map-InfoWindow{
+    position: relative;
 }
+.Map-InfoWindow-title{
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+}
+
+.Map-InfoWindow-img{
+    height: 100px;
+}
+
+
