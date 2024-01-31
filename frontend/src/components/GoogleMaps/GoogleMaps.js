@@ -1,12 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
+import { useNavigate } from "react-router-dom";
 import './GoogleMaps.css';
 import tours from '../../tours.js';
 
-function GoogleMaps() {
-  console.log(tours)
 
+function GoogleMaps() {
+
+  const navigate = useNavigate();
   const [selectedTour, setSelectedTour] = useState(null);
   const [markerRef, marker] = useMarkerRef();
 
@@ -16,13 +18,17 @@ function GoogleMaps() {
         {tours.map(tour => {
           return (
             <>
-              <Marker ref={selectedTour===tour.id ? markerRef : null} position={tour.coordinates} onMouseOver={() => setSelectedTour(tour.id)} onMouseOut={() => setSelectedTour(null)} />
+              <Marker 
+                ref={selectedTour===tour.id ? markerRef : null} 
+                position={tour.coordinates} 
+                onMouseOver={() => setSelectedTour(tour.id)} 
+                onMouseOut={() => setSelectedTour(null)}
+                onClick={()=>navigate(`/tours/${tour.id}`)} />
               {selectedTour===tour.id &&
-                <InfoWindow className="Map-InfoWindow" anchor={marker}>
+                <InfoWindow className="Map-InfoWindow" anchor={marker} >
                   <h2 className="Map-InfoWindow-title">{tour.destination}</h2>
-                  <img src={tour.imgURL} className="Map-InfoWindow-img" />
+                  {/* <img src={tour.imgURL} className="Map-InfoWindow-img" /> */}
                 </InfoWindow>}
-              
             </>
           )
         })}

@@ -11,21 +11,10 @@ import './Header.css';
 function Header(){
 
     const navigate = useNavigate();
-    // const [view, setView] = useState("list") 
-
-    // function clickViewHandler(){
-    //   navigate("/tours");
-    //   setView("map");
-    // }
-
-    // function clickMapHandler(){
-    //   navigate("/");
-    //   setView("list");
-    // }
 
     return(
       <div className="Header">
-        <div className="Header-title">Tourbook</div>
+        <div className="Header-title" onClick={()=>navigate("/")}>Tourbook</div>
         <div className="Header-icons">
           {window.location.pathname==="/" && <div className="Header-icon-container" onClick={()=>navigate("/tours")}>
             <ViewListIcon className="Header-icon" />
