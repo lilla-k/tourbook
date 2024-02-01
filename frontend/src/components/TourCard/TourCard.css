@@ -2,24 +2,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    color:#92C7CF;
+    color:var(--dark-grey);
     width: calc(50% - 50px);
+    height: 150px;
     margin: 5px;
-    border: 1px solid #AAD7D9;
-    border-radius: 5px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.TourCard:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 3px 1px var(--dark-grey);
 }
 
 .TourCard img{
-    width: 100px;
+    height: 150px;
+    overflow: hidden;
 }
 
 .TourCard-info{
     display:flex;
-    padding: 10px;
     cursor: pointer;
     text-decoration: none;
-    color:#92C7CF;
+    color: var(--dark-grey);
 }
 
 .TourCard-name{

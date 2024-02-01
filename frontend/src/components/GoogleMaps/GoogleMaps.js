@@ -22,12 +22,11 @@ function GoogleMaps() {
                 ref={selectedTour===tour.id ? markerRef : null} 
                 position={tour.coordinates} 
                 onMouseOver={() => setSelectedTour(tour.id)} 
-                onMouseOut={() => setSelectedTour(null)}
+                // onMouseOut={() => setSelectedTour(null)}
                 onClick={()=>navigate(`/tours/${tour.id}`)} />
               {selectedTour===tour.id &&
                 <InfoWindow className="Map-InfoWindow" anchor={marker} >
                   <h2 className="Map-InfoWindow-title">{tour.destination}</h2>
-                  {/* <img src={tour.imgURL} className="Map-InfoWindow-img" /> */}
                 </InfoWindow>}
             </>
           )

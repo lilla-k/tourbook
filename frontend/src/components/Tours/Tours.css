@@ -1,13 +1,13 @@
 .Tours-title{
-    color: #AAD7D9;
+    color: var(--light-green);
     font-weight: 700;
     font-size: 32px;
-    margin: 20px auto;
+    margin: 30px auto;
     text-align: center;
 }
 
 .Tours-container{
-    margin: 100px;
+    margin: 50px 100px;
     display: flex;
     flex-wrap: wrap;
 }

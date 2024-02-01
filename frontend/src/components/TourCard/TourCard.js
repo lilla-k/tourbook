@@ -1,5 +1,4 @@
 import './TourCard.css';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {Link} from "react-router-dom";
 
 
@@ -14,7 +13,6 @@ function TourCard({id, name, image, type, startDate}){
                     <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
                 </div>
             </Link>
-            <MoreHorizIcon className="TourCard-next"/>
         </div>
     )
 }

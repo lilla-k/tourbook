@@ -2,20 +2,8 @@
     height: 500px;
     margin: 50px;
 }
-/* .Map-InfoWindow{
-    position: relative;
-}
-.Map-InfoWindow-title{
-    position: absolute;
-    bottom: 20px;
-    left: 15px;
-    font-weight: 400;
-    font-size: 14px;
-    color: white;
-}
 
-.Map-InfoWindow-img{
-    height: 100px;
-} */
-
+.Map-InfoWindow:hover{
+    border: 1px dotted blue;
+}
 
