@@ -60,8 +60,9 @@
     display: flex;
     gap: 20px;
     padding: 10px;
-    background-color: white;
+    /* background-color: white; */
     margin: 5px;
+    width: 70%;
 }
 
 .Tour-details-arrow:hover {
@@ -72,7 +73,6 @@
 
 .Tour-climate, .Tour-country {
     display: flex;
-    align-self: flex-start;
     gap: 20px;
     padding: 10px;
     background-color: white;

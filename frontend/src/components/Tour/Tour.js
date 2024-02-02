@@ -6,7 +6,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ImageGrid from '../ImageGrid/ImageGrid';
 import './Tour.css';
+
 
 function Tour() {
 
@@ -61,6 +63,9 @@ function Tour() {
           </div>
           }
         </div>
+        <ImageGrid
+          images={selectedDestination.images}
+        />
       </div>
     </div>
   )

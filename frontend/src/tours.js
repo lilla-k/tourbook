@@ -3,6 +3,13 @@ const tours=[{
     destination: "Jordánia",
     coordinates: {lat: 30.585164, lng: 36.238414},
     imgURL:"/images/Jordan.jpg",
+    images:[
+        {url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel"},
+        {url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity"},
+        {url: "/images/Jordan/3_Wadi_rum_sunset.jpg", title: "Wadi_rum_sunset"},
+        {url: "/images/Jordan/4_Akaba_red_sea.jpg", title: "Akaba_red_sea"},
+        {url: "/images/Jordan/5_Petra_sunset.jpg", title: "Petra_sunset"}
+    ],
     type: "✈️",
     destinationDetails: "Jordánia közel-keleti arab ország, lakossága nagyrészt iszlám követő, hivatalos nyelve az arab. 2020-as években II. Abdulláh király az államfő.",
     climate: "Decemberben északon 10-15 fok, délen a tengernél 20-25 fok",
