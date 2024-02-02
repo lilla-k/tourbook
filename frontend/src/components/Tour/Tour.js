@@ -1,5 +1,9 @@
 import { useParams, useOutletContext } from 'react-router-dom';
+import { useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import './Tour.css';
@@ -9,6 +13,7 @@ function Tour() {
   let { tourId } = useParams();
   const tours = useOutletContext();
   const selectedDestination = tours.find(tour => tour.id === parseInt(tourId));
+  const [showDetails, setShowDetails] = useState(true);
 
 
   return (
@@ -35,35 +40,28 @@ function Tour() {
           })}
         </div>
         <div className="Tour-details">
-          <div className="Tour-time-container">
-            <div className="Tour-start">
-              <div className="Tour-start-border">
-                <div>{new Date(selectedDestination.start).toLocaleDateString("en-EN")}</div>
-              </div>
-            </div>
-            <div> _ </div>
-            <div className="Tour-end">
-              <div className="Tour-end-border">
-                <div>{new Date(selectedDestination.end).toLocaleDateString("en-EN")}</div>
-              </div>
-            </div>
+          <div className="Tour-date">
+            <CalendarMonthIcon />
+            <div>{new Date(selectedDestination.start).toLocaleDateString("en-EN")}</div>
+            <span> — </span>
+            <div>{new Date(selectedDestination.end).toLocaleDateString("en-EN")}</div>
+            {!showDetails &&<KeyboardArrowDownIcon className="Tour-details-arrow" onClick={()=> setShowDetails(true)}/>}
+            {showDetails &&<KeyboardArrowUpIcon className="Tour-details-arrow" onClick={()=> setShowDetails(false)}/>}
           </div>
-          <div className="Tour-climate">
-            <div className="Tour-climate-border">
-              <Brightness6Icon/>
+          {showDetails &&
+          <div>
+            <div className="Tour-climate">
+              <Brightness6Icon />
               <div>{selectedDestination.climate}</div>
             </div>
-          </div>
-          <div className="Tour-country">
-            <div className="Tour-country-border">
-              <LocationCityIcon/>
+            <div className="Tour-country">
+              <LocationCityIcon />
               <div>{selectedDestination.destinationDetails}</div>
             </div>
           </div>
-
+          }
         </div>
       </div>
-
     </div>
   )
 }

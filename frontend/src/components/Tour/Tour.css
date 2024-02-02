@@ -36,7 +36,8 @@
 
 .Tour-info{
     display: flex;
-    padding: 40px 200px;
+    gap: 100px;
+    padding: 40px 100px;
 }
 
 .Tour-visitedCities-title{
@@ -53,41 +54,31 @@
     align-items: center;
 }
 
-.Tour-details{
-    margin: 0 100px;
-}
 
 
-.Tour-time-container{
+.Tour-date{
     display: flex;
     gap: 20px;
     padding: 10px;
-}
-
-.Tour-start, .Tour-end, .Tour-climate, .Tour-country{
     background-color: white;
-}
-
-.Tour-start-border{
-    border: 3px solid var(--light-grey); 
-    border-radius: 10% 30%;
     margin: 5px;
 }
 
-.Tour-end-border{
-    border: 3px solid var(--light-grey); 
-    border-radius: 30% 10%;
-    margin: 5px;
+.Tour-details-arrow:hover {
+    cursor: pointer;
+    background-color: var(--light-grey);
+    border-radius: 50%;
 }
 
-.Tour-climate-border, .Tour-country-border{
-    border: 3px solid var(--light-grey); 
-    margin: 5px;
-    padding: 10px;
+.Tour-climate, .Tour-country {
     display: flex;
-    gap: 10px;
-    box-sizing: border-box;
+    align-self: flex-start;
+    gap: 20px;
+    padding: 10px;
+    background-color: white;
+    margin: 5px;
 }
+
 
 
 
