@@ -7,7 +7,7 @@ function TripCard({id, name, image, startDate}){
     return(
         <div className="TripCard">
             <Link to={`/trips/${id}`} className="TripCard-info">
-                <img src={image}/>
+                <img src={image} alt="Trip"/>
                 <div className="TripCard-details">
                     <div className="TripCard-name">{name}</div>
                     <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
