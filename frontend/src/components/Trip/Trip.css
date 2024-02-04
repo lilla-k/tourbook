@@ -48,8 +48,10 @@
 
 .Trip-visitedCity{
     background-color: var(--light-grey);
+    color: var(--dark-grey);
     padding: 10px;
     margin: 5px;
+    text-decoration: none;
     display: flex;
     align-items: center;
 }
