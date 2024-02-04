@@ -3,9 +3,9 @@ import { ImageList, ImageListItem } from '@mui/material';
 
 function ImageGrid({images}) {
 
-
   return (
-    <ImageList sx={{ width: 800, height: 450 }} cols={2} rowHeight={164}>
+    <div className="ImageGrid">
+      <ImageList cols={2} rowHeight={164}>
       {images.map((item) => (
         <ImageListItem key={item.url}>
           <img
@@ -16,7 +16,9 @@ function ImageGrid({images}) {
           />
         </ImageListItem>
       ))}
-    </ImageList>
+      </ImageList>
+    </div>
+    
   )
 }
 

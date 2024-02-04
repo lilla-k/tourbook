@@ -1,9 +1,6 @@
 .CountryDetails{
     display: flex;
-}
-
-.CountryDetails-details{
-    min-width: 500px;
+    gap: 50px;
 }
 
 .CountryDetails-date{

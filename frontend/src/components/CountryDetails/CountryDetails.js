@@ -2,7 +2,6 @@ import { useState } from 'react';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-import ImageGrid from '../ImageGrid/ImageGrid';
 import './CountryDetails.css';
 
 function CountryDetails({ selectedTrip }) {
@@ -10,7 +9,7 @@ function CountryDetails({ selectedTrip }) {
 
     return (
         <div className="CountryDetails">
-            <div className="CountryDetails-details">
+            <div className="CountryDetails-info">
                 <div className="CountryDetails-date">
                     <CalendarMonthIcon />
                     <div>{new Date(selectedTrip.start).toLocaleDateString("en-EN")}</div>
@@ -32,9 +31,6 @@ function CountryDetails({ selectedTrip }) {
                     </div>
                 </div>
             </div>
-            <ImageGrid
-                images={selectedTrip.images}
-            />
         </div>
     )
 }

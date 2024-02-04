@@ -5,15 +5,16 @@ import FlightIcon from '@mui/icons-material/Flight';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import CountryDetails from '../CountryDetails/CountryDetails';
 import CityDetails from '../CityDetails/CityDetails';
+import ImageGrid from '../ImageGrid/ImageGrid';
 import './Trip.css';
 
 
 function Trip() {
 
-  const tripTypes={
-    "flight": <FlightIcon/>,
-    "bus": <DirectionsBusIcon/>,
-    "car": <DirectionsCarIcon/>
+  const tripTypes = {
+    "flight": <FlightIcon />,
+    "bus": <DirectionsBusIcon />,
+    "car": <DirectionsCarIcon />
   }
 
   let { tripId, city } = useParams();
@@ -46,8 +47,11 @@ function Trip() {
             )
           })}
         </div>
-        {city===undefined && <CountryDetails selectedTrip={selectedTrip}/>}
-        {city!== undefined && <CityDetails selectedTrip={selectedTrip}/>}
+        {city === undefined && <CountryDetails selectedTrip={selectedTrip} />}
+        {city !== undefined && <CityDetails selectedTrip={selectedTrip} />}
+        <ImageGrid
+        images={selectedTrip.images}
+        />
       </div>
     </div>
   )
