@@ -11,7 +11,7 @@
     cursor: pointer;
 }
 .Header-icon{
-    padding: 10px 20px;
+    margin: 10px 20px;
     cursor: pointer;
 }
 .Header-icons{
@@ -30,6 +30,7 @@
 
 .Header-icon-tooltip{
     position: absolute;
+    z-index: 100;
     background-color:var(--dark-grey);
     border-radius: 5px;
     box-shadow:  1px 1px 1px var(--dark-grey);
@@ -39,6 +40,8 @@
     left: 2px;
     font-size: 12px;
     display: none;
+    font-weight: 400;
+    white-space: nowrap;
 }
 
 .Header-icon-container:hover .Header-icon-tooltip{
