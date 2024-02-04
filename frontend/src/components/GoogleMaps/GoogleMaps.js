@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
 import { useNavigate } from "react-router-dom";
 import './GoogleMaps.css';
-import tours from '../../trips.js';
+import trips from '../../trips.js';
 
 
 function GoogleMaps() {
@@ -15,7 +15,7 @@ function GoogleMaps() {
   return (
     <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
       <Map center={{ lat: 40, lng: 10.00678 }} zoom={2.2} className="Map">
-        {tours.map(tour => {
+        {trips.map(tour => {
           return (
             <>
               <Marker 
@@ -25,7 +25,7 @@ function GoogleMaps() {
                 onClick={()=>navigate(`/trips/${tour.id}`)} />
               {selectedTour===tour.id &&
                 <InfoWindow className="Map-InfoWindow" anchor={marker} >
-                  <h2 className="Map-InfoWindow-title">{tour.destination}</h2>
+                  <h2 className="Map-InfoWindow-title">{tour.country}</h2>
                 </InfoWindow>}
             </>
           )

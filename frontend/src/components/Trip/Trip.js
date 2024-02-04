@@ -27,7 +27,7 @@ function Trip() {
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={selectedTrip.imgURL} className="Trip-img" alt=""/>
+        <img src={process.env.PUBLIC_URL + selectedTrip.imgURL} className="Trip-img" alt=""/>
         <div className="Trip-title">
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>

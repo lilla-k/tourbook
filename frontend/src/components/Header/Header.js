@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useResolvedPath } from "react-router-dom";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PlaceIcon from '@mui/icons-material/Place';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -10,16 +10,17 @@ import './Header.css';
 function Header(){
 
     const navigate = useNavigate();
+    const {pathname} = useResolvedPath();
 
     return(
       <div className="Header">
         <div className="Header-title" onClick={()=>navigate("/")}>Tourbook</div>
         <div className="Header-icons">
-          {window.location.pathname==="/" && <div className="Header-icon-container" onClick={()=>navigate("/trips")}>
+          {pathname==='/' && <div className="Header-icon-container" onClick={()=>navigate("/trips")}>
             <ViewListIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >List view</div>
           </div>}
-          {window.location.pathname !=="/" && <div className="Header-icon-container" onClick={()=>navigate("/")}>
+          {pathname!=='/' && <div className="Header-icon-container" onClick={()=>navigate("/")}>
             <PlaceIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >Map view</div>
           </div>}
