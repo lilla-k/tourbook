@@ -1,4 +1,4 @@
-.TourCard{
+.TripCard{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,40 +11,40 @@
     overflow: hidden;
 }
 
-.TourCard:hover{
+.TripCard:hover{
     cursor: pointer;
     box-shadow: 0px 0px 3px 1px var(--dark-grey);
 }
 
-.TourCard img{
+.TripCard img{
     height: 150px;
     overflow: hidden;
 }
 
-.TourCard-info{
+.TripCard-info{
     display:flex;
     cursor: pointer;
     text-decoration: none;
     color: var(--dark-grey);
 }
 
-.TourCard-name{
+.TripCard-name{
     font-weight: bold;
 }
 
-.TourCard-name:hover{
+.TripCard-name:hover{
     text-decoration: underline;
 
 }
 
-.TourCard-details{
+.TripCard-details{
     padding: 20px;
 }
 
-.TourCard-next{
+.TripCard-next{
     cursor: pointer;
 }
-.TourCard-next:hover{
+.TripCard-next:hover{
     background-color: #E5E1DA;
     padding: 3px;
     border-radius: 50%;

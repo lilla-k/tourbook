@@ -1,23 +1,23 @@
-.Tour{
+.Trip{
     display: flex;
     flex-direction: column;
     color: var(--dark-grey);
 }
 
-.Tour-img-container{
+.Trip-img-container{
     height: 50vh;
     width: 100%;
     position: relative;
     font-size: 24px;
 }
 
-.Tour-img{
+.Trip-img{
     height: 100%;
     width: 100%;
     object-fit: cover;
 }
 
-.Tour-title{
+.Trip-title{
     background-color: white;
     padding: 3px;
     position: absolute;
@@ -29,24 +29,24 @@
     font-family: san-serif;
 }
 
-.Tour-title-border{
+.Trip-title-border{
     border: 3px solid var(--light-grey); 
     padding: 35px 15px;
 }
 
-.Tour-info{
+.Trip-info{
     display: flex;
     gap: 100px;
     padding: 40px 100px;
 }
 
-.Tour-visitedCities-title{
+.Trip-visitedCities-title{
     font-weight: 100;
     padding: 10px;
     font-size: 24px;
 }
 
-.Tour-visitedCity{
+.Trip-visitedCity{
     background-color: var(--light-grey);
     padding: 10px;
     margin: 5px;
@@ -56,7 +56,7 @@
 
 
 
-.Tour-date{
+.Trip-date{
     display: flex;
     gap: 20px;
     padding: 10px;
@@ -65,13 +65,13 @@
     width: 70%;
 }
 
-.Tour-details-arrow:hover {
+.Trip-details-arrow:hover {
     cursor: pointer;
     background-color: var(--light-grey);
     border-radius: 50%;
 }
 
-.Tour-climate, .Tour-country {
+.Trip-climate, .Trip-country {
     display: flex;
     gap: 20px;
     padding: 10px;

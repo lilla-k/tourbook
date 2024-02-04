@@ -1,0 +1,30 @@
+.CountryDetails{
+    display: flex;
+}
+
+.CountryDetails-details{
+    min-width: 500px;
+}
+
+.CountryDetails-date{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    background-color: white;
+    margin: 5px;
+    width: 300px;
+}
+
+.CountryDetails-arrow:hover {
+    cursor: pointer;
+    background-color: var(--light-grey);
+    border-radius: 50%;
+}
+
+.CountryDetails-climate, .CountryDetails-country {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    background-color: white;
+    margin: 5px;
+}

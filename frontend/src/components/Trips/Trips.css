@@ -1,4 +1,4 @@
-.Tours-title{
+.Trips-title{
     color: var(--light-green);
     font-weight: 700;
     font-size: 32px;
@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.Tours-container{
+.Trips-container{
     margin: 50px 100px;
     display: flex;
     flex-wrap: wrap;

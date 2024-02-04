@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import Root from './components/Root/Root';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
-import Tour from './components/Tour/Tour.js';
-import Tours from './components/Tours/Tours.js';
+import Trip from './components/Trip/Trip.js';
+import Trips from './components/Trips/Trips.js';
 
 const router = createBrowserRouter([
   {
@@ -19,13 +19,17 @@ const router = createBrowserRouter([
         element: <GoogleMaps />,
       },
       {
-        path: "tours",
-        element: <Tours />,
+        path: "trips",
+        element: <Trips />,
       },
       {
-        path: "tours/:tourId",
-        element: <Tour />,
+        path: "trips/:tripId",
+        element: <Trip/>,
       },
+      {
+        path: "trips/:tripId/:city",
+        element: <Trip />,
+      }
     ],
   },
 ]);

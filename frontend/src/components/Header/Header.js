@@ -16,7 +16,7 @@ function Header(){
       <div className="Header">
         <div className="Header-title" onClick={()=>navigate("/")}>Tourbook</div>
         <div className="Header-icons">
-          {window.location.pathname==="/" && <div className="Header-icon-container" onClick={()=>navigate("/tours")}>
+          {window.location.pathname==="/" && <div className="Header-icon-container" onClick={()=>navigate("/trips")}>
             <ViewListIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >List view</div>
           </div>}
