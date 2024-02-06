@@ -1,4 +1,5 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom';
+import InfoIcon from '@mui/icons-material/Info';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -30,7 +31,7 @@ function Trip() {
         <img src={process.env.PUBLIC_URL + selectedTrip.imgURL} className="Trip-img" alt=""/>
         <div className="Trip-title">
           <div className="Trip-title-border">
-            <div>{selectedTrip.country.toUpperCase()}</div>
+            <div>{selectedTrip.country.toUpperCase()}</div> 
             {tripTypes[selectedTrip.type]}
           </div>
         </div>
