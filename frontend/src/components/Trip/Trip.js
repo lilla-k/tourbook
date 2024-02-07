@@ -1,5 +1,4 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -52,7 +51,7 @@ function Trip() {
         {city === undefined && <CountryDetails selectedTrip={selectedTrip} />}
         {city !== undefined && <CityDetails selectedTrip={selectedTrip} />}
           <ImageGrid
-          images={selectedTrip.images}
+          countryImages={selectedTrip.images}
           />
       </div>
     </div>
