@@ -1,35 +1,29 @@
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import Brightness6Icon from '@mui/icons-material/Brightness6';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import { useState } from 'react';
 import './CountryDetails.css';
 
 function CountryDetails({ selectedTrip }) {
 
+    const [detail, setDetail] = useState("country");
 
     return (
         <div className="CountryDetails">
-            <div className="CountryDetails-info">
-                <div className="CountryDetails-date">
-                    <CalendarMonthIcon />
-                    <div>{new Date(selectedTrip.start).toLocaleDateString("en-EN")}</div>
-                    <span> — </span>
-                    <div>{new Date(selectedTrip.end).toLocaleDateString("en-EN")}</div>
-                </div>
-                <div>
-                    <div className="CountryDetails-climate">
-                        <Brightness6Icon />
-                        <div>{selectedTrip.climate}</div>
-                    </div>
-                    <div className="CountryDetails-country">
-                        <LocationCityIcon />
-                        <div>{selectedTrip.countryDetails}</div>
-                    </div>
-                    <div className="CountryDetails-experience">
-                        <div>Our experience:</div>
-                        <div>{selectedTrip.experience}</div>
-                    </div>
-                </div>
-            </div>
+            <Box sx={{ width: '100%', typography: 'body1' }}>
+                <TabContext value={detail}>
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabList onChange={(event, newValue)=>{setDetail(newValue)}} aria-label="lab API tabs example">
+                            <Tab label={`Discover ${selectedTrip.country}`} value="country" />
+                            <Tab label="report" value="report" />
+                        </TabList>
+                    </Box>
+                    <TabPanel value="country">{selectedTrip.countryDetails}</TabPanel>
+                    <TabPanel value="report">{selectedTrip.experience}</TabPanel>
+                </TabContext>
+            </Box>
         </div>
     )
 }

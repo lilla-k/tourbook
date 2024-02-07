@@ -1,5 +1,5 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom';
-import InfoIcon from '@mui/icons-material/Info';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -32,7 +32,8 @@ function Trip() {
         <div className="Trip-title">
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div> 
-            {tripTypes[selectedTrip.type]}
+            <div>{tripTypes[selectedTrip.type]}</div>
+            <div className="Trip-date">{new Date(selectedTrip.start).toLocaleString('en-us',{month:'short', year:'numeric'})}</div>
           </div>
         </div>
       </div>
@@ -50,9 +51,9 @@ function Trip() {
         </div>
         {city === undefined && <CountryDetails selectedTrip={selectedTrip} />}
         {city !== undefined && <CityDetails selectedTrip={selectedTrip} />}
-        <ImageGrid
-        images={selectedTrip.images}
-        />
+          <ImageGrid
+          images={selectedTrip.images}
+          />
       </div>
     </div>
   )
