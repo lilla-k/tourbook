@@ -51,7 +51,7 @@ function Trip() {
         {city === undefined && <CountryDetails selectedTrip={selectedTrip} />}
         {city !== undefined && <CityDetails selectedTrip={selectedTrip} />}
           <ImageGrid
-          countryImages={selectedTrip.images}
+          images={selectedTrip.images}
           />
       </div>
     </div>
