@@ -14,7 +14,7 @@ const trips=[{
         {cityName:"Amman", images:[{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel"}], details: "Amman is the capital of Jordan with a population of 4 million", visitedAttractions: ["market", "roman theater built around 100", "Citadel hill with a panoramic view"]},
         {cityName:"Petra", images:[{url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity"}, {url: "/images/Jordan/5_Petra_sunset.jpg", title: "Petra_sunset"}], details: "vörös romváros a sivatagi sziklák között, a nabateusok alakították ki sziklába faragott épületeiket ie. 4. sz", visitedAttractions: ["sírtemplom", "sziklába vájt színház", "főtemplom"]},
         {cityName:"Wadi Rum", images:[{url: "/images/Jordan/3_Wadi_rum_sunset.jpg", title: "Wadi_rum_sunset"}], details: "sivatagi völgy lélegzetelállótó vöröses panorámával", visitedAttractions: ["templomrom", "sziklarajz", "sivatag"]},
-        {cityName:"Akaba", images:[{url: "/images/Jordan/5_Petra_sunset.jpg", title: "Petra_sunset"}], details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
+        {cityName:"Akaba", images:[{url: "/images/Jordan/4_Akaba_red_sea.jpg", title: "4_Akaba_red_sea"}], details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
     ]
 }, 
 {
