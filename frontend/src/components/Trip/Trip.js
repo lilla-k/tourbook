@@ -17,14 +17,13 @@ function Trip() {
     "car": <DirectionsCarIcon />
   }
 
-  let { tripId, selectedCity } = useParams();
   const trips = useOutletContext();
+  const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === parseInt(tripId));
-  console.log(selectedCity===undefined)
+  const selectedCity = selectedTrip.visitedCities.find(c => city ===c.cityName);
 
   const cityImages=[];
   selectedTrip.visitedCities.forEach((city)=>cityImages.push(...city.images));
-  console.log(cityImages)
   const allImages=[...selectedTrip.images, ...cityImages];
 
   return (
@@ -51,7 +50,7 @@ function Trip() {
             )
           })}
         </div>
-        {selectedCity===undefined?<CountryDetails selectedTrip={selectedTrip}/>:<CityDetails/>}
+        {city===undefined?<CountryDetails selectedTrip={selectedTrip}/>:<CityDetails selectedCity={selectedCity}/>}
         <ImageGrid
           images={selectedCity===undefined? allImages : selectedCity.images}
         />
