@@ -8,6 +8,7 @@ import Root from './components/Root/Root';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 import Trip from './components/Trip/Trip.js';
 import Trips from './components/Trips/Trips.js';
+import NewTripForm from './components/NewTripForm/NewTripForm.js';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/:city",
         element: <Trip />,
+      },
+      {
+        path: "addCountry",
+        element: <NewTripForm />,
       }
     ],
   },
