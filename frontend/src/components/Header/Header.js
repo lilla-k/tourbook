@@ -24,9 +24,9 @@ function Header(){
             <PlaceIcon className="Header-icon" />
             <div className="Header-icon-tooltip" >Map view</div>
           </div>}
-          <div className="Header-icon-container" onClick={()=>navigate("/addcountry")}>
+          <div className="Header-icon-container" onClick={()=>navigate("/addTrip")}>
             <AddCircleOutlineIcon className="Header-icon"/>
-            <div className="Header-icon-tooltip" >New tour</div>
+            <div className="Header-icon-tooltip" >Add trip</div>
           </div>
           <div className="Header-icon-container">
             <PersonOutlineIcon className="Header-icon"/>

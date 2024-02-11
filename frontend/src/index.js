@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <Trip />,
       },
       {
-        path: "addCountry",
+        path: "addTrip",
         element: <NewTripForm />,
       }
     ],

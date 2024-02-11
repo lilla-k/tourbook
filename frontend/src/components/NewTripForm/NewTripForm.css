@@ -1,3 +1,13 @@
+.NewTripForm{
+    text-align: center;
+}
+
+.NewTripForm-countrySelector{
+    display: block;
+    margin: auto;
+    width: 300px;
+}
+
 .NewTripForm-title{
     color: var(--light-green);
     font-weight: 700;
