@@ -6,8 +6,7 @@ const trips=[{
     imgURL:"/images/Jordan.jpg",
     images:[],
     type: "flight",
-    climate: "In december, 10-15 degrees in the north, 20-25 degrees in the south by the sea.",
-    experience: "We rented a car to travel around Jordan from north. We spent the first day in the capital city, Amman. The city crowded, a bit dirty, but we liked the ancient buildings, roman theatres and the big market. The fist afternoon we walked up to the citadel, to the ruin of a temple, where the view of the city was beautiful. We wore winter coat, because teh nights was cold, and I had a cold by the time we got there.",
+    experience: "In december, 10-15 degrees in the north, 20-25 degrees in the south by the sea. We rented a car to travel around Jordan from north. We spent the first day in the capital city, Amman. The city crowded, a bit dirty, but we liked the ancient buildings, roman theatres and the big market. The fist afternoon we walked up to the citadel, to the ruin of a temple, where the view of the city was beautiful. We wore winter coat, because teh nights was cold, and I had a cold by the time we got there.",
     start: new Date('2023-12-29Z00:00:00.000').getTime(),
     end: new Date('2024-01-02Z00:00:00.000').getTime(),
     visitedCities: [
@@ -29,8 +28,7 @@ const trips=[{
     ],
     type: "flight",
     countryDetails: "Israel is a country in West-Asia. Official language is hebrew and arabic, and the official region is jews (73% - muslim 18%). The State of Israel was declared 1948.",
-    experience: "We travelled by subway from the airport to the beach in Tel-Aviv. It was nice to bath in the warm in the Mediterranean Sea.",
-    climate: "30-35 degrees in July",
+    experience: "It was 30-35 degrees in Israel in July. We travelled by subway from the airport to the beach in Tel-Aviv. It was nice to bath in the warm in the Mediterranean Sea.",
     start: new Date('2023-07-17Z00:00:00.000').getTime(),
     end: new Date('2023-07-21Z00:00:00.000').getTime(),
     visitedCities: [
@@ -47,8 +45,8 @@ const trips=[{
     imgURL:"/images/Spain.jpg",
     images:[],
     type: "bus",
+    experience: "10-15 degrees in April, rainy, cloudy weather",
     countryDetails: "Spain is a country located in southwestern Europe. The capital city is Madrid ",
-    climate: "10-15 degrees in April, rainy, cloudy weather",
     start: new Date('2018-04-07Z00:00:00.000').getTime(),
     end: new Date('2018-04-10Z00:00:00.000').getTime(),
     visitedCities: [

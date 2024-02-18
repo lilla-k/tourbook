@@ -1,11 +1,7 @@
 .NewTripForm{
-    text-align: center;
-}
-
-.NewTripForm-countrySelector{
-    display: block;
     margin: auto;
-    width: 300px;
+    display: block;
+    width: 500px;
 }
 
 .NewTripForm-title{
@@ -14,4 +10,24 @@
     font-size: 32px;
     margin: 30px auto;
     text-align: center;
+}
+
+.NewTripForm-countrySelector{
+    margin: 30px;
+    width: 300px;
+}
+
+.NewTripForm-countryInformation{
+    margin: 30px;
+    width: 600px;
+}
+
+.NewTripForm-experience{
+    margin: 30px;
+    width: 400px;
+}
+
+.NewTripForm-saveButton{
+    width: 150px;
+    margin: auto;
 }
