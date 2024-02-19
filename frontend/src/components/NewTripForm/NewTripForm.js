@@ -11,18 +11,22 @@ function NewTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
 
     const [startDate, setStartDate] = useState(new Date().toISOString().slice(0, 10));
-    const [endDate, setEndDate] = useState(new Date(new Date().setDate((new Date().getDate()+6))).toISOString().slice(0, 10));
-    function startDatePicker(newValue) {
-        setStartDate(newValue);
-        console.log(newValue);
-    }
+    const [endDate, setEndDate] = useState(new Date(new Date().setDate((new Date().getDate() + 6))).toISOString().slice(0, 10));
 
     return (
         <div className="NewTripForm">
             <div className="NewTripForm-title">Information about your trip</div>
             <div className="NewTripForm-dates">
-                <input type="date" value={startDate} className="NewTripForm-start"/>
-                <input type="date" value={endDate} className="NewTripForm-end"/>
+                <input
+                    type="date"
+                    value={startDate}
+                    className="NewTripForm-start"
+                    onChange={e => setStartDate(e.target.value)} />
+                <input
+                    type="date"
+                    value={endDate}
+                    className="NewTripForm-end"
+                    onChange={e => setEndDate(e.target.value)} />
             </div>
             <Autocomplete
                 className="NewTripForm-countrySelector"
