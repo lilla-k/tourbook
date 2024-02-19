@@ -12,6 +12,20 @@
     text-align: center;
 }
 
+.NewTripForm-dates{
+    margin: 30px;
+    width: 300px;
+}
+
+.NewTripForm-start, .NewTripForm-end{
+    color: var(--dark-grey);
+    background-color: var(--beige);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 5px;
+}
+
 .NewTripForm-countrySelector{
     margin: 30px;
     width: 300px;
