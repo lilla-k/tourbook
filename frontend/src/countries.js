@@ -1,4 +1,4 @@
-export default [
+const contries = [
   { lat: 42.546245, lng: 1.601554, name: 'Andorra' },
   { lat: 23.424076, lng: 53.847818, name: 'United Arab Emirates' },
   { lat: 33.93911, lng: 67.709953, name: 'Afghanistan' },
@@ -244,3 +244,5 @@ export default [
   { lat: -13.133897, lng: 27.849332, name: 'Zambia' },
   { lat: -19.015438, lng: 29.154857, name: 'Zimbabwe' },
 ];
+
+export default contries;
