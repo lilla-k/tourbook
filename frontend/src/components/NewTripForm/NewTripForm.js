@@ -10,11 +10,11 @@ function NewTripForm() {
 
     const countriesArray = countries.map(country => country.name).sort();
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [country, setCountry] = useState(null);
-    const [countryInformation, setCountryInformation]= useState(null);
-    const [tripExperience, setTripExperience]= useState(null);
+    const [countryInformation, setCountryInformation]= useState("");
+    const [tripExperience, setTripExperience]= useState("");
 
     async function postTripData(){
         const tripData= {
@@ -24,12 +24,13 @@ function NewTripForm() {
             countryInformation: countryInformation,
             tripExperience: tripExperience
         }
-        const response = await fetch ("https//localhost:3001/api", {
+        console.log(tripData);
+        const response = await fetch ("http://localhost:3001/api/trips", {
             method: "post",
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(tripData)
         })
-        console.log(response)
+        console.log(response.status)
     }
     
     return (
@@ -52,7 +53,7 @@ function NewTripForm() {
                 disablePortal
                 options={countriesArray}
                 value={country}
-                onChange={e=> setCountry(e.target.value)}
+                onChange={(e, selectedValue)=> setCountry(selectedValue)}
                 renderInput={(params) => <TextField {...params} label="Countries" />}
             />
             <div className="NewTripForm-countryInformation">
@@ -86,7 +87,7 @@ function NewTripForm() {
                 />
             </div>
             <div className="NewTripForm-saveButton">
-                <Button variant="outlined" onClick={()=>postTripData}>Save the trip</Button>
+                <Button variant="outlined" onClick={()=>postTripData()}>Save the trip</Button>
             </div>
         </div>
     )
