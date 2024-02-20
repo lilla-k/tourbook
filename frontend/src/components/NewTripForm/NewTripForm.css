@@ -40,6 +40,10 @@
     border-color: rgba(0, 0, 0, 0.87);
 }
 
+.NewTripForm-start:focus-visible, .NewTripForm-end:focus-visible{
+    outline-color: rgb(25, 118, 210);
+}
+
 .NewTripForm-experience{
     margin: 30px;
     width: 400px;
