@@ -8,7 +8,7 @@ function Trips(){
 
     return(
         <div className="Trips">
-            <div className="Trips-title">All tours</div>
+            <div className="Trips-title">My trips</div>
             <div className="Trips-container">
                 {trips.map(trip => 
                 <TripCard 

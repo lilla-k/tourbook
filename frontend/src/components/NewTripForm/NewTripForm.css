@@ -14,16 +14,16 @@
 
 .NewTripForm-dates{
     margin: 30px;
-    width: 300px;
 }
 
 .NewTripForm-start, .NewTripForm-end{
-    color: var(--dark-grey);
+    color: rgba(0, 0, 0, 0.87);
     background-color: var(--beige);
-    padding: 10px;
+    padding: 14px;
     margin-right: 10px;
     border: 1px solid var(--dark-grey);
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .NewTripForm-countrySelector{
@@ -34,6 +34,10 @@
 .NewTripForm-countryInformation{
     margin: 30px;
     width: 600px;
+}
+
+.NewTripForm-start:hover, .NewTripForm-end:hover{
+    border-color: rgba(0, 0, 0, 0.87);
 }
 
 .NewTripForm-experience{

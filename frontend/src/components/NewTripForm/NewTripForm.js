@@ -10,9 +10,28 @@ function NewTripForm() {
 
     const countriesArray = countries.map(country => country.name).sort();
 
-    const [startDate, setStartDate] = useState(new Date().toISOString().slice(0, 10));
-    const [endDate, setEndDate] = useState(new Date(new Date().setDate((new Date().getDate() + 6))).toISOString().slice(0, 10));
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [country, setCountry] = useState(null);
+    const [countryInformation, setCountryInformation]= useState(null);
+    const [tripExperience, setTripExperience]= useState(null);
 
+    async function postTripData(){
+        const tripData= {
+            startDate: startDate,
+            endDate: endDate,
+            country: country,
+            countryInformation: countryInformation,
+            tripExperience: tripExperience
+        }
+        const response = await fetch ("https//localhost:3001/api", {
+            method: "post",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify(tripData)
+        })
+        console.log(response)
+    }
+    
     return (
         <div className="NewTripForm">
             <div className="NewTripForm-title">Information about your trip</div>
@@ -22,16 +41,18 @@ function NewTripForm() {
                     value={startDate}
                     className="NewTripForm-start"
                     onChange={e => setStartDate(e.target.value)} />
-                <input
+                {startDate && <input
                     type="date"
                     value={endDate}
                     className="NewTripForm-end"
-                    onChange={e => setEndDate(e.target.value)} />
+                    onChange={e => setEndDate(e.target.value)} />}
             </div>
             <Autocomplete
                 className="NewTripForm-countrySelector"
                 disablePortal
                 options={countriesArray}
+                value={country}
+                onChange={e=> setCountry(e.target.value)}
                 renderInput={(params) => <TextField {...params} label="Countries" />}
             />
             <div className="NewTripForm-countryInformation">
@@ -45,6 +66,8 @@ function NewTripForm() {
                     placeholder="eg. language, population, religion, history"
                     multiline
                     rows={4}
+                    value={countryInformation}
+                    onChange={e=> setCountryInformation(e.target.value)}
                 />
             </div>
             <div className="NewTripForm-experience">
@@ -58,10 +81,12 @@ function NewTripForm() {
                     placeholder="eg. weather, unforgattable experiences"
                     multiline
                     rows={4}
+                    value={tripExperience}
+                    onChange={e=> setTripExperience(e.target.value)}
                 />
             </div>
             <div className="NewTripForm-saveButton">
-                <Button variant="outlined">Save the trip</Button>
+                <Button variant="outlined" onClick={()=>postTripData}>Save the trip</Button>
             </div>
         </div>
     )
