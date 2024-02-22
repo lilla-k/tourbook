@@ -16,12 +16,12 @@ export async function addTrip(trip) {
     return result.insertedId;
 }
 
-// export async function getTrips() {
-//   await client.connect();
-//   const coll = client.db("tourbook").collection("trips");
-//   const findCursor = coll.find();        //cursor, miért nem kell await, hol kell?
-//   console.log(findCursor);
-//   console.log(findCursor.toArray);
-//   await client.close();
-//   return trips;
-// }
+export async function getTrips() {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  const findCursor = coll.find();
+  const trips=await findCursor.toArray();
+  console.log(trips)
+  await client.close();
+  return trips;
+}
