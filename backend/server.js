@@ -8,8 +8,17 @@ const app = express();
 app.use(express.json()); 
 app.use(cors());
 
-app.get('/api/trips', (req, res) => {
-  res.send('Hello World!')
+app.get('/api/trips', async (req, res) => {
+  // const trips = await getTrips();
+  const trips = [{
+    startDate: "2024-02-02",
+    endDate: "2024-02-06",
+    country: "Jordan",
+    countryInformation: "Jordan is a country",
+    tripExperience: "Jordan experience",
+    id: 1
+}]
+  res.json(trips);
 })
 
 app.post('/api/trips', async (req, res) => {

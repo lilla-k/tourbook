@@ -24,7 +24,6 @@ function NewTripForm() {
             countryInformation: countryInformation,
             tripExperience: tripExperience
         }
-        console.log(tripData);
         const response = await fetch ("http://localhost:3001/api/trips", {
             method: "post",
             headers:{"Content-Type": "application/json"},

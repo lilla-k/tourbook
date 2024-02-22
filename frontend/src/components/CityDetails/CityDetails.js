@@ -7,8 +7,6 @@ import { useState } from 'react';
 import './CityDetails.css';
 
 function CityDetails({selectedCity}){
-    console.log("cityrun");
-    console.log(selectedCity);
     const [cityDetail, setCityDetail] = useState("city");
 
     return(

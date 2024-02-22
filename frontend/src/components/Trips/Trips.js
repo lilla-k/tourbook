@@ -16,7 +16,7 @@ function Trips(){
                 name={trip.country}
                 type={trip.type}
                 image={trip.imgURL}
-                startDate={trip.start}
+                startDate={trip.startDate}
                 />)}
 
             </div>

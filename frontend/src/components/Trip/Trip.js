@@ -20,11 +20,11 @@ function Trip() {
   const trips = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === parseInt(tripId));
-  const selectedCity = selectedTrip.visitedCities.find(c => city ===c.cityName);
+  const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
 
   const cityImages=[];
-  selectedTrip.visitedCities.forEach((city)=>cityImages.push(...city.images));
-  const allImages=[...selectedTrip.images, ...cityImages];
+  selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
+  const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
 
   return (
     <div className="Trip">
@@ -34,14 +34,14 @@ function Trip() {
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
             <div>{tripTypes[selectedTrip.type]}</div>
-            <div className="Trip-date">{new Date(selectedTrip.start).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
+            <div className="Trip-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
       </div>
       <div className="Trip-info">
         <div className="Trip-visitedCities">
           <div className="Trip-visitedCities-title">VISITED CITIES</div>
-          {selectedTrip.visitedCities.map(city => {
+          {selectedTrip.visitedCities?.map(city => {
             return (
               <Link to={`/trips/${selectedTrip.id}/${city.cityName}`} className="Trip-visitedCity">
                 <LocationOnIcon />

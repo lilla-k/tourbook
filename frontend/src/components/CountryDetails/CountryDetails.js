@@ -8,7 +8,6 @@ import './CountryDetails.css';
 
 function CountryDetails({ selectedTrip }) {
 
-    console.log("countryrun");
 
     const [countryDetail, setCountryDetail] = useState("country");
 
@@ -22,8 +21,8 @@ function CountryDetails({ selectedTrip }) {
                             <Tab label="report" value="report" />
                         </TabList>
                     </Box>
-                    <TabPanel value="country">{selectedTrip.countryDetails}</TabPanel>
-                    <TabPanel value="report">{selectedTrip.experience}</TabPanel>
+                    <TabPanel value="country">{selectedTrip.countryInformation}</TabPanel>
+                    <TabPanel value="report">{selectedTrip.tripExperience}</TabPanel>
                 </TabContext>
             </Box>
         </div>
