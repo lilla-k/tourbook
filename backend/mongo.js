@@ -19,9 +19,14 @@ export async function addTrip(trip) {
 export async function getTrips() {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");
-  const findCursor = coll.find();
-  const trips=await findCursor.toArray();
-  console.log(trips)
+  const cursor = coll.find({});
+  const documents= await cursor.toArray();
+  const trips = documents.map(document => {
+    const {_id, ...trip} = document; 
+    return { id: _id.toString(), ...trip };
+  })
   await client.close();
   return trips;
 }
+
+
