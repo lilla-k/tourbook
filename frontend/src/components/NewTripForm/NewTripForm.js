@@ -21,6 +21,7 @@ function NewTripForm() {
             startDate: startDate,
             endDate: endDate,
             country: country,
+            images: [{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel"}, {url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity"}],
             countryInformation: countryInformation,
             tripExperience: tripExperience
         }

@@ -13,9 +13,8 @@ function Trips(){
                 {trips.map(trip => 
                 <TripCard 
                 id={trip.id}
-                name={trip.country}
-                type={trip.type}
-                image={trip.imgURL}
+                countryName={trip.country}
+                image={trip.images[0]}            //ha nem töltött fel képet?
                 startDate={trip.startDate}
                 />)}
 
