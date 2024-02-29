@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import {useState, useEffect} from 'react';
 
 function Root() {
+  console.log("root");
 
   const [trips, setTrips]= useState([]);
 
@@ -20,7 +21,7 @@ function Root() {
     console.log(trips);
     setTrips(trips);
   }
-
+//loading state-ig ne töltsön be az Outlet
   return (
     <div className="Root">
       <Header/>

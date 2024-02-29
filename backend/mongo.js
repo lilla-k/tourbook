@@ -13,7 +13,7 @@ export async function addTrip(trip) {
     const coll = client.db("tourbook").collection("trips");
     const result = await coll.insertOne(trip);
     await client.close();
-    return result.insertedId;
+    return result.insertedId.toString();
 }
 
 export async function getTrips() {

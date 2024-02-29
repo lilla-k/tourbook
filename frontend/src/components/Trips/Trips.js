@@ -12,6 +12,7 @@ function Trips(){
             <div className="Trips-container">
                 {trips.map(trip => 
                 <TripCard 
+                key={trip.id}
                 id={trip.id}
                 countryName={trip.country}
                 image={trip.images[0]}            //ha nem töltött fel képet?

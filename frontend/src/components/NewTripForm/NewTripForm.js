@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -8,6 +9,7 @@ import './NewTripForm.css';
 
 function NewTripForm() {
 
+    const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
 
     const [startDate, setStartDate] = useState("");
@@ -30,7 +32,12 @@ function NewTripForm() {
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(tripData)
         })
+        const tripId= await response.json();
+        console.log(tripId);
         console.log(response.status)
+        if (response.status ===201){
+            navigate(`/trips/${tripId}`)
+        }
     }
     
     return (

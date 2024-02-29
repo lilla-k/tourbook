@@ -19,7 +19,13 @@ function Trip() {
 
   const trips = useOutletContext();
   const { tripId, city } = useParams();
-  const selectedTrip = trips.find(trip => trip.id === parseInt(tripId));
+  console.log(tripId)
+  console.log(trips)
+  const selectedTrip = trips.find(trip => {
+    console.log(trip.id);
+    console.log(tripId);
+    return trip.id === tripId});
+  console.log(selectedTrip);
   const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
 
   const cityImages=[];

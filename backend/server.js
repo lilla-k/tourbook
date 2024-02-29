@@ -10,24 +10,15 @@ app.use(cors());
 
 app.get('/api/trips', async (req, res) => {
   const trips = await getTrips();
-  // const trips = [{
-  //   startDate: "2024-02-02",
-  //   endDate: "2024-02-06",
-  //   country: "Jordan",
-  //   countryInformation: "Jordan is a country",
-  //   tripExperience: "Jordan experience",
-  //   id: 1
-  // }]
   res.json(trips);
 })
 
 app.post('/api/trips', async (req, res) => {
-  console.log("post");
   const postedTrip = req.body;
-  console.log(postedTrip);
-  const result = await addTrip(postedTrip);
-  console.log(result);
-  res.sendStatus(200);
+  const tripId = await addTrip(postedTrip);
+  console.log(tripId);
+  res.json(tripId);
+
 
   // if(isValid(postedTrip)){
   //     const result = await addCloth(postedCloth);
