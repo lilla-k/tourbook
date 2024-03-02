@@ -10,10 +10,9 @@ function Root() {
 
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(trips)
 
   useEffect(() => {
-    console.log("trip initial render");
-    console.log(trips)
     getTrips();
   },[])
 
@@ -24,12 +23,12 @@ function Root() {
     setTrips(trips);
     setLoading(false);
   }
-
+// nem én hoztam létre Outletet, nem tudom milyen propjai lehetnek, doksi alapján context
   return (
     <div className="Root">
       <Header/>
       {loading && <Loading/>}
-      {!loading && <Outlet context={trips}/>}
+      {!loading && <Outlet context={[trips, setTrips]}/>}    
     </div>
   );
 }

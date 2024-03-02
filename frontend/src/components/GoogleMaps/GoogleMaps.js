@@ -25,7 +25,9 @@ function GoogleMaps() {
                 ref={selectedTour===trip.id ? markerRef : null} 
                 position={trip.coordinates} 
                 onMouseOver={() => setSelectedTour(trip.id)} 
-                onClick={()=>navigate(`/trips/${trip.id}`)} />
+                onClick={()=>navigate(`/trips/${trip.id}`)}
+                 
+              />
               {selectedTour===trip.id &&
                 <InfoWindow className="Map-InfoWindow" anchor={marker} >
                   <h2 className="Map-InfoWindow-title">{trip.country}</h2>

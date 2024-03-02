@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
@@ -12,32 +12,40 @@ function NewTripForm() {
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
 
+    const [trips, setTrips] = useOutletContext();
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [country, setCountry] = useState(null);
-    const [countryInformation, setCountryInformation]= useState("");
-    const [tripExperience, setTripExperience]= useState("");
+    const [countryInformation, setCountryInformation] = useState("");
+    const [tripExperience, setTripExperience] = useState("");
 
-    async function postTripData(){
-        const tripData= {
+    async function postTripData() {
+        const postTripData = {
             startDate: startDate,
             endDate: endDate,
             country: country,
-            images: [{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false}, {url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true}],
+            images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
             countryInformation: countryInformation,
             tripExperience: tripExperience
         }
-        const response = await fetch ("http://localhost:3001/api/trips", {
+        const response = await fetch("http://localhost:3001/api/trips", {
             method: "post",
-            headers:{"Content-Type": "application/json"},
-            body: JSON.stringify(tripData)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(postTripData)
         })
-        if (response.status ===201){
-            const {tripId}= await response.json();
-            navigate(`/trips/${tripId}`);
+        if (response.status === 201) {
+            const tripIdObj = await response.json();
+            const pushNewTrip = () => {
+                const newTrip = { ...tripIdObj, ...postTripData };
+                console.log(trips);
+                trips.push(newTrip);
+                return trips;
+            }
+            setTrips(pushNewTrip);
+            navigate(`/trips/${tripIdObj.id}`);
         }
     }
-    
+
     return (
         <div className="NewTripForm">
             <div className="NewTripForm-title">Information about your trip</div>
@@ -58,7 +66,7 @@ function NewTripForm() {
                 disablePortal
                 options={countriesArray}
                 value={country}
-                onChange={(e, selectedValue)=> setCountry(selectedValue)}
+                onChange={(e, selectedValue) => setCountry(selectedValue)}
                 renderInput={(params) => <TextField {...params} label="Countries" />}
             />
             <div className="NewTripForm-countryInformation">
@@ -73,7 +81,7 @@ function NewTripForm() {
                     multiline
                     rows={4}
                     value={countryInformation}
-                    onChange={e=> setCountryInformation(e.target.value)}
+                    onChange={e => setCountryInformation(e.target.value)}
                 />
             </div>
             <div className="NewTripForm-experience">
@@ -88,11 +96,11 @@ function NewTripForm() {
                     multiline
                     rows={4}
                     value={tripExperience}
-                    onChange={e=> setTripExperience(e.target.value)}
+                    onChange={e => setTripExperience(e.target.value)}
                 />
             </div>
             <div className="NewTripForm-saveButton">
-                <Button variant="outlined" onClick={()=>postTripData()}>Upload your trip</Button>
+                <Button variant="outlined" onClick={() => postTripData()}>Upload your trip</Button>
             </div>
         </div>
     )

@@ -17,21 +17,17 @@ function Trip() {
     "car": <DirectionsCarIcon />
   }
 
-  const trips = useOutletContext();
+  const [trips] = useOutletContext();
   const { tripId, city } = useParams();
-  console.log(tripId)
   console.log(trips)
-  const selectedTrip = trips.find(trip => {
-    console.log(trip.id);
-    console.log(tripId);
-    return trip.id === tripId});
+  const selectedTrip = trips.find(trip => trip.id === tripId);
   console.log(selectedTrip);
   const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
 
   const cityImages=[];
   selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
   const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
-  const coverImageURL=allImages.map(image=>{
+  const coverImageURL=allImages.map(image=>{   //find
     if(image.cover){
       return image.url
     }

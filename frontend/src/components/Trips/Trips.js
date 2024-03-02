@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 
 function Trips(){
     
-    const trips = useOutletContext();
+    const [trips] = useOutletContext();
 
     return(
         <div className="Trips">
