@@ -31,11 +31,17 @@ function Trip() {
   const cityImages=[];
   selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
   const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
+  const coverImageURL=allImages.map(image=>{
+    if(image.cover){
+      return image.url
+    }
+  })
+  console.log(coverImageURL);
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={process.env.PUBLIC_URL + selectedTrip.imgURL} className="Trip-img" alt="" />
+        <img src={process.env.PUBLIC_URL + coverImageURL} className="Trip-img" alt="" />
         <div className="Trip-title">
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>

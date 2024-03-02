@@ -23,7 +23,7 @@ function NewTripForm() {
             startDate: startDate,
             endDate: endDate,
             country: country,
-            images: [{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel"}, {url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity"}],
+            images: [{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false}, {url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true}],
             countryInformation: countryInformation,
             tripExperience: tripExperience
         }
@@ -32,11 +32,9 @@ function NewTripForm() {
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(tripData)
         })
-        const tripId= await response.json();
-        console.log(tripId);
-        console.log(response.status)
         if (response.status ===201){
-            navigate(`/trips/${tripId}`)
+            const {tripId}= await response.json();
+            navigate(`/trips/${tripId}`);
         }
     }
     
@@ -94,7 +92,7 @@ function NewTripForm() {
                 />
             </div>
             <div className="NewTripForm-saveButton">
-                <Button variant="outlined" onClick={()=>postTripData()}>Save the trip</Button>
+                <Button variant="outlined" onClick={()=>postTripData()}>Upload your trip</Button>
             </div>
         </div>
     )

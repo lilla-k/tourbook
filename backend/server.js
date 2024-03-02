@@ -16,8 +16,7 @@ app.get('/api/trips', async (req, res) => {
 app.post('/api/trips', async (req, res) => {
   const postedTrip = req.body;
   const tripId = await addTrip(postedTrip);
-  console.log(tripId);
-  res.json(tripId);
+  res.status(201).json({tripId:tripId});
 
 
   // if(isValid(postedTrip)){

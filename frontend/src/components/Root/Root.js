@@ -11,7 +11,7 @@ function Root() {
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {                     //mi lenne ha nem lenne useEffect-ben? trips dependency?
+  useEffect(() => {
     console.log("trip initial render");
     console.log(trips)
     getTrips();
@@ -24,7 +24,7 @@ function Root() {
     setTrips(trips);
     setLoading(false);
   }
-//loading state-ig ne töltsön be az Outlet
+
   return (
     <div className="Root">
       <Header/>
