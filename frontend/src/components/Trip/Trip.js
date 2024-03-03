@@ -19,7 +19,6 @@ function Trip() {
 
   const [trips] = useOutletContext();
   const { tripId, city } = useParams();
-  console.log(trips)
   const selectedTrip = trips.find(trip => trip.id === tripId);
   console.log(selectedTrip);
   const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
@@ -27,17 +26,13 @@ function Trip() {
   const cityImages=[];
   selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
   const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
-  const coverImageURL=allImages.map(image=>{   //find
-    if(image.cover){
-      return image.url
-    }
-  })
-  console.log(coverImageURL);
+  const coverImage=allImages.find(image=>image.cover ===true);
+  console.log(coverImage);
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={process.env.PUBLIC_URL + coverImageURL} className="Trip-img" alt="" />
+        <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
         <div className="Trip-title">
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
