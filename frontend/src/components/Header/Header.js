@@ -14,7 +14,7 @@ function Header(){
 
     return(
       <div className="Header">
-        <div className="Header-title" onClick={()=>navigate("/")}>Tourbook</div>
+        <div className="Header-title" onClick={()=>navigate("/trips")}>Tourbook</div>
         <div className="Header-icons">
           {pathname==='/' && <div className="Header-icon-container" onClick={()=>navigate("/trips")}>
             <ViewListIcon className="Header-icon" />

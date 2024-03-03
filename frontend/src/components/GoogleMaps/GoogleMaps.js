@@ -3,13 +3,22 @@ import { useState } from 'react';
 import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
 import { useNavigate, useOutletContext} from "react-router-dom";
 import './GoogleMaps.css';
+import countries from '../../countries.js';
 
 
 function GoogleMaps() {
 
   const navigate = useNavigate();
-  const trips = useOutletContext();
-  console.log("maps")
+  const [trips] = useOutletContext();
+  console.log("maps");
+  console.log(countries);
+
+  function findPosition(country){
+    console.log(country)
+    const countryObj=countries.find(c=> c.name===country);
+    const coordinateObj={lat:countryObj.lat, lng: countryObj.lng}
+    return coordinateObj;
+  }
 
   const [selectedTour, setSelectedTour] = useState(null);
   const [markerRef, marker] = useMarkerRef();
@@ -18,12 +27,11 @@ function GoogleMaps() {
     <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
       <Map center={{ lat: 40, lng: 10.00678 }} zoom={2.2} className="Map">
         {trips.map(trip => {
-          // console.log(trip._id);
           return (
             <>
               <Marker 
                 ref={selectedTour===trip.id ? markerRef : null} 
-                position={trip.coordinates} 
+                position={findPosition(trip.country)} 
                 onMouseOver={() => setSelectedTour(trip.id)} 
                 onClick={()=>navigate(`/trips/${trip.id}`)}
                  

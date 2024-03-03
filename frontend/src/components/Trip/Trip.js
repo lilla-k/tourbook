@@ -20,14 +20,12 @@ function Trip() {
   const [trips] = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
-  console.log(selectedTrip);
   const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
 
   const cityImages=[];
   selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
   const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
   const coverImage=allImages.find(image=>image.cover ===true);
-  console.log(coverImage);
 
   return (
     <div className="Trip">

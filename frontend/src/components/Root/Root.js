@@ -10,7 +10,6 @@ function Root() {
 
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(trips)
 
   useEffect(() => {
     getTrips();
