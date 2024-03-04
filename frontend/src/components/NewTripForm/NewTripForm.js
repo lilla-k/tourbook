@@ -4,6 +4,10 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
+import TrainIcon from '@mui/icons-material/Train';
+import FlightIcon from '@mui/icons-material/Flight';
 import countries from '../../countries.js';
 import './NewTripForm.css';
 
@@ -11,6 +15,18 @@ function NewTripForm() {
 
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
+    const tripTypes=[{
+        type: "car",
+        icon: <DirectionsCarIcon/>}, {
+        type: "bus",
+        icon: <DirectionsBusIcon/>}, {
+        type: "flight", 
+        icon: <FlightIcon/>}, {
+        type: "train", 
+        icon: <TrainIcon/>}
+    ]
+    const tripTypesArray=tripTypes.map (t=>t.type);
+    console.log(tripTypesArray);
 
     const [trips, setTrips] = useOutletContext();
     const [startDate, setStartDate] = useState("");
@@ -18,12 +34,14 @@ function NewTripForm() {
     const [country, setCountry] = useState(null);
     const [countryInformation, setCountryInformation] = useState("");
     const [tripExperience, setTripExperience] = useState("");
+    const [tripType, setTripType]=useState(null);
 
     async function postTripData() {
         const postTripData = {
             startDate: startDate,
             endDate: endDate,
             country: country,
+            tripType: tripType,
             images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
             countryInformation: countryInformation,
             tripExperience: tripExperience
@@ -37,7 +55,6 @@ function NewTripForm() {
             const tripIdObj = await response.json();
             const pushNewTrip = () => {
                 const newTrip = { ...tripIdObj, ...postTripData };
-                console.log(trips);
                 trips.push(newTrip);
                 return trips;
             }
@@ -68,6 +85,14 @@ function NewTripForm() {
                 value={country}
                 onChange={(e, selectedValue) => setCountry(selectedValue)}
                 renderInput={(params) => <TextField {...params} label="Countries" />}
+            />
+            <Autocomplete
+                className="NewTripForm-typeSelector"
+                disablePortal
+                options={tripTypesArray}
+                value={tripType}
+                onChange={(e, selectedValue) => setTripType(selectedValue)}
+                renderInput={(params) => <TextField {...params} label="Types" />}
             />
             <div className="NewTripForm-countryInformation">
                 <Box

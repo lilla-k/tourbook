@@ -2,8 +2,6 @@ const trips=[{
     id: 1,
     country: "Jordan",
     countryInformation: "Jordan Kingdom is a country in West-Asia. Official language is arabic, and the official region is islam. The king is II. Abdullah since 1999.",
-    coordinates: {lat: 30.585164, lng: 36.238414},
-    imgURL:"/images/Jordan.jpg",
     images:[],
     type: "flight",
     tripExperience: "In december, 10-15 degrees in the north, 20-25 degrees in the south by the sea. We rented a car to travel around Jordan from north. We spent the first day in the capital city, Amman. The city crowded, a bit dirty, but we liked the ancient buildings, roman theatres and the big market. The fist afternoon we walked up to the citadel, to the ruin of a temple, where the view of the city was beautiful. We wore winter coat, because teh nights was cold, and I had a cold by the time we got there.",
@@ -19,8 +17,6 @@ const trips=[{
 {
     id: 2,
     country: "Israel",
-    coordinates: {lat: 31.046051, lng: 34.851612},
-    imgURL:"/images/Israel.jpg",
     images:[
         {url: "/images/Israel/1_Jaffa_St Peter Church.jpg", title: "1_Jaffa_St Peter Church"},
         {url: "/images/Israel/2_Tel-Aviv_beach.jpeg", title: "2_Tel-Aviv_beach"},
@@ -42,7 +38,6 @@ const trips=[{
     id: 3,
     country: "Spain",
     coordinates: {lat: 40.463667, lng: -3.74922},
-    imgURL:"/images/Spain.jpg",
     images:[],
     type: "bus",
     tripExperience: "10-15 degrees in April, rainy, cloudy weather",

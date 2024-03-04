@@ -10,11 +10,8 @@ function GoogleMaps() {
 
   const navigate = useNavigate();
   const [trips] = useOutletContext();
-  console.log("maps");
-  console.log(countries);
 
   function findPosition(country){
-    console.log(country)
     const countryObj=countries.find(c=> c.name===country);
     const coordinateObj={lat:countryObj.lat, lng: countryObj.lng}
     return coordinateObj;
