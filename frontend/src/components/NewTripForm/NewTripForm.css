@@ -12,8 +12,12 @@
     text-align: center;
 }
 
-.NewTripForm-dates{
-    margin: 30px;
+.NewTripForm-form{
+    width: 600px;
+}
+
+.NewTripForm-form > *{
+    margin: 30px 0;
 }
 
 .NewTripForm-start, .NewTripForm-end{
@@ -26,16 +30,6 @@
     font-size: 16px;
 }
 
-.NewTripForm-countrySelector{
-    margin: 30px;
-    width: 300px;
-}
-
-.NewTripForm-countryInformation{
-    margin: 30px;
-    width: 600px;
-}
-
 .NewTripForm-start:hover, .NewTripForm-end:hover{
     border-color: rgba(0, 0, 0, 0.87);
 }
@@ -44,9 +38,17 @@
     outline-color: rgb(25, 118, 210);
 }
 
-.NewTripForm-experience{
-    margin: 30px;
-    width: 400px;
+
+.NewTripForm-countrySelector{
+    width: 300px;
+}
+
+.NewTripForm-typeSelector{
+    width: 200px;
+}
+
+.NewTripForm-countryInformation > div, .NewTripForm-experience > div{
+    width: 100%;
 }
 
 .NewTripForm-saveButton{

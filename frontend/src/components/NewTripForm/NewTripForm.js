@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -56,35 +55,33 @@ function NewTripForm() {
     return (
         <div className="NewTripForm">
             <div className="NewTripForm-title">Information about your trip</div>
-            <div className="NewTripForm-dates">
-                <input
-                    type="date"
-                    value={startDate}
-                    className="NewTripForm-start"
-                    onChange={e => setStartDate(e.target.value)} />
-                {startDate && <input
-                    type="date"
-                    value={endDate}
-                    className="NewTripForm-end"
-                    onChange={e => setEndDate(e.target.value)} />}
-            </div>
-            <Autocomplete
-                className="NewTripForm-countrySelector"
-                disablePortal
-                options={countriesArray}
-                value={country}
-                onChange={(e, selectedValue) => setCountry(selectedValue)}
-                renderInput={(params) => <TextField {...params} label="Countries" />}
-            />
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Trip type</InputLabel>
+            <div className="NewTripForm-form">
+                <div className="NewTripForm-dates">
+                    <input
+                        type="date"
+                        value={startDate}
+                        className="NewTripForm-start"
+                        onChange={e => setStartDate(e.target.value)} />
+                    {startDate && <input
+                        type="date"
+                        value={endDate}
+                        className="NewTripForm-end"
+                        onChange={e => setEndDate(e.target.value)} />}
+                </div>
+                <Autocomplete
+                    className="NewTripForm-countrySelector"
+                    disablePortal
+                    options={countriesArray}
+                    value={country}
+                    onChange={(e, selectedValue) => setCountry(selectedValue)}
+                    renderInput={(params) => <TextField {...params} label="Country" />}
+                />
+                <FormControl className="NewTripForm-typeSelector">
+                    <InputLabel>Trip type</InputLabel>
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
                         value={tripType}
-                        label="tripType"
-                        onChange={(event)=>setTripType(event.target.value)}
+                        label="Trip type"
+                        onChange={(event) => setTripType(event.target.value)}
                     >
                         <MenuItem value={tripTypeArray[0]}>{tripTypeArray[0]}</MenuItem>
                         <MenuItem value={tripTypeArray[1]}>{tripTypeArray[1]}</MenuItem>
@@ -92,40 +89,29 @@ function NewTripForm() {
                         <MenuItem value={tripTypeArray[3]}>{tripTypeArray[3]}</MenuItem>
                     </Select>
                 </FormControl>
-            </Box>
-
-            <div className="NewTripForm-countryInformation">
-                <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                ></Box>
-                <TextField
-                    label="Country Information"
-                    placeholder="eg. language, population, religion, history"
-                    multiline
-                    rows={4}
-                    value={countryInformation}
-                    onChange={e => setCountryInformation(e.target.value)}
-                />
-            </div>
-            <div className="NewTripForm-experience">
-                <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                ></Box>
-                <TextField
-                    label="Your experience"
-                    placeholder="eg. weather, unforgattable experiences"
-                    multiline
-                    rows={4}
-                    value={tripExperience}
-                    onChange={e => setTripExperience(e.target.value)}
-                />
-            </div>
-            <div className="NewTripForm-saveButton">
-                <Button variant="outlined" onClick={() => postTripData()}>Upload your trip</Button>
+                <div className="NewTripForm-countryInformation">
+                    <TextField
+                        label="Country Information"
+                        placeholder="eg. language, population, religion, history"
+                        multiline
+                        rows={4}
+                        value={countryInformation}
+                        onChange={e => setCountryInformation(e.target.value)}
+                    />
+                </div>
+                <div className="NewTripForm-experience">
+                    <TextField
+                        label="Your experience"
+                        placeholder="eg. weather, unforgattable experiences"
+                        multiline
+                        rows={4}
+                        value={tripExperience}
+                        onChange={e => setTripExperience(e.target.value)}
+                    />
+                </div>
+                <div className="NewTripForm-saveButton">
+                    <Button variant="outlined" onClick={() => postTripData()}>Upload your trip</Button>
+                </div>
             </div>
         </div>
     )
