@@ -1,4 +1,5 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CityDetails from '../CityDetails/CityDetails';
 import CountryDetails from '../CountryDetails/CountryDetails';
@@ -25,6 +26,10 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
+        <div className="Trip-edit-icon-container">
+          <EditIcon className="Trip-edit-icon"/>
+          <div className="Trip-edit-icon-tooltip" >Edit trip</div>
+        </div>
         <div className="Trip-title">
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>

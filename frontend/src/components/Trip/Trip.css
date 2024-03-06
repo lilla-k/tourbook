@@ -17,6 +17,43 @@
     object-fit: cover;
 }
 
+.Trip-edit-icon-container{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background-color: var(--dark-green);
+    color: white;
+    border-radius: 50%;
+    padding: 13px;
+    cursor: pointer;
+}
+
+.Trip-edit-icon-container:hover{
+    background-color: var(--light-green);
+}
+
+.Trip-edit-icon-tooltip{
+    position: absolute;
+    z-index: 100;
+    background-color:var(--dark-grey);
+    border-radius: 5px;
+    box-shadow:  1px 1px 1px var(--dark-grey);
+    padding: 5px;
+    margin: 4px;
+    top: 50px;
+    left: 2px;
+    font-size: 12px;
+    display: none;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.Trip-edit-icon-container:hover .Trip-edit-icon-tooltip{
+    display: block;
+}
+
 .Trip-title{
     background-color: white;
     padding: 3px;
