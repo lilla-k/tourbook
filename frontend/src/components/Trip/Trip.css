@@ -34,23 +34,7 @@
     background-color: var(--light-green);
 }
 
-.Trip-edit-icon-tooltip{
-    position: absolute;
-    z-index: 100;
-    background-color:var(--dark-grey);
-    border-radius: 5px;
-    box-shadow:  1px 1px 1px var(--dark-grey);
-    padding: 5px;
-    margin: 4px;
-    top: 50px;
-    left: 2px;
-    font-size: 12px;
-    display: none;
-    font-weight: 400;
-    white-space: nowrap;
-}
-
-.Trip-edit-icon-container:hover .Trip-edit-icon-tooltip{
+.Trip-edit-icon-container:hover .tooltip{
     display: block;
 }
 

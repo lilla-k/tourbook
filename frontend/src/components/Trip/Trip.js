@@ -6,12 +6,13 @@ import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import tripTypes from '../../tripTypes.js';
 import './Trip.css';
+import '../../style/Tooltip.css';
 
 
 function Trip() {
 
 
-    const [trips] = useOutletContext();
+  const [trips] = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
@@ -28,7 +29,7 @@ function Trip() {
         <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
         <div className="Trip-edit-icon-container">
           <EditIcon className="Trip-edit-icon"/>
-          <div className="Trip-edit-icon-tooltip" >Edit trip</div>
+          <div className="tooltip" >Edit trip</div>
         </div>
         <div className="Trip-title">
           <div className="Trip-title-border">

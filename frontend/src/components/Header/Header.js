@@ -5,6 +5,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LoginIcon from '@mui/icons-material/Login';
 import './Header.css';
+import '../../style/Tooltip.css';
 
 
 function Header(){
@@ -18,23 +19,23 @@ function Header(){
         <div className="Header-icons">
           {pathname==='/' && <div className="Header-icon-container" onClick={()=>navigate("/trips")}>
             <ViewListIcon className="Header-icon" />
-            <div className="Header-icon-tooltip" >List view</div>
+            <div className="tooltip" >List view</div>
           </div>}
           {pathname!=='/' && <div className="Header-icon-container" onClick={()=>navigate("/")}>
             <PlaceIcon className="Header-icon" />
-            <div className="Header-icon-tooltip" >Map view</div>
+            <div className="tooltip" >Map view</div>
           </div>}
           <div className="Header-icon-container" onClick={()=>navigate("/addTrip")}>
             <AddCircleOutlineIcon className="Header-icon"/>
-            <div className="Header-icon-tooltip" >Add trip</div>
+            <div className="tooltip" >Add trip</div>
           </div>
           <div className="Header-icon-container">
             <PersonOutlineIcon className="Header-icon"/>
-            <div className="Header-icon-tooltip">Sign In</div>
+            <div className="tooltip">Sign In</div>
           </div>
           <div className="Header-icon-container">
             <LoginIcon className="Header-icon"/>
-            <div className="Header-icon-tooltip">Login</div>
+            <div className="tooltip">Login</div>
           </div>
         </div>
       </div>
