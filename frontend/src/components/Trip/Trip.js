@@ -1,4 +1,4 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -12,7 +12,7 @@ import '../../style/Tooltip.css';
 
 function Trip() {
 
-
+  const navigate = useNavigate();
   const [trips] = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
@@ -51,7 +51,7 @@ function Trip() {
               </Link>
             )
           })}
-          <Button variant="outlined">+ Add City</Button>
+          <Button onClick={()=>navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
         {city===undefined?<CountryDetails selectedTrip={selectedTrip}/>:<CityDetails selectedCity={selectedCity}/>}
         <ImageGrid

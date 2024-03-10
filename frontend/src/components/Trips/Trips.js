@@ -15,7 +15,7 @@ function Trips(){
                 key={trip.id}
                 id={trip.id}
                 countryName={trip.country}
-                image={trip.images[0]}            //ha nem töltött fel képet?
+                image={trip.images[0]}
                 startDate={trip.startDate}
                 />)}
 
