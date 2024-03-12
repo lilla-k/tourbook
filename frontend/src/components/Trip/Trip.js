@@ -20,7 +20,7 @@ function Trip() {
 
 
   const cityImages=[];
-  selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...city.images));
+  selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...(city.images || [])));
   const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
   const coverImage=allImages.find(image=>image.cover ===true);
 

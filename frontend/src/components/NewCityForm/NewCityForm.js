@@ -13,11 +13,34 @@ function NewCityForm() {
     //console.log(selectedTripCountry)  hogy lehet leadni a country-t?
 
     const [cityInformation, setCityInformation] = useState("");
+    const [cityName, setCityName] = useState("");
 
-    return (<div className="NewCityForm">
+    async function postCityData() {
+        const cityData = {
+            cityName: cityName,
+            cityInformation: cityInformation
+        }
+        const response = await fetch(`http://localhost:3001/api/${tripId}/cities`, {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cityData)
+        })
+        if (response.status === 201){
+            console.log("push");    
+        }
+    }
+
+    return(<div className = "NewCityForm" >
         <div className="NewCityForm-title">Information about the city in {selectedTrip.country}</div>
         <div className="NewCityForm-form">
-            <TextField id="outlined-basic" label="City name" variant="outlined" />
+            <div className="NewCityForm-cityName">
+                <TextField 
+                label="City name" 
+                variant="outlined" 
+                value={cityName}
+                onChange={e => setCityName(e.target.value)}
+                />
+            </div>
             <div className="NewCityForm-cityInformation">
                 <TextField
                     label="City Information"
@@ -30,11 +53,11 @@ function NewCityForm() {
             </div>
             <div>Attractions</div>
             <div className="NewCityForm-saveButton">
-                    <Button variant="outlined" >Upload details</Button>
+                    <Button variant="outlined"onClick={() => postCityData()} >Upload details</Button>
             </div>
         </div>
 
-    </div>)
-}
+    </div >)
+    }
 
-export default NewCityForm;
+    export default NewCityForm;

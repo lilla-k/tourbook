@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 
 const uri = "mongodb+srv://tourbook_backend:mncC2YKQH6lHaBGs@cluster0.yjrzlwq.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
@@ -14,6 +14,15 @@ export async function addTrip(trip) {
     const result = await coll.insertOne(trip);
     await client.close();
     return result.insertedId.toString();
+}
+
+export async function addCity(tripId, city) {
+  console.log(tripId);
+  console.log(city);
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {visitedCities: city}});
+  await client.close();
 }
 
 export async function getTrips() {

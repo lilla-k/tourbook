@@ -26,7 +26,7 @@ function NewTripForm() {
     const [tripType, setTripType] = useState("");
 
     async function postTripData() {
-        const postTripData = {
+        const tripData = {
             startDate: startDate,
             endDate: endDate,
             country: country,
@@ -38,7 +38,7 @@ function NewTripForm() {
         const response = await fetch("http://localhost:3001/api/trips", {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postTripData)
+            body: JSON.stringify(tripData)
         })
         if (response.status === 201) {
             const tripIdObj = await response.json();
