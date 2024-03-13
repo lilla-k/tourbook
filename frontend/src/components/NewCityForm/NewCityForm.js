@@ -26,7 +26,7 @@ function NewCityForm() {
             body: JSON.stringify(cityData)
         })
         if (response.status === 201){
-            console.log("push");    
+           
         }
     }
 
@@ -51,7 +51,9 @@ function NewCityForm() {
                     onChange={e => setCityInformation(e.target.value)}
                 />
             </div>
-            <div>Attractions</div>
+            <div className="NewCityForm-attractions">
+                <div>You can add the visited attractions:</div>
+            </div>
             <div className="NewCityForm-saveButton">
                     <Button variant="outlined"onClick={() => postCityData()} >Upload details</Button>
             </div>

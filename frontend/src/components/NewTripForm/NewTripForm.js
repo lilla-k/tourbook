@@ -43,7 +43,7 @@ function NewTripForm() {
         if (response.status === 201) {
             const tripIdObj = await response.json();
             const pushNewTrip = () => {
-                const newTrip = { ...tripIdObj, ...postTripData };
+                const newTrip = { ...tripIdObj, ...tripData };
                 trips.push(newTrip);
                 return trips;
             }
