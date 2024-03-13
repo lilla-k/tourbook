@@ -33,7 +33,8 @@ function NewTripForm() {
             tripType: tripType,
             images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
             countryInformation: countryInformation,
-            tripExperience: tripExperience
+            tripExperience: tripExperience,
+            visitedCities: []
         }
         const response = await fetch("http://localhost:3001/api/trips", {
             method: "post",

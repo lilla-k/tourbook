@@ -1,4 +1,4 @@
-import { useParams, useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -6,11 +6,11 @@ import './NewCityForm.css';
 
 function NewCityForm() {
 
+    const navigate = useNavigate();
     const { tripId } = useParams();
-    const [trips] = useOutletContext();
+    const [trips, setTrips] = useOutletContext();
     console.log(trips);
     const selectedTrip = trips.find(trip => trip.id === tripId);
-    //console.log(selectedTripCountry)  hogy lehet leadni a country-t?
 
     const [cityInformation, setCityInformation] = useState("");
     const [cityName, setCityName] = useState("");
@@ -26,7 +26,19 @@ function NewCityForm() {
             body: JSON.stringify(cityData)
         })
         if (response.status === 201){
+            const pushNewCity = () => {
+                console.log(trips)
+                trips.forEach(trip => {
+                    if(trip.id === tripId){
+                        trip.visitedCities.push(cityData);
+                    }
+                })
+                console.log(trips);
+                return trips;
+            }
            
+           setTrips(pushNewCity);
+           navigate(`/trips/${tripId}`)
         }
     }
 
