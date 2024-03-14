@@ -73,6 +73,10 @@
     font-size: 24px;
 }
 
+.Trip-visitedCities{
+    margin: 20px 0;
+}
+
 .Trip-visitedCity{
     background-color: var(--light-grey);
     color: var(--dark-grey);

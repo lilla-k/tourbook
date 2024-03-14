@@ -16,20 +16,20 @@ function Trip() {
   const [trips] = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
-  const selectedCity = selectedTrip.visitedCities?.find(c => city ===c.cityName);
+  const selectedCity = selectedTrip.visitedCities?.find(c => city === c.cityName);
 
 
-  const cityImages=[];
-  selectedTrip.visitedCities?.forEach((city)=>cityImages.push(...(city.images || [])));
-  const allImages=[...(selectedTrip.images? selectedTrip.images:[]), ...cityImages];
-  const coverImage=allImages.find(image=>image.cover ===true);
+  const cityImages = [];
+  selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
+  const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
+  const coverImage = allImages.find(image => image.cover === true);
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
         <div className="Trip-edit-icon-container">
-          <EditIcon className="Trip-edit-icon"/>
+          <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>
         <div className="Trip-title">
@@ -41,21 +41,23 @@ function Trip() {
         </div>
       </div>
       <div className="Trip-info">
-        <div className="Trip-visitedCities">
+        <div className="Trip-visitedCities-container">
           <div className="Trip-visitedCities-title">VISITED CITIES</div>
-          {selectedTrip.visitedCities?.map(city => {
-            return (
-              <Link to={`/trips/${selectedTrip.id}/${city.cityName}`} className="Trip-visitedCity">
-                <LocationOnIcon />
-                <div>{city.cityName}</div>
-              </Link>
-            )
-          })}
-          <Button onClick={()=>navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
+          <div className="Trip-visitedCities">
+            {selectedTrip.visitedCities?.map(city => {
+              return (
+                <Link to={`/trips/${selectedTrip.id}/${city.cityName}`} className="Trip-visitedCity">
+                  <LocationOnIcon />
+                  <div>{city.cityName}</div>
+                </Link>
+              )
+            })}
+          </div>
+          <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
-        {city===undefined?<CountryDetails selectedTrip={selectedTrip}/>:<CityDetails selectedCity={selectedCity}/>}
+        {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
-          images={selectedCity===undefined? allImages : selectedCity.images}
+          images={selectedCity === undefined ? allImages : selectedCity.images}
         />
       </div>
     </div>
