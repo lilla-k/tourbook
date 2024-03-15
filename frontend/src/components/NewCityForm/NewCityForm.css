@@ -24,6 +24,15 @@
 .NewCityForm-cityInformation > div{
     width: 100%;
 }
+.NewCityForm-attractions div{
+    margin: 5px;
+}
+
+.NewCityForm-addAttractionBtn{
+    margin: 25px 0;
+    cursor: pointer;
+    color: var(--dark-grey);
+}
 
 .NewCityForm-saveButton{
     width: 150px;
