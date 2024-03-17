@@ -6,7 +6,7 @@ function ImageGrid({images}) {
   return (
     <div className="ImageGrid">
       <ImageList cols={2} rowHeight={164}>
-      {images.map((item) => (
+      {images?.map((item) => (
         <ImageListItem key={item.url}>
           <img
             src={`${process.env.PUBLIC_URL}${item.url}?w=164&h=164&fit=crop&auto=format`}

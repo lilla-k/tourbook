@@ -22,7 +22,8 @@ function NewCityForm() {
     async function postCityData() {
         const cityData = {
             cityName: cityName,
-            cityInformation: cityInformation
+            cityInformation: cityInformation,
+            attractions: attractions
         }
         const response = await fetch(`http://localhost:3001/api/${tripId}/cities`, {
             method: "post",
