@@ -10,7 +10,7 @@ app.use(cors());
 
 app.get('/api/trips', async (req, res) => {
   const trips = await getTrips();
-  res.json(trips);
+  res.json(trips);         //trips vagy üres
 })
 
 app.post('/api/trips', async (req, res) => {

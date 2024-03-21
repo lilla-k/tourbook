@@ -6,8 +6,19 @@
     text-align: center;
 }
 
+.Trips-addFirstTrip{
+    color: var(--light-green);
+    font-size: 24px;
+}
+
+.Trips-addFirstTrip:hover{
+    cursor: pointer;
+}
+
 .Trips-container{
     margin: 50px 100px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }

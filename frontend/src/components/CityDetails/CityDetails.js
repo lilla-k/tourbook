@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import Chip from '@mui/material/Chip';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState } from 'react';
 import './CityDetails.css';
