@@ -28,7 +28,7 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
-        <div className="Trip-edit-icon-container">
+        <div className="Trip-edit-icon-container" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>

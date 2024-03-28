@@ -39,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/addCity",
         element: <NewCityForm />,
+      },
+      {
+        path: "trips/:tripId/edit",
+        element: <NewTripForm />,
       }
     ],
   },
