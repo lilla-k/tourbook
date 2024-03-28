@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,14 +16,16 @@ function NewTripForm() {
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
+    const { tripId } = useParams();
 
     const [trips, setTrips] = useOutletContext();
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
-    const [country, setCountry] = useState(null);
-    const [countryInformation, setCountryInformation] = useState("");
-    const [tripExperience, setTripExperience] = useState("");
-    const [tripType, setTripType] = useState("");
+    const selectedTrip = trips.find(trip => trip.id === tripId);
+    const [startDate, setStartDate] = useState(tripId?selectedTrip.startDate:"");
+    const [endDate, setEndDate] = useState(tripId?selectedTrip.endDate:"");
+    const [country, setCountry] = useState(tripId?selectedTrip.country:null);
+    const [countryInformation, setCountryInformation] = useState(tripId?selectedTrip.countryInformation:"");
+    const [tripExperience, setTripExperience] = useState(tripId?selectedTrip.tripExperience:"");
+    const [tripType, setTripType] = useState(tripId?selectedTrip.tripType:"");
 
     async function postTripData() {
         const tripData = {
@@ -111,7 +113,7 @@ function NewTripForm() {
                     />
                 </div>
                 <div className="NewTripForm-saveButton">
-                    <Button variant="outlined" onClick={() => postTripData()}>Upload your trip</Button>
+                    <Button variant="outlined" onClick={() => postTripData()}>{tripId?"Edit":"Upload"}</Button>
                 </div>
             </div>
         </div>
