@@ -17,8 +17,6 @@ export async function addTrip(trip) {
 }
 
 export async function addCity(tripId, city) {
-  console.log(tripId);
-  console.log(city);
   await client.connect();
   const coll = client.db("tourbook").collection("trips");
   await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {visitedCities: city}});
@@ -36,6 +34,16 @@ export async function getTrips() {
   })
   await client.close();
   return trips;
+}
+
+export async function updateTrip(tripId, updatedTrip) {
+  console.log("mongo")
+  console.log(tripId);
+  console.log(updatedTrip);
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, { $set: updatedTrip});
+  await client.close();
 }
 
 

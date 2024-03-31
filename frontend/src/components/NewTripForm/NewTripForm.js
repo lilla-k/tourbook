@@ -20,24 +20,25 @@ function NewTripForm() {
 
     const [trips, setTrips] = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
-    const [startDate, setStartDate] = useState(tripId?selectedTrip.startDate:"");
-    const [endDate, setEndDate] = useState(tripId?selectedTrip.endDate:"");
-    const [country, setCountry] = useState(tripId?selectedTrip.country:null);
-    const [countryInformation, setCountryInformation] = useState(tripId?selectedTrip.countryInformation:"");
-    const [tripExperience, setTripExperience] = useState(tripId?selectedTrip.tripExperience:"");
-    const [tripType, setTripType] = useState(tripId?selectedTrip.tripType:"");
+    const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
+    const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
+    const [country, setCountry] = useState(tripId ? selectedTrip.country : null);
+    const [countryInformation, setCountryInformation] = useState(tripId ? selectedTrip.countryInformation : "");
+    const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
+    const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
+
+    const tripData = {
+        startDate: startDate,
+        endDate: endDate,
+        country: country,
+        tripType: tripType,
+        images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
+        countryInformation: countryInformation,
+        tripExperience: tripExperience,
+        visitedCities: []
+    }
 
     async function postTripData() {
-        const tripData = {
-            startDate: startDate,
-            endDate: endDate,
-            country: country,
-            tripType: tripType,
-            images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
-            countryInformation: countryInformation,
-            tripExperience: tripExperience,
-            visitedCities: []
-        }
         const response = await fetch("http://localhost:3001/api/trips", {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -52,6 +53,30 @@ function NewTripForm() {
             }
             setTrips(pushNewTrip);
             navigate(`/trips/${tripIdObj.id}`);
+        }
+    }
+
+    async function editTripData() {
+        const response = await fetch(`http://localhost:3001/api/${tripId}`, {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(tripData)
+        })
+        console.log(tripId)
+        if (response.status === 200) {
+            const notUpdatedTrips = trips.filter(trip=>{
+                return trip.id !== tripId;
+            })
+            const pushUpdatedTrip = () => {
+                const tripIdObj={id: tripId}
+                const updatedTrip = { ...tripIdObj, ...tripData };
+                notUpdatedTrips.push(updatedTrip);
+                return notUpdatedTrips;
+            }
+            console.log(notUpdatedTrips);
+            setTrips(pushUpdatedTrip);
+
+            navigate(`/trips/${tripId}`);
         }
     }
 
@@ -113,7 +138,7 @@ function NewTripForm() {
                     />
                 </div>
                 <div className="NewTripForm-saveButton">
-                    <Button variant="outlined" onClick={() => postTripData()}>{tripId?"Edit":"Upload"}</Button>
+                    <Button variant="outlined" onClick={tripId? ()=> editTripData() : ()=>postTripData()}>{tripId ? "Edit" : "Upload"}</Button>
                 </div>
             </div>
         </div>
