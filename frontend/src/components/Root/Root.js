@@ -11,6 +11,7 @@ function Root() {
 
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
+  const [toaster, setToaster] = useState("");
 
   useEffect(() => {
     getTrips();
@@ -18,19 +19,16 @@ function Root() {
 
   async function getTrips(){
     const trips = await tripService.getTrips();
-    console.log(trips)
     setTrips(trips);
     setLoading(false);
   }
-
-  console.log(trips)
 
 // nem én hoztam létre Outletet, nem tudom milyen propjai lehetnek, doksi alapján context
   return (
     <div className="Root">
       <Header/>
       {loading && <Loading/>}
-      {!loading && <Outlet context={[trips, setTrips]}/>}    
+      {!loading && <Outlet context={[trips, setTrips, toaster, setToaster]}/>}    
     </div>
   );
 }
