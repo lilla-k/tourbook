@@ -39,32 +39,19 @@ function NewTripForm() {
     }
 
     async function postTripData() {
-        const response = await fetch("http://localhost:3001/api/trips", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tripData)
-        })
-        if (response.status === 201) {
-            const tripIdObj = await response.json();
-            const trips = tripService.getTrips();
-            setTrips(trips);
-            navigate(`/trips/${tripIdObj.id}`);
-        }
+        const id = await tripService.postTrip(tripData);
+        const trips = await tripService.getTrips();
+        console.log(trips)
+        setTrips(trips);
+        navigate(`/trips/${id}`);
     }
 
     async function editTripData() {
         delete tripData.visitedCities;
-        const response = await fetch(`http://localhost:3001/api/${tripId}`, {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tripData)
-        })
-        console.log(response.status)
-        if (response.status === 200) {
-            const trips = await tripService.getTrips();
-            setTrips(trips);
-            navigate(`/trips/${tripId}`);
-        }
+        await tripService.updateTrip(tripId, tripData);
+        const trips = await tripService.getTrips();
+        setTrips(trips);
+        navigate(`/trips/${tripId}`);
     }
 
     return (
@@ -125,7 +112,7 @@ function NewTripForm() {
                     />
                 </div>
                 <div className="NewTripForm-saveButton">
-                    <Button variant="outlined" onClick={tripId? ()=> editTripData() : ()=>postTripData()}>{tripId ? "Edit" : "Upload"}</Button>
+                    <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Edit" : "Upload"}</Button>
                 </div>
             </div>
         </div>
