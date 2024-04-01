@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import tripTypes from '../../tripTypes.js';
 import countries from '../../countries.js';
 import './NewTripForm.css';
+import tripService from '../../services/tripService.js'
 
 function NewTripForm() {
 
@@ -46,17 +47,14 @@ function NewTripForm() {
         })
         if (response.status === 201) {
             const tripIdObj = await response.json();
-            const pushNewTrip = () => {
-                const newTrip = { ...tripIdObj, ...tripData };
-                trips.push(newTrip);
-                return trips;
-            }
-            setTrips(pushNewTrip);
+            const trips = tripService.getTrips();
+            setTrips(trips);
             navigate(`/trips/${tripIdObj.id}`);
         }
     }
 
     async function editTripData() {
+        delete tripData.visitedCities;
         const response = await fetch(`http://localhost:3001/api/${tripId}`, {
             method: "put",
             headers: { "Content-Type": "application/json" },

@@ -23,7 +23,7 @@ export async function addCity(tripId, city) {
   await client.close();
 }
 
-export async function getTrips() {      
+export async function getTrips() {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");
   const cursor = coll.find({});
