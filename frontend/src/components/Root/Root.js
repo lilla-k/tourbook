@@ -5,6 +5,8 @@ import Header from '../Header/Header.js';
 import Loading from '../Loading/Loading.js';
 import { Outlet } from "react-router-dom";
 import {useState, useEffect} from 'react';
+import Snackbar from '@mui/material/Snackbar';
+
 
 function Root() {
   console.log("root");
@@ -28,7 +30,13 @@ function Root() {
     <div className="Root">
       <Header/>
       {loading && <Loading/>}
-      {!loading && <Outlet context={[trips, setTrips, toaster, setToaster]}/>}    
+      {!loading && <Outlet context={[trips, setTrips, toaster, setToaster]}/>}  
+      <Snackbar
+        open={toaster===""?false:true}
+        autoHideDuration={2000}
+        onClose={()=>setToaster("")}
+        message={toaster}
+      />  
     </div>
   );
 }

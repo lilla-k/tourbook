@@ -2,7 +2,6 @@ import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Snackbar from '@mui/material/Snackbar';
 import CityDetails from '../CityDetails/CityDetails';
 import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
@@ -14,10 +13,7 @@ import '../../style/Tooltip.css';
 function Trip() {
 
   const navigate = useNavigate();
-  const [trips, setTrips, toaster, setToaster] = useOutletContext();
-  console.log(trips);
-  console.log(toaster);
-  // console.log(toaster?true:false);
+  const [trips] = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities?.find(c => city === c.cityName);
@@ -63,12 +59,6 @@ function Trip() {
           images={selectedCity === undefined ? allImages : selectedCity.images}
         />
       </div>
-      <Snackbar
-        open={toaster===""?false:true}
-        autoHideDuration={3000}
-        onClose={()=>setToaster("")}
-        message={toaster}
-      />
     </div>
   )
 }

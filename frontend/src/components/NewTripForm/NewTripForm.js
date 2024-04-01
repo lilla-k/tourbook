@@ -40,18 +40,18 @@ function NewTripForm() {
 
     async function postTripData() {
         const id = await tripService.postTrip(tripData);
+        setToaster("successfully created");
         const trips = await tripService.getTrips();
         setTrips(trips);
-        setToaster("successfully created");
         navigate(`/trips/${id}`);
     }
 
     async function editTripData() {
         delete tripData.visitedCities;
         await tripService.updateTrip(tripId, tripData);
+        setToaster("successfully updated");
         const trips = await tripService.getTrips();
         setTrips(trips);
-        setToaster("successfully updated");
         navigate(`/trips/${tripId}`);
     }
 
@@ -113,7 +113,7 @@ function NewTripForm() {
                     />
                 </div>
                 <div className="NewTripForm-saveButton">
-                    <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Edit" : "Upload"}</Button>
+                    <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Save" : "Add"}</Button>
                 </div>
             </div>
         </div>
