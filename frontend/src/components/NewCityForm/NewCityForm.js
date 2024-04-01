@@ -9,7 +9,7 @@ function NewCityForm() {
 
     const navigate = useNavigate();
     const { tripId } = useParams();
-    const [trips, setTrips] = useOutletContext();
+    const {trips, setTrips} = useOutletContext();
     console.log(trips);
     const selectedTrip = trips.find(trip => trip.id === tripId);
 

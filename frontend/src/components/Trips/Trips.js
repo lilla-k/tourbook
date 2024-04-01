@@ -4,7 +4,7 @@ import { useOutletContext, useNavigate} from 'react-router-dom';
 
 function Trips(){
     
-    const [trips] = useOutletContext();
+    const {trips} = useOutletContext();
     const navigate = useNavigate();
     console.log(trips)
 

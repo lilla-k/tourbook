@@ -18,7 +18,7 @@ function NewTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
     const { tripId } = useParams();
-    const [trips, setTrips, toaster, setToaster] = useOutletContext();
+    const {trips, setTrips, setToaster} = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
     const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");

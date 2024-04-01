@@ -13,7 +13,7 @@ import '../../style/Tooltip.css';
 function Trip() {
 
   const navigate = useNavigate();
-  const [trips] = useOutletContext();
+  const {trips} = useOutletContext();
   const { tripId, city } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities?.find(c => city === c.cityName);

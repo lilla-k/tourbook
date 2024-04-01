@@ -9,7 +9,7 @@ import countries from '../../countries.js';
 function GoogleMaps() {
 
   const navigate = useNavigate();
-  const [trips] = useOutletContext();
+  const {trips} = useOutletContext();
 
   function findPosition(country){
     const countryObj=countries.find(c=> c.name===country);
