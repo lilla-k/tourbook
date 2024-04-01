@@ -23,6 +23,8 @@ function Root() {
     setLoading(false);
   }
 
+  console.log(trips)
+
 // nem én hoztam létre Outletet, nem tudom milyen propjai lehetnek, doksi alapján context
   return (
     <div className="Root">

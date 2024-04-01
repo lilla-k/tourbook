@@ -18,7 +18,6 @@ function NewTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
     const { tripId } = useParams();
-
     const [trips, setTrips] = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
@@ -60,20 +59,10 @@ function NewTripForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(tripData)
         })
-        console.log(tripId)
+        console.log(response.status)
         if (response.status === 200) {
-            const notUpdatedTrips = trips.filter(trip=>{
-                return trip.id !== tripId;
-            })
-            const pushUpdatedTrip = () => {
-                const tripIdObj={id: tripId}
-                const updatedTrip = { ...tripIdObj, ...tripData };
-                notUpdatedTrips.push(updatedTrip);
-                return notUpdatedTrips;
-            }
-            console.log(notUpdatedTrips);
-            setTrips(pushUpdatedTrip);
-
+            const trips = await tripService.getTrips();
+            setTrips(trips);
             navigate(`/trips/${tripId}`);
         }
     }
