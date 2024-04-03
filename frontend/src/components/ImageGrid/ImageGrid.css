@@ -3,3 +3,11 @@
     height: 450px;
     flex-shrink: 0;
 }
+
+.ImageGrid-plusBtn{
+    cursor: pointer;
+    font-size: 24px;
+    border: 1px solid var(--light-grey);
+    background: var(--light-grey);
+    text-align: center;
+}

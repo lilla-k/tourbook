@@ -14,7 +14,7 @@ function Trip() {
 
   const navigate = useNavigate();
   const {trips} = useOutletContext();
-  const { tripId, city } = useParams();
+  const {tripId, city} = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities?.find(c => city === c.cityName);
 
@@ -22,6 +22,7 @@ function Trip() {
   selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   const coverImage = allImages.find(image => image.cover === true);
+
 
   return (
     <div className="Trip">

@@ -9,13 +9,15 @@ function ImageGrid({images}) {
       {images?.map((item) => (
         <ImageListItem key={item.url}>
           <img
-            src={`${process.env.PUBLIC_URL}${item.url}?w=164&h=164&fit=crop&auto=format`}
+            src={process.env.PUBLIC_URL + item.url}
             alt={item.title}
             loading="lazy"
           />
+          {/* <div>{item.title}</div> */}
         </ImageListItem>
       ))}
-      </ImageList>
+      <div className="ImageGrid-plusBtn">{images===[]?"Add photos":"+"}</div>
+      </ImageList >
     </div>
     
   )
