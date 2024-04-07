@@ -22,7 +22,7 @@ function ImageGrid({images}) {
       ))}
       <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>
       </ImageList >
-      {showFileUploadModal && <FileUploadModal/>}
+      {showFileUploadModal && <FileUploadModal setShowFileUploadModal={setShowFileUploadModal}/>}
     </div>
     
   )

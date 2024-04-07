@@ -23,6 +23,13 @@ export async function addCity(tripId, city) {
   await client.close();
 }
 
+export async function addPhoto(tripId, photo) {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {images: photo}});
+  await client.close();
+}
+
 export async function getTrips() {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");

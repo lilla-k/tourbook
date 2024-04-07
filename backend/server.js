@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import { addTrip, addCity, getTrips, updateTrip } from './mongo.js';
+import { addTrip, addCity, addPhoto, getTrips, updateTrip } from './mongo.js';
 
 const port = 3001;
 const app = express();
@@ -33,6 +33,14 @@ app.post('/api/:tripId/cities', async (req, res) => {
   const postedCity = req.body;
   const tripId = req.params.tripId;
   await addCity(tripId, postedCity);
+  res.sendStatus(201);
+})
+
+app.post('/api/:tripId/photos', async (req, res) => {
+  const postedPhoto = req.body;
+  console.log(postedPhoto)
+  const tripId = req.params.tripId;
+  await addPhoto(tripId, postedPhoto);
   res.sendStatus(201);
 })
 
