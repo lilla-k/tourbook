@@ -1,3 +1,5 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer';  //multer automatically gives that file a unique id
@@ -6,6 +8,10 @@ import { addTrip, addCity, addPhoto, getTrips, updateTrip } from './mongo.js';
 
 const port = 3001;
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log("server");
+console.log(__dirname);
 app.use(express.json());
 app.use(cors());
 
@@ -49,7 +55,6 @@ app.post('/api/:tripId/cities', async (req, res) => {
 
 app.post('/api/:tripId/photos', async (req, res) => {
   const postedPhoto = req.body;
-  console.log(postedPhoto)
   const tripId = req.params.tripId;
   await addPhoto(tripId, postedPhoto);
   res.sendStatus(201);
@@ -67,6 +72,8 @@ app.post('/api/:tripId/upload', upload.single('file'), (req,res) => {
   console.log(uploadedImageFile)           //filename, path
   res.status(201).json(uploadedImageFile.path);
 })
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

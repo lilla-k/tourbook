@@ -14,7 +14,7 @@ function ImageGrid({images}) {
       {images?.map((item) => (
         <ImageListItem key={item.url}>
           <img
-            src={item.url}
+            src={`http://localhost:3001/${item.url}`}
             alt={item.title}
             loading="lazy"
           />

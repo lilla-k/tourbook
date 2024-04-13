@@ -23,15 +23,12 @@ function FileUploadModal({ setShowFileUploadModal }) {
     }
   }
 
-
-
   async function postPhotoData(imagePath){
     const photoData = {
       url: imagePath,
       title: title,
       cover: false
     }
-    console.log(photoData);
     const response = await tripService.postPhoto(tripId, photoData);
     if (response==="photo data posted"){
       setToaster("successfully uploaded");
@@ -46,7 +43,6 @@ function FileUploadModal({ setShowFileUploadModal }) {
     const formData = new FormData();
     formData.append('file', file);
     const path = await tripService.uploadPhoto(tripId, formData);
-    console.log(path);
     postPhotoData(path);
   }
 
