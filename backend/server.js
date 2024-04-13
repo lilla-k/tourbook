@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import multer from 'multer';  //multer automatically gives that file a unique id
 
 import { addTrip, addCity, addPhoto, getTrips, updateTrip } from './mongo.js';
 
@@ -7,6 +8,16 @@ const port = 3001;
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+const storageConfig = multer.diskStorage({
+  destination: function(req, file, cb){
+    return cb(null, 'images');
+  }, 
+  filename: function(req, file, cb){
+    return cb(null, Date.now() + "_" + file.originalname)          //with extension
+  },
+})
+const upload = multer({ storage: storageConfig })
 
 app.get('/api/trips', async (req, res) => {
   const trips = await getTrips();
@@ -49,6 +60,12 @@ app.put('/api/:tripId', async (req, res) => {
   const tripId = req.params.tripId;
   await updateTrip(tripId, updatedTrip);
   res.sendStatus(200);
+})
+
+app.post('/api/:tripId/upload', upload.single('file'), (req,res) => {
+  const uploadedImageFile = req.file;
+  console.log(uploadedImageFile)           //filename, path
+  res.status(201).json(uploadedImageFile.path);
 })
 
 app.listen(port, () => {

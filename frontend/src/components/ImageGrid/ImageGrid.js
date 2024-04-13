@@ -7,13 +7,14 @@ function ImageGrid({images}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
+  // process.env.PUBLIC_URL
   return (
     <div className="ImageGrid">
       <ImageList cols={2} rowHeight={164}>
       {images?.map((item) => (
         <ImageListItem key={item.url}>
           <img
-            src={process.env.PUBLIC_URL + item.url}
+            src={item.url}
             alt={item.title}
             loading="lazy"
           />

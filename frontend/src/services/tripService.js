@@ -31,6 +31,19 @@ const tripServices = {
         if (response.status === 201) {
             return "photo data posted";
         }
+    },
+    uploadPhoto:  async function uploadPhoto(tripId, formData) {
+        console.log(formData)
+        const response = await fetch(`http://localhost:3001/api/${tripId}/upload`, {
+            method: "post",
+            body: formData
+        });
+        console.log(response.status)
+        if (response.status === 201) {
+            const filePath = await response.json();
+            console.log(filePath);
+            return filePath;
+        }
     }
 }
 

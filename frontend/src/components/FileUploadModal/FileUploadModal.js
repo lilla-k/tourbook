@@ -8,27 +8,30 @@ import tripService from '../../services/tripService.js'
 
 function FileUploadModal({ setShowFileUploadModal }) {
 
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [title, setTitle] = useState("");
 
   const { setTrips, setToaster } = useOutletContext();
   const { tripId } = useParams();
 
-  console.log("fileupload")
 
   function changeFileHandler(e) {
     if (e.target.files) {
-      setFile(URL.createObjectURL(e.target.files[0]));
+      setFile(e.target.files[0]);
+      setPreviewUrl(URL.createObjectURL(e.target.files[0]));
     }
   }
 
-  const photoData = {
-    url: file,
-    title: title,
-    cover: false
-  }
 
-  async function postPhotoData(){
+
+  async function postPhotoData(imagePath){
+    const photoData = {
+      url: imagePath,
+      title: title,
+      cover: false
+    }
+    console.log(photoData);
     const response = await tripService.postPhoto(tripId, photoData);
     if (response==="photo data posted"){
       setToaster("successfully uploaded");
@@ -38,9 +41,15 @@ function FileUploadModal({ setShowFileUploadModal }) {
     }
   }
 
-  function uploadPhoto() {
-    postPhotoData();
+  async function uploadPhoto(){
+    console.log(1)
+    const formData = new FormData();
+    formData.append('file', file);
+    const path = await tripService.uploadPhoto(tripId, formData);
+    console.log(path);
+    postPhotoData(path);
   }
+
 
 
   return (
@@ -52,7 +61,7 @@ function FileUploadModal({ setShowFileUploadModal }) {
           <div className="FileUploadModal-selector-size">Maximum file size 5mb</div>
           <input type="file" onChange={changeFileHandler} />
         </div>
-        <img src={file} alt={file} className="FileUploadModal-image" />
+        {previewUrl && <img src={previewUrl} alt="Preview" className="FileUploadModal-preview" />}
         <div className="FileUploadModal-title">
           <TextField
             label="Title"
