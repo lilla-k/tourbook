@@ -1,5 +1,6 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CityDetails from '../CityDetails/CityDetails';
@@ -16,19 +17,24 @@ function Trip() {
   const {trips} = useOutletContext();
   const {tripId, city} = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
-  const selectedCity = selectedTrip.visitedCities?.find(c => city === c.cityName);
+  const selectedCity = selectedTrip?.visitedCities?.find(c => city === c.cityName);
 
   const cityImages = [];
   selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.cover === true);
+  const notCoverImages = allImages.find(image => image.cover === false);
+  console.log(coverImage)
 
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={process.env.PUBLIC_URL + coverImage.url} className="Trip-img" alt="" />
+        <img src={coverImage?.url} className="Trip-img" alt="" />
+        <div className="Trip-edit-coverImage" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
+          <AddAPhotoIcon fontSize="small"/> Edit cover image
+        </div>
         <div className="Trip-edit-icon-container" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
@@ -58,7 +64,7 @@ function Trip() {
         </div>
         {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
-          images={selectedCity === undefined ? allImages : selectedCity.images}
+          images={selectedCity === undefined ? notCoverImages : selectedCity.images}
         />
       </div>
     </div>

@@ -32,7 +32,7 @@ function NewTripForm() {
         endDate: endDate,
         country: country,
         tripType: tripType,
-        images: [{ url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel", cover: false }, { url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity", cover: true }],
+        images: [{ url: "http://localhost:3001/images/logo3.jpg", title: "logo_cover", cover: true }],
         countryInformation: countryInformation,
         tripExperience: tripExperience,
         visitedCities: []

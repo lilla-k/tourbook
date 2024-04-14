@@ -17,6 +17,22 @@
     object-fit: cover;
 }
 
+.Trip-edit-coverImage{
+    font-size: 16px;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    background-color: white;
+    color: var(--dark-grey);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.Trip-edit-coverImage:hover{
+    background-color: var(--light-grey);
+    cursor: pointer;
+}
+
 .Trip-edit-icon-container{
     width: 50px;
     height: 50px;
