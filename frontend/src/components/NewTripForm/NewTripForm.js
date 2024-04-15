@@ -32,7 +32,7 @@ function NewTripForm() {
         endDate: endDate,
         country: country,
         tripType: tripType,
-        images: [{ url: "http://localhost:3001/images/logo3.jpg", title: "logo_cover", cover: true }],
+        images: [],
         countryInformation: countryInformation,
         tripExperience: tripExperience,
         visitedCities: []

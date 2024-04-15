@@ -24,14 +24,13 @@ function Trip() {
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.cover === true);
-  const notCoverImages = allImages.filter(image => image.cover === false);
   console.log(coverImage)
 
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={coverImage?.url} className="Trip-img" alt="" />
+        {coverImage ? <img src={coverImage.url} className="Trip-img" alt="" />: <div className="Trip-img-background"></div>}
         <div className="Trip-edit-coverImage" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
@@ -64,7 +63,7 @@ function Trip() {
         </div>
         {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
-          images={selectedCity === undefined ? notCoverImages : selectedCity.images}
+          images={selectedCity === undefined ? allImages : selectedCity.images}
         />
       </div>
     </div>
