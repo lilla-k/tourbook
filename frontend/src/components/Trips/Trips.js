@@ -18,7 +18,7 @@ function Trips(){
                 key={trip.id}
                 id={trip.id}
                 countryName={trip.country}
-                image={trip.images[0]}
+                coverImage={trip.images.find(image=> image.cover===true)}
                 startDate={trip.startDate}
                 />)}
 

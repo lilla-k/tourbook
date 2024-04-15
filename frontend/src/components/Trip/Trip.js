@@ -30,7 +30,7 @@ function Trip() {
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        {coverImage ? <img src={coverImage.url} className="Trip-img" alt="" />: <div className="Trip-img-background"></div>}
+        <img src={coverImage?.url} className="Trip-img" alt="" />
         <div className="Trip-edit-coverImage" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>

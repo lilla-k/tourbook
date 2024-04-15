@@ -16,6 +16,12 @@
     box-shadow: 0px 0px 3px 1px var(--dark-grey);
 }
 
+.TripCard-img-placeholder{
+    background-image: linear-gradient(white, var(--light-grey));
+    width: 150px;
+    height: 150px;
+}
+
 .TripCard img{
     height: 150px;
     overflow: hidden;

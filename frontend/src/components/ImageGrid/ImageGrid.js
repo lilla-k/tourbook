@@ -7,7 +7,7 @@ function ImageGrid({images}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
-
+  console.log(images)
   return (
     <div className="ImageGrid">
       <ImageList cols={2} rowHeight={164}>
