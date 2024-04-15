@@ -7,7 +7,7 @@ function ImageGrid({images}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
-  // process.env.PUBLIC_URL
+
   return (
     <div className="ImageGrid">
       <ImageList cols={2} rowHeight={164}>

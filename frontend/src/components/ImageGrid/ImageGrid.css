@@ -6,8 +6,11 @@
 
 .ImageGrid-plusBtn{
     cursor: pointer;
-    font-size: 24px;
+    font-size: 30px;
+    height: 164px;
     border: 1px solid var(--light-grey);
     background: var(--light-grey);
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

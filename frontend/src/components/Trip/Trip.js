@@ -24,7 +24,7 @@ function Trip() {
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.cover === true);
-  const notCoverImages = allImages.find(image => image.cover === false);
+  const notCoverImages = allImages.filter(image => image.cover === false);
   console.log(coverImage)
 
 
@@ -33,7 +33,7 @@ function Trip() {
       <div className="Trip-img-container">
         <img src={coverImage?.url} className="Trip-img" alt="" />
         <div className="Trip-edit-coverImage" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
-          <AddAPhotoIcon fontSize="small"/> Edit cover image
+          <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
         <div className="Trip-edit-icon-container" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="Trip-edit-icon" />

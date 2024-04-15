@@ -33,6 +33,10 @@
     cursor: pointer;
 }
 
+.Trip-edit-coverImage-icon{
+    vertical-align: text-bottom;
+}
+
 .Trip-edit-icon-container{
     width: 50px;
     height: 50px;
