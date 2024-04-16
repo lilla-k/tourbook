@@ -1,4 +1,5 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
@@ -6,6 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CityDetails from '../CityDetails/CityDetails';
 import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
+import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
 import tripTypes from '../../tripTypes.js';
 import './Trip.css';
 import '../../style/Tooltip.css';
@@ -19,6 +21,8 @@ function Trip() {
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip?.visitedCities?.find(c => city === c.cityName);
 
+  const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
+
   const cityImages = [];
   selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
@@ -31,7 +35,7 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={coverImage?.url} className="Trip-img" alt="" />
-        <div className="Trip-edit-coverImage" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
+        <div className="Trip-edit-coverImage" onClick={()=>setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
         <div className="Trip-edit-icon-container" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
@@ -66,6 +70,7 @@ function Trip() {
           images={selectedCity === undefined ? allImages : selectedCity.images}
         />
       </div>
+      {showCoverImageSelectorModal && <CoverImageSelectorModal setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}/>}
     </div>
   )
 }
