@@ -3,7 +3,7 @@ import './ImageGrid.css';
 import { ImageList, ImageListItem } from '@mui/material';
 import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 
-function ImageGrid({images}) {
+function ImageGrid({images, selected}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
@@ -21,7 +21,7 @@ function ImageGrid({images}) {
           {/* <div>{item.title}</div> */}
         </ImageListItem>
       ))}
-      <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>
+      {!selected && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>}
       </ImageList >
       {showFileUploadModal && <FileUploadModal setShowFileUploadModal={setShowFileUploadModal}/>}
     </div>

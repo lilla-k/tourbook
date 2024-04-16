@@ -70,7 +70,7 @@ function Trip() {
           images={selectedCity === undefined ? allImages : selectedCity.images}
         />
       </div>
-      {showCoverImageSelectorModal && <CoverImageSelectorModal setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}/>}
+      {showCoverImageSelectorModal && <CoverImageSelectorModal setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} images={allImages}/>}
     </div>
   )
 }

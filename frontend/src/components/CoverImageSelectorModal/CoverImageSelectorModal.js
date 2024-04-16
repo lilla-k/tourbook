@@ -2,7 +2,7 @@ import './CoverImageSelectorModal.css';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import CloseIcon from '@mui/icons-material/Close';
 
-function CoverImageSelectorModal({setShowCoverImageSelectorModal}) {
+function CoverImageSelectorModal({images, setShowCoverImageSelectorModal}) {
 
     return (
         <div className="CoverImageSelectorModal-background">
@@ -13,7 +13,7 @@ function CoverImageSelectorModal({setShowCoverImageSelectorModal}) {
                     <div className="CoverImageSelectorModal-close" onClick={()=>setShowCoverImageSelectorModal(false)}><CloseIcon/></div>
                 </div>
                 <hr></hr>
-                <ImageGrid/>
+                <ImageGrid images={images} selected={true}/>
             </div>
         </div>
     )
