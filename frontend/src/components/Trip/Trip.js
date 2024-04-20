@@ -30,6 +30,10 @@ function Trip() {
   const coverImage = allImages.find(image => image.cover === true);
   console.log(coverImage)
 
+  function saveCoverImage(imageIndex){
+    console.log("save cover", imageIndex);
+  }
+
 
   return (
     <div className="Trip">
@@ -68,9 +72,15 @@ function Trip() {
         {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
           images={selectedCity === undefined ? allImages : selectedCity.images}
+          cols={2}
         />
       </div>
-      {showCoverImageSelectorModal && <CoverImageSelectorModal setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} images={allImages}/>}
+      {showCoverImageSelectorModal && 
+      <CoverImageSelectorModal 
+        setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} 
+        images={allImages}
+        saveCoverImage={saveCoverImage}
+      />}
     </div>
   )
 }

@@ -23,27 +23,18 @@ function FileUploadModal({ setShowFileUploadModal }) {
     }
   }
 
-  async function postPhotoData(imagePath){
-    const photoData = {
-      url: imagePath,
-      title: title,
-      cover: false
-    }
-    const response = await tripService.postPhoto(tripId, photoData);
-    if (response==="photo data posted"){
-      setToaster("successfully uploaded");
-      const trips = await tripService.getTrips();
-      setTrips(trips);
-      setShowFileUploadModal(false);
-    }
-  }
 
-  async function uploadPhoto(){
-    console.log(1)
+  async function uploadImage(){
+    console.log("upload")
     const formData = new FormData();
     formData.append('file', file);
-    const path = await tripService.uploadPhoto(tripId, formData);
-    postPhotoData(path);
+    formData.append('title', title);
+    const fileName = await tripService.uploadImage(tripId, formData);
+    console.log(fileName);
+    setToaster("successfully uploaded");
+    const trips = await tripService.getTrips();
+    setTrips(trips);
+    setShowFileUploadModal(false);
   }
 
 
@@ -68,7 +59,7 @@ function FileUploadModal({ setShowFileUploadModal }) {
           />
         </div>
         <div className="FileUploadModal-saveButton">
-          <Button variant="outlined" onClick={() => uploadPhoto()} >Upload photo</Button>
+          <Button variant="outlined" onClick={() => uploadImage()} >Upload image</Button>
         </div>
       </div>
     </div>

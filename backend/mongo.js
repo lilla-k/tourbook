@@ -8,27 +8,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
-export async function addTrip(trip) {
-    await client.connect();
-    const coll = client.db("tourbook").collection("trips");
-    const result = await coll.insertOne(trip);
-    await client.close();
-    return result.insertedId.toString();
-}
-
-export async function addCity(tripId, city) {
-  await client.connect();
-  const coll = client.db("tourbook").collection("trips");
-  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {visitedCities: city}});
-  await client.close();
-}
-
-export async function addPhoto(tripId, photo) {
-  await client.connect();
-  const coll = client.db("tourbook").collection("trips");
-  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {images: photo}});
-  await client.close();
-}
 
 export async function getTrips() {
   await client.connect();
@@ -43,7 +22,16 @@ export async function getTrips() {
   return trips;
 }
 
-export async function updateTrip(tripId, updatedTrip) {
+export async function addTrip(trip) {
+    await client.connect();
+    const coll = client.db("tourbook").collection("trips");
+    const result = await coll.insertOne(trip);
+    await client.close();
+    return result.insertedId.toString();
+}
+
+
+export async function editTrip(tripId, updatedTrip) {
   console.log("mongo")
   console.log(tripId);
   console.log(updatedTrip);
@@ -52,5 +40,22 @@ export async function updateTrip(tripId, updatedTrip) {
   await coll.updateOne({_id: new ObjectId(tripId)}, { $set: updatedTrip});
   await client.close();
 }
+
+export async function addCity(tripId, city) {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {visitedCities: city}});
+  await client.close();
+}
+
+export async function addPhoto(tripId, imageData) {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, { $push: {images: imageData}});
+  await client.close();
+}
+
+
+
 
 

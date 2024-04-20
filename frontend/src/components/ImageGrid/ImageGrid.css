@@ -4,6 +4,10 @@
     flex-shrink: 0;
 }
 
+.ImageGrid-coverSelection{
+    width: 560px;
+}
+
 .ImageGrid-plusBtn{
     cursor: pointer;
     font-size: 30px;
@@ -13,4 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ImageGrid-selectable img:hover {
+    filter: brightness(1.2);
 }

@@ -1,11 +1,13 @@
+const apiUrl = 'http://localhost:3001/';
+
 const tripServices = {
     getTrips: async function getTrips() {
-        const response = await fetch("http://localhost:3001/api/trips");
+        const response = await fetch(`${apiUrl}api/trips`);
         const trips = await response.json();
         return trips;
     },
     postTrip: async function postTrip(tripData) {
-        const response = await fetch("http://localhost:3001/api/trips", {
+        const response = await fetch(`${apiUrl}api/trips`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(tripData)
@@ -15,34 +17,30 @@ const tripServices = {
             return tripIdObj.id;
         }
     },
-    updateTrip: async function updateTrip(tripId, tripData) {
-        await fetch(`http://localhost:3001/api/${tripId}`, {
+    editTrip: async function editTrip(tripId, tripData) {
+        await fetch(`${apiUrl}api/trips/${tripId}`, {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(tripData)
         })
     },
-    postPhoto: async function postPhoto(tripId, photoData) {
-        const response = await fetch(`http://localhost:3001/api/${tripId}/photos`, {
+    postCity: async function postCity(tripId, cityData){
+        await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(photoData)
-        });
-        if (response.status === 201) {
-            return "photo data posted";
-        }
+            body: JSON.stringify(cityData)
+        })
     },
-    uploadPhoto:  async function uploadPhoto(tripId, formData) {
+    uploadImage:  async function uploadImage(tripId, formData) {
         console.log(formData)
-        const response = await fetch(`http://localhost:3001/api/${tripId}/upload`, {
+        const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
             method: "post",
             body: formData
         });
-        console.log(response.status)
         if (response.status === 201) {
-            const filePath = await response.json();
-            console.log(filePath);
-            return filePath;
+            const fileName = await response.json();
+            console.log('fileName', fileName);
+            return fileName;
         }
     }
 }

@@ -41,3 +41,11 @@
     cursor: pointer;
     background-color:#ccc9c5;
 }
+
+hr{
+    margin: 0 0 20px 0;
+}
+
+.CoverImageSelectorModal-content .ImageGrid {
+    width: 550px;
+}
