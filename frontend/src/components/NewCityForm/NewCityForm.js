@@ -4,6 +4,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './NewCityForm.css';
+import tripService from '../../services/tripService.js'
 
 function NewCityForm() {
 
@@ -25,28 +26,11 @@ function NewCityForm() {
             cityInformation: cityInformation,
             attractions: attractions
         }
-        const response = await fetch(`http://localhost:3001/api/${tripId}/cities`, {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(cityData)
-        })
-        if (response.status === 201) {
-            const pushNewCity = () => {
-                console.log(trips)
-                trips.forEach(trip => {
-                    if (trip.id === tripId) {
-                        trip.visitedCities.push(cityData);
-                    }
-                })
-                console.log(trips);
-                return trips;
-            }
-
-            setTrips(pushNewCity);
-            navigate(`/trips/${tripId}`)
-        }
+        await tripService.postCity(tripId, cityData);
+        const trips = await tripService.getTrips();
+        setTrips(trips);
+        navigate(`/trips/${tripId}`)
     }
-    console.log(attractions);
 
     return (<div className="NewCityForm" >
         <div className="NewCityForm-title">Information about the city in {selectedTrip.country}</div>
