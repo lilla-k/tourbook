@@ -59,7 +59,7 @@ app.post('/api/trips/:tripId/images', upload.single('file'), async (req,res) => 
   const uploadedImageFile = req.file;
   const imageId = uploadedImageFile.filename.split('.')[0]
   const { title } = req.body;
-  await addPhoto(tripId, { id: imageId, url: uploadedImageFile.path, title: title, id: uploadedImageFile.filename.split('.')});
+  await addPhoto(tripId, { id: imageId, url: uploadedImageFile.path, title: title});
   res.status(201).json({id: imageId});
 });
 

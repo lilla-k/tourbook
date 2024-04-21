@@ -27,11 +27,12 @@ function Trip() {
   selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
-  const coverImage = allImages.find(image => image.cover === selectedTrip.coverImageId);
+  const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
   console.log("coverimage", coverImage)
 
-  function saveCoverImage(imageIndex){
-    console.log("save cover", imageIndex);
+  function saveCoverImage(id){
+    console.log("image id", id);
+
   }
 
 
@@ -79,7 +80,7 @@ function Trip() {
       <CoverImageSelectorModal 
         setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} 
         images={allImages}
-        saveCoverImage={saveCoverImage}
+        saveCoverImage={saveCoverImage} //onClick property?
       />}
     </div>
   )
