@@ -13,11 +13,12 @@ import tripService from '../../services/tripService.js'
 import './Trip.css';
 import '../../style/Tooltip.css';
 
+const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 function Trip() {
 
   const navigate = useNavigate();
-  const {trips} = useOutletContext();
+  const {trips, setTrips, setToaster} = useOutletContext();
   const {tripId, city} = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip?.visitedCities?.find(c => city === c.cityName);
@@ -29,18 +30,22 @@ function Trip() {
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
-  console.log("coverimage", coverImage)
+  console.log("coverimage url", coverImage.url)
 
   async function saveCoverImage(id){
     console.log("image id", id);
     await tripService.setCoverImage(tripId, id);
+    setToaster("cover image updated");
+    const trips = await tripService.getTrips();
+    setTrips(trips);
+    setShowCoverImageSelectorModal(false);
   }
 
 
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={coverImage?.url} className="Trip-img" alt="" />
+        <img src={`${apiUrl}${coverImage?.url}`} className="Trip-img" alt="" />
         <div className="Trip-edit-coverImage" onClick={()=>setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
