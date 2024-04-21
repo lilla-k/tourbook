@@ -1,11 +1,35 @@
 .ImageGrid{
-    width: 320px;
+    width: 450px;
     height: 450px;
     flex-shrink: 0;
 }
 
 .ImageGrid-coverSelection{
     width: 560px;
+}
+
+.ImageGrid-selectable img:hover {
+    filter: brightness(1.2);
+}
+
+.ImageGrid-image{
+    position: relative;
+}
+
+.ImageGrid-title{
+    background-color: var(--light-grey);
+    color: black;
+    max-width: 90%;
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0.9;
+    padding: 3px 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .ImageGrid-plusBtn{
@@ -19,6 +43,3 @@
     align-items: center;
 }
 
-.ImageGrid-selectable img:hover {
-    filter: brightness(1.2);
-}

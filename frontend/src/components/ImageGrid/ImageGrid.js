@@ -20,13 +20,14 @@ function ImageGrid({images, onClick, cols}) {
       {images?.map((item, index) => (
         <ImageListItem key={item.url}>
           <img
+            className="ImageGrid-image"
             src={`${process.env.REACT_APP_BACKEND_API}${item.url}`}
             alt={item.title}
             loading="lazy"
             style={{ cursor: selectable ? 'pointer' : 'default'}}
             onClick={selectable ? () => onClick(index) : null}
           />
-          <div >{item.title}</div>
+          <div className="ImageGrid-title">{item.title}</div>
         </ImageListItem>
       ))}
       {!selectable && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>}
