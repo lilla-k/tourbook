@@ -29,9 +29,9 @@ function FileUploadModal({ setShowFileUploadModal }) {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('title', title);
-    const fileName = await tripService.uploadImage(tripId, formData);
-    console.log(fileName);
-    setToaster("successfully uploaded");
+    const {id} = await tripService.uploadImage(tripId, formData);
+    console.log("image id", id);
+    setToaster("image uploaded");
     const trips = await tripService.getTrips();
     setTrips(trips);
     setShowFileUploadModal(false);

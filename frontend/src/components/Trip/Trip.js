@@ -27,7 +27,7 @@ function Trip() {
   selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
-  const coverImage = allImages.find(image => image.cover === true);
+  const coverImage = allImages.find(image => image.cover === selectedTrip.coverImageId);
   console.log("coverimage", coverImage)
 
   function saveCoverImage(imageIndex){

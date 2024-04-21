@@ -57,13 +57,10 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.post('/api/trips/:tripId/images', upload.single('file'), async (req,res) => {
   const tripId = req.params.tripId;
   const uploadedImageFile = req.file;
-  console.log('uploadedImageFile', uploadedImageFile) //filename, path
-  console.log('filename', uploadedImageFile.filename)
-  console.log('path', uploadedImageFile.path)
+  const imageId = uploadedImageFile.filename.split('.')[0]
   const { title } = req.body;
-  console.log('title', title);
-  await addPhoto(tripId, { url: uploadedImageFile.path, title: title, cover: false });
-  res.status(201).json(uploadedImageFile.filename);
+  await addPhoto(tripId, { id: imageId, url: uploadedImageFile.path, title: title, id: uploadedImageFile.filename.split('.')});
+  res.status(201).json({id: imageId});
 });
 
 
