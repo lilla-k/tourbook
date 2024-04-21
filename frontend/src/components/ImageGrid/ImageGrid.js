@@ -27,7 +27,7 @@ function ImageGrid({images, onClick, cols}) {
             style={{ cursor: selectable ? 'pointer' : 'default'}}
             onClick={selectable ? () => onClick(index) : null}
           />
-          <div className="ImageGrid-title">{item.title}</div>
+          {!selectable&&<div className="ImageGrid-title">{item.title}</div>}
         </ImageListItem>
       ))}
       {!selectable && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>}

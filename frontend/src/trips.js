@@ -3,6 +3,7 @@ const trips=[{
     country: "Jordan",
     countryInformation: "Jordan Kingdom is a country in West-Asia. Official language is arabic, and the official region is islam. The king is II. Abdullah since 1999.",
     images:[],
+    coverImageId: "defjlf 111 3de",
     type: "flight",
     tripExperience: "In december, 10-15 degrees in the north, 20-25 degrees in the south by the sea. We rented a car to travel around Jordan from north. We spent the first day in the capital city, Amman. The city crowded, a bit dirty, but we liked the ancient buildings, roman theatres and the big market. The fist afternoon we walked up to the citadel, to the ruin of a temple, where the view of the city was beautiful. We wore winter coat, because teh nights was cold, and I had a cold by the time we got there.",
     startDate: new Date('2023-12-29Z00:00:00.000').getTime(),

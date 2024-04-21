@@ -33,6 +33,7 @@ function NewTripForm() {
         country: country,
         tripType: tripType,
         images: [],
+        coverImageId: null,
         countryInformation: countryInformation,
         tripExperience: tripExperience,
         visitedCities: []
