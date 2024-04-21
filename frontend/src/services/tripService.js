@@ -32,16 +32,22 @@ const tripServices = {
         })
     },
     uploadImage:  async function uploadImage(tripId, formData) {
-        console.log(formData)
         const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
             method: "post",
             body: formData
         });
         if (response.status === 201) {
-            const fileName = await response.json();
-            console.log('fileName', fileName);
-            return fileName;
+            const id = await response.json();
+            console.log('id', id);
+            return id;
         }
+    },
+    setCoverImage: async function setCoverImage(tripId, imageId){
+        await fetch(`${apiUrl}api/trips/${tripId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({coverImageId: imageId})
+        })
     }
 }
 

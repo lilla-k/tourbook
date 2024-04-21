@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer'; 
-import { addTrip, getTrips, editTrip, addCity, addPhoto  } from './mongo.js';
+import { addTrip, getTrips, editTrip, addCity, addPhoto, editCoverImageId  } from './mongo.js';
 
 const port = 3001;
 const app = express();
@@ -58,10 +58,19 @@ app.post('/api/trips/:tripId/images', upload.single('file'), async (req,res) => 
   const tripId = req.params.tripId;
   const uploadedImageFile = req.file;
   const imageId = uploadedImageFile.filename.split('.')[0]
+  console.log("imageId", imageId)
   const { title } = req.body;
   await addPhoto(tripId, { id: imageId, url: uploadedImageFile.path, title: title});
+  console.log({id: imageId})
   res.status(201).json({id: imageId});
 });
+
+app.patch('/api/trips/:tripId', async (req, res) => {
+  const {coverImageId} = req.body;
+  const tripId = req.params.tripId;
+  await editCoverImageId(tripId, coverImageId);
+  res.sendStatus(200);
+})
 
 
 app.listen(port, () => {

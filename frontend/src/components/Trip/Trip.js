@@ -9,6 +9,7 @@ import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
 import tripTypes from '../../tripTypes.js';
+import tripService from '../../services/tripService.js'
 import './Trip.css';
 import '../../style/Tooltip.css';
 
@@ -30,9 +31,9 @@ function Trip() {
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
   console.log("coverimage", coverImage)
 
-  function saveCoverImage(id){
+  async function saveCoverImage(id){
     console.log("image id", id);
-
+    await tripService.setCoverImage(tripId, id);
   }
 
 
