@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3001/';
+const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 const tripServices = {
     getTrips: async function getTrips() {

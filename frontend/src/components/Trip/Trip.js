@@ -28,7 +28,7 @@ function Trip() {
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.cover === true);
-  console.log(coverImage)
+  console.log("coverimage", coverImage)
 
   function saveCoverImage(imageIndex){
     console.log("save cover", imageIndex);
