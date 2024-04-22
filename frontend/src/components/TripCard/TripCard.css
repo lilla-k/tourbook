@@ -3,9 +3,9 @@
     justify-content: space-between;
     align-items: center;
     color:var(--dark-grey);
-    width: calc(50% - 50px);
+    width: calc(40% - 50px);
     height: 150px;
-    margin: 5px;
+    margin: 25px;
     border: 1px solid var(--dark-grey);
     border-radius: 10px;
     overflow: hidden;
@@ -18,7 +18,7 @@
 
 .TripCard-img-placeholder{
     background-image: linear-gradient(white, var(--light-grey));
-    width: 150px;
+    width: 240px;
     height: 150px;
 }
 

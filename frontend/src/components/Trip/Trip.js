@@ -30,7 +30,6 @@ function Trip() {
   const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
   console.log(allImages)
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
-  console.log("coverimage url", coverImage.url)
 
   async function saveCoverImage(id){
     console.log("image id", id);
@@ -45,7 +44,7 @@ function Trip() {
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={`${apiUrl}${coverImage?.url}`} className="Trip-img" alt="" />
+        <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
         <div className="Trip-edit-coverImage" onClick={()=>setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
