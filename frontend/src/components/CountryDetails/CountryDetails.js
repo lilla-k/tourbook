@@ -17,8 +17,8 @@ function CountryDetails({ selectedTrip }) {
                 <TabContext value={selectedTab}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList onChange={(event, newValue)=>{setSelectedTab(newValue)}} aria-label="lab API tabs example">
-                            <Tab label={`Discover ${selectedTrip.country}`} value="country" />
-                            <Tab label="report" value="report" />
+                            <Tab label={`About ${selectedTrip.country}`} value="country" />
+                            <Tab label="your experience" value="your experience" />
                         </TabList>
                     </Box>
                     <TabPanel value="country">{selectedTrip.countryInformation}</TabPanel>

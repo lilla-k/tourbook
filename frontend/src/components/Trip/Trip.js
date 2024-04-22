@@ -76,10 +76,10 @@ function Trip() {
           <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
         {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
-        <ImageGrid
+        {city === undefined && <ImageGrid
           images={selectedCity === undefined ? allImages : selectedCity.images}
-          cols={2}
-        />
+          cols={3}
+        />}
       </div>
       {showCoverImageSelectorModal && 
       <CoverImageSelectorModal 

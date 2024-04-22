@@ -90,7 +90,7 @@
 .Trip-info{
     display: flex;
     gap: 50px;
-    padding: 40px 200px;
+    padding: 40px 150px;
 }
 
 .Trip-visitedCities-title{
