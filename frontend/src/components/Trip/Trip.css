@@ -71,10 +71,15 @@
     font-family: san-serif;
 }
 
+.Trip-title-cityDetails:hover{
+    cursor: pointer;
+}
+
 .Trip-title-border{
     border: 3px solid var(--light-grey); 
     padding: 35px 15px 5px 15px;
 }
+
 
 .Trip-date{
     font-size: 16px;
