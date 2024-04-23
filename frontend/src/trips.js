@@ -9,18 +9,18 @@ const trips=[{
     startDate: new Date('2023-12-29Z00:00:00.000').getTime(),
     endDate: new Date('2024-01-02Z00:00:00.000').getTime(),
     visitedCities: [
-        {cityName:"Amman", images:[{url: "/images/Jordan/1_Amman_citadel.jpg", title: "Amman_citadel"}], details: "Amman is the capital of Jordan with a population of 4 million", visitedAttractions: ["market", "roman theater built around 100", "Citadel hill with a panoramic view"]},
-        {cityName:"Petra", images:[{url: "/images/Jordan/2_Petra_rosecity.jpg", title: "Petra_rosecity"}, {url: "/images/Jordan/5_Petra_sunset.jpg", title: "Petra_sunset"}], details: "vörös romváros a sivatagi sziklák között, a nabateusok alakították ki sziklába faragott épületeiket ie. 4. sz", visitedAttractions: ["sírtemplom", "sziklába vájt színház", "főtemplom"]},
-        {cityName:"Wadi Rum", images:[{url: "/images/Jordan/3_Wadi_rum_sunset.jpg", title: "Wadi_rum_sunset"}], details: "sivatagi völgy lélegzetelállótó vöröses panorámával", visitedAttractions: ["templomrom", "sziklarajz", "sivatag"]},
-        {cityName:"Akaba", images:[{url: "/images/Jordan/4_Akaba_red_sea.jpg", title: "4_Akaba_red_sea"}], details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
+        {cityName:"Amman", details: "Amman is the capital of Jordan with a population of 4 million", visitedAttractions: ["market", "roman theater built around 100", "Citadel hill with a panoramic view"]},
+        {cityName:"Petra", details: "vörös romváros a sivatagi sziklák között, a nabateusok alakították ki sziklába faragott épületeiket ie. 4. sz", visitedAttractions: ["sírtemplom", "sziklába vájt színház", "főtemplom"]},
+        {cityName:"Wadi Rum", details: "sivatagi völgy lélegzetelállótó vöröses panorámával", visitedAttractions: ["templomrom", "sziklarajz", "sivatag"]},
+        {cityName:"Akaba",  details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
     ]
 }, 
 {
     id: 2,
     country: "Israel",
     images:[
-        {url: "/images/Israel/1_Jaffa_St Peter Church.jpg", title: "1_Jaffa_St Peter Church"},
-        {url: "/images/Israel/2_Tel-Aviv_beach.jpeg", title: "2_Tel-Aviv_beach"},
+        {url: "/images/Israel/1_Jaffa_St Peter Church.jpg", title: "1_Jaffa_St Peter Church", cityId:"dsds-21"},
+        {url: "/images/Israel/2_Tel-Aviv_beach.jpeg", title: "2_Tel-Aviv_beach", cityId: null},
         {url: "/images/Israel/3_Jaffa_Mosque.jpeg", title: "3_Jaffa_Mosque"}
     ],
     type: "flight",
@@ -29,11 +29,11 @@ const trips=[{
     startDate: new Date('2023-07-17Z00:00:00.000').getTime(),
     endDate: new Date('2023-07-21Z00:00:00.000').getTime(),
     visitedCities: [
-        {cityName:"Tel-Aviv", images:[], details: "Tel-Aviv is the most populous city in Israel, the economical and technological center of the country. Many people used electronic scooters on the beach.", visitedAttractions: ["market with falafel", "Jaffa old city with St. Peter's church", "beach", "Jaffa's Great Mosque"]},
-        {cityName:"Dead Sea", images:[], details: "Ten times saltier than the sea. We can float in the lake. The lowest point on earth.", visitedAttractions: []},
-        {cityName:"Haifa", images:[], details: "Third-largest city in Israel. We used cable car to travel to the hill, then used stairs to walk back to the subway. ", visitedAttractions: ["Baha'í gardens in the heart of the city", "cable car"]},
-        {cityName:"Ein Gedi", images:[], details: "Ein Gedi is an oasis, a nature reserve and national park", visitedAttractions: ["waterfalls"]},
-        {cityName:"Masada", images:[], details: "Masada is an ancient fortification situated on top of an isolated rock plateau from 20 km from the Dead Sea. The weather was very hot here in July.", visitedAttractions: ["cable car", "ruin of the fortress"]}
+        {cityId:"dsds-21", cityName:"Tel-Aviv", details: "Tel-Aviv is the most populous city in Israel, the economical and technological center of the country. Many people used electronic scooters on the beach.", visitedAttractions: ["market with falafel", "Jaffa old city with St. Peter's church", "beach", "Jaffa's Great Mosque"]},
+        {cityName:"Dead Sea", details: "Ten times saltier than the sea. We can float in the lake. The lowest point on earth.", visitedAttractions: []},
+        {cityName:"Haifa", details: "Third-largest city in Israel. We used cable car to travel to the hill, then used stairs to walk back to the subway. ", visitedAttractions: ["Baha'í gardens in the heart of the city", "cable car"]},
+        {cityName:"Ein Gedi", details: "Ein Gedi is an oasis, a nature reserve and national park", visitedAttractions: ["waterfalls"]},
+        {cityName:"Masada", details: "Masada is an ancient fortification situated on top of an isolated rock plateau from 20 km from the Dead Sea. The weather was very hot here in July.", visitedAttractions: ["cable car", "ruin of the fortress"]}
     ]
 },{
     id: 3,

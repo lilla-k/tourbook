@@ -46,13 +46,17 @@ function FileUploadModal({ setShowFileUploadModal }) {
         <div className="FileUploadModal-close" onClick={() => setShowFileUploadModal(false)}>
           <CloseIcon fontSize="small" className="FileUploadModal-closeIcon" />
         </div>
-        <div className="FileUploadModal-selector">
-          <PhotoSizeSelectActualIcon fontSize="small" />
-          <div className="FileUploadModal-selector-title">Select photo</div>
-          <div className="FileUploadModal-selector-size">Maximum file size 5mb</div>
+        <div
+          className="FileUploadModal-selectorContainer"
+          style={{ backgroundImage: `url(${previewUrl})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }}
+        >
+          <div className={`FileUploadModal-selector ${previewUrl ? `FileUploadModal-selector-selected` : ``}`}>
+            <PhotoSizeSelectActualIcon fontSize="small" />
+            <div className="FileUploadModal-selector-title">Select photo</div>
+            <div className="FileUploadModal-selector-size">Max file size 5mb</div>
+          </div>
           <input type="file" onChange={changeFileHandler} />
         </div>
-        {previewUrl && <img src={previewUrl} alt="Preview" className="FileUploadModal-preview" />}
         <div className="FileUploadModal-title">
           <TextField
             label="Title"
