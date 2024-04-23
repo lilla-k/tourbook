@@ -16,7 +16,7 @@ function Trips(){
                 {trips.map(trip => 
                 <TripCard 
                 key={trip.id}
-                id={trip.id}
+                tripId={trip.id}
                 countryName={trip.country}
                 coverImage={trip.images.find(image=> image.id===trip.coverImageId)} //tripcard coverimage!
                 startDate={trip.startDate}

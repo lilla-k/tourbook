@@ -55,3 +55,8 @@
     padding: 3px;
     border-radius: 50%;
 }
+
+.TripCard-deleteIcon{
+    align-self: flex-end; 
+    margin: 5px;
+}

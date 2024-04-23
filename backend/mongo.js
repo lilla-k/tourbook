@@ -38,6 +38,13 @@ export async function editTrip(tripId, updatedTrip) {
   await client.close();
 }
 
+export async function deleteTrip(tripId) {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.deleteOne({_id: new ObjectId(tripId)});
+  await client.close();
+}
+
 export async function addCity(tripId, city) {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");

@@ -52,7 +52,7 @@ function Trip() {
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>
-        <div className={`Trip-title ${city!=undefined ? `Trip-title-cityDetails`: ``}`} onClick={()=>navigate(`/trips/${selectedTrip.id}`)}>
+        <div className={`Trip-title ${city!== undefined ? `Trip-title-cityDetails`: ``}`} onClick={()=>navigate(`/trips/${selectedTrip.id}`)}>
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
             <div>{tripTypes[selectedTrip.tripType]}</div>
@@ -85,7 +85,7 @@ function Trip() {
       <CoverImageSelectorModal 
         setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} 
         images={allImages}
-        saveCoverImage={saveCoverImage} //onClick property?
+        saveCoverImage={saveCoverImage} 
       />}
     </div>
   )

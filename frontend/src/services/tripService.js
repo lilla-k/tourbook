@@ -24,6 +24,12 @@ const tripServices = {
             body: JSON.stringify(tripData)
         })
     },
+    deleteTrip: async function deleteTrip(tripId) {
+        console.log("deletetrip tripservice")
+        await fetch(`${apiUrl}api/trips/${tripId}`, {
+            method: "DELETE",
+        })
+    },
     postCity: async function postCity(tripId, cityData){
         await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
             method: "post",
