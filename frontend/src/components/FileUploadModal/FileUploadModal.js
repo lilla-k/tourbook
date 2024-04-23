@@ -3,6 +3,7 @@ import { useParams, useOutletContext } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
+import CloseIcon from '@mui/icons-material/Close';
 import './FileUploadModal.css';
 import tripService from '../../services/tripService.js'
 
@@ -24,12 +25,12 @@ function FileUploadModal({ setShowFileUploadModal }) {
   }
 
 
-  async function uploadImage(){
+  async function uploadImage() {
     console.log("upload")
     const formData = new FormData();
     formData.append('file', file);
     formData.append('title', title);
-    const {id} = await tripService.uploadImage(tripId, formData);
+    const { id } = await tripService.uploadImage(tripId, formData);
     console.log("image id", id);
     setToaster("image uploaded");
     const trips = await tripService.getTrips();
@@ -42,8 +43,11 @@ function FileUploadModal({ setShowFileUploadModal }) {
   return (
     <div className="FileUploadModal-background">
       <div className="FileUploadModal-content">
+        <div className="FileUploadModal-close" onClick={() => setShowFileUploadModal(false)}>
+          <CloseIcon fontSize="small" className="FileUploadModal-closeIcon" />
+        </div>
         <div className="FileUploadModal-selector">
-          <PhotoSizeSelectActualIcon fontSize="large" />
+          <PhotoSizeSelectActualIcon fontSize="small" />
           <div className="FileUploadModal-selector-title">Select photo</div>
           <div className="FileUploadModal-selector-size">Maximum file size 5mb</div>
           <input type="file" onChange={changeFileHandler} />

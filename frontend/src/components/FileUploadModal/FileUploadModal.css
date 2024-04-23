@@ -14,10 +14,33 @@
 .FileUploadModal-content {
     background-color: #fefefe;
     margin: 10% auto;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
     width: 600px;
     text-align: center;
+}
+
+.FileUploadModal-close{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FileUploadModal-closeIcon{
+    background-color: #e4e1dd;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    padding: 2px;
+    margin-bottom: 2px;
+}
+.FileUploadModal-close{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.FileUploadModal-closeIcon:hover{
+    cursor: pointer;
+    background-color:#ccc9c5;
 }
 
 .FileUploadModal-selector {
