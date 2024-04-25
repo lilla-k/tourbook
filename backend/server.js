@@ -53,6 +53,7 @@ app.delete('/api/trips/:tripId', async (req, res) => {
 
 app.post('/api/trips/:tripId/cities', async (req, res) => {
   const postedCity = req.body;
+  postedCity.cityId=crypto.randomUUID()
   const tripId = req.params.tripId;
   await addCity(tripId, postedCity);
   res.sendStatus(201);
