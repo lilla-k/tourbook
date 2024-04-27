@@ -105,13 +105,19 @@
 
 .Trip-visitedCity{
     background-color: var(--light-grey);
-    color: var(--dark-grey);
     padding: 10px;
     margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.Trip-visitedCityLink{
     text-decoration: none;
     display: flex;
     align-items: center;
-    width: 150px;
+    color: var(--dark-grey);
+    cursor: pointer;
 }
 
 

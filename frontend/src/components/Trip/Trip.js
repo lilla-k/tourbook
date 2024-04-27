@@ -12,6 +12,7 @@ import tripTypes from '../../tripTypes.js';
 import tripService from '../../services/tripService.js'
 import './Trip.css';
 import '../../style/Tooltip.css';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const apiUrl = process.env.REACT_APP_BACKEND_API;
 
@@ -20,15 +21,15 @@ function Trip() {
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
 
   const navigate = useNavigate();
-  const {trips, setTrips, setToaster} = useOutletContext();
-  const {tripId, cityId} = useParams();
+  const { trips, setTrips, setToaster } = useOutletContext();
+  const { tripId, cityId } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip?.visitedCities?.find(c => cityId === c.cityId);
-  const allImages =selectedTrip.images;
-  const cityImages = allImages.filter(image=>  image.cityId === cityId);
+  const allImages = selectedTrip.images;
+  const cityImages = allImages.filter(image => image.cityId === cityId);
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
 
-  async function saveCoverImage(id){
+  async function saveCoverImage(id) {
     console.log("image id", id);
     await tripService.setCoverImage(tripId, id);
     setToaster("cover image updated");
@@ -42,14 +43,14 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
-        <div className="Trip-edit-coverImage" onClick={()=>setShowCoverImageSelectorModal(true)}>
+        <div className="Trip-edit-coverImage" onClick={() => setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
-        <div className="Trip-edit-icon-container" onClick={()=>navigate(`/trips/${selectedTrip.id}/edit`)}>
+        <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>
-        <div className={`Trip-title ${cityId!== undefined ? `Trip-title-cityDetails`: ``}`} onClick={()=>navigate(`/trips/${selectedTrip.id}`)}>
+        <div className={`Trip-title ${cityId !== undefined ? `Trip-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
             <div>{tripTypes[selectedTrip.tripType]}</div>
@@ -63,28 +64,33 @@ function Trip() {
           <div className="Trip-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCity">
-                  <LocationOnIcon />
-                  <div>{city.cityName}</div>
-                </Link>
+                <div className="Trip-visitedCity">
+                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink">
+                    <LocationOnIcon />
+                    <div className="Trip-visitedCityMoreIcon">{city.cityName}</div>
+                  </Link>
+                  <MoreVertIcon/>
+                </div>
               )
             })}
-          </div>
-          <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
-        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
-        <ImageGrid
-          images={selectedCity === undefined ? allImages : cityImages}
-          cols={3}
-        />
+        <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
       </div>
-      {showCoverImageSelectorModal && 
-      <CoverImageSelectorModal 
-        setShowCoverImageSelectorModal={setShowCoverImageSelectorModal} 
-        images={allImages}
-        saveCoverImage={saveCoverImage} 
-      />}
+      {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
+      <ImageGrid
+        images={selectedCity === undefined ? allImages : cityImages}
+        cols={3}
+      />
     </div>
+      {
+    showCoverImageSelectorModal &&
+    <CoverImageSelectorModal
+      setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
+      images={allImages}
+      saveCoverImage={saveCoverImage}
+    />
+  }
+    </div >
   )
 }
 
