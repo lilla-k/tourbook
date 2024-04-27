@@ -17,18 +17,15 @@ const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 function Trip() {
 
-  const navigate = useNavigate();
-  const {trips, setTrips, setToaster} = useOutletContext();
-  const {tripId, city} = useParams();
-  const selectedTrip = trips.find(trip => trip.id === tripId);
-  const selectedCity = selectedTrip?.visitedCities?.find(c => city === c.cityName);
-
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
 
-  const cityImages = [];
-  selectedTrip.visitedCities?.forEach((city) => cityImages.push(...(city.images || [])));
-  const allImages = [...(selectedTrip.images ? selectedTrip.images : []), ...cityImages];
-  console.log(allImages)
+  const navigate = useNavigate();
+  const {trips, setTrips, setToaster} = useOutletContext();
+  const {tripId, cityId} = useParams();
+  const selectedTrip = trips.find(trip => trip.id === tripId);
+  const selectedCity = selectedTrip?.visitedCities?.find(c => cityId === c.cityId);
+  const allImages =selectedTrip.images;
+  const cityImages = allImages.filter(image=>  image.cityId === cityId);
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
 
   async function saveCoverImage(id){
@@ -52,7 +49,7 @@ function Trip() {
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>
-        <div className={`Trip-title ${city!== undefined ? `Trip-title-cityDetails`: ``}`} onClick={()=>navigate(`/trips/${selectedTrip.id}`)}>
+        <div className={`Trip-title ${cityId!== undefined ? `Trip-title-cityDetails`: ``}`} onClick={()=>navigate(`/trips/${selectedTrip.id}`)}>
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
             <div>{tripTypes[selectedTrip.tripType]}</div>
@@ -66,7 +63,7 @@ function Trip() {
           <div className="Trip-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <Link to={`/trips/${selectedTrip.id}/${city.cityName}`} className="Trip-visitedCity">
+                <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCity">
                   <LocationOnIcon />
                   <div>{city.cityName}</div>
                 </Link>
@@ -75,11 +72,11 @@ function Trip() {
           </div>
           <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
-        {city === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
-        {city === undefined && <ImageGrid
-          images={selectedCity === undefined ? allImages : selectedCity.images}
+        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
+        <ImageGrid
+          images={selectedCity === undefined ? allImages : cityImages}
           cols={3}
-        />}
+        />
       </div>
       {showCoverImageSelectorModal && 
       <CoverImageSelectorModal 

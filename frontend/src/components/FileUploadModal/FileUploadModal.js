@@ -14,7 +14,7 @@ function FileUploadModal({ setShowFileUploadModal }) {
   const [title, setTitle] = useState("");
 
   const { setTrips, setToaster } = useOutletContext();
-  const { tripId } = useParams();
+  const { tripId, cityId } = useParams();
 
 
   function changeFileHandler(e) {
@@ -26,10 +26,10 @@ function FileUploadModal({ setShowFileUploadModal }) {
 
 
   async function uploadImage() {
-    console.log("upload")
     const formData = new FormData();
     formData.append('file', file);
     formData.append('title', title);
+    formData.append('cityId', cityId);
     const { id } = await tripService.uploadImage(tripId, formData);
     console.log("image id", id);
     setToaster("image uploaded");

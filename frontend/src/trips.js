@@ -21,7 +21,7 @@ const trips=[{
     images:[
         {url: "/images/Israel/1_Jaffa_St Peter Church.jpg", title: "1_Jaffa_St Peter Church", cityId:"dsds-21"},
         {url: "/images/Israel/2_Tel-Aviv_beach.jpeg", title: "2_Tel-Aviv_beach", cityId: null},
-        {url: "/images/Israel/3_Jaffa_Mosque.jpeg", title: "3_Jaffa_Mosque"}
+        {url: "/images/Israel/3_Jaffa_Mosque.jpeg", title: "3_Jaffa_Mosque", cityId: null}
     ],
     type: "flight",
     countryInformation: "Israel is a country in West-Asia. Official language is hebrew and arabic, and the official region is jews (73% - muslim 18%). The State of Israel was declared 1948.",

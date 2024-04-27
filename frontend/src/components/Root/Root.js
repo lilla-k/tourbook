@@ -9,7 +9,6 @@ import Snackbar from '@mui/material/Snackbar';
 
 
 function Root() {
-  console.log("root");
 
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
