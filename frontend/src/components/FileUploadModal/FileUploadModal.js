@@ -39,7 +39,6 @@ function FileUploadModal({ setShowFileUploadModal }) {
   }
 
 
-
   return (
     <div className="FileUploadModal-background">
       <div className="FileUploadModal-content">
