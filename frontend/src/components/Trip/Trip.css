@@ -105,11 +105,16 @@
 
 .Trip-visitedCity{
     background-color: var(--light-grey);
-    padding: 10px;
-    margin: 5px;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 5px 0;
     display: flex;
-    justify-content: space-between;
-    width: 150px;
+    width: 200px;
+}
+
+.Trip-visitedCity:hover{
+    transform: scale(1.03);
+    background-color: rgb(220, 216, 216);;
 }
 
 .Trip-visitedCityLink{
@@ -118,9 +123,17 @@
     align-items: center;
     color: var(--dark-grey);
     cursor: pointer;
+    width: 170px;
 }
 
+.Trip-visitedCityIconEdit{
+    cursor: pointer;
+    display: none;
+}
 
+.Trip-visitedCity:hover .Trip-visitedCityIconEdit{
+    display: block;
+}
 
 .Trip-details-arrow:hover {
     cursor: pointer;

@@ -1,6 +1,7 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -12,7 +13,7 @@ import tripTypes from '../../tripTypes.js';
 import tripService from '../../services/tripService.js'
 import './Trip.css';
 import '../../style/Tooltip.css';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 
 const apiUrl = process.env.REACT_APP_BACKEND_API;
 
@@ -65,31 +66,35 @@ function Trip() {
             {selectedTrip.visitedCities?.map(city => {
               return (
                 <div className="Trip-visitedCity">
-                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink">
+                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink" >
                     <LocationOnIcon />
-                    <div className="Trip-visitedCityMoreIcon">{city.cityName}</div>
+                    <div>{city.cityName}</div>
                   </Link>
-                  <MoreVertIcon/>
+                  <div className="Trip-visitedCityIconEdit">
+                    <EditIcon
+                      fontSize="small"
+                      onClick={() => navigate(`/trips/${selectedTrip.id}/${city.cityId}/edit`)} />
+                  </div>
                 </div>
               )
             })}
+          </div>
+          <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
         </div>
-        <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
+        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
+        <ImageGrid
+          images={selectedCity === undefined ? allImages : cityImages}
+          cols={3}
+        />
       </div>
-      {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
-      <ImageGrid
-        images={selectedCity === undefined ? allImages : cityImages}
-        cols={3}
-      />
-    </div>
       {
-    showCoverImageSelectorModal &&
-    <CoverImageSelectorModal
-      setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
-      images={allImages}
-      saveCoverImage={saveCoverImage}
-    />
-  }
+        showCoverImageSelectorModal &&
+        <CoverImageSelectorModal
+          setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
+          images={allImages}
+          saveCoverImage={saveCoverImage}
+        />
+      }
     </div >
   )
 }
