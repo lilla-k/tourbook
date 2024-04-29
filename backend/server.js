@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import multer from 'multer'; 
-import { addTrip, getTrips, editTrip, deleteTrip, addCity, addPhoto, editCoverImageId  } from './mongo.js';
+import { addTrip, getTrips, editTrip, deleteTrip, addCity, editCity, addPhoto, editCoverImageId  } from './mongo.js';
 
 const port = 3001;
 const app = express();
@@ -57,6 +57,14 @@ app.post('/api/trips/:tripId/cities', async (req, res) => {
   const tripId = req.params.tripId;
   await addCity(tripId, postedCity);
   res.sendStatus(201);
+})
+
+app.put('/api/trips/:tripId/cities/:cityId', async (req, res) => {
+  const updatedCity = req.body;
+  const tripId = req.params.tripId;
+  const cityId = req.params.cityId;
+  await editCity(tripId, cityId, updatedCity);
+  res.sendStatus(200);
 })
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

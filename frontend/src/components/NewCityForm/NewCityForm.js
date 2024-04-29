@@ -4,32 +4,45 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './NewCityForm.css';
-import tripService from '../../services/tripService.js'
+import tripService from '../../services/tripService.js';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 function NewCityForm() {
 
     const navigate = useNavigate();
-    const { tripId } = useParams();
-    const {trips, setTrips} = useOutletContext();
-    console.log(trips);
+    const { tripId, cityId } = useParams();
+    const {trips, setTrips, setToaster} = useOutletContext();
+    console.log("trips", trips);
     const selectedTrip = trips.find(trip => trip.id === tripId);
+    const selectedCity = selectedTrip.visitedCities.find(city => city.cityId === cityId)
 
-    const [cityInformation, setCityInformation] = useState("");
-    const [cityName, setCityName] = useState("");
-    const [attractions, setAttractions] = useState([""]);
+    const [cityInformation, setCityInformation] = useState(cityId ? selectedCity.cityInformation : "");
+    const [cityName, setCityName] = useState(cityId ? selectedCity.cityName : "");
+    const [attractions, setAttractions] = useState(cityId ? selectedCity.attractions : [""]);
 
-
+    const cityData = {
+        cityName: cityName,
+        cityInformation: cityInformation,
+        attractions: attractions
+    }
 
     async function postCityData() {
-        const cityData = {
-            cityName: cityName,
-            cityInformation: cityInformation,
-            attractions: attractions
-        }
+        console.log("create city");
         await tripService.postCity(tripId, cityData);
+        setToaster("successfully created");
         const trips = await tripService.getTrips();
         setTrips(trips);
-        navigate(`/trips/${tripId}`)
+        navigate(`/trips/${tripId}`)       
+    }
+
+    async function editCityData() {
+        console.log("edit city");
+        await tripService.editCity(tripId, cityId, cityData);
+        setToaster("successfully updated");
+        const trips = await tripService.getTrips();
+        setTrips(trips);
+        navigate(`/trips/${tripId}`);
     }
 
     return (<div className="NewCityForm" >
@@ -76,8 +89,9 @@ function NewCityForm() {
                 })}
             </div>
             <div className="NewCityForm-saveButton">
-                <Button variant="outlined" onClick={() => postCityData()} >Upload details</Button>
+                <Button variant="outlined" onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}</Button>
             </div>
+            <DeleteIcon/>
         </div>
 
     </div >)

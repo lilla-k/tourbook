@@ -9,7 +9,6 @@ function ImageGrid({images, onClick, cols}) {
 
   const selectable = !!onClick;
 
-  console.log(images)
   return (
     <div className={`
       ImageGrid

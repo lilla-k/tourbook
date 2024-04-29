@@ -37,6 +37,14 @@ const tripServices = {
             body: JSON.stringify(cityData)
         })
     },
+    editCity: async function editCity(tripId, cityId, cityData){
+        console.log("cityData", cityData);
+        await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(cityData)
+        })
+    },
     uploadImage:  async function uploadImage(tripId, formData) {
         const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
             method: "post",

@@ -43,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/edit",
         element: <NewTripForm />,
+      },
+      {
+        path: "trips/:tripId/:cityId/edit",
+        element: <NewCityForm />,
       }
     ],
   },

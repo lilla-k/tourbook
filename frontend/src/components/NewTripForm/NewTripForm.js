@@ -40,11 +40,11 @@ function NewTripForm() {
     }
 
     async function postTripData() {
-        const id = await tripService.postTrip(tripData);
+        const tripId = await tripService.postTrip(tripData);
         setToaster("successfully created");
         const trips = await tripService.getTrips();
         setTrips(trips);
-        navigate(`/trips/${id}`);
+        navigate(`/trips/${tripId}`);
     }
 
     async function editTripData() {

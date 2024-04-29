@@ -1,7 +1,6 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
