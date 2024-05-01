@@ -2,29 +2,35 @@
 .NewCityForm{
     margin: auto;
     display: block;
-    width: 600px;
+    width: 700px;
 }
 
 .NewCityForm-header{
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
     color: black;
     font-weight: 700;
     font-size: 32px;
     margin: 50px auto;
 }
 
+.NewCityForm-headerStart{
+    display: flex;
+    gap: 20px;
+}
+
 .NewCityForm-arrowBackIcon{
     cursor: pointer;
 }
 
-.NewCityForm-editIcon{
-    vertical-align: top;
-    cursor: pointer;
-    color: var(--dark-grey);
-    font-size: 16px;
-    padding: 0;
+.NewCityForm-deleteIcon{
+    margin-right: 5px;
 }
+
+.NewCityForm-deleteButton{
+    vertical-align: top;
+}
+
 
 .NewCityForm-form{
     width: 700px;
@@ -49,18 +55,10 @@
     color: var(--dark-grey);
 }
 
-.NewCityForm-buttons{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
-}
-
 .NewCityForm-saveButton{
     text-align: center;
 }
 
-.NewCityForm-deleteButton{
-    text-align: right;
-}
+
 
 
