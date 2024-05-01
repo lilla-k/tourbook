@@ -9,10 +9,10 @@ const trips=[{
     startDate: new Date('2023-12-29Z00:00:00.000').getTime(),
     endDate: new Date('2024-01-02Z00:00:00.000').getTime(),
     visitedCities: [
-        {cityName:"Amman", details: "Amman is the capital of Jordan with a population of 4 million", visitedAttractions: ["market", "roman theater built around 100", "Citadel hill with a panoramic view"]},
-        {cityName:"Petra", details: "vörös romváros a sivatagi sziklák között, a nabateusok alakították ki sziklába faragott épületeiket ie. 4. sz", visitedAttractions: ["sírtemplom", "sziklába vájt színház", "főtemplom"]},
-        {cityName:"Wadi Rum", details: "sivatagi völgy lélegzetelállótó vöröses panorámával", visitedAttractions: ["templomrom", "sziklarajz", "sivatag"]},
-        {cityName:"Akaba",  details: "kikötőváros, ablak a Vörös-tengerre", visitedAttractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
+        {cityName:"Amman", details: "Amman is the capital of Jordan with a population of 4 million", attractions: ["market", "roman theater built around 100", "Citadel hill with a panoramic view"]},
+        {cityName:"Petra", details: "vörös romváros a sivatagi sziklák között, a nabateusok alakították ki sziklába faragott épületeiket ie. 4. sz", attractions: ["sírtemplom", "sziklába vájt színház", "főtemplom"]},
+        {cityName:"Wadi Rum", details: "sivatagi völgy lélegzetelállótó vöröses panorámával", attractions: ["templomrom", "sziklarajz", "sivatag"]},
+        {cityName:"Akaba",  details: "kikötőváros, ablak a Vörös-tengerre", attractions: ["14. századi erődítmény", "üveg aljú hajókra lehet felülni, snorkelingelni"]}
     ]
 }, 
 {
@@ -29,11 +29,11 @@ const trips=[{
     startDate: new Date('2023-07-17Z00:00:00.000').getTime(),
     endDate: new Date('2023-07-21Z00:00:00.000').getTime(),
     visitedCities: [
-        {cityId:"dsds-21", cityName:"Tel-Aviv", details: "Tel-Aviv is the most populous city in Israel, the economical and technological center of the country. Many people used electronic scooters on the beach.", visitedAttractions: ["market with falafel", "Jaffa old city with St. Peter's church", "beach", "Jaffa's Great Mosque"]},
-        {cityName:"Dead Sea", details: "Ten times saltier than the sea. We can float in the lake. The lowest point on earth.", visitedAttractions: []},
-        {cityName:"Haifa", details: "Third-largest city in Israel. We used cable car to travel to the hill, then used stairs to walk back to the subway. ", visitedAttractions: ["Baha'í gardens in the heart of the city", "cable car"]},
-        {cityName:"Ein Gedi", details: "Ein Gedi is an oasis, a nature reserve and national park", visitedAttractions: ["waterfalls"]},
-        {cityName:"Masada", details: "Masada is an ancient fortification situated on top of an isolated rock plateau from 20 km from the Dead Sea. The weather was very hot here in July.", visitedAttractions: ["cable car", "ruin of the fortress"]}
+        {cityId:"dsds-21", cityName:"Tel-Aviv", details: "Tel-Aviv is the most populous city in Israel, the economical and technological center of the country. Many people used electronic scooters on the beach.", attractions: ["market with falafel", "Jaffa old city with St. Peter's church", "beach", "Jaffa's Great Mosque"]},
+        {cityName:"Dead Sea", details: "Ten times saltier than the sea. We can float in the lake. The lowest point on earth.", attractions: []},
+        {cityName:"Haifa", details: "Third-largest city in Israel. We used cable car to travel to the hill, then used stairs to walk back to the subway. ", attractions: ["Baha'í gardens in the heart of the city", "cable car"]},
+        {cityName:"Ein Gedi", details: "Ein Gedi is an oasis, a nature reserve and national park", attractions: ["waterfalls"]},
+        {cityName:"Masada", details: "Masada is an ancient fortification situated on top of an isolated rock plateau from 20 km from the Dead Sea. The weather was very hot here in July.", attractions: ["cable car", "ruin of the fortress"]}
     ]
 },{
     id: 3,
@@ -49,7 +49,7 @@ const trips=[{
         {cityName:"Barcelona", 
         images:[{url: "/images/Spain/1_Barcelona_W Hotel.jpg", title: "1_Barcelona_W Hotel"}, {url: "/images/Spain/1_Barcelona_beach.jpg", title: "1_Barcelona_beach"}, {url: "/images/Spain/view.jpg", title: "view"}], 
         details: "Barcelona is a tunning seaside city. Antoni Gaudí left a lasting mark on Barcelona  with his avant-garde surrealist buildings.", 
-        visitedAttractions: ["sandy beaches near the harbor", "La Sagrada Familia", "Park Güell"]}
+        attractions: ["sandy beaches near the harbor", "La Sagrada Familia", "Park Güell"]}
     ]
 }
 ]

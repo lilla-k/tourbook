@@ -56,13 +56,10 @@ export async function editCity(tripId, cityId, updatedCity) {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");
   const selectedTrip= await coll.findOne({_id: new ObjectId(tripId)});
-  console.log("selectedTrip", selectedTrip);
   const selectedCity=selectedTrip.visitedCities.find(city=>city.cityId===cityId);
-  console.log("selectedCity", selectedCity);
   selectedCity.cityName=updatedCity.cityName;
   selectedCity.cityInformation=updatedCity.cityInformation;
-  selectedCity.visitedAttractions=updatedCity.visitedAttractions;
-  console.log("new selectedTrip", selectedTrip);
+  selectedCity.attractions=updatedCity.attractions;
   await coll.updateOne({_id: new ObjectId(tripId)}, { $set: selectedTrip});
   await client.close();
 }
