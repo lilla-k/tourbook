@@ -51,7 +51,9 @@ function NewCityForm() {
 
     return (<div className="NewCityForm" >
         <div className="NewCityForm-header">
-            <div><ArrowBackIcon/></div>
+            <div className="NewCityForm-arrowBackIcon">
+                <ArrowBackIcon onClick={cityId ? () => navigate(`/trips/${selectedTrip.id}/${cityId}`) : () => navigate(`/trips/${selectedTrip.id}`)}/>
+            </div>
             {cityId ?
                 <div className="NewCityForm-title">{selectedCity.cityName}</div> :
                 "Add a city"}
