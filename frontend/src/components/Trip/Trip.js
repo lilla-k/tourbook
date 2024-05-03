@@ -30,7 +30,6 @@ function Trip() {
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
 
   async function saveCoverImage(id) {
-    console.log("image id", id);
     await tripService.setCoverImage(tripId, id);
     setToaster("cover image updated");
     const trips = await tripService.getTrips();
@@ -64,7 +63,7 @@ function Trip() {
           <div className="Trip-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <div className="Trip-visitedCity">
+                <div className="Trip-visitedCity" key={city.cityId}>
                   <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink" >
                     <LocationOnIcon />
                     <div>{city.cityName}</div>

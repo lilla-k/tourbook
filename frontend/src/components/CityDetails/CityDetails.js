@@ -24,7 +24,7 @@ function CityDetails({ selectedCity }) {
                     <TabPanel value="city">{selectedCity.cityInformation}</TabPanel>
                     <TabPanel value="attractions">
                         <div className="CityDetails-attractions">
-                            {selectedCity.attractions.map(attraction => <div className="CityDetails-attraction">{attraction}</div>
+                            {selectedCity.attractions.map(attraction => <div className="CityDetails-attraction" key={attraction}>{attraction}</div>
                       )}
                         </div>
                     </TabPanel>
