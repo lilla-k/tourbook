@@ -45,6 +45,12 @@ const tripServices = {
             body: JSON.stringify(cityData)
         })
     },
+    deleteCity: async function deleteCity(tripId, cityId) {
+        console.log("deletecity tripservice")
+        await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
+            method: "DELETE",
+        })
+    },
     uploadImage:  async function uploadImage(tripId, formData) {
         const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
             method: "post",

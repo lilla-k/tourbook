@@ -64,6 +64,13 @@ export async function editCity(tripId, cityId, updatedCity) {
   await client.close();
 }
 
+export async function deleteCity(tripId, cityId) {
+  await client.connect();
+  const coll = client.db("tourbook").collection("trips");
+  await coll.updateOne({_id: new ObjectId(tripId)}, {$pull: {visitedCities: {cityId: cityId}}});
+  await client.close();
+}
+
 export async function addPhoto(tripId, imageData) {
   await client.connect();
   const coll = client.db("tourbook").collection("trips");

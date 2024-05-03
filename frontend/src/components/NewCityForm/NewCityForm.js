@@ -46,8 +46,12 @@ function NewCityForm() {
     navigate(`/trips/${tripId}`);
   }
 
-  function deleteCity() {
-    console.log("delete");
+  async function deleteCity() {
+    await tripService.deleteCity(tripId, cityId);
+    setToaster("successfully deleted");
+    const trips = await tripService.getTrips();
+    setTrips(trips);
+    navigate(`/trips/${tripId}`);
   }
 
   return (<div className="NewCityForm" >
