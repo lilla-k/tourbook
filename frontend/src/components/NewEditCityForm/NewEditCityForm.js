@@ -65,15 +65,15 @@ function NewEditCityForm() {
           "Add a city"}
       </div>
       {cityId &&
-          <Button
-            variant="outlined"
-            onClick={() => deleteCity()} 
-            color="error"
-            className="NewEditCityForm-deleteButton"
-          >
-            <DeleteIcon className="NewEditCityForm-deleteIcon" fontSize="small"/> 
-            Delete
-          </Button>
+        <Button
+          variant="outlined"
+          onClick={() => deleteCity()}
+          color="error"
+          className="NewEditCityForm-deleteButton"
+        >
+          <DeleteIcon className="NewEditCityForm-deleteIcon" fontSize="small" />
+          Delete
+        </Button>
       }
     </div>
     <div className="NewEditCityForm-form">
@@ -109,12 +109,14 @@ function NewEditCityForm() {
                   setAttractions([...attractions]);
                 }}
               />
-              {console.log(!attractions[index])}
-              {attractions.length === (index + 1) && < AddCircleOutlineIcon
-                className="NewEditCityForm-addAttractionBtn"
-                onClick={e => setAttractions([...attractions, ""])}  //miért van itt üres string?
-                disabled={false}
-              />
+              {attractions.length === (index + 1) && 
+              <Button 
+                disabled={!attractions[index]}
+                onClick={e => setAttractions([...attractions, ""])}
+                sx={{margin: "20px 0"}}
+              >
+                < AddCircleOutlineIcon className="NewEditCityForm-addAttractionIcon"/>
+              </Button>
               }
             </div>
           )
