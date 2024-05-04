@@ -31,11 +31,16 @@ const tripServices = {
         })
     },
     postCity: async function postCity(tripId, cityData){
-        await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
+        const response = await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(cityData)
         })
+        if (response.status === 201) {
+            const cityIdObj = await response.json();
+            console.log(cityIdObj);
+            return cityIdObj.cityId;
+        }
     },
     editCity: async function editCity(tripId, cityId, cityData){
         console.log("cityData", cityData);

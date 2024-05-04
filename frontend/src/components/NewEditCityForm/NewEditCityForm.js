@@ -43,7 +43,7 @@ function NewEditCityForm() {
     setToaster("successfully updated");
     const trips = await tripService.getTrips();
     setTrips(trips);
-    navigate(`/trips/${tripId}`);
+    navigate(`/trips/${tripId}/${cityId}`);
   }
 
   async function deleteCity() {

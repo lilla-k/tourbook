@@ -56,7 +56,7 @@ app.post('/api/trips/:tripId/cities', async (req, res) => {
   postedCity.cityId=crypto.randomUUID()
   const tripId = req.params.tripId;
   await addCity(tripId, postedCity);
-  res.sendStatus(201);
+  res.sendStatus(201).json({cityId: postedCity.cityId});
 })
 
 app.put('/api/trips/:tripId/cities/:cityId', async (req, res) => {
