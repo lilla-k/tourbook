@@ -100,6 +100,7 @@ function NewCityForm() {
           return (
             <div>
               <TextField
+                key={index}
                 label="Visited attraction"
                 variant="outlined"
                 value={attraction}
