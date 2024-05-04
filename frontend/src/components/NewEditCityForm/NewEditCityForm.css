@@ -1,11 +1,11 @@
 
-.NewCityForm{
+.NewEditCityForm{
     margin: auto;
     display: block;
     width: 700px;
 }
 
-.NewCityForm-header{
+.NewEditCityForm-header{
     display: flex;
     justify-content: space-between;
     color: black;
@@ -14,48 +14,48 @@
     margin: 50px auto;
 }
 
-.NewCityForm-headerStart{
+.NewEditCityForm-headerStart{
     display: flex;
     gap: 20px;
 }
 
-.NewCityForm-arrowBackIcon{
+.NewEditCityForm-arrowBackIcon{
     cursor: pointer;
 }
 
-.NewCityForm-deleteIcon{
+.NewEditCityForm-deleteIcon{
     margin-right: 5px;
 }
 
-.NewCityForm-deleteButton{
+.NewEditCityForm-deleteButton{
     vertical-align: top;
 }
 
 
-.NewCityForm-form{
+.NewEditCityForm-form{
     width: 700px;
     margin: 60px 0;
 }
 
-.NewCityForm-form > *{
+.NewEditCityForm-form > *{
     margin: 30px 0;
 }
 
-.NewCityForm-cityInformation > div{
+.NewEditCityForm-cityInformation > div{
     width: 100%;
 }
 
-.NewCityForm-attractions div{
+.NewEditCityForm-attractions div{
     margin: 5px 5px 5px 0;
 }
 
-.NewCityForm-addAttractionBtn{
+.NewEditCityForm-addAttractionBtn{
     margin: 25px 0;
     cursor: pointer;
     color: var(--dark-grey);
 }
 
-.NewCityForm-saveButton{
+.NewEditCityForm-saveButton{
     text-align: center;
 }
 

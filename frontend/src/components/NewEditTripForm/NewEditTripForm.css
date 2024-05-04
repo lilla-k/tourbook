@@ -1,10 +1,10 @@
-.NewTripForm{
+.NewEditTripForm{
     margin: auto;
     display: block;
     width: 500px;
 }
 
-.NewTripForm-title{
+.NewEditTripForm-title{
     color: var(--light-green);
     font-weight: 700;
     font-size: 32px;
@@ -12,15 +12,15 @@
     text-align: center;
 }
 
-.NewTripForm-form{
+.NewEditTripForm-form{
     width: 600px;
 }
 
-.NewTripForm-form > *{
+.NewEditTripForm-form > *{
     margin: 30px 0;
 }
 
-.NewTripForm-start, .NewTripForm-end{
+.NewEditTripForm-start, .NewEditTripForm-end{
     color: rgba(0, 0, 0, 0.87);
     background-color: var(--beige);
     padding: 14px;
@@ -30,28 +30,28 @@
     font-size: 16px;
 }
 
-.NewTripForm-start:hover, .NewTripForm-end:hover{
+.NewEditTripForm-start:hover, .NewEditTripForm-end:hover{
     border-color: rgba(0, 0, 0, 0.87);
 }
 
-.NewTripForm-start:focus-visible, .NewTripForm-end:focus-visible{
+.NewEditTripForm-start:focus-visible, .NewEditTripForm-end:focus-visible{
     outline-color: rgb(25, 118, 210);
 }
 
 
-.NewTripForm-countrySelector{
+.NewEditTripForm-countrySelector{
     width: 300px;
 }
 
-.NewTripForm-typeSelector{
+.NewEditTripForm-typeSelector{
     width: 200px;
 }
 
-.NewTripForm-countryInformation > div, .NewTripForm-experience > div{
+.NewEditTripForm-countryInformation > div, .NewEditTripForm-experience > div{
     width: 100%;
 }
 
-.NewTripForm-saveButton{
+.NewEditTripForm-saveButton{
     width: 150px;
     margin: auto;
 }

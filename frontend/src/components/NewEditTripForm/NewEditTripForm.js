@@ -9,10 +9,10 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import tripTypes from '../../tripTypes.js';
 import countries from '../../countries.js';
-import './NewTripForm.css';
+import './NewEditTripForm.css';
 import tripService from '../../services/tripService.js'
 
-function NewTripForm() {
+function NewEditTripForm() {
 
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
@@ -57,30 +57,30 @@ function NewTripForm() {
     }
 
     return (
-        <div className="NewTripForm">
-            <div className="NewTripForm-title">Information about your trip</div>
-            <div className="NewTripForm-form">
-                <div className="NewTripForm-dates">
+        <div className="NewEditTripForm">
+            <div className="NewEditTripForm-title">Information about your trip</div>
+            <div className="NewEditTripForm-form">
+                <div className="NewEditTripForm-dates">
                     <input
                         type="date"
                         value={startDate}
-                        className="NewTripForm-start"
+                        className="NewEditTripForm-start"
                         onChange={e => setStartDate(e.target.value)} />
                     {startDate && <input
                         type="date"
                         value={endDate}
-                        className="NewTripForm-end"
+                        className="NewEditTripForm-end"
                         onChange={e => setEndDate(e.target.value)} />}
                 </div>
                 <Autocomplete
-                    className="NewTripForm-countrySelector"
+                    className="NewEditTripForm-countrySelector"
                     disablePortal
                     options={countriesArray}
                     value={country}
                     onChange={(e, selectedValue) => setCountry(selectedValue)}
                     renderInput={(params) => <TextField {...params} label="Country" />}
                 />
-                <FormControl className="NewTripForm-typeSelector">
+                <FormControl className="NewEditTripForm-typeSelector">
                     <InputLabel>Trip type</InputLabel>
                     <Select
                         value={tripType}
@@ -93,7 +93,7 @@ function NewTripForm() {
                         <MenuItem value={tripTypeArray[3]}>{tripTypeArray[3]}</MenuItem>
                     </Select>
                 </FormControl>
-                <div className="NewTripForm-countryInformation">
+                <div className="NewEditTripForm-countryInformation">
                     <TextField
                         label="Country Information"
                         placeholder="eg. language, population, religion, history"
@@ -103,7 +103,7 @@ function NewTripForm() {
                         onChange={e => setCountryInformation(e.target.value)}
                     />
                 </div>
-                <div className="NewTripForm-experience">
+                <div className="NewEditTripForm-experience">
                     <TextField
                         label="Your experience"
                         placeholder="eg. weather, unforgattable experiences"
@@ -113,7 +113,7 @@ function NewTripForm() {
                         onChange={e => setTripExperience(e.target.value)}
                     />
                 </div>
-                <div className="NewTripForm-saveButton">
+                <div className="NewEditTripForm-saveButton">
                     <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Save" : "Add"}</Button>
                 </div>
             </div>
@@ -121,4 +121,4 @@ function NewTripForm() {
     )
 }
 
-export default NewTripForm;
+export default NewEditTripForm;

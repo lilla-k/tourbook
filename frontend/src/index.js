@@ -8,8 +8,8 @@ import Root from './components/Root/Root';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 import Trip from './components/Trip/Trip.js';
 import Trips from './components/Trips/Trips.js';
-import NewTripForm from './components/NewTripForm/NewTripForm.js';
-import NewCityForm from './components/NewCityForm/NewCityForm.js';
+import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
+import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 
 const router = createBrowserRouter([
   {
@@ -34,19 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: "addTrip",
-        element: <NewTripForm />,
+        element: <NewEditTripForm />,
       },
       {
         path: "trips/:tripId/addCity",
-        element: <NewCityForm />,
+        element: <NewEditCityForm />,
       },
       {
         path: "trips/:tripId/edit",
-        element: <NewTripForm />,
+        element: <NewEditTripForm />,
       },
       {
         path: "trips/:tripId/:cityId/edit",
-        element: <NewCityForm />,
+        element: <NewEditCityForm />,
       }
     ],
   },

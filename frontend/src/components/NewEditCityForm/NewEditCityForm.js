@@ -5,11 +5,11 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './NewCityForm.css';
+import './NewEditCityForm.css';
 import tripService from '../../services/tripService.js';
 
 
-function NewCityForm() {
+function NewEditCityForm() {
 
   const navigate = useNavigate();
   const { tripId, cityId } = useParams();
@@ -54,14 +54,14 @@ function NewCityForm() {
     navigate(`/trips/${tripId}`);
   }
 
-  return (<div className="NewCityForm" >
-    <div className="NewCityForm-header">
-      <div className="NewCityForm-headerStart">
-        <div className="NewCityForm-arrowBackIcon">
+  return (<div className="NewEditCityForm" >
+    <div className="NewEditCityForm-header">
+      <div className="NewEditCityForm-headerStart">
+        <div className="NewEditCityForm-arrowBackIcon">
           <ArrowBackIcon onClick={cityId ? () => navigate(`/trips/${selectedTrip.id}/${cityId}`) : () => navigate(`/trips/${selectedTrip.id}`)} />
         </div>
         {cityId ?
-          <div className="NewCityForm-title">{selectedCity.cityName}</div> :
+          <div className="NewEditCityForm-title">{selectedCity.cityName}</div> :
           "Add a city"}
       </div>
       {cityId &&
@@ -69,15 +69,15 @@ function NewCityForm() {
             variant="outlined"
             onClick={() => deleteCity()} 
             color="error"
-            className="NewCityForm-deleteButton"
+            className="NewEditCityForm-deleteButton"
           >
-            <DeleteIcon className="NewCityForm-deleteIcon" fontSize="small"/> 
+            <DeleteIcon className="NewEditCityForm-deleteIcon" fontSize="small"/> 
             Delete
           </Button>
       }
     </div>
-    <div className="NewCityForm-form">
-      {cityId === undefined && <div className="NewCityForm-cityName">
+    <div className="NewEditCityForm-form">
+      {cityId === undefined && <div className="NewEditCityForm-cityName">
         <TextField
           label="City name"
           variant="outlined"
@@ -85,7 +85,7 @@ function NewCityForm() {
           onChange={e => setCityName(e.target.value)}
         />
       </div>}
-      <div className="NewCityForm-cityInformation">
+      <div className="NewEditCityForm-cityInformation">
         <TextField
           label="City Information"
           placeholder="eg. population, interesting things"
@@ -95,7 +95,7 @@ function NewCityForm() {
           onChange={e => setCityInformation(e.target.value)}
         />
       </div>
-      <div className="NewCityForm-attractions">
+      <div className="NewEditCityForm-attractions">
         {attractions.map((attraction, index) => {
           return (
             <div>
@@ -109,16 +109,18 @@ function NewCityForm() {
                   setAttractions([...attractions]);
                 }}
               />
+              {console.log(!attractions[index])}
               {attractions.length === (index + 1) && < AddCircleOutlineIcon
-                className="NewCityForm-addAttractionBtn"
-                onClick={e => setAttractions([...attractions, ""])}
+                className="NewEditCityForm-addAttractionBtn"
+                onClick={e => setAttractions([...attractions, ""])}  //miért van itt üres string?
+                disabled={false}
               />
               }
             </div>
           )
         })}
       </div>
-      <div className="NewCityForm-saveButton">
+      <div className="NewEditCityForm-saveButton">
         <Button variant="outlined" onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}</Button>
       </div>
     </div>
@@ -126,4 +128,4 @@ function NewCityForm() {
   </div >)
 }
 
-export default NewCityForm;
+export default NewEditCityForm;
