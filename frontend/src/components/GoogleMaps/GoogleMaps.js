@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
 import { useNavigate, useOutletContext} from "react-router-dom";
 import './GoogleMaps.css';
+import MapStyle from'./MapStyle.js';
 import countries from '../../countries.js';
 
 
@@ -41,6 +42,7 @@ function GoogleMaps() {
           )
         })}
       </Map>
+      <MapStyle/>
     </APIProvider>
   );
 }
