@@ -30,11 +30,11 @@ function NewEditCityForm() {
 
   async function postCityData() {
     console.log("create city");
-    await tripService.postCity(tripId, cityData);
+    const cityId = await tripService.postCity(tripId, cityData);
     setToaster("successfully created");
     const trips = await tripService.getTrips();
     setTrips(trips);
-    navigate(`/trips/${tripId}`)
+    navigate(`/trips/${tripId}/${cityId}`)
   }
 
   async function editCityData() {
