@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditCityForm.css';
 import tripService from '../../services/tripService.js';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'
 
 
 function NewEditCityForm() {
@@ -21,6 +22,7 @@ function NewEditCityForm() {
   const [cityInformation, setCityInformation] = useState(cityId ? selectedCity.cityInformation : "");
   const [cityName, setCityName] = useState(cityId ? selectedCity.cityName : "");
   const [attractions, setAttractions] = useState(cityId ? selectedCity.attractions : [""]);
+  const [deleteModalVisible, setDeleteModalVisible]= useState(false)
 
   const cityData = {
     cityName: cityName,
@@ -46,12 +48,21 @@ function NewEditCityForm() {
     navigate(`/trips/${tripId}/${cityId}`);
   }
 
-  async function deleteCity() {
+  async function deleteCity() { 
+    setDeleteModalVisible(false);
     await tripService.deleteCity(tripId, cityId);
     setToaster("successfully deleted");
     const trips = await tripService.getTrips();
     setTrips(trips);
     navigate(`/trips/${tripId}`);
+  }
+
+  function cancelDelete(){
+    setDeleteModalVisible(false);
+  }
+
+  function deleteConfirmation(){
+    setDeleteModalVisible(true);
   }
 
   return (<div className="NewEditCityForm" >
@@ -67,15 +78,17 @@ function NewEditCityForm() {
       {cityId &&
         <Button
           variant="outlined"
-          onClick={() => deleteCity()}
+          onClick={() => deleteConfirmation()}
           color="error"
           className="NewEditCityForm-deleteButton"
         >
           <DeleteIcon className="NewEditCityForm-deleteIcon" fontSize="small" />
-          Delete
+          DELETE
         </Button>
       }
+      
     </div>
+    {deleteModalVisible && <DeleteConfirmationModal deleteCity={deleteCity} cancelDelete={cancelDelete}/>}
     <div className="NewEditCityForm-form">
       {cityId === undefined && <div className="NewEditCityForm-cityName">
         <TextField
@@ -100,7 +113,7 @@ function NewEditCityForm() {
           return (
             <div>
               <TextField
-                key={index}
+                key={attraction}
                 label="Visited attraction"
                 variant="outlined"
                 value={attraction}

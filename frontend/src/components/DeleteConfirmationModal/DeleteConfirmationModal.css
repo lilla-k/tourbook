@@ -1,0 +1,56 @@
+.DeleteConfirmationModal-background {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.DeleteConfirmationModal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px;
+    border-radius: 5px;
+}
+
+.DeleteConfirmationModal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.DeleteConfirmationModal-close{
+    height: 36px;
+    width: 36px;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.DeleteConfirmationModal-close:hover{
+    cursor: pointer;
+    background-color:#ccc9c5;
+}
+
+.DeleteConfirmationModal-confirmation{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+hr{
+    margin: 20px 0;
+}
+
+.DeleteConfirmationModal-buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}

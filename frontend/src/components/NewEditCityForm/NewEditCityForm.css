@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.NewEditCityForm-title{
+    cursor: pointer;
+}
+
 .NewEditCityForm-deleteIcon{
     margin-right: 5px;
 }

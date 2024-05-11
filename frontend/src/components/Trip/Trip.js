@@ -11,7 +11,7 @@ import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelect
 import tripTypes from '../../tripTypes.js';
 import tripService from '../../services/tripService.js'
 import './Trip.css';
-import '../../style/Tooltip.css';
+import '../../style/tooltip.css';
 
 
 const apiUrl = process.env.REACT_APP_BACKEND_API;

@@ -5,7 +5,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LoginIcon from '@mui/icons-material/Login';
 import './Header.css';
-import '../../style/Tooltip.css';
+import '../../style/tooltip.css';
 
 
 function Header(){
