@@ -102,7 +102,7 @@ function NewEditCityForm() {
         </Button>
       }
     </div>
-    {deleteModalVisible && <DeleteConfirmationModal deleteCity={deleteCity} cancelDelete={cancelDelete} />}
+    {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteCity} onCancel={cancelDelete} type="city" />}
     <div className="NewEditCityForm-form">
       {cityId === undefined && <div className="NewEditCityForm-cityName">
         <TextField

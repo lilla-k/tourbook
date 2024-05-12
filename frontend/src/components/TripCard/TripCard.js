@@ -37,7 +37,7 @@ function TripCard({tripId, countryName, coverImage, startDate}){
                 </div>
             </Link>
             <DeleteIcon className="TripCard-deleteIcon" onClick={deleteConfirmation}/>
-            {deleteModalVisible && <DeleteConfirmationModal deleteTrip={deleteTrip} cancelDelete={cancelDelete}/>}
+            {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteTrip} onCancel={cancelDelete} type="trip"/>}
         </div>
     )
 }
