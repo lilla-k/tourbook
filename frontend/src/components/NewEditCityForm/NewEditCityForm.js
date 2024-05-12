@@ -96,7 +96,7 @@ function NewEditCityForm() {
           label="City name"
           variant="outlined"
           value={cityName}
-          onChangeName={e => setCityName(e.target.value)}
+          onChange={e => setCityName(e.target.value)}
         />
       </div>}
       <div className="NewEditCityForm-cityInformation">

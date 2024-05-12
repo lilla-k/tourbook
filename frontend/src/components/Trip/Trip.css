@@ -104,7 +104,9 @@
 }
 
 .Trip-visitedCity{
-    background-color: var(--light-grey);
+    background-color: var(--beige);
+    border: 2px solid var(--light-grey);
+    border-radius: 5px;
     font-size: 18px;
     padding: 5px 10px;
     margin: 5px 0;
@@ -114,7 +116,17 @@
 
 .Trip-visitedCity:hover{
     transform: scale(1.03);
-    background-color: rgb(220, 216, 216);;
+    background-color: rgba(232, 227, 227, 0.5);
+}
+
+.selected{
+    transform: scale(1.06);
+    background-color: var(--light-grey);
+}
+
+.selected:hover{
+    transform: scale(1.06);
+    background-color: var(--light-grey);
 }
 
 .Trip-visitedCityLink{
