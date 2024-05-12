@@ -1,5 +1,4 @@
 import './DeleteConfirmationModal.css';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 

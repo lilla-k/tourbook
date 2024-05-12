@@ -22,7 +22,7 @@ function CountryDetails({ selectedTrip }) {
                         </TabList>
                     </Box>
                     <TabPanel value="country">{selectedTrip.countryInformation}</TabPanel>
-                    <TabPanel value="report">{selectedTrip.tripExperience}</TabPanel>
+                    <TabPanel value="your experience">{selectedTrip.tripExperience}</TabPanel>
                 </TabContext>
             </Box>
         </div>
