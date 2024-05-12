@@ -7,7 +7,8 @@ import TextField from '@mui/material/TextField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditCityForm.css';
 import tripService from '../../services/tripService.js';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+import TitleInput from '../TitleInput/TitleInput'
 
 
 function NewEditCityForm() {
@@ -72,7 +73,7 @@ function NewEditCityForm() {
           <ArrowBackIcon onClick={cityId ? () => navigate(`/trips/${selectedTrip.id}/${cityId}`) : () => navigate(`/trips/${selectedTrip.id}`)} />
         </div>
         {cityId ?
-          <div className="NewEditCityForm-title">{selectedCity.cityName}</div> :
+          <TitleInput value={cityName} onChange={setCityName}/> :
           "Add a city"}
       </div>
       {cityId &&
@@ -95,7 +96,7 @@ function NewEditCityForm() {
           label="City name"
           variant="outlined"
           value={cityName}
-          onChange={e => setCityName(e.target.value)}
+          onChangeName={e => setCityName(e.target.value)}
         />
       </div>}
       <div className="NewEditCityForm-cityInformation">

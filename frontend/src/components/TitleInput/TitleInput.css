@@ -1,0 +1,15 @@
+.TitleInput{
+    font-size: 24px;
+    background-color: var(--beige);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.TitleInput:hover{
+    border: 1px solid var(--dark-grey);
+}
+
+.TitleInput:focus{
+    background-color: white;
+}
