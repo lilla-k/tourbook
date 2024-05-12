@@ -1,5 +1,7 @@
 import './TripCard.css';
+import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'
 import tripService from '../../services/tripService.js'
 import {  useOutletContext, Link } from 'react-router-dom';
 
@@ -8,6 +10,7 @@ const apiUrl = process.env.REACT_APP_BACKEND_API;
 function TripCard({tripId, countryName, coverImage, startDate}){
 
     const {setTrips, setToaster} = useOutletContext();
+    const [deleteModalVisible, setDeleteModalVisible]= useState(false)
 
     async function deleteTrip(){
         await tripService.deleteTrip(tripId);
@@ -15,6 +18,14 @@ function TripCard({tripId, countryName, coverImage, startDate}){
         const trips = await tripService.getTrips();
         setTrips(trips);
     }
+
+    function cancelDelete(){
+        setDeleteModalVisible(false);
+      }
+    
+      function deleteConfirmation(){
+        setDeleteModalVisible(true);
+      }
 
     return(
         <div className="TripCard">
@@ -25,7 +36,8 @@ function TripCard({tripId, countryName, coverImage, startDate}){
                     <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
                 </div>
             </Link>
-            <DeleteIcon className="TripCard-deleteIcon" onClick={deleteTrip}/>
+            <DeleteIcon className="TripCard-deleteIcon" onClick={deleteConfirmation}/>
+            {deleteModalVisible && <DeleteConfirmationModal deleteTrip={deleteTrip} cancelDelete={cancelDelete}/>}
         </div>
     )
 }
