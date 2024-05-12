@@ -41,6 +41,10 @@
     margin: 60px 0;
 }
 
+.NewEditCityForm-alreadyExist{
+    color: rgb(240, 93, 93);
+}
+
 .NewEditCityForm-form > *{
     margin: 30px 0;
 }

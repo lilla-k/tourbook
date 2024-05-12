@@ -63,7 +63,7 @@ function Trip() {
           <div className="Trip-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <div className={`Trip-visitedCity ${city.cityId ===selectedCity.cityId ? `selected`: ``}`} key={city.cityId}>
+                <div className={`Trip-visitedCity ${city.cityId ===selectedCity?.cityId ? `selected`: ``}`} key={city.cityId}>
                   <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink" >
                     <LocationOnIcon />
                     <div>{city.cityName}</div>

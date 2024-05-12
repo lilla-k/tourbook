@@ -23,7 +23,8 @@ function NewEditCityForm() {
   const [cityInformation, setCityInformation] = useState(cityId ? selectedCity.cityInformation : "");
   const [cityName, setCityName] = useState(cityId ? selectedCity.cityName : "");
   const [attractions, setAttractions] = useState(cityId ? selectedCity.attractions : [""]);
-  const [deleteModalVisible, setDeleteModalVisible]= useState(false)
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [haveAlreadyExistCity, setHaveAlreadyExistCity] = useState(false);
 
   const cityData = {
     cityName: cityName,
@@ -33,23 +34,36 @@ function NewEditCityForm() {
 
   async function postCityData() {
     console.log("create city");
+    if (nameValidation() === "validated") {
     const cityId = await tripService.postCity(tripId, cityData);
     setToaster("successfully created");
     const trips = await tripService.getTrips();
     setTrips(trips);
     navigate(`/trips/${tripId}/${cityId}`)
+    }
   }
 
   async function editCityData() {
     console.log("edit city");
-    await tripService.editCity(tripId, cityId, cityData);
-    setToaster("successfully updated");
-    const trips = await tripService.getTrips();
-    setTrips(trips);
-    navigate(`/trips/${tripId}/${cityId}`);
+    if (nameValidation() === "validated") {
+      await tripService.editCity(tripId, cityId, cityData);
+      setToaster("successfully updated");
+      const trips = await tripService.getTrips();
+      setTrips(trips);
+      navigate(`/trips/${tripId}/${cityId}`);
+    };
   }
 
-  async function deleteCity() { 
+  function nameValidation() {
+    const selectedTripCities = selectedTrip.visitedCities.map(city => city.cityName);
+    const alreadyExistCity = selectedTripCities.find(city => city === cityName);
+    if (alreadyExistCity === undefined) {
+      setHaveAlreadyExistCity(false)
+      return "validated";
+    } else { setHaveAlreadyExistCity(true) }
+  }
+
+  async function deleteCity() {
     setDeleteModalVisible(false);
     await tripService.deleteCity(tripId, cityId);
     setToaster("successfully deleted");
@@ -58,11 +72,11 @@ function NewEditCityForm() {
     navigate(`/trips/${tripId}`);
   }
 
-  function cancelDelete(){
+  function cancelDelete() {
     setDeleteModalVisible(false);
   }
 
-  function deleteConfirmation(){
+  function deleteConfirmation() {
     setDeleteModalVisible(true);
   }
 
@@ -73,7 +87,7 @@ function NewEditCityForm() {
           <ArrowBackIcon onClick={cityId ? () => navigate(`/trips/${selectedTrip.id}/${cityId}`) : () => navigate(`/trips/${selectedTrip.id}`)} />
         </div>
         {cityId ?
-          <TitleInput value={cityName} onChange={setCityName}/> :
+          <TitleInput value={cityName} onChange={setCityName} /> :
           "Add a city"}
       </div>
       {cityId &&
@@ -87,9 +101,8 @@ function NewEditCityForm() {
           DELETE
         </Button>
       }
-      
     </div>
-    {deleteModalVisible && <DeleteConfirmationModal deleteCity={deleteCity} cancelDelete={cancelDelete}/>}
+    {deleteModalVisible && <DeleteConfirmationModal deleteCity={deleteCity} cancelDelete={cancelDelete} />}
     <div className="NewEditCityForm-form">
       {cityId === undefined && <div className="NewEditCityForm-cityName">
         <TextField
@@ -99,6 +112,7 @@ function NewEditCityForm() {
           onChange={e => setCityName(e.target.value)}
         />
       </div>}
+      {haveAlreadyExistCity && <div className="NewEditCityForm-alreadyExist">This city is added already</div>}
       <div className="NewEditCityForm-cityInformation">
         <TextField
           label="City Information"
@@ -120,17 +134,19 @@ function NewEditCityForm() {
                 value={attraction}
                 onChange={e => {
                   attractions[index] = e.target.value;
+                  console.log(attraction)
+                  console.log(index)
                   setAttractions([...attractions]);
                 }}
               />
-              {attractions.length === (index + 1) && 
-              <Button 
-                disabled={!attractions[index]}
-                onClick={e => setAttractions([...attractions, ""])}
-                sx={{margin: "20px 0"}}
-              >
-                < AddCircleOutlineIcon className="NewEditCityForm-addAttractionIcon"/>
-              </Button>
+              {attractions.length === (index + 1) &&
+                <Button
+                  disabled={attractions[index].length === 0}
+                  onClick={e => setAttractions([...attractions, ""])}
+                  sx={{ margin: "20px 0" }}
+                >
+                  < AddCircleOutlineIcon className="NewEditCityForm-addAttractionIcon" />
+                </Button>
               }
             </div>
           )
