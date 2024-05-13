@@ -24,7 +24,6 @@ function NewEditCityForm() {
   const [cityName, setCityName] = useState(cityId ? selectedCity.cityName : "");
   const [attractions, setAttractions] = useState(cityId ? selectedCity.attractions : [""]);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-  const [haveAlreadyExistCity, setHaveAlreadyExistCity] = useState(false);
 
   const cityData = {
     cityName: cityName,
@@ -33,34 +32,24 @@ function NewEditCityForm() {
   }
 
   async function postCityData() {
-    console.log("create city");
-    if (nameValidation() === "validated") {
     const cityId = await tripService.postCity(tripId, cityData);
     setToaster("successfully created");
     const trips = await tripService.getTrips();
     setTrips(trips);
     navigate(`/trips/${tripId}/${cityId}`)
-    }
   }
 
   async function editCityData() {
-    console.log("edit city");
-    if (nameValidation() === "validated") {
-      await tripService.editCity(tripId, cityId, cityData);
-      setToaster("successfully updated");
-      const trips = await tripService.getTrips();
-      setTrips(trips);
-      navigate(`/trips/${tripId}/${cityId}`);
-    };
+    await tripService.editCity(tripId, cityId, cityData);
+    setToaster("successfully updated");
+    const trips = await tripService.getTrips();
+    setTrips(trips);
+    navigate(`/trips/${tripId}/${cityId}`);
   }
 
-  function nameValidation() {
+  function isCityNameValid() {
     const selectedTripCities = selectedTrip.visitedCities.map(city => city.cityName);
-    const alreadyExistCity = selectedTripCities.find(city => city === cityName);
-    if (alreadyExistCity === undefined) {
-      setHaveAlreadyExistCity(false)
-      return "validated";
-    } else { setHaveAlreadyExistCity(true) }
+    return !selectedTripCities.includes(cityName) || cityName === selectedCity.cityName;
   }
 
   async function deleteCity() {
@@ -110,9 +99,10 @@ function NewEditCityForm() {
           variant="outlined"
           value={cityName}
           onChange={e => setCityName(e.target.value)}
+          autoFocus
         />
       </div>}
-      {haveAlreadyExistCity && <div className="NewEditCityForm-alreadyExist">This city is added already</div>}
+      {!isCityNameValid() && <div className="NewEditCityForm-alreadyExist">This city is added already</div>}
       <div className="NewEditCityForm-cityInformation">
         <TextField
           label="City Information"
@@ -128,18 +118,23 @@ function NewEditCityForm() {
           return (
             <div>
               <TextField
-                key={attraction}
                 label="Visited attraction"
                 variant="outlined"
                 value={attraction}
+                autoFocus={attractions.length > 1 && attractions.length === (index + 1) && attractions[attractions.length - 1] === ''}
                 onChange={e => {
                   attractions[index] = e.target.value;
                   console.log(attraction)
                   console.log(index)
                   setAttractions([...attractions]);
                 }}
+                onBlur={e => {
+                  if (e.target.value === '') {
+                    setAttractions(attractions.slice(0, Math.max(attractions.length - 1, 1)));
+                  }
+                }}
               />
-              {attractions.length === (index + 1) &&
+              {attractions.length === (index + 1) && attractions[attractions.length-1] !== "" && 
                 <Button
                   disabled={attractions[index].length === 0}
                   onClick={e => setAttractions([...attractions, ""])}
@@ -153,7 +148,11 @@ function NewEditCityForm() {
         })}
       </div>
       <div className="NewEditCityForm-saveButton">
-        <Button variant="outlined" onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}</Button>
+        <Button
+          variant="outlined"
+          disabled={!isCityNameValid()}
+          onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}
+        </Button>
       </div>
     </div>
 
