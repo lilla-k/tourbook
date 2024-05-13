@@ -49,7 +49,8 @@ function NewEditCityForm() {
 
   function isCityNameValid() {
     const selectedTripCities = selectedTrip.visitedCities.map(city => city.cityName);
-    return !selectedTripCities.includes(cityName) || cityName === selectedCity.cityName;
+    console.log("selected trip cities", selectedTripCities);
+    return !selectedTripCities.includes(cityName) || cityName === selectedCity?.cityName;
   }
 
   async function deleteCity() {
