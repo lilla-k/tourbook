@@ -31,7 +31,7 @@ function ImageGrid({images, onClick, cols}) {
       ))}
       {!selectable && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{images===[]?"Add photos":"+"}</div>}
       </ImageList >
-      {showFileUploadModal && <FileUploadModal setShowFileUploadModal={setShowFileUploadModal}/>}
+      {showFileUploadModal && <FileUploadModal setShowFileUploadModal={setShowFileUploadModal} useAsCoverImage={false}/>}
     </div>
     
   )

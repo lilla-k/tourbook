@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import './FileUploadModal.css';
 import tripService from '../../services/tripService.js'
 
-function FileUploadModal({ setShowFileUploadModal }) {
+function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverImage }) {
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -31,10 +31,12 @@ function FileUploadModal({ setShowFileUploadModal }) {
     formData.append('title', title);
     formData.append('cityId', cityId);
     const { id } = await tripService.uploadImage(tripId, formData);
-    console.log("image id", id);
     setToaster("image uploaded");
     const trips = await tripService.getTrips();
     setTrips(trips);
+    if(useAsCoverImage===true){
+      saveCoverImage(id)
+    }
     setShowFileUploadModal(false);
   }
 
@@ -66,7 +68,11 @@ function FileUploadModal({ setShowFileUploadModal }) {
           />
         </div>
         <div className="FileUploadModal-saveButton">
-          <Button variant="outlined" onClick={() => uploadImage()} >Upload image</Button>
+          <Button
+            variant="outlined"
+            onClick={()=>uploadImage()} >
+            Upload image
+          </Button>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import CityDetails from '../CityDetails/CityDetails';
 import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
+import FileUploadModal from '../FileUploadModal/FileUploadModal';
 import tripTypes from '../../tripTypes.js';
 import tripService from '../../services/tripService.js'
 import './Trip.css';
@@ -19,6 +20,7 @@ const apiUrl = process.env.REACT_APP_BACKEND_API;
 function Trip() {
 
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
+  const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
   const navigate = useNavigate();
   const { trips, setTrips, setToaster } = useOutletContext();
@@ -42,7 +44,9 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
-        <div className="Trip-edit-coverImage" onClick={() => setShowCoverImageSelectorModal(true)}>
+        <div
+          className="Trip-edit-coverImage"
+          onClick={allImages.length === 0 ? () => setShowFileUploadModal(true) : () => setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
         <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
@@ -63,7 +67,7 @@ function Trip() {
           <div className="Trip-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <div className={`Trip-visitedCity ${city.cityId ===selectedCity?.cityId ? `selected`: ``}`} key={city.cityId}>
+                <div className={`Trip-visitedCity ${city.cityId === selectedCity?.cityId ? `selected` : ``}`} key={city.cityId}>
                   <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink" >
                     <LocationOnIcon />
                     <div>{city.cityName}</div>
@@ -91,6 +95,13 @@ function Trip() {
           setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
           images={allImages}
           saveCoverImage={saveCoverImage}
+        />
+      }
+      {showFileUploadModal &&
+        <FileUploadModal
+          saveCoverImage={saveCoverImage}
+          useAsCoverImage={true}
+          setShowFileUploadModal={setShowFileUploadModal}
         />
       }
     </div >

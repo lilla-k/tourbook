@@ -5,6 +5,7 @@ import './AttractionsForm.css';
 
 
 function AttractionsForm({attractions, setAttractions}){
+
     return(
         <div className="AttractionsForm-attractions">
         {attractions.map((attraction, index) => {
