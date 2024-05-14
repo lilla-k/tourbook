@@ -53,16 +53,6 @@
     width: 100%;
 }
 
-.NewEditCityForm-attractions div{
-    margin: 5px 5px 5px 0;
-}
-
-.NewEditCityForm-addAttractionIcon{
-    vertical-align: top;
-    cursor: pointer;
-    color: var(--dark-grey);
-}
-
 .NewEditCityForm-saveButton{
     text-align: center;
 }

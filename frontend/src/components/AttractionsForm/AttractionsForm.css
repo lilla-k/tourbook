@@ -1,0 +1,10 @@
+
+.AttractionsForm-attractions div{
+    margin: 5px 5px 5px 0;
+}
+
+.AttractionsForm-addAttractionIcon{
+    vertical-align: top;
+    cursor: pointer;
+    color: var(--dark-grey);
+}

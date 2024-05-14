@@ -1,6 +1,5 @@
 import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
@@ -8,7 +7,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditCityForm.css';
 import tripService from '../../services/tripService.js';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
-import TitleInput from '../TitleInput/TitleInput'
+import TitleInput from '../TitleInput/TitleInput';
+import AttractionsForm from '../AttractionsForm/AttractionsForm'
 
 
 function NewEditCityForm() {
@@ -16,7 +16,6 @@ function NewEditCityForm() {
   const navigate = useNavigate();
   const { tripId, cityId } = useParams();
   const { trips, setTrips, setToaster } = useOutletContext();
-  console.log("trips", trips);
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities.find(city => city.cityId === cityId)
 
@@ -49,7 +48,6 @@ function NewEditCityForm() {
 
   function isCityNameValid() {
     const selectedTripCities = selectedTrip.visitedCities.map(city => city.cityName);
-    console.log("selected trip cities", selectedTripCities);
     return !selectedTripCities.includes(cityName) || cityName === selectedCity?.cityName;
   }
 
@@ -114,40 +112,7 @@ function NewEditCityForm() {
           onChange={e => setCityInformation(e.target.value)}
         />
       </div>
-      <div className="NewEditCityForm-attractions">
-        {attractions.map((attraction, index) => {
-          return (
-            <div>
-              <TextField
-                label="Visited attraction"
-                variant="outlined"
-                value={attraction}
-                autoFocus={attractions.length > 1 && attractions.length === (index + 1) && attractions[attractions.length - 1] === ''}
-                onChange={e => {
-                  attractions[index] = e.target.value;
-                  console.log(attraction)
-                  console.log(index)
-                  setAttractions([...attractions]);
-                }}
-                onBlur={e => {
-                  if (e.target.value === '') {
-                    setAttractions(attractions.slice(0, Math.max(attractions.length - 1, 1)));
-                  }
-                }}
-              />
-              {attractions.length === (index + 1) && attractions[attractions.length-1] !== "" && 
-                <Button
-                  disabled={attractions[index].length === 0}
-                  onClick={e => setAttractions([...attractions, ""])}
-                  sx={{ margin: "20px 0" }}
-                >
-                  < AddCircleOutlineIcon className="NewEditCityForm-addAttractionIcon" />
-                </Button>
-              }
-            </div>
-          )
-        })}
-      </div>
+      <AttractionsForm attractions={attractions} setAttractions={setAttractions}/>
       <div className="NewEditCityForm-saveButton">
         <Button
           variant="outlined"
