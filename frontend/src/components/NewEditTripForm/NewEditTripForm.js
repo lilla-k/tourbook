@@ -27,6 +27,7 @@ function NewEditTripForm() {
     const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
     const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
 
+    console.log("start date", startDate)
     const tripData = {
         startDate: startDate,
         endDate: endDate,
@@ -69,6 +70,7 @@ function NewEditTripForm() {
                     {startDate && <input
                         type="date"
                         value={endDate}
+                        min={startDate}
                         className="NewEditTripForm-end"
                         onChange={e => setEndDate(e.target.value)} />}
                 </div>
