@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import CloseIcon from '@mui/icons-material/Close';
 import './FileUploadModal.css';
+import '../../style/modal.css';
 import tripService from '../../services/tripService.js'
 
 function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverImage }) {
@@ -34,7 +35,7 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
     setToaster("image uploaded");
     const trips = await tripService.getTrips();
     setTrips(trips);
-    if(useAsCoverImage===true){
+    if (useAsCoverImage === true) {
       saveCoverImage(id)
     }
     setShowFileUploadModal(false);
@@ -42,10 +43,13 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
 
 
   return (
-    <div className="FileUploadModal-background">
-      <div className="FileUploadModal-content">
-        <div className="FileUploadModal-close" onClick={() => setShowFileUploadModal(false)}>
-          <CloseIcon fontSize="small" className="FileUploadModal-closeIcon" />
+    <div className="Modal-background">
+      <div className="Modal-content">
+        <div className="Modal-header">
+          <div>Select a photo</div>
+          <div className="Modal-closeBtn" onClick={() => setShowFileUploadModal(false)}>
+            <CloseIcon />
+          </div>
         </div>
         <div
           className="FileUploadModal-selectorContainer"
@@ -70,7 +74,7 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
         <div className="FileUploadModal-saveButton">
           <Button
             variant="outlined"
-            onClick={()=>uploadImage()} >
+            onClick={() => uploadImage()} >
             Upload image
           </Button>
         </div>
