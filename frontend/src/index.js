@@ -10,11 +10,13 @@ import Trip from './components/Trip/Trip.js';
 import Trips from './components/Trips/Trips.js';
 import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
+import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

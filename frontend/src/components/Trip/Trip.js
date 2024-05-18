@@ -26,7 +26,13 @@ function Trip() {
   const { trips, setTrips, setToaster } = useOutletContext();
   const { tripId, cityId } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
+  if (selectedTrip === undefined){
+    throw new Error("This trip doesn't exist!");
+  }
   const selectedCity = selectedTrip?.visitedCities?.find(c => cityId === c.cityId);
+  if (selectedCity === undefined && cityId!==undefined){
+    throw new Error("This city doesn't exist!");
+  }
   const allImages = selectedTrip.images;
   const cityImages = allImages.filter(image => image.cityId === cityId);
   const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
