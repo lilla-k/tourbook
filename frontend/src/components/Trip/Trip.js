@@ -22,6 +22,7 @@ function Trip() {
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
+
   const navigate = useNavigate();
   const { trips, setTrips, setToaster } = useOutletContext();
   const { tripId, cityId } = useParams();

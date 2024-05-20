@@ -5,8 +5,6 @@ import './ErrorPage.css';
 function ErrorPage() {
 
     const error = useRouteError();
-    console.error(error);
-    console.log("message", error.message);
 
     return (
         <div className="ErrorPage">
