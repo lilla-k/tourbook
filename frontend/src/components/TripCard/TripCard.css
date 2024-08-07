@@ -24,6 +24,7 @@
 
 .TripCard img{
     height: 150px;
+    width: 240px;
     overflow: hidden;
 }
 
