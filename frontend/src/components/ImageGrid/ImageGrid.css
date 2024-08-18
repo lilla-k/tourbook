@@ -1,6 +1,6 @@
 .ImageGrid{
-    width: 650px;
-    height: 450px;
+    width: 600px;
+    min-height: 450px;
     flex-shrink: 0;
 }
 
@@ -14,23 +14,13 @@
 
 .ImageGrid-image{
     position: relative;
-}
-
-.ImageGrid-title{
-    background-color: var(--light-grey);
-    color: black;
-    max-width: 90%;
-    position: absolute;
-    bottom: 10px;
-    left: 5%;
-    border-radius: 5px;
-    font-size: 12px;
-    opacity: 0.9;
-    padding: 3px 5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    transition: transform .2s ease-in-out;
     overflow: hidden;
 }
+.ImageGrid-image:hover{
+    transform: scale(1.01);
+}
+
 
 .ImageGrid-plusBtn{
     cursor: pointer;
