@@ -11,6 +11,7 @@ import Trips from './components/Trips/Trips.js';
 import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
+import GalleryPage from "./components/GalleryPage/GalleryPage.js";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/:cityId/edit",
         element: <NewEditCityForm />,
+      },
+      {
+        path: "trips/:tripId/gallery/:imageId",
+        element: <GalleryPage />,
       }
     ],
   },

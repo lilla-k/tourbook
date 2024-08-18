@@ -93,6 +93,8 @@ function Trip() {
         {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
           images={selectedCity === undefined ? allImages : cityImages}
+          selection={false}
+          onClick={(imageId) => navigate(`/trips/${selectedTrip.id}/gallery/${imageId}`)}
           cols={2}
         />
       </div>

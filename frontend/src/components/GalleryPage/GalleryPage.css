@@ -1,0 +1,10 @@
+.GalleryPage{
+    height: 100vh;
+    width: 100vw;
+}
+
+.GalleryPage-selectedImage{
+    object-fit: contain;
+    height: 100vh;
+    width: 100vw;
+}

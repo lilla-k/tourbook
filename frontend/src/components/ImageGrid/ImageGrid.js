@@ -3,18 +3,14 @@ import './ImageGrid.css';
 import { ImageList, ImageListItem, ImageListItemBar} from '@mui/material';
 import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 
-function ImageGrid({images, onClick, cols}) {
+function ImageGrid({images, selection, onClick, cols}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
-
-  const selectable = !!onClick;
+  const coverImageSelecion=selection
+  console.log(onClick)
 
   return (
-    <div className={`
-      ImageGrid
-      ${selectable ? 'ImageGrid-selectable' : ''}
-      `
-    }>
+    <div className="ImageGrid">
       <ImageList cols={cols} rowHeight={250}>
       {images?.map((image) => (
         <ImageListItem key={image.url}>
@@ -24,16 +20,16 @@ function ImageGrid({images, onClick, cols}) {
             alt={image.title}
             loading="lazy"
             style={{ cursor: 'pointer', height: '100%'}}
-            onClick={selectable ? () => onClick(image.id) : null}
+            onClick={()=>onClick(image.id)}
           />
-          {!selectable&&
+          {!coverImageSelecion&&
           <ImageListItemBar
             title={image.title}
             
           />}
         </ImageListItem>
       ))}
-      {!selectable && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{Object.keys(images).length===0?"Add photos":"+"}</div>}
+      {!coverImageSelecion && <div className="ImageGrid-plusBtn" onClick={()=>setShowFileUploadModal(true)}>{Object.keys(images).length===0?"Add photos":"+"}</div>}
       </ImageList >
       {showFileUploadModal && <FileUploadModal setShowFileUploadModal={setShowFileUploadModal} useAsCoverImage={false}/>}
     </div>
