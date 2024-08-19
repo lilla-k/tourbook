@@ -1,6 +1,5 @@
 .ImageGrid{
     width: 600px;
-    min-height: 450px;
     flex-shrink: 0;
 }
 
