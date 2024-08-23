@@ -28,7 +28,8 @@
     display: flex;
     justify-content: space-between;
     font-size: 24px;
-    color: var(--dark-green);
+    color: white;
+    background-image: linear-gradient(var(--dark-green), #f1efea57);
 }
 
 .GalleryPage-year{

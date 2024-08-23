@@ -35,13 +35,13 @@ function GalleryPage() {
                 </div>
                 <div className="GalleryPage-buttons">
                     <Button
-                        variant="contained"
+                        variant="text"
                         onClick={() => navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage - 1].id}`)}
                     >
                         <ArrowBackIosIcon />
                     </Button>
                     <Button
-                        variant="contained"
+                        variant="text"
                         onClick={() => navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage + 1].id}`)}
                     >
                         <ArrowForwardIosIcon />
