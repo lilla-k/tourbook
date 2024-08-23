@@ -1,10 +1,48 @@
 .GalleryPage{
-    height: 100vh;
+    height: calc(100vh - 65px);
     width: 100vw;
+    overflow: hidden;
 }
 
 .GalleryPage-selectedImage{
     object-fit: contain;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+}
+
+.GalleryPage-fixedLayout{
+    position: fixed;
+    top: 65px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: calc(100vh - 80px);
+}
+
+.GalleryPage-header{
+    padding: 20px;
     width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: var(--dark-green);
+}
+
+.GalleryPage-year{
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+.GalleryPage-buttons{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.GalleryPage-buttons div{
+    cursor: pointer;
 }
