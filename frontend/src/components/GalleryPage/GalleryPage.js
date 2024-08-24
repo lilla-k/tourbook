@@ -6,14 +6,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
 
 
+//firestore  adatbázis and firebase authenticationlogin
 function GalleryPage() {
 
     const { tripId, imageId } = useParams();
     const { trips } = useOutletContext();
     const navigate = useNavigate();
     const selectedTrip = trips.find(trip => trip.id === tripId);
+    console.log("selectedTrip", selectedTrip)
+    const numberOfImages=selectedTrip.images.length;
+    console.log("numberOfImages", numberOfImages)
     const selectedImage = selectedTrip.images.find(image => image.id === imageId)
-    console.log("selectedImage", selectedImage)
     const indexOfSelectedImage = selectedTrip.images.findIndex(image => image.id === imageId)
     console.log("indexOfSelectedImage", indexOfSelectedImage)
 
@@ -25,8 +28,7 @@ function GalleryPage() {
             <div className="GalleryPage-fixedLayout">
                 <div className="GalleryPage-header">
                     <div className="GalleryPage-details">
-                        <div className="GalleryPage-country">{selectedTrip.country}</div>
-                        <div className="GalleryPage-year">{new Date(selectedTrip.startDate).getFullYear()}</div>
+                        <div className="GalleryPage-country">{new Date(selectedTrip.startDate).getFullYear()} - {selectedTrip.country}</div>
                         <div>{selectedImage.title}</div>
                     </div>
                     <div>
@@ -47,7 +49,7 @@ function GalleryPage() {
                         <ArrowForwardIosIcon />
                     </Button>
                 </div>
-                <div>Pager</div>
+                <div className="GalleryPage-pager">{`${indexOfSelectedImage}/${numberOfImages}`}</div>
             </div>
         </div>
 
