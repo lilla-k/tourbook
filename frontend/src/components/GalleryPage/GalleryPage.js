@@ -20,6 +20,22 @@ function GalleryPage() {
     const indexOfSelectedImage = selectedTrip.images.findIndex(image => image.id === imageId)
     console.log("indexOfSelectedImage", indexOfSelectedImage)
 
+    function showPreviousImage(){
+        if(indexOfSelectedImage>0){
+            navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage - 1].id}`)
+        } else {
+            navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[numberOfImages - 1].id}`)
+        }  
+    }
+
+    function showNextImage(){
+        if(indexOfSelectedImage+1<numberOfImages){
+            navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage + 1].id}`)
+        } else {
+            navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[0].id}`)
+        }
+
+    }
 
 
     return (
@@ -38,18 +54,18 @@ function GalleryPage() {
                 <div className="GalleryPage-buttons">
                     <Button
                         variant="text"
-                        onClick={() => navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage - 1].id}`)}
+                        onClick={showPreviousImage}
                     >
                         <ArrowBackIosIcon />
                     </Button>
                     <Button
                         variant="text"
-                        onClick={() => navigate(`/trips/${selectedTrip.id}/gallery/${selectedTrip.images[indexOfSelectedImage + 1].id}`)}
+                        onClick={showNextImage}
                     >
                         <ArrowForwardIosIcon />
                     </Button>
                 </div>
-                <div className="GalleryPage-pager">{`${indexOfSelectedImage}/${numberOfImages}`}</div>
+                <div className="GalleryPage-pager">{`${indexOfSelectedImage+1}/${numberOfImages}`}</div>
             </div>
         </div>
 

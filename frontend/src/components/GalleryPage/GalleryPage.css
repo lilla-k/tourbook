@@ -8,7 +8,6 @@
     object-fit: contain;
     height: 100%;
     width: 100%;
-    padding: 5px;
 }
 
 .GalleryPage-fixedLayout{
@@ -29,7 +28,7 @@
     justify-content: space-between;
     font-size: 24px;
     color: white;
-    background-image: linear-gradient(var(--dark-green), #f1efea57);
+    background-image: linear-gradient(var(--dark-green), #f1efea00);
 }
 
 .GalleryPage-country{
@@ -49,7 +48,7 @@
 }
 
 .GalleryPage-pager{
-    background-image: linear-gradient(var(--dark-green), #f1efea57);
+    background-color: #f1efea57;
     width: 100px;
     border-radius: 5px;
     padding: 10px;
