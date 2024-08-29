@@ -47,8 +47,8 @@ function GalleryPage() {
                         <div className="GalleryPage-country">{new Date(selectedTrip.startDate).getFullYear()} - {selectedTrip.country}</div>
                         <div>{selectedImage.title}</div>
                     </div>
-                    <div>
-                        <CloseIcon />
+                    <div className="GalleryPage-closeBtn">
+                        <CloseIcon onClick={()=>navigate(`/trips/${selectedTrip.id}`)}/>
                     </div>
                 </div>
                 <div className="GalleryPage-buttons">
