@@ -1,10 +1,15 @@
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import firebaseApp from "./firebase";
+const db = getFirestore(firebaseApp);
+
 const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 const tripServices = {
     getTrips: async function getTrips() {
-        const response = await fetch(`${apiUrl}api/trips`);
-        const trips = await response.json();
-        return trips;
+        const tripsCol = collection(db, "trips");
+        const tripSnapshot = await getDocs(tripsCol);
+        const tripList = tripSnapshot.docs.map(doc => doc.data());
+        return tripList;
     },
     postTrip: async function postTrip(tripData) {
         const response = await fetch(`${apiUrl}api/trips`, {
@@ -30,7 +35,7 @@ const tripServices = {
             method: "DELETE",
         })
     },
-    postCity: async function postCity(tripId, cityData){
+    postCity: async function postCity(tripId, cityData) {
         const response = await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
@@ -42,7 +47,7 @@ const tripServices = {
             return cityIdObj.cityId;
         }
     },
-    editCity: async function editCity(tripId, cityId, cityData){
+    editCity: async function editCity(tripId, cityId, cityData) {
         console.log("cityData", cityData);
         await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
             method: "put",
@@ -56,7 +61,7 @@ const tripServices = {
             method: "DELETE",
         })
     },
-    uploadImage:  async function uploadImage(tripId, formData) {
+    uploadImage: async function uploadImage(tripId, formData) {
         const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
             method: "post",
             body: formData
@@ -67,11 +72,11 @@ const tripServices = {
             return id;
         }
     },
-    setCoverImage: async function setCoverImage(tripId, imageId){
+    setCoverImage: async function setCoverImage(tripId, imageId) {
         await fetch(`${apiUrl}api/trips/${tripId}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({coverImageId: imageId})
+            body: JSON.stringify({ coverImageId: imageId })
         })
     }
 }

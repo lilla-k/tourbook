@@ -13,10 +13,13 @@ import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
 
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "trips/:tripId",
-        element: <Trip/>,
+        element: <Trip />,
       },
       {
         path: "trips/:tripId/:cityId",

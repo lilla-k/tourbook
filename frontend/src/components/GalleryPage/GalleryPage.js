@@ -5,8 +5,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
 
-
-//firestore  adatbázis and firebase authenticationlogin
 function GalleryPage() {
 
     const { tripId, imageId } = useParams();
