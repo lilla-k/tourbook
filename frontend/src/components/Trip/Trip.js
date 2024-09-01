@@ -25,10 +25,9 @@ function Trip() {
 
   const navigate = useNavigate();
   const { trips, setTrips, setToaster } = useOutletContext();
-  console.log(trips)
+  console.log("trips", trips)
   const { tripId, cityId } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
-  console.log(selectedTrip)
   if (selectedTrip === undefined){
     throw new Error("This trip doesn't exist!");
   }

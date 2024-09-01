@@ -10,8 +10,6 @@ const port = 3001;
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log("server");
-console.log(__dirname);
 app.use(express.json());
 app.use(cors());
 

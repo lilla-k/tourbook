@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, setDoc } from "firebase/firestore";
 import firebaseApp from "./firebase";
 
 const db = getFirestore(firebaseApp);
@@ -7,10 +7,8 @@ const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 const tripServices = {
     getTrips: async function getTrips() {
-        console.log("get trips")
         const tripsCol = collection(db, "trips");
         const tripSnapshot = await getDocs(tripsCol);
-        console.log(tripSnapshot.docs)
         const tripList = tripSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
         return tripList;
     },
@@ -23,14 +21,10 @@ const tripServices = {
         // }
     },
     editTrip: async function editTrip(tripId, tripData) {
-        await fetch(`${apiUrl}api/trips/${tripId}`, {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tripData)
-        })
+        console.log(tripData)
+        await setDoc(doc(db, "trips", tripId), tripData);
     },
     deleteTrip: async function deleteTrip(tripId) {
-        console.log("deletetrip tripservice")
         await fetch(`${apiUrl}api/trips/${tripId}`, {
             method: "DELETE",
         })
@@ -56,7 +50,6 @@ const tripServices = {
         })
     },
     deleteCity: async function deleteCity(tripId, cityId) {
-        console.log("deletecity tripservice")
         await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
             method: "DELETE",
         })
@@ -68,7 +61,6 @@ const tripServices = {
         });
         if (response.status === 201) {
             const id = await response.json();
-            console.log('id', id);
             return id;
         }
     },

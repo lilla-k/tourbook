@@ -7,7 +7,7 @@ function ImageGrid({images, selection, onClick, cols}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
   const coverImageSelecion=selection
-  console.log(onClick)
+
 
   return (
     <div className="ImageGrid">

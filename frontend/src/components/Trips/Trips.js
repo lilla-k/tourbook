@@ -6,7 +6,6 @@ function Trips(){
     
     const {trips} = useOutletContext();
     const navigate = useNavigate();
-    console.log("all trips" ,trips)
 
     return(
         <div className="Trips">

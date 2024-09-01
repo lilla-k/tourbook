@@ -11,12 +11,10 @@ function GalleryPage() {
     const { trips } = useOutletContext();
     const navigate = useNavigate();
     const selectedTrip = trips.find(trip => trip.id === tripId);
-    console.log("selectedTrip", selectedTrip)
     const numberOfImages=selectedTrip.images.length;
-    console.log("numberOfImages", numberOfImages)
     const selectedImage = selectedTrip.images.find(image => image.id === imageId)
     const indexOfSelectedImage = selectedTrip.images.findIndex(image => image.id === imageId)
-    console.log("indexOfSelectedImage", indexOfSelectedImage)
+
 
     function showPreviousImage(){
         if(indexOfSelectedImage>0){

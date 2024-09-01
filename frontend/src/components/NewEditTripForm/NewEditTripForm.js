@@ -27,7 +27,6 @@ function NewEditTripForm() {
     const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
     const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
 
-    console.log("start date", startDate)
     const tripData = {
         startDate: startDate,
         endDate: endDate,

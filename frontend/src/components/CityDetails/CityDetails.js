@@ -8,7 +8,6 @@ import './CityDetails.css';
 
 function CityDetails({ selectedCity }) {
 
-    console.log(selectedCity);
     const [selectedTab, setSelectedTab] = useState("city");
 
     return (
