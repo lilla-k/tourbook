@@ -25,6 +25,7 @@ function NewEditCityForm() {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const cityData = {
+    cityId: crypto.randomUUID(),
     cityName: cityName,
     cityInformation: cityInformation,
     attractions: attractions

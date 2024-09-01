@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, setDoc, deleteDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import firebaseApp from "./firebase";
 
 const db = getFirestore(firebaseApp);
@@ -28,16 +28,16 @@ const tripServices = {
         await deleteDoc(doc(db, "trips", tripId));
     },
     postCity: async function postCity(tripId, cityData) {
-        const response = await fetch(`${apiUrl}api/trips/${tripId}/cities`, {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(cityData)
-        })
-        if (response.status === 201) {
-            const cityIdObj = await response.json();
-            console.log(cityIdObj);
-            return cityIdObj.cityId;
-        }
+        const tripRef = doc(db, "trips", tripId);
+        const ref = await updateDoc(tripRef, {
+            visitedCities: arrayUnion(cityData)
+        });
+        return cityData.cityId;
+        // if (response.status === 201) {
+        //     const cityIdObj = await response.json();
+        //     console.log(cityIdObj);
+        //     return cityIdObj.cityId;
+        // }
     },
     editCity: async function editCity(tripId, cityId, cityData) {
         console.log("cityData", cityData);

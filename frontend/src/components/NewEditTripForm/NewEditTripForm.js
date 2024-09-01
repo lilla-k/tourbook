@@ -48,7 +48,7 @@ function NewEditTripForm() {
     }
 
     async function editTripData() {
-        delete tripData.visitedCities;
+        delete tripData.visitedCities;       //???????????????????
         await tripService.editTrip(tripId, tripData);
         setToaster("successfully updated");
         const trips = await tripService.getTrips();
