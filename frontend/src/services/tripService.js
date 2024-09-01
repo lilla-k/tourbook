@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, addDoc, doc, setDoc, deleteDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import firebaseApp from "./firebase";
 
 const db = getFirestore(firebaseApp);
@@ -21,8 +21,8 @@ const tripServices = {
         // }
     },
     editTrip: async function editTrip(tripId, tripData) {
-        console.log(tripData)
-        await setDoc(doc(db, "trips", tripId), tripData);
+        const tripRef = doc(db, "trips", tripId);
+        await updateDoc(tripRef, tripData);
     },
     deleteTrip: async function deleteTrip(tripId) {
         await deleteDoc(doc(db, "trips", tripId));
