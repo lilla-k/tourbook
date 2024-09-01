@@ -1,26 +1,26 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 import firebaseApp from "./firebase";
+
 const db = getFirestore(firebaseApp);
 
 const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 const tripServices = {
     getTrips: async function getTrips() {
+        console.log("get trips")
         const tripsCol = collection(db, "trips");
         const tripSnapshot = await getDocs(tripsCol);
-        const tripList = tripSnapshot.docs.map(doc => doc.data());
+        console.log(tripSnapshot.docs)
+        const tripList = tripSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
         return tripList;
     },
     postTrip: async function postTrip(tripData) {
-        const response = await fetch(`${apiUrl}api/trips`, {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(tripData)
-        });
-        if (response.status === 201) {
-            const tripIdObj = await response.json();
-            return tripIdObj.id;
-        }
+        const docRef = await addDoc(collection(db, "trips"), tripData);
+        return docRef.id;
+        // if (response.status === 201) {
+        //     const tripIdObj = await response.json();
+        //     return tripIdObj.id;
+        // }
     },
     editTrip: async function editTrip(tripId, tripData) {
         await fetch(`${apiUrl}api/trips/${tripId}`, {
