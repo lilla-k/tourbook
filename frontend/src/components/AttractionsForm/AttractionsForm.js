@@ -10,7 +10,7 @@ function AttractionsForm({attractions, setAttractions}){
         <div className="AttractionsForm-attractions">
         {attractions.map((attraction, index) => {
           return (
-            <div>
+            <div key={index}>
               <TextField
                 label="Visited attraction"
                 variant="outlined"

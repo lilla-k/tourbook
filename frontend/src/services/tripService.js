@@ -29,7 +29,7 @@ const tripServices = {
     },
     postCity: async function postCity(tripId, cityData) {
         const tripRef = doc(db, "trips", tripId);
-        const ref = await updateDoc(tripRef, {
+        await updateDoc(tripRef, {
             visitedCities: arrayUnion(cityData)
         });
         return cityData.cityId;
