@@ -1,19 +1,37 @@
 .NewEditTripForm{
     margin: auto;
     display: block;
-    width: 500px;
+    width: 600px;
+}
+
+.NewEditTripForm-header{
+    display: flex;
+    justify-content: space-between;
+    color: var(--dark-grey);
+    font-weight: 700;
+    font-size: 32px;
+    margin: 50px auto;
+}
+
+.NewEditTripForm-headerStart{
+    display: flex;
+    gap: 20px;
+}
+
+.NewEditTripForm-arrowBackIcon{
+    cursor: pointer;
 }
 
 .NewEditTripForm-title{
-    color: var(--light-green);
-    font-weight: 700;
-    font-size: 32px;
-    margin: 30px auto;
-    text-align: center;
+    cursor: pointer;
+}
+
+.NewEditTripForm-deleteIcon{
+    margin-right: 5px;
 }
 
 .NewEditTripForm-form{
-    width: 600px;
+    width: 100%;
 }
 
 .NewEditTripForm-form > *{

@@ -8,7 +8,7 @@
 .NewEditCityForm-header{
     display: flex;
     justify-content: space-between;
-    color: black;
+    color: var(--dark-grey);
     font-weight: 700;
     font-size: 32px;
     margin: 50px auto;

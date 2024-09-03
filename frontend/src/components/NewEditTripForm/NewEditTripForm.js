@@ -7,10 +7,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import tripTypes from '../../tripTypes.js';
 import countries from '../../countries.js';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditTripForm.css';
-import tripService from '../../services/tripService.js'
+import tripService from '../../services/tripService.js';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 
 function NewEditTripForm() {
 
@@ -18,7 +21,7 @@ function NewEditTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
     const { tripId } = useParams();
-    const {trips, setTrips, setToaster} = useOutletContext();
+    const { trips, setTrips, setToaster } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
     const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
@@ -26,6 +29,7 @@ function NewEditTripForm() {
     const [countryInformation, setCountryInformation] = useState(tripId ? selectedTrip.countryInformation : "");
     const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
     const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
     const tripData = {
         startDate: startDate,
@@ -54,9 +58,41 @@ function NewEditTripForm() {
         navigate(`/trips/${tripId}`);
     }
 
+    async function deleteTrip() {
+        setDeleteModalVisible(false);
+        console.log("delete trip")
+    }
+
+    function deleteConfirmation() {
+        setDeleteModalVisible(true);
+    }
+
+    function cancelDelete() {
+        setDeleteModalVisible(false);
+    }
+
     return (
         <div className="NewEditTripForm">
-            <div className="NewEditTripForm-title">Information about your trip</div>
+            <div className="NewEditTripForm-header">
+                <div className="NewEditTripForm-headerStart">
+                    <div className="NewEditTripForm-arrowBackIcon">
+                        <ArrowBackIcon onClick={tripId ? () => navigate(`/trips/${selectedTrip.id}`) : () => navigate("/trips/")} />
+                    </div>
+                    <div className="NewEditTripForm-title">{tripId?"Edit your trip": "Add a new trip"}</div>
+                </div>
+                {tripId &&
+                    <Button
+                        variant="outlined"
+                        onClick={() => deleteConfirmation()}
+                        color="error"
+                        className="NewEditTripForm-deleteButton"
+                    >
+                        <DeleteIcon className="NewEditTripForm-deleteIcon" fontSize="small" />
+                        DELETE
+                    </Button>
+                }
+            </div>
+            {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteTrip} onCancel={cancelDelete} type="trip" />}
             <div className="NewEditTripForm-form">
                 <div className="NewEditTripForm-dates">
                     <input

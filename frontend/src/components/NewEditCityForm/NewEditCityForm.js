@@ -53,7 +53,6 @@ function NewEditCityForm() {
 
   async function deleteCity() {
     setDeleteModalVisible(false);
-    console.log(selectedCity);
     await tripService.deleteCity(tripId, selectedCity);
     setToaster("successfully deleted");
     const trips = await tripService.getTrips();
