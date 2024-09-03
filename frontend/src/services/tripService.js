@@ -32,7 +32,7 @@ const tripServices = {
         });
         return cityId;
     },
-    editCity: async function editCity(tripId, oldCityData, newCityData) {
+    editCity: async function editCity(tripId, oldCityData, newCityData) { //TODO: use editTrip
         const tripRef = doc(db, "trips", tripId);
         const cityId=oldCityData.cityId;
         await updateDoc(tripRef, {
@@ -42,10 +42,11 @@ const tripServices = {
             visitedCities: arrayUnion({...newCityData, cityId: cityId})
         });        
     },
-    deleteCity: async function deleteCity(tripId, cityId) {
-        await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
-            method: "DELETE",
-        })
+    deleteCity: async function deleteCity(tripId, deletedCity) {
+        const tripRef = doc(db, "trips", tripId);
+        await updateDoc(tripRef, {
+            visitedCities: arrayRemove(deletedCity)
+        });    
     },
     uploadImage: async function uploadImage(tripId, formData) {
         const response = await fetch(`${apiUrl}api/trips/${tripId}/images`, {
