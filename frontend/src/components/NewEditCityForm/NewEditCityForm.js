@@ -17,7 +17,7 @@ function NewEditCityForm() {
   const { tripId, cityId } = useParams();
   const { trips, setTrips, setToaster } = useOutletContext();
   const selectedTrip = trips.find(trip => trip.id === tripId);
-  const selectedCity = selectedTrip.visitedCities.find(city => city.cityId === cityId)
+  const selectedCity = selectedTrip.visitedCities?.find(city => city.cityId === cityId)
 
   const [cityInformation, setCityInformation] = useState(cityId ? selectedCity.cityInformation : "");
   const [cityName, setCityName] = useState(cityId ? selectedCity.cityName : "");
@@ -25,7 +25,6 @@ function NewEditCityForm() {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const cityData = {
-    cityId: crypto.randomUUID(),
     cityName: cityName,
     cityInformation: cityInformation,
     attractions: attractions
@@ -40,7 +39,7 @@ function NewEditCityForm() {
   }
 
   async function editCityData() {
-    await tripService.editCity(tripId, cityId, cityData);
+    await tripService.editCity(tripId, selectedCity, cityData);
     setToaster("successfully updated");
     const trips = await tripService.getTrips();
     setTrips(trips);
@@ -48,8 +47,8 @@ function NewEditCityForm() {
   }
 
   function isCityNameValid() {
-    const selectedTripCities = selectedTrip.visitedCities.map(city => city.cityName);
-    return !selectedTripCities.includes(cityName) || cityName === selectedCity?.cityName;
+    const selectedTripCities = selectedTrip.visitedCities?.map(city => city.cityName);
+    return !selectedTripCities?.includes(cityName) || cityName === selectedCity?.cityName;
   }
 
   async function deleteCity() {

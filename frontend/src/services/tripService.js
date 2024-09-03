@@ -1,10 +1,11 @@
-import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import firebaseApp from "./firebase";
 
 const db = getFirestore(firebaseApp);
 
 const apiUrl = process.env.REACT_APP_BACKEND_API;
 
+// TODO: error handling
 const tripServices = {
     getTrips: async function getTrips() {
         const tripsCol = collection(db, "trips");
@@ -15,10 +16,6 @@ const tripServices = {
     postTrip: async function postTrip(tripData) {
         const docRef = await addDoc(collection(db, "trips"), tripData);
         return docRef.id;
-        // if (response.status === 201) {
-        //     const tripIdObj = await response.json();
-        //     return tripIdObj.id;
-        // }
     },
     editTrip: async function editTrip(tripId, tripData) {
         const tripRef = doc(db, "trips", tripId);
@@ -28,24 +25,22 @@ const tripServices = {
         await deleteDoc(doc(db, "trips", tripId));
     },
     postCity: async function postCity(tripId, cityData) {
+        const cityId = crypto.randomUUID()
         const tripRef = doc(db, "trips", tripId);
         await updateDoc(tripRef, {
-            visitedCities: arrayUnion(cityData)
+            visitedCities: arrayUnion({...cityData, cityId: cityId})
         });
-        return cityData.cityId;
-        // if (response.status === 201) {
-        //     const cityIdObj = await response.json();
-        //     console.log(cityIdObj);
-        //     return cityIdObj.cityId;
-        // }
+        return cityId;
     },
-    editCity: async function editCity(tripId, cityId, cityData) {
-        console.log("cityData", cityData);
-        await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(cityData)
-        })
+    editCity: async function editCity(tripId, oldCityData, newCityData) {
+        const tripRef = doc(db, "trips", tripId);
+        const cityId=oldCityData.cityId;
+        await updateDoc(tripRef, {
+            visitedCities: arrayRemove(oldCityData)
+        });    
+        await updateDoc(tripRef, {
+            visitedCities: arrayUnion({...newCityData, cityId: cityId})
+        });        
     },
     deleteCity: async function deleteCity(tripId, cityId) {
         await fetch(`${apiUrl}api/trips/${tripId}/cities/${cityId}`, {

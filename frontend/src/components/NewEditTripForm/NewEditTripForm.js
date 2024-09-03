@@ -35,8 +35,7 @@ function NewEditTripForm() {
         images: [],
         coverImageId: null,
         countryInformation: countryInformation,
-        tripExperience: tripExperience,
-        visitedCities: []
+        tripExperience: tripExperience
     }
 
     async function postTripData() {
@@ -48,7 +47,6 @@ function NewEditTripForm() {
     }
 
     async function editTripData() {
-        delete tripData.visitedCities;
         await tripService.editTrip(tripId, tripData);
         setToaster("successfully updated");
         const trips = await tripService.getTrips();
