@@ -17,13 +17,6 @@ const tripServices = {
         const docRef = await addDoc(collection(db, "trips"), tripData);
         return docRef.id;
     },
-    editTrip: async function editTrip(tripId, tripData) {
-        const tripRef = doc(db, "trips", tripId);
-        await updateDoc(tripRef, tripData);
-    },
-    deleteTrip: async function deleteTrip(tripId) {
-        await deleteDoc(doc(db, "trips", tripId));
-    },
     postCity: async function postCity(tripId, cityData) {
         const cityId = crypto.randomUUID()
         const tripRef = doc(db, "trips", tripId);
@@ -31,6 +24,10 @@ const tripServices = {
             visitedCities: arrayUnion({...cityData, cityId: cityId})
         });
         return cityId;
+    },
+    editTrip: async function editTrip(tripId, tripData) {
+        const tripRef = doc(db, "trips", tripId);
+        await updateDoc(tripRef, tripData);
     },
     editCity: async function editCity(tripId, oldCityData, newCityData) { //TODO: use editTrip
         const tripRef = doc(db, "trips", tripId);
@@ -41,6 +38,9 @@ const tripServices = {
         await updateDoc(tripRef, {
             visitedCities: arrayUnion({...newCityData, cityId: cityId})
         });        
+    },
+    deleteTrip: async function deleteTrip(tripId) {
+        await deleteDoc(doc(db, "trips", tripId));
     },
     deleteCity: async function deleteCity(tripId, deletedCity) {
         const tripRef = doc(db, "trips", tripId);

@@ -60,7 +60,11 @@ function NewEditTripForm() {
 
     async function deleteTrip() {
         setDeleteModalVisible(false);
-        console.log("delete trip")
+        await tripService.deleteTrip(tripId);
+        setToaster("successfully deleted");
+        const trips = await tripService.getTrips();
+        setTrips(trips);
+        navigate("/trips/");
     }
 
     function deleteConfirmation() {
