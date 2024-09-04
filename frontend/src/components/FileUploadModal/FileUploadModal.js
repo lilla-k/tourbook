@@ -27,11 +27,7 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
 
 
   async function uploadImage() {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('title', title);
-    formData.append('cityId', cityId);
-    const { id } = await tripService.uploadImage(tripId, formData);
+    const { id } = await tripService.uploadImage(tripId, cityId, file, title);
     setToaster("image uploaded");
     const trips = await tripService.getTrips();
     setTrips(trips);
