@@ -1,6 +1,6 @@
 import firebaseApp from "./firebase";
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, listAll, getMetadata, getDownloadURL } from "firebase/storage";
 
 
 const db = getFirestore(firebaseApp);
@@ -53,10 +53,23 @@ const tripServices = {
     },
     uploadImage: async function uploadImage(tripId, cityId, file, title) {
         const imageId = crypto.randomUUID();
-        console.log(file.name, "file name");
         const imageRef = ref(storage, `images/${tripId}/${imageId}`);
         await uploadBytes(imageRef, file, {customMetadata: { title, cityId }});
         return imageId;
+    },
+    getImages: async function getImages(tripId) {
+        const listRef = ref(storage, `images/${tripId}`);
+        const response = await listAll(listRef);
+        const images = await Promise.all(response.items.map(async itemRef =>{
+            const url = await getDownloadURL(itemRef);
+            return {url: url};
+        }))
+        return images
+        // const metadata = await getMetadata(listRef);
+        console.log(response);
+        // console.log(metadata)
+        // return metadata;
+
     },
     setCoverImage: async function setCoverImage(tripId, imageId) {
         await fetch(`${ apiUrl }api / trips / ${ tripId }`, {

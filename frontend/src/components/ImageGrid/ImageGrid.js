@@ -16,7 +16,7 @@ function ImageGrid({images, selection, onClick, cols}) {
         <ImageListItem key={image.url}>
           <img
             className="ImageGrid-image"
-            src={`${process.env.REACT_APP_BACKEND_API}${image.url}`}
+            src={`${image.url}`}
             alt={image.title}
             loading="lazy"
             style={{ cursor: 'pointer', height: '100%'}}

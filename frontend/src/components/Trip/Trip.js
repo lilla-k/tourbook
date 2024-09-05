@@ -1,5 +1,5 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
@@ -21,6 +21,7 @@ function Trip() {
 
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
+  const [allImages, setAllImages] = useState([]);
 
 
   const navigate = useNavigate();
@@ -35,9 +36,17 @@ function Trip() {
   if (selectedCity === undefined && cityId!==undefined){
     throw new Error("This city doesn't exist!");
   }
-  const allImages = selectedTrip.images;
-  const cityImages = allImages.filter(image => image.cityId === cityId);
-  const coverImage = allImages.find(image => image.id === selectedTrip.coverImageId);
+
+  useEffect(() => {
+    getImages();
+  },[])
+
+  async function getImages(){
+    const allImages = await tripService.getImages(tripId);
+    setAllImages(allImages);
+  }
+  const cityImages = allImages?.filter(image => image.cityId === cityId);
+  const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
 
   async function saveCoverImage(id) {
     await tripService.setCoverImage(tripId, id);
@@ -54,7 +63,7 @@ function Trip() {
         <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
         <div
           className="Trip-edit-coverImage"
-          onClick={allImages.length === 0 ? () => setShowFileUploadModal(true) : () => setShowCoverImageSelectorModal(true)}>
+          onClick={allImages?.length === 0 ? () => setShowFileUploadModal(true) : () => setShowCoverImageSelectorModal(true)}>
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
         <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
