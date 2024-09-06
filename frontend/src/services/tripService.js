@@ -63,7 +63,6 @@ const tripServices = {
         const imageRef = ref(storage, `images/${tripId}/${imageId}`);
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);
-        console.log({imageId, url})
         return {imageId, url};
     },
     setCoverImage: async function setCoverImage(tripId, imageId) {
