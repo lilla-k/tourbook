@@ -27,11 +27,17 @@
     color: var(--dark-grey);
     border-radius: 10px;
     padding: 8px;
+    cursor: pointer;
+}
+
+.disabled{
+    background-color: var(--light-grey);
+    cursor: default;
+    color: var(--beige);
 }
 
 .Trip-edit-coverImage:hover{
     background-color: var(--light-grey);
-    cursor: pointer;
 }
 
 .Trip-edit-coverImage-icon{

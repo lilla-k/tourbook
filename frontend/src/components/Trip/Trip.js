@@ -1,5 +1,5 @@
 import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
@@ -53,8 +53,9 @@ function Trip() {
       <div className="Trip-img-container">
         <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
         <div
-          className="Trip-edit-coverImage"
-          onClick={allImages?.length === 0 ? () => setShowFileUploadModal(true) : () => setShowCoverImageSelectorModal(true)}>
+          className={`Trip-edit-coverImage ${allImages.length===0 && "disabled"}`}
+          onClick={() => setShowCoverImageSelectorModal(true)}
+          >
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
         </div>
         <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
