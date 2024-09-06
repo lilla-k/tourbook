@@ -8,8 +8,7 @@ import './FileUploadModal.css';
 import '../../style/modal.css';
 import tripService from '../../services/tripService.js'
 
-function FileUploadModal(props) {
-  const { onClose, onSuccess} = props;
+function FileUploadModal({onClose}) {
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -28,10 +27,10 @@ function FileUploadModal(props) {
 
 
   async function uploadImage() {
-    const { id } = await tripService.uploadImage(tripId, cityId, file, title);
+    const { imageId, url } = await tripService.uploadImage(tripId, file);
+    await tripService.postImageData(tripId, {imageId, url, title, cityId: cityId === undefined ? null: cityId});
     setToaster("image uploaded");
-    onSuccess();
-    const trips = await tripService.getTrips();  //necessary? coverImage?
+    const trips = await tripService.getTrips(); 
     setTrips(trips);
     onClose();
   }

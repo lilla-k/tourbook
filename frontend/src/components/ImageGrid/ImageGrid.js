@@ -6,8 +6,9 @@ import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 function ImageGrid({images, selection, onClick, onNewClick, cols}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
-  const coverImageSelecion=selection
+  const coverImageSelecion=selection;
 
+  console.log("images", images)
 
   return (
     <div className="ImageGrid">

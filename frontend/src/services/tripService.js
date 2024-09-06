@@ -1,6 +1,6 @@
 import firebaseApp from "./firebase";
 import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, listAll, getMetadata, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
 const db = getFirestore(firebaseApp);
@@ -28,6 +28,13 @@ const tripServices = {
         });
         return cityId;
     },
+    postImageData: async function postImageData(tripId, imageData){
+        const tripRef = doc(db, "trips", tripId);
+        console.log("imageData", imageData)
+        await updateDoc(tripRef, {
+            images: arrayUnion(imageData)
+        });
+    },
     editTrip: async function editTrip(tripId, tripData) {
         const tripRef = doc(db, "trips", tripId);
         await updateDoc(tripRef, tripData);
@@ -51,28 +58,16 @@ const tripServices = {
             visitedCities: arrayRemove(deletedCity)
         });
     },
-    uploadImage: async function uploadImage(tripId, cityId, file, title) {
+    uploadImage: async function uploadImage(tripId, file) {
         const imageId = crypto.randomUUID();
         const imageRef = ref(storage, `images/${tripId}/${imageId}`);
-        await uploadBytes(imageRef, file, {customMetadata: { title, cityId }});
-        return imageId;
-    },
-    getImages: async function getImages(tripId) {
-        const listRef = ref(storage, `images/${tripId}`);
-        const response = await listAll(listRef);
-        const images = await Promise.all(response.items.map(async itemRef =>{
-            const url = await getDownloadURL(itemRef);
-            return {url: url};
-        }))
-        return images
-        // const metadata = await getMetadata(listRef);
-        console.log(response);
-        // console.log(metadata)
-        // return metadata;
-
+        await uploadBytes(imageRef, file);
+        const url = await getDownloadURL(imageRef);
+        console.log({imageId, url})
+        return {imageId, url};
     },
     setCoverImage: async function setCoverImage(tripId, imageId) {
-        await fetch(`${ apiUrl }api / trips / ${ tripId }`, {
+        await fetch(`${apiUrl}api / trips / ${tripId}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ coverImageId: imageId })

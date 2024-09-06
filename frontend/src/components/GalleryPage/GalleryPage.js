@@ -8,11 +8,14 @@ import CloseIcon from '@mui/icons-material/Close';
 function GalleryPage() {
 
     const { tripId, imageId } = useParams();
+    console.log(imageId, "imageId")
     const { trips } = useOutletContext();
     const navigate = useNavigate();
     const selectedTrip = trips.find(trip => trip.id === tripId);
+    console.log(selectedTrip, "selectedTrip")
     const numberOfImages=selectedTrip.images.length;
     const selectedImage = selectedTrip.images.find(image => image.id === imageId)
+    console.log(selectedImage, "selectedImage")
     const indexOfSelectedImage = selectedTrip.images.findIndex(image => image.id === imageId)
 
 
@@ -36,7 +39,7 @@ function GalleryPage() {
 
     return (
         <div className="GalleryPage">
-            <img className="GalleryPage-selectedImage" alt="hello" src={`${process.env.REACT_APP_BACKEND_API}${selectedImage.url}`}></img>
+            <img className="GalleryPage-selectedImage" alt="hello" src={selectedImage.url}></img>
             <div className="GalleryPage-fixedLayout">
                 <div className="GalleryPage-header">
                     <div className="GalleryPage-details">

@@ -21,8 +21,6 @@ function Trip() {
 
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
-  const [allImages, setAllImages] = useState([]);
-
 
   const navigate = useNavigate();
   const { trips, setTrips, setToaster } = useOutletContext();
@@ -37,14 +35,8 @@ function Trip() {
     throw new Error("This city doesn't exist!");
   }
 
-  useEffect(() => {
-    getImages();
-  },[])
-
-  async function getImages(){
-    const allImages = await tripService.getImages(tripId);
-    setAllImages(allImages);
-  }
+  const allImages=selectedTrip.images;
+  console.log("allImages", allImages) 
   const cityImages = allImages?.filter(image => image.cityId === cityId);
   const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
 
@@ -118,7 +110,6 @@ function Trip() {
       }
       {showFileUploadModal &&
         <FileUploadModal
-          onSuccess={getImages}
           onClose={() => setShowFileUploadModal(false)}
         />
       }
