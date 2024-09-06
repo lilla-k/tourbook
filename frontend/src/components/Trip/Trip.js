@@ -56,7 +56,6 @@ function Trip() {
     setShowCoverImageSelectorModal(false);
   }
 
-
   return (
     <div className="Trip">
       <div className="Trip-img-container">
@@ -105,6 +104,7 @@ function Trip() {
           images={selectedCity === undefined ? allImages : cityImages}
           selection={false}
           onClick={(imageId) => navigate(`/trips/${selectedTrip.id}/gallery/${imageId}`)}
+          onNewClick={() => setShowFileUploadModal(true)}
           cols={2}
         />
       </div>
@@ -118,9 +118,8 @@ function Trip() {
       }
       {showFileUploadModal &&
         <FileUploadModal
-          saveCoverImage={saveCoverImage}
-          useAsCoverImage={true}
-          setShowFileUploadModal={setShowFileUploadModal}
+          onSuccess={getImages}
+          onClose={() => setShowFileUploadModal(false)}
         />
       }
     </div >

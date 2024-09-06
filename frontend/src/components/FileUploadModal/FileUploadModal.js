@@ -8,7 +8,8 @@ import './FileUploadModal.css';
 import '../../style/modal.css';
 import tripService from '../../services/tripService.js'
 
-function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverImage }) {
+function FileUploadModal(props) {
+  const { onClose, onSuccess} = props;
 
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -29,12 +30,10 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
   async function uploadImage() {
     const { id } = await tripService.uploadImage(tripId, cityId, file, title);
     setToaster("image uploaded");
-    const trips = await tripService.getTrips();
+    onSuccess();
+    const trips = await tripService.getTrips();  //necessary? coverImage?
     setTrips(trips);
-    if (useAsCoverImage === true) {
-      saveCoverImage(id)
-    }
-    setShowFileUploadModal(false);
+    onClose();
   }
 
 
@@ -43,7 +42,7 @@ function FileUploadModal({ setShowFileUploadModal, useAsCoverImage, saveCoverIma
       <div className="Modal-content">
         <div className="Modal-header">
           <div>Select a photo</div>
-          <div className="Modal-closeBtn" onClick={() => setShowFileUploadModal(false)}>
+          <div className="Modal-closeBtn" onClick={onClose}>
             <CloseIcon />
           </div>
         </div>
