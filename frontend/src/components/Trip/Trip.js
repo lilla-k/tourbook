@@ -15,8 +15,6 @@ import './Trip.css';
 import '../../style/tooltip.css';
 
 
-const apiUrl = process.env.REACT_APP_BACKEND_API;
-
 function Trip() {
 
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
@@ -41,7 +39,8 @@ function Trip() {
   const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
 
   async function saveCoverImage(id) {
-    await tripService.setCoverImage(tripId, id);
+    console.log("id", id)
+    await tripService.editTrip(tripId, {coverImageId: id});
     setToaster("cover image updated");
     const trips = await tripService.getTrips();
     setTrips(trips);
@@ -51,7 +50,7 @@ function Trip() {
   return (
     <div className="Trip">
       <div className="Trip-img-container">
-        <img src={coverImage && `${apiUrl}${coverImage.url}`} className="Trip-img" alt="" />
+        <img src={coverImage && `${coverImage.url}`} className="Trip-img" alt="" />
         <div
           className={`Trip-edit-coverImage ${allImages.length===0 && "disabled"}`}
           onClick={() => setShowCoverImageSelectorModal(true)}

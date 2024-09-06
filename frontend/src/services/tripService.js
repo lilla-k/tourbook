@@ -6,7 +6,6 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 // TODO: error handling
 const tripServices = {
@@ -64,13 +63,6 @@ const tripServices = {
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);
         return {imageId, url};
-    },
-    setCoverImage: async function setCoverImage(tripId, imageId) {
-        await fetch(`${apiUrl}api / trips / ${tripId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ coverImageId: imageId })
-        })
     }
 }
 
