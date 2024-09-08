@@ -58,10 +58,6 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/gallery/:imageId",
         element: <GalleryPage />,
-      },
-      {
-        path: "auth",
-        element: <Auth />,
       }
     ],
   },

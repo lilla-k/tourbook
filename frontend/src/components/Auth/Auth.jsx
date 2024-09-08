@@ -1,5 +1,5 @@
 import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
-import { useSignOut, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js'
 
 const auth = getAuth(firebaseApp);
