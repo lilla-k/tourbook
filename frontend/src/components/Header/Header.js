@@ -7,9 +7,16 @@ import LoginIcon from '@mui/icons-material/Login';
 import './Header.css';
 import '../../style/tooltip.css';
 
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebaseApp from '../../services/firebase.js'
+
+const auth = getAuth(firebaseApp);
+
 
 function Header(){
 
+    const [ user ] = useAuthState(auth);
     const navigate = useNavigate();
     const {pathname} = useResolvedPath();
 
@@ -35,7 +42,7 @@ function Header(){
           </div>
           <div className="Header-icon-container">
             <LoginIcon className="Header-icon"/>
-            <div className="tooltip">Login</div>
+            <div className="tooltip">{user?.user?.email}</div>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from './components/Root/Root';
+import Auth from './components/Auth/Auth';
 import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
 import Trip from './components/Trip/Trip.js';
 import Trips from './components/Trips/Trips.js';
@@ -19,7 +20,7 @@ import GalleryPage from "./components/GalleryPage/GalleryPage.js";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Auth><Root/></Auth>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/gallery/:imageId",
         element: <GalleryPage />,
+      },
+      {
+        path: "auth",
+        element: <Auth />,
       }
     ],
   },
