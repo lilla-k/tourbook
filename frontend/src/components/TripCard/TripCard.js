@@ -5,7 +5,6 @@ import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmati
 import tripService from '../../services/tripService.js'
 import {  useOutletContext, Link } from 'react-router-dom';
 
-const apiUrl = process.env.REACT_APP_BACKEND_API;
 
 function TripCard({tripId, countryName, coverImage, startDate}){
 
@@ -30,7 +29,7 @@ function TripCard({tripId, countryName, coverImage, startDate}){
     return(
         <div className="TripCard">
             <Link to={`/trips/${tripId}`} className="TripCard-info">
-                {coverImage?<img src={`${apiUrl}${coverImage.url}`} alt="Trip"/>:<div className="TripCard-img-placeholder"></div>}
+                {coverImage?<img src={coverImage.url} alt="Trip"/>:<div className="TripCard-img-placeholder"></div>}
                 <div className="TripCard-details">
                     <div className="TripCard-name">{countryName}</div>
                     <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
