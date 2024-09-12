@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react';
 import Snackbar from '@mui/material/Snackbar';
 
 
-function Root() {
+function Root({user}) {
 
   const [trips, setTrips]= useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ function Root() {
     <div className="Root">
       <Header/>
       {loading && <Loading/>}
-      {!loading && <Outlet context={{trips, setTrips, toaster, setToaster}}/>}  
+      {!loading && <Outlet context={{trips, setTrips, toaster, setToaster, userId: user.uid}}/>}  
       <Snackbar
         open={toaster===""?false:true}
         autoHideDuration={2000}

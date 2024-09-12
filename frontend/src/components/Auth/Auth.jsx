@@ -1,15 +1,14 @@
 import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import firebaseApp from '../../services/firebase.js'
+import firebaseApp from '../../services/firebase.js';
+import { cloneElement } from 'react';
 
 const auth = getAuth(firebaseApp);
 setPersistence(auth, browserLocalPersistence);
 
 
-
-
-
 const Auth = ({ children }) => {
+
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     // const [signOut] = useSignOut(auth);
 
@@ -26,10 +25,11 @@ const Auth = ({ children }) => {
       return <p>Loading...</p>;
     }
     if (user) {
+      const clonedElement = cloneElement(children, {user: user.user});
       return (
         <div>
           <p>Signed In User: {user.user.email}, {user.user.displayName}</p>
-          {children}
+          {clonedElement}
           {/* <button onClick={() => signOut()}>signOut</button> */}
         </div>
 

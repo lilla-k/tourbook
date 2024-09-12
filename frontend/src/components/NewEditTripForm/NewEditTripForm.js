@@ -21,7 +21,7 @@ function NewEditTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
     const { tripId } = useParams();
-    const { trips, setTrips, setToaster } = useOutletContext();
+    const { trips, setTrips, setToaster, userId } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
     const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
@@ -41,9 +41,10 @@ function NewEditTripForm() {
         countryInformation: countryInformation,
         tripExperience: tripExperience
     }
+    console.log(userId)
 
     async function postTripData() {
-        const tripId = await tripService.postTrip(tripData);
+        const tripId = await tripService.postTrip({...tripData, userId: userId }); // TODO: get userId from context
         setToaster("successfully created");
         const trips = await tripService.getTrips();
         setTrips(trips);
