@@ -1,5 +1,5 @@
 import firebaseApp from "./firebase";
-import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
@@ -9,9 +9,9 @@ const storage = getStorage(firebaseApp);
 
 // TODO: error handling
 const tripServices = {
-    getTrips: async function getTrips() {
-        const tripsCol = collection(db, "trips");
-        const tripSnapshot = await getDocs(tripsCol);
+    getTrips: async function getTrips(userId) {
+        const q = query(collection(db, "trips"), where("userId", "==", userId));
+        const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
         return tripList;
     },

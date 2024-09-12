@@ -19,7 +19,7 @@ function Root({user}) {
   },[])
 
   async function getTrips(){
-    const trips = await tripService.getTrips();
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     setLoading(false);
   }
