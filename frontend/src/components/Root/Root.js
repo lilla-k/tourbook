@@ -15,14 +15,14 @@ function Root({user}) {
   const [toaster, setToaster] = useState("");
 
   useEffect(() => {
-    getTrips();
-  },[])
+    (async () => {
+      const trips = await tripService.getTrips(user.uid);
+      setTrips(trips);
+      setLoading(false);
+    })();
+  }, [user])
 
-  async function getTrips(){
-    const trips = await tripService.getTrips(user.uid);
-    setTrips(trips);
-    setLoading(false);
-  }
+
 
 // nem én hoztam létre Outletet, nem tudom milyen propjai lehetnek, doksi alapján context
   return (
