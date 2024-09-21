@@ -35,7 +35,7 @@ function Root({user}) {
         autoHideDuration={2000}
         onClose={()=>setToaster("")}
         message={toaster}
-      />  
+      /> 
     </div>
   );
 }

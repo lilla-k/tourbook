@@ -58,7 +58,8 @@ const router = createBrowserRouter([
       {
         path: "trips/:tripId/gallery/:imageId",
         element: <GalleryPage />,
-      }
+      },
+
     ],
   },
 ], { basename: process.env.PUBLIC_URL });
