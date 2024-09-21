@@ -1,0 +1,33 @@
+.SignIn{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+.SignIn-content{
+    background-color: #fefefe;
+    margin: 100px auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 400px;
+    max-height: 80%;
+    border-radius: 5px;
+}
+
+.SignIn-header{
+    margin: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.SignIn-emailForm{
+    margin: 30px 0;
+}
+
+.SingIn-GoogleBtn{
+    display: block;
+}
+
+
+

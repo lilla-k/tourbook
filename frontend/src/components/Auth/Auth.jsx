@@ -2,6 +2,7 @@ import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
 import { cloneElement } from 'react';
+import SignIn from '../SignIn/SignIn.js';
 
 const auth = getAuth(firebaseApp);
 setPersistence(auth, browserLocalPersistence);
@@ -37,7 +38,8 @@ const Auth = ({ children }) => {
     }
     return (
       <div className="App">
-        <button onClick={() => signInWithGoogle()}>Sign In</button>
+        <SignIn signInWithGoogle={signInWithGoogle}/>
+        
       </div>
     );
   };
