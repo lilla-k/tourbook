@@ -35,7 +35,7 @@
     display: block;
 }
 
-img{
+.Header-profileImage{
     width: 100%;
     border-radius: 50%;
 }
