@@ -51,12 +51,13 @@ function Trip() {
     <div className="Trip">
       <div className="Trip-img-container">
         <img src={coverImage && `${coverImage.url}`} className="Trip-img" alt="" />
-        <div
+        <button
           className={`Trip-edit-coverImage ${allImages.length===0 && "disabled"}`}
           onClick={() => setShowCoverImageSelectorModal(true)}
+          disabled={allImages.length===0}
           >
           <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
-        </div>
+        </button>
         <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="Trip-edit-icon" />
           <div className="tooltip" >Edit trip</div>

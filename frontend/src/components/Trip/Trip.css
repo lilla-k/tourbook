@@ -36,6 +36,10 @@
     color: var(--beige);
 }
 
+.Trip-edit-coverImage{
+    border: none;
+}
+
 .Trip-edit-coverImage:hover{
     background-color: var(--light-grey);
 }
