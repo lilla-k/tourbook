@@ -2,8 +2,6 @@ import { useNavigate, useResolvedPath } from "react-router-dom";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PlaceIcon from '@mui/icons-material/Place';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import LoginIcon from '@mui/icons-material/Login';
 import './Header.css';
 import '../../style/tooltip.css';
 
@@ -19,6 +17,8 @@ function Header(){
     const [ user ] = useAuthState(auth);
     const navigate = useNavigate();
     const {pathname} = useResolvedPath();
+
+    console.log(user)
 
     return(
       <div className="Header">
@@ -37,12 +37,8 @@ function Header(){
             <div className="tooltip" >Add trip</div>
           </div>
           <div className="Header-icon-container">
-            <PersonOutlineIcon className="Header-icon"/>
-            <div className="tooltip">Sign In</div>
-          </div>
-          <div className="Header-icon-container">
-            <LoginIcon className="Header-icon"/>
-            <div className="tooltip">{user?.user?.email}</div>
+            <img className="Header-icon" src={user.photoURL} alt={"profile"}/>
+            <div className="tooltip">Account</div>
           </div>
         </div>
       </div>

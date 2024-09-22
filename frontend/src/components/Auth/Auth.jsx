@@ -32,9 +32,7 @@ const Auth = ({ children }) => {
     const clonedElement = cloneElement(children, { user: user.user });
     return (
       <div>
-        <p>Signed In User: {user.user.email}, {user.user.displayName}</p>
         {clonedElement}
-        {/* <button onClick={() => signOut()}>signOut</button> */}
       </div>
 
     );

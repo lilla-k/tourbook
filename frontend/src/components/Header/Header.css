@@ -13,7 +13,7 @@
 
 .Header-icons{
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 .Header-icon-container{
@@ -33,4 +33,9 @@
 
 .Header-icon-container:hover .tooltip{
     display: block;
+}
+
+img{
+    width: 100%;
+    border-radius: 50%;
 }
