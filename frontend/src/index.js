@@ -13,6 +13,7 @@ import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
+import Profile from './components/Profile/Profile.js';
 
 
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <GoogleMaps />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "trips",
