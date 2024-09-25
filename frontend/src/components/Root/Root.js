@@ -25,7 +25,7 @@ function Root({user}) {
 
   return (
     <div className="Root">
-      <Header />
+      <Header/>
       {loading && <Loading/>}
       {!loading && <Outlet context={{trips, setTrips, toaster, setToaster, userId: user.uid}}/>}  
       <Snackbar

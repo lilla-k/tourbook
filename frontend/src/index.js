@@ -13,7 +13,7 @@ import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
-import Profile from './components/Profile/Profile.js';
+import ProfilePage from './components/ProfilePage/ProfilePage.js';
 
 
 
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: <ProfilePage />,
       },
       {
         path: "trips",

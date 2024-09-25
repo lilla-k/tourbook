@@ -1,0 +1,22 @@
+.ProfilePage{
+    width: 100vw;
+    height: 100vh;
+}
+.ProfilePage-card{
+    margin: 100px auto;
+    width: 50%;
+    display: flex;
+    gap: 20px;  
+}
+
+.ProfilePage-ProfileImage{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.ProfilePage-name{
+    font-size: 20px;
+    margin: 5px 0;
+}
+
