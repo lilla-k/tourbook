@@ -8,13 +8,13 @@ import {  useOutletContext, Link } from 'react-router-dom';
 
 function TripCard({tripId, countryName, coverImage, startDate}){
 
-    const {setTrips, setToaster} = useOutletContext();
+    const {setTrips, setToaster, user} = useOutletContext();
     const [deleteModalVisible, setDeleteModalVisible]= useState(false)
 
     async function deleteTrip(){
         await tripService.deleteTrip(tripId);
         setToaster("trip deleted");
-        const trips = await tripService.getTrips();
+        const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
     }
 

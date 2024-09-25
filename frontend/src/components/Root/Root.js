@@ -27,7 +27,7 @@ function Root({user}) {
     <div className="Root">
       <Header/>
       {loading && <Loading/>}
-      {!loading && <Outlet context={{trips, setTrips, toaster, setToaster, userId: user.uid}}/>}  
+      {!loading && <Outlet context={{trips, setTrips, toaster, setToaster, user: user}}/>}  
       <Snackbar
         open={toaster===""?false:true}
         autoHideDuration={2000}

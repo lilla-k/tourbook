@@ -14,7 +14,7 @@ function FileUploadModal({onClose}) {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [title, setTitle] = useState("");
 
-  const { setTrips, setToaster } = useOutletContext();
+  const { setTrips, setToaster, user } = useOutletContext();
   const { tripId, cityId } = useParams();
 
 
@@ -30,7 +30,7 @@ function FileUploadModal({onClose}) {
     const { imageId, url } = await tripService.uploadImage(tripId, file);
     await tripService.postImageData(tripId, {id: imageId, url, title, cityId: cityId === undefined ? null: cityId});
     setToaster("image uploaded");
-    const trips = await tripService.getTrips(); 
+    const trips = await tripService.getTrips(user.uid); 
     setTrips(trips);
     onClose();
   }

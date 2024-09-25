@@ -21,7 +21,7 @@ function NewEditTripForm() {
     const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = Object.keys(tripTypes);
     const { tripId } = useParams();
-    const { trips, setTrips, setToaster, userId } = useOutletContext();
+    const { trips, setTrips, setToaster, user } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
     const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
@@ -41,12 +41,11 @@ function NewEditTripForm() {
         countryInformation: countryInformation,
         tripExperience: tripExperience
     }
-    console.log(userId)
 
     async function postTripData() {
-        const tripId = await tripService.postTrip({...tripData, userId: userId }); // TODO: get userId from context
+        const tripId = await tripService.postTrip({...tripData, userId: user.uid }); // TODO: get userId from context
         setToaster("successfully created");
-        const trips = await tripService.getTrips();
+        const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
         navigate(`/trips/${tripId}`);
     }
@@ -54,7 +53,7 @@ function NewEditTripForm() {
     async function editTripData() {
         await tripService.editTrip(tripId, tripData);
         setToaster("successfully updated");
-        const trips = await tripService.getTrips();
+        const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
         navigate(`/trips/${tripId}`);
     }
@@ -63,7 +62,7 @@ function NewEditTripForm() {
         setDeleteModalVisible(false);
         await tripService.deleteTrip(tripId);
         setToaster("successfully deleted");
-        const trips = await tripService.getTrips();
+        const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
         navigate("/trips/");
     }

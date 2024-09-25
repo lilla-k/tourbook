@@ -10,6 +10,7 @@ const storage = getStorage(firebaseApp);
 // TODO: error handling
 const tripServices = {
     getTrips: async function getTrips(userId) {
+        console.log("userId", userId)
         const q = query(collection(db, "trips"), where("userId", "==", userId));
         const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));

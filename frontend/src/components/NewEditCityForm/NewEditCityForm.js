@@ -15,7 +15,7 @@ function NewEditCityForm() {
 
   const navigate = useNavigate();
   const { tripId, cityId } = useParams();
-  const { trips, setTrips, setToaster } = useOutletContext();
+  const { trips, setTrips, setToaster, user } = useOutletContext();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   const selectedCity = selectedTrip.visitedCities?.find(city => city.cityId === cityId)
 
@@ -33,7 +33,7 @@ function NewEditCityForm() {
   async function postCityData() {
     const cityId = await tripService.postCity(tripId, cityData);
     setToaster("successfully created");
-    const trips = await tripService.getTrips();
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     navigate(`/trips/${tripId}/${cityId}`)
   }
@@ -41,7 +41,7 @@ function NewEditCityForm() {
   async function editCityData() {
     await tripService.editCity(tripId, selectedCity, cityData);
     setToaster("successfully updated");
-    const trips = await tripService.getTrips();
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     navigate(`/trips/${tripId}/${cityId}`);
   }
@@ -55,7 +55,7 @@ function NewEditCityForm() {
     setDeleteModalVisible(false);
     await tripService.deleteCity(tripId, selectedCity);
     setToaster("successfully deleted");
-    const trips = await tripService.getTrips();
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     navigate(`/trips/${tripId}`);
   }

@@ -21,7 +21,7 @@ function Trip() {
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
   const navigate = useNavigate();
-  const { trips, setTrips, setToaster } = useOutletContext();
+  const { trips, setTrips, setToaster, user } = useOutletContext();
   console.log("trips", trips)
   const { tripId, cityId } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
@@ -42,7 +42,7 @@ function Trip() {
     console.log("id", id)
     await tripService.editTrip(tripId, {coverImageId: id});
     setToaster("cover image updated");
-    const trips = await tripService.getTrips();
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     setShowCoverImageSelectorModal(false);
   }
