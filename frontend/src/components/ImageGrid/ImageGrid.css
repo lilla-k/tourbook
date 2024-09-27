@@ -3,6 +3,12 @@
     flex-shrink: 0;
 }
 
+.ImageGrid-deleteIcon{
+    position: absolute;
+    right: 0;
+    margin: 5px;
+}
+
 .ImageGrid-coverSelection{
     width: 560px;
 }

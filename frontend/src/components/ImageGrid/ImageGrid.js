@@ -2,12 +2,14 @@ import { useState } from 'react';
 import './ImageGrid.css';
 import { ImageList, ImageListItem, ImageListItemBar} from '@mui/material';
 import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function ImageGrid({images, selection, onClick, onNewClick, cols}) {
 
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
   const coverImageSelecion=selection;
 
+  console.log("coverImageSelecion", coverImageSelecion)
   console.log("images", images)
 
   return (
@@ -23,11 +25,12 @@ function ImageGrid({images, selection, onClick, onNewClick, cols}) {
             style={{ cursor: 'pointer', height: '100%'}}
             onClick={()=>onClick(image.id)}
           />
+          {!coverImageSelecion&& <DeleteIcon className="ImageGrid-deleteIcon"/>}
           {!coverImageSelecion&&
           <ImageListItemBar
             title={image.title}
-            
           />}
+          
         </ImageListItem>
       ))}
       {!coverImageSelecion && <div className="ImageGrid-plusBtn" onClick={onNewClick}>{Object.keys(images).length===0?"Add photos":"+"}</div>}
