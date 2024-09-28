@@ -5,7 +5,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ProfileDropDown from "../ProfileDropDown/ProfileDropDown.js";
 import './Header.css';
 import '../../style/tooltip.css';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -19,14 +19,15 @@ function Header(){
     const [ user ] = useAuthState(auth);
     const navigate = useNavigate();
     const {pathname} = useResolvedPath();
-    const [showProfileDropDown, setShowProfileDropDown] = useState(false)
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    console.log(anchorEl)
+    const accountElementRef = useRef(null);
+
+    const [open, setOpen] = useState(false);
+    console.log(open)
+    console.log(accountElementRef)
    
-    const handleClick = event => setAnchorEl(event.currentTarget);
     const handleClose = () => {
-        setAnchorEl(null);
+        setOpen(false);
     };
 
 
@@ -47,11 +48,11 @@ function Header(){
             <AddCircleOutlineIcon className="Header-icon"/>
             <div className="tooltip" >Add trip</div>
           </div>
-          <div className="Header-icon-container" onClick={handleClick}>
-            <img className="Header-profileImage" src={user.photoURL} alt={"profile"} onClick={()=>setShowProfileDropDown(true)}/>
+          <div className="Header-icon-container" onClick={()=>setOpen(true)} ref={accountElementRef}>
+            <img className="Header-profileImage" src={user.photoURL} alt={"profile"} />
             <div className="tooltip">Account</div>
-            {showProfileDropDown && <ProfileDropDown user={user} anchorEl={anchorEl} handleClose={handleClose}/>}
           </div>
+          <ProfileDropDown user={user} open={open} accountElementRef={accountElementRef} handleClose={handleClose}/>
         </div>
       </div>
     )

@@ -8,9 +8,10 @@ import MenuItem from '@mui/material/MenuItem';
 
 
 
-function ProfileDropDown({ user , anchorEl, handleClose}) {
+function ProfileDropDown({ user, open, accountElementRef, handleClose }) {
 
     const navigate = useNavigate();
+    console.log(accountElementRef.current)
 
     const dropDownItems = [
         { icon: <PersonIcon />, content: user.displayName, onClick: () => navigate("/profile") },
@@ -18,24 +19,21 @@ function ProfileDropDown({ user , anchorEl, handleClose}) {
         { icon: <LogoutIcon />, content: "Log Out", onClick: () => console.log("log out") }
     ]
 
-    const open = Boolean(anchorEl);
-    console.log(open)
-
     return (
-         <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            >
-                {dropDownItems.map(item => (
-                    <MenuItem onClick={item.onClick} className="ProfileDropDown-item">
-                        <div>{item.icon}</div><div>{item.content}</div>
-                    </MenuItem>
-                ))}
-            </Menu>
+        <Menu
+            anchorEl={accountElementRef.current}
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+            {dropDownItems.map(item => (
+                <MenuItem onClick={item.onClick} className="ProfileDropDown-item">
+                    <div>{item.icon}</div><div>{item.content}</div>
+                </MenuItem>
+            ))}
+        </Menu>
     )
 }
 
