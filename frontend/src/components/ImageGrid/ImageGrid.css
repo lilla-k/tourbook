@@ -5,8 +5,11 @@
 
 .ImageGrid-deleteIcon{
     position: absolute;
+    z-index: 2;
     right: 0;
-    margin: 5px;
+    bottom: 0;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .ImageGrid-coverSelection{
