@@ -21,10 +21,14 @@ function Header(){
     const {pathname} = useResolvedPath();
     const [showProfileDropDown, setShowProfileDropDown] = useState(false)
 
-    console.log(user)
-    console.log(user.displayName)
-    console.log(user.email)
-    console.log(user.photoURL)
+    const [anchorEl, setAnchorEl] = useState(null);
+    console.log(anchorEl)
+   
+    const handleClick = event => setAnchorEl(event.currentTarget);
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
 
 
     return(
@@ -43,10 +47,10 @@ function Header(){
             <AddCircleOutlineIcon className="Header-icon"/>
             <div className="tooltip" >Add trip</div>
           </div>
-          <div className="Header-icon-container">
+          <div className="Header-icon-container" onClick={handleClick}>
             <img className="Header-profileImage" src={user.photoURL} alt={"profile"} onClick={()=>setShowProfileDropDown(true)}/>
             <div className="tooltip">Account</div>
-            {showProfileDropDown && <ProfileDropDown user={user}/>}
+            {showProfileDropDown && <ProfileDropDown user={user} anchorEl={anchorEl} handleClose={handleClose}/>}
           </div>
         </div>
       </div>
