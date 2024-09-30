@@ -30,12 +30,7 @@ const Auth = ({ children }) => {
   }
   if (user) {
     const clonedElement = cloneElement(children, { user: user.user });
-    return (
-      <div>
-        {clonedElement}
-      </div>
-
-    );
+    return clonedElement;
   }
   return (
     <ThemeProvider theme={theme}>

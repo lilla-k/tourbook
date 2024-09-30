@@ -14,16 +14,18 @@
   box-sizing:border-box;
   font-family: 'Roboto';
 }
-body{
+
+html, body, #root{
   background-color: var(--beige);
+  height: 100%;
 }
 
 .Root{
-  height: 100vh;
+  height: 100%;
 }
 
 .Root-outlet{
-  height: calc(100vh - 65px);
+  height: calc(100% - 65px);
 }
 
 
