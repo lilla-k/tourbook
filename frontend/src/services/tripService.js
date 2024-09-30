@@ -1,6 +1,6 @@
 import firebaseApp from "./firebase";
 import { getFirestore, collection, query, where, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
 
 const db = getFirestore(firebaseApp);
@@ -10,7 +10,6 @@ const storage = getStorage(firebaseApp);
 // TODO: error handling
 const tripServices = {
     getTrips: async function getTrips(userId) {
-        console.log("userId", userId)
         const q = query(collection(db, "trips"), where("userId", "==", userId));
         const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
@@ -30,7 +29,6 @@ const tripServices = {
     },
     postImageData: async function postImageData(tripId, imageData){
         const tripRef = doc(db, "trips", tripId);
-        console.log("imageData", imageData)
         await updateDoc(tripRef, {
             images: arrayUnion(imageData)
         });
@@ -39,7 +37,7 @@ const tripServices = {
         const tripRef = doc(db, "trips", tripId);
         await updateDoc(tripRef, tripData);
     },
-    editCity: async function editCity(tripId, oldCityData, newCityData) { //TODO: use editTrip
+    editCity: async function editCity(tripId, oldCityData, newCityData) { 
         const tripRef = doc(db, "trips", tripId);
         const cityId = oldCityData.cityId;
         await updateDoc(tripRef, {
@@ -64,7 +62,20 @@ const tripServices = {
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);
         return {imageId, url};
-    }
+    },
+    deleteImage: async function deleteImage(tripId, deletedImage) {
+        const imageRef = ref(storage, `images/${tripId}/${deletedImage.id}`);
+        deleteObject(imageRef).then(() => {
+            console.log("File deleted successfully");
+          }).catch((error) => {
+            console.log("error occured");
+          });
+        const tripRef = doc(db, "trips", tripId);
+        await updateDoc(tripRef, {
+            images: arrayRemove(deletedImage)
+        });
+        
+    },
 }
 
 export default tripServices

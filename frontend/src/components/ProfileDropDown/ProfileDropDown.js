@@ -11,7 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 function ProfileDropDown({ user, open, accountElementRef, handleClose }) {
 
     const navigate = useNavigate();
-    console.log(accountElementRef.current)
 
     const dropDownItems = [
         { icon: <PersonIcon />, content: user.displayName, onClick: () => navigate("/profile") },

@@ -19,12 +19,9 @@ function Header(){
     const [ user ] = useAuthState(auth);
     const navigate = useNavigate();
     const {pathname} = useResolvedPath();
-
     const accountElementRef = useRef(null);
-
     const [open, setOpen] = useState(false);
-    console.log(open)
-    console.log(accountElementRef)
+  
    
     const handleClose = () => {
         setOpen(false);

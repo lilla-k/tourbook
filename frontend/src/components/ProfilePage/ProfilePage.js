@@ -10,7 +10,6 @@ function ProfilePage(){
     const auth = getAuth(firebaseApp);
     const [ user ] = useAuthState(auth);
     const {trips} = useOutletContext();
-    console.log(user)
 
     return(
         <div className="ProfilePage">
