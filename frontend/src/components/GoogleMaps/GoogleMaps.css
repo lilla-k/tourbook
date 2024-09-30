@@ -1,6 +1,5 @@
 .Map{
-    height: 500px;
-    margin: 50px;
+    height: 100%;
 }
 
 .Map-InfoWindow:hover{

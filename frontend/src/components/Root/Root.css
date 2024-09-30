@@ -18,4 +18,12 @@ body{
   background-color: var(--beige);
 }
 
+.Root{
+  height: 100vh;
+}
+
+.Root-outlet{
+  height: calc(100vh - 65px);
+}
+
 

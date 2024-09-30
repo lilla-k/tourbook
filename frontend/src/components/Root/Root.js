@@ -4,13 +4,13 @@ import tripService from '../../services/tripService.js'
 import Header from '../Header/Header.js';
 import Loading from '../Loading/Loading.js';
 import { Outlet } from "react-router-dom";
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 
 
-function Root({user}) {
+function Root({ user }) {
 
-  const [trips, setTrips]= useState([]);
+  const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toaster, setToaster] = useState("");
 
@@ -25,15 +25,17 @@ function Root({user}) {
 
   return (
     <div className="Root">
-      <Header/>
-      {loading && <Loading/>}
-      {!loading && <Outlet context={{trips, setTrips, toaster, setToaster, user: user}}/>}  
+      <Header />
+      <div className="Root-outlet">
+        {loading && <Loading />}
+        {!loading && <Outlet context={{ trips, setTrips, toaster, setToaster, user: user }} />}
+      </div>
       <Snackbar
-        open={toaster===""?false:true}
+        open={toaster === "" ? false : true}
         autoHideDuration={2000}
-        onClose={()=>setToaster("")}
+        onClose={() => setToaster("")}
         message={toaster}
-      /> 
+      />
     </div>
   );
 }
