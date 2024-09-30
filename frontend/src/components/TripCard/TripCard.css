@@ -1,9 +1,7 @@
 .TripCard{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color:var(--dark-grey);
-    width: calc(40% - 50px);
+    width: 400px;
+    max-width: 100%;
     height: 150px;
     margin: 25px;
     border: 1px solid var(--dark-grey);
@@ -16,23 +14,29 @@
     box-shadow: 0px 0px 3px 1px var(--dark-grey);
 }
 
-.TripCard-img-placeholder{
-    background-image: linear-gradient(white, var(--light-grey));
-    width: 240px;
-    height: 150px;
-}
-
-.TripCard img{
-    height: 150px;
-    width: 240px;
-    overflow: hidden;
-}
-
-.TripCard-info{
+.TripCard-link{
+    height: 100%;
     display:flex;
     cursor: pointer;
     text-decoration: none;
     color: var(--dark-grey);
+}
+
+.TripCard-img{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.TripCard-img-placeholder{
+    background-image: linear-gradient(white, var(--light-grey));
+}
+
+.TripCard-details{
+    width: 50%;
+    padding: 20px;
+    position: relative;
 }
 
 .TripCard-name{
@@ -44,20 +48,9 @@
 
 }
 
-.TripCard-details{
-    padding: 20px;
-}
-
-.TripCard-next{
-    cursor: pointer;
-}
-.TripCard-next:hover{
-    background-color: #E5E1DA;
-    padding: 3px;
-    border-radius: 50%;
-}
-
 .TripCard-deleteIcon{
-    align-self: flex-end; 
-    margin: 5px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
 }
