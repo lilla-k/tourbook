@@ -18,7 +18,7 @@ function ProfilePage(){
                 <div className="ProfilePage-info">
                     <div className="ProfilePage-name">{user.displayName}</div>
                     <div>{user.email}</div>
-                    <div>{trips.length-1} <Link to={`/trips`}>trips</Link></div>
+                    <div>{trips.length} <Link to={`/trips`}>trips</Link></div>
                 </div>
             </div>
             
