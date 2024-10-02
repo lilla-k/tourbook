@@ -1,5 +1,5 @@
 import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
 import { cloneElement } from 'react';
 import SignIn from '../SignIn/SignIn.js';
@@ -12,30 +12,32 @@ setPersistence(auth, browserLocalPersistence);
 
 const Auth = ({ children }) => {
 
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] = useSignInWithEmailAndPassword(auth);
   // const [signOut] = useSignOut(auth);
 
 
-  console.log(user);
+  console.log(googleUser, "googleUser");
+  console.log(emailUser, "emailUser");
 
-  if (error) {
+  if (googleError||emailError) {
     return (
       <div>
-        <p>Error: {error.message}</p>
+        <p>Error: {googleError?.message||emailError.message}</p>
       </div>
     );
   }
-  if (loading) {
+  if (googleLoading || emailLoading) {
     return <p>Loading...</p>;
   }
-  if (user) {
-    const clonedElement = cloneElement(children, { user: user.user });
+  if (googleUser || emailUser) {
+    const clonedElement = cloneElement(children, { user: googleUser?.user || emailUser.user});
     return clonedElement;
   }
   return (
     <ThemeProvider theme={theme}>
       <div className="Auth">
-        <SignIn signInWithGoogle={signInWithGoogle} />
+        <SignIn signInWithGoogle={signInWithGoogle} signInWithEmailAndPassword={signInWithEmailAndPassword}/>
       </div>
     </ThemeProvider>
   );

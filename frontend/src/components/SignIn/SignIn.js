@@ -4,13 +4,12 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 
 
-function SignIn({ signInWithGoogle }) {
+function SignIn({ signInWithGoogle, signInWithEmailAndPassword }) {
 
     const [showSignInInputs, setShowSignInInputs] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
 
-    function signInWithEmail() {
-        console.log("sign in with email")
-    }
     return (
         <div
             className="SignIn"
@@ -31,19 +30,19 @@ function SignIn({ signInWithGoogle }) {
                     Sign in with Email
                 </Button>
                 {showSignInInputs && <div className="SignIn-emailForm">
-                    <TextField id="outlined-basic" label="Email address" variant="outlined"  sx={{ display: "block", width: "100%" }} />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" sx={{ display: "block", margin: "10px auto" }} />
+                    <TextField id="outlined-basic" type="email" label="Email address" value={email} onChange={event=> setEmail(event.target.value)} variant="outlined" sx={{ display: "block", width: "100%" }} />
+                    <TextField id="outlined-basic" type="password" label="Password" value={password} onChange={event=> setPassword(event.target.value)} variant="outlined" sx={{ display: "block", margin: "10px auto" }} />
                     <Button
                         variant="contained"
                         className="SignIn-emailBtn"
-                        onClick={() => signInWithEmail(true)}
+                        onClick={()=>signInWithEmailAndPassword(email, password)}
                         sx={{ color: "white", backgroundColor: "black", width: "100%", margin: "5px 0 10px 0" }}>
                         Continue
                     </Button>
                 </div>}
-                <Button 
-                sx={{ display: "block", margin: "10px auto", width: "200px" }}
-                variant="outlined"
+                <Button
+                    sx={{ display: "block", margin: "10px auto", width: "200px" }}
+                    variant="outlined"
                 >Create an account</Button>
             </div>
         </div>
