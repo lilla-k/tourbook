@@ -16,7 +16,8 @@
 }
 
 .Trips-container{
-    margin: 50px 100px;
+    max-width: 1000px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;

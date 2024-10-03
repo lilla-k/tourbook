@@ -1,8 +1,8 @@
 .TripCard{
     color:var(--dark-grey);
-    width: 400px;
+    width: 450px;
     max-width: 100%;
-    height: 150px;
+    height: 180px;
     margin: 25px;
     border: 1px solid var(--dark-grey);
     border-radius: 10px;
