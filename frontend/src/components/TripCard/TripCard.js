@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'
 import tripService from '../../services/tripService.js'
 import { useOutletContext, Link } from 'react-router-dom';
-import tripTypes from '../../tripTypes.js';
+import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
 
 
 function TripCard({ tripId, tripType, countryName, coverImage, startDate }) {
@@ -35,7 +35,7 @@ function TripCard({ tripId, tripType, countryName, coverImage, startDate }) {
             <Link to={`/trips/${tripId}`} className="TripCard-link">
                 {coverImage ?
                     <img className="TripCard-img" src={coverImage.url} alt="Trip" /> :
-                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon" sx={{fontSize: "44px"}}>{tripTypes[tripType]}</div></div>
+                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon" >{getTripTypeIcons(tripType)}</div></div>
                 }
                 <div className="TripCard-details">
                     <div className="TripCard-name">{countryName}</div>

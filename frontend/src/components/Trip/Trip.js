@@ -9,7 +9,7 @@ import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
 import FileUploadModal from '../FileUploadModal/FileUploadModal';
-import tripTypes from '../../tripTypes.js';
+import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
 import tripService from '../../services/tripService.js'
 import './Trip.css';
 import '../../style/tooltip.css';
@@ -65,7 +65,7 @@ function Trip() {
         <div className={`Trip-title ${cityId !== undefined ? `Trip-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
-            <div>{tripTypes[selectedTrip.tripType]}</div>
+            <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
             <div className="Trip-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>

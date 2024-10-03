@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import tripTypes from '../../tripTypes.js';
+import {getTripTypes} from '../TripTypeIcons/tripTypeIcons.js';
 import countries from '../../countries.js';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditTripForm.css';
@@ -19,7 +19,8 @@ function NewEditTripForm() {
 
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
-    const tripTypeArray = Object.keys(tripTypes);
+    const tripTypeArray = getTripTypes();
+    console.log(tripTypeArray)
     const { tripId } = useParams();
     const { trips, setTrips, setToaster, user } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
