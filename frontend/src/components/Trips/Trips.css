@@ -19,13 +19,12 @@
     max-width: 1000px;
     margin: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 1020px){
     .Trips-container{
-        margin: 4px;
+        max-width: 500px;
     }
 }
