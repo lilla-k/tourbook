@@ -35,7 +35,7 @@ function TripCard({ tripId, tripType, countryName, coverImage, startDate }) {
             <Link to={`/trips/${tripId}`} className="TripCard-link">
                 {coverImage ?
                     <img className="TripCard-img" src={coverImage.url} alt="Trip" /> :
-                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon">{tripTypes[tripType]}</div></div>
+                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon" sx={{fontSize: "44px"}}>{tripTypes[tripType]}</div></div>
                 }
                 <div className="TripCard-details">
                     <div className="TripCard-name">{countryName}</div>

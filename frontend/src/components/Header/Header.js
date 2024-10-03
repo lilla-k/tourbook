@@ -6,6 +6,7 @@ import ProfileDropDown from "../ProfileDropDown/ProfileDropDown.js";
 import './Header.css';
 import '../../style/tooltip.css';
 import {useState, useRef} from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -46,7 +47,7 @@ function Header(){
             <div className="tooltip" >Add trip</div>
           </div>
           <div className="Header-icon-container" onClick={()=>setOpen(true)} ref={accountElementRef}>
-            <img className="Header-profileImage" src={user.photoURL} alt={"profile"} />
+            {user.photoURL?<img className="Header-profileImage" src={user.photoURL} alt={"profile"} />: <PersonIcon/>}
             <div className="tooltip">Account</div>
           </div>
           <ProfileDropDown user={user} open={open} accountElementRef={accountElementRef} handleClose={handleClose}/>

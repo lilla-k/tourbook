@@ -5,7 +5,7 @@ import FlightIcon from '@mui/icons-material/Flight';
 
 
 const tripTypes = {
-    flight: <FlightIcon />,
+    flight: <FlightIcon fontSize="large"/>,
     bus: <DirectionsBusIcon />,
     car: <DirectionsCarIcon />,
     train: <TrainIcon/>
