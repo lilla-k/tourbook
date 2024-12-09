@@ -14,6 +14,7 @@ import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
 import ProfilePage from './components/ProfilePage/ProfilePage.js';
+import EditProfilePage from './components/EditProfilePage/EditProfilePage.js';
 
 
 
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
         element: <GoogleMaps />,
       },
       {
-        path: "profile",
+        path: "users/:userId",
         element: <ProfilePage />,
+      },
+      {
+        path: "users/:userId/edit",
+        element: <EditProfilePage />,
       },
       {
         path: "trips",

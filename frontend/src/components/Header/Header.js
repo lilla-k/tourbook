@@ -29,7 +29,6 @@ function Header(){
     };
 
 
-
     return(
       <div className="Header">
         <div className="Header-title" onClick={()=>navigate("/trips")}>Tourbook</div>

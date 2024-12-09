@@ -13,7 +13,7 @@ function ProfileDropDown({ user, open, accountElementRef, handleClose }) {
     const navigate = useNavigate();
 
     const dropDownItems = [
-        { icon: <PersonIcon />, content: user.displayName || user.email, onClick: () => navigate("/profile") },
+        { icon: <PersonIcon />, content: user.displayName || user.email, onClick: () => navigate(`/users/${user.uid}`) },
         { icon: <LanguageIcon />, content: "HU", onClick: () => console.log("language") },
         { icon: <LogoutIcon />, content: "Log Out", onClick: () => console.log("log out") }
     ]
