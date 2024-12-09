@@ -6,18 +6,38 @@
     margin: 100px auto;
     width: 50%;
     display: flex;
-    align-items: center;
     gap: 20px;  
 }
 
 .ProfilePage-ProfileImage{
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 5px;
 }
 
+.ProfilePage-details{
+    width: 100%;
+}
+
+.ProfilePage-title{
+    display: flex;
+    justify-content: space-between;
+    
+}
 .ProfilePage-name{
     font-size: 20px;
     margin: 5px 0;
+}
+
+.ProfilePage-edit-icon-container{
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid var(--light-grey);
+    font-size: 14px;
+    padding: 10px;
+}
+.ProfilePage-edit-icon{
+    vertical-align: middle;
+    padding-right: 3px;
 }
 
