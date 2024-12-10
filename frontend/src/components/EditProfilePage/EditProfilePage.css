@@ -1,0 +1,19 @@
+.EditProfilePage{
+    margin: auto;
+    display: block;
+    width: 600px;
+}
+
+.EditProfilePage-header{
+    display: flex;
+    color: var(--dark-grey);
+    font-weight: 700;
+    font-size: 32px;
+    margin: 50px auto;
+    gap: 30px;
+}
+
+.EditProfilePage-arrowBackIcon{
+    cursor: pointer;
+}
+
