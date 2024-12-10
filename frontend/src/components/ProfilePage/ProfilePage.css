@@ -35,7 +35,13 @@
     border: 1px solid var(--light-grey);
     font-size: 14px;
     padding: 10px;
+    cursor: pointer;
 }
+
+.ProfilePage-edit-icon-container:hover{
+    background-color: var(--light-grey)
+}
+
 .ProfilePage-edit-icon{
     vertical-align: middle;
     padding-right: 3px;
