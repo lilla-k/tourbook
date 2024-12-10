@@ -13,7 +13,7 @@ function EditProfilePage(){
         <div className="EditProfilePage">
             <div className="EditProfilePage-header">
             <div className="EditProfilePage-arrowBackIcon">
-                        <ArrowBackIcon onClick={ navigate(`/users/${user.uid}`)} />
+                        <ArrowBackIcon onClick={ ()=>navigate(`/users/${user.uid}`)} />
                     </div>
                     <div className="EditProfilePage-title">Edit your profile</div>
             </div>
