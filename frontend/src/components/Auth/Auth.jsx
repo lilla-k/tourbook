@@ -17,7 +17,6 @@ const Auth = ({ children }) => {
   // const [signOut] = useSignOut(auth);
 
 
-
   if (googleError||emailError) {
     return (
       <div>
