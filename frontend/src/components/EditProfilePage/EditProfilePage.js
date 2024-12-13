@@ -19,7 +19,7 @@ import './EditProfilePage.css';
 function EditProfilePage(){
 
     const navigate = useNavigate();
-    const { user } = useOutletContext();
+    const { user, setToaster } = useOutletContext();
     console.log(user);
     const countriesArray = countries.map(country => country.name).sort();
 
@@ -36,9 +36,9 @@ function EditProfilePage(){
         },
         publicProfile: isPublicProfile
     }
-    function editUserData(userData){
-        console.log("btn clicked");
-        userServices.editUser(user.uid, userData)
+    async function editUserData(userData){
+        await userServices.editUser(user.uid, userData);
+        setToaster("successfully updated");
     }
 
     return(

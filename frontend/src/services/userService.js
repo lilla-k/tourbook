@@ -15,9 +15,8 @@ const userServices = {
           }
     },
     editUser: async function editUser(userId, userData) {
-        console.log("edit on database", userId, userData)
-        // const docRef = doc(db, "users", userId);
-        // await updateDoc(userData)
+        const userRef = doc(db, "users", userId);
+        await updateDoc(userRef, userData);
     }
 
 }
