@@ -17,3 +17,8 @@
     cursor: pointer;
 }
 
+.EditProfilePage-saveButton{
+    width: 150px;
+    margin: auto;
+}
+

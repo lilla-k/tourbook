@@ -4,19 +4,13 @@ import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/reac
 import { useNavigate, useOutletContext } from "react-router-dom";
 import './GoogleMaps.css';
 import MapStyle from './MapStyle.js';
-import countries from '../../countries.js';
+import findCountryPosition from '../../utils/location.js';
 
 
 function GoogleMaps() {
 
   const navigate = useNavigate();
   const { trips } = useOutletContext();
-
-  function findPosition(country) {
-    const countryObj = countries.find(c => c.name === country);
-    const coordinateObj = { lat: countryObj.lat, lng: countryObj.lng }
-    return coordinateObj;
-  }
 
   const [selectedTour, setSelectedTour] = useState(null);
   const [markerRef, marker] = useMarkerRef();
@@ -36,7 +30,7 @@ function GoogleMaps() {
             <>
               <Marker
                 ref={selectedTour === trip.id ? markerRef : null}
-                position={findPosition(trip.country)}
+                position={findCountryPosition(trip.country)}
                 onMouseOver={() => setSelectedTour(trip.id)}
                 onClick={() => navigate(`/trips/${trip.id}`)}
 

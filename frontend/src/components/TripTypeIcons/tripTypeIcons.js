@@ -11,11 +11,9 @@ const tripTypes = {
   train: <TrainIcon/>
 }
 function getTripTypeIcons(type, size="large"){
-  console.log(size, "size")
   const icon = tripTypes[type];
-  const clonedElement = cloneElement(icon, {fontSize: size})
-  console.log("clonedElement", clonedElement)
-  return clonedElement
+  const clonedElement = cloneElement(icon, {fontSize: size});
+  return clonedElement;
 }
 
 export function getTripTypes(){

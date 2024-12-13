@@ -11,7 +11,6 @@ function TripCard({ tripId, tripType, countryName, coverImage, startDate }) {
 
     const { setTrips, setToaster, user } = useOutletContext();
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-    console.log(tripType)
 
     async function deleteTrip() {
         await tripService.deleteTrip(tripId);
