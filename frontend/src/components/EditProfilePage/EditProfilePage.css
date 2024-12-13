@@ -1,7 +1,7 @@
 .EditProfilePage{
     margin: auto;
     display: block;
-    width: 600px;
+    width: 400px;
 }
 
 .EditProfilePage-header{
@@ -17,8 +17,21 @@
     cursor: pointer;
 }
 
+.EditProfilePage-form > *{
+    margin: 30px 0;
+}
+
+.EditProfilePage-locationSelector{
+    width: 300px;
+}
+
+.EditProfilePage-typeSelector{
+    width: 200px;
+}
+
 .EditProfilePage-saveButton{
-    width: 150px;
+    width: 30px;
     margin: auto;
+    margin-top: 30px;
 }
 
