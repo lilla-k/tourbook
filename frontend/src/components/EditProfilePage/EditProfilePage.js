@@ -17,17 +17,9 @@ function EditProfilePage(){
     const countriesArray = countries.map(country => country.name).sort();
 
     const [locationName, setLocationName] = useState(user.location.name?user.location.name:"Choose your location");
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
     const [isPublicProfile, setIsPublicProfile] = useState(false);
     
-
-    useEffect( ()=>{
-        const {lat, lng} = findCountryPosition(locationName);
-        console.log(lat, lng);
-        setLat(lat);
-        setLng(lng);
-    }, [locationName])
+    const {lat, lng} = findCountryPosition(locationName);
 
     const userData={
         location: {
