@@ -1,9 +1,11 @@
-import './ProfilePage.css';
-import { useOutletContext, Link} from 'react-router-dom';
+import { useOutletContext, Link, useNavigate} from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from 'react-router-dom';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import HomeIcon from '@mui/icons-material/Home';
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
+import './ProfilePage.css';
 
 
 function ProfilePage(){
@@ -22,14 +24,19 @@ function ProfilePage(){
                     <div className="ProfilePage-title">
                         <div className="ProfilePage-name">{user.displayName}</div>
                         <button className="ProfilePage-edit-icon-container" onClick={()=>navigate(`/users/${user.uid}/edit`)}>  
-                            <EditIcon fontSize="small" className="ProfilePage-edit-icon"/>
+                            <EditIcon fontSize="small" className="ProfilePage-icon"/>
                             Edit profile
                         </button>
                     </div>
-                    <div>{user.email}</div>
-                    <div>{user.location?.name}</div>
+                    <div><MailOutlineIcon fontSize="small" className="ProfilePage-icon"/>{user.email}</div>
+                    <div>
+                        <HomeIcon fontSize="small" className="ProfilePage-icon"/>
+                        {user.location? 
+                        <span>Lives in {user.location.name}</span> :
+                        <span onClick={()=>navigate(`/users/${user.uid}/edit`)} className="ProfilePage-addLocationLink">Add location</span>}
+                    </div>
                     <div>{user.location?.lng}</div>
-                    <div>{trips.length} <Link to={`/trips`}>trips</Link></div>
+                    <div><FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>{trips.length} <Link to={`/trips`}>trips</Link></div>
                 </div>
                
             </div>

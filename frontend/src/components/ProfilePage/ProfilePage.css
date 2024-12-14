@@ -42,8 +42,13 @@
     background-color: var(--light-grey)
 }
 
-.ProfilePage-edit-icon{
+.ProfilePage-icon{
     vertical-align: middle;
     padding-right: 3px;
+}
+
+.ProfilePage-addLocationLink{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
