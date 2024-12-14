@@ -31,7 +31,7 @@ function Root({ user }) {
       <Header />
       <div className="Root-outlet">
         {loading && <Loading />}
-        {!loading && <Outlet context={{ trips, setTrips, toaster, setToaster, user: {...user, ...userData }}} />}
+        {!loading && <Outlet context={{ trips, setTrips, toaster, setToaster, user: {...user, ...userData }, setUserData}} />}
       </div>
       <Snackbar
         open={toaster === "" ? false : true}

@@ -27,8 +27,8 @@ function ProfilePage(){
                         </button>
                     </div>
                     <div>{user.email}</div>
-                    <div>{user.location.name}</div>
-                    <div>{user.location.lng}</div>
+                    <div>{user.location?.name}</div>
+                    <div>{user.location?.lng}</div>
                     <div>{trips.length} <Link to={`/trips`}>trips</Link></div>
                 </div>
                

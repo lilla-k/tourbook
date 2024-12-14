@@ -19,26 +19,35 @@ import './EditProfilePage.css';
 function EditProfilePage(){
 
     const navigate = useNavigate();
-    const { user, setToaster } = useOutletContext();
+    const { user, setToaster, setUserData } = useOutletContext();
     console.log(user);
     const countriesArray = countries.map(country => country.name).sort();
 
-    const [locationName, setLocationName] = useState(user.location.name?user.location.name:"Choose your location");
+    const [locationName, setLocationName] = useState(user.location?.name ? user.location.name : null);
     const [isPublicProfile, setIsPublicProfile] = useState(user.publicProfile? user.publicProfile: false);
-    
-    const {lat, lng} = findCountryPosition(locationName);
+    if (locationName) {
 
-    const userData={
-        location: {
-            name: locationName,
-            lat: lat,
-            lng: lng
-        },
-        publicProfile: isPublicProfile
     }
+
+    let userData = null;
+
+    if (locationName) {
+        const {lat, lng} = findCountryPosition(locationName);
+        const userData={
+            location: {
+                name: locationName,
+                lat: lat,
+                lng: lng
+            },
+            publicProfile: isPublicProfile
+        };
+    }
+    
+
     async function editUserData(userData){
         await userServices.editUser(user.uid, userData);
         setToaster("successfully updated");
+        setUserData(userData);
     }
 
     return(
