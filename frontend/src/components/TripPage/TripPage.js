@@ -5,19 +5,19 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-import CityDetails from '../CityDetails/CityDetails';
-import CountryDetails from '../CountryDetails/CountryDetails';
-import ImageGrid from '../ImageGrid/ImageGrid';
+import CityDetails from '../CityDetails/CityDetails.js';
+import CountryDetails from '../CountryDetails/CountryDetails.js';
+import ImageGrid from '../ImageGrid/ImageGrid.js';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
-import FileUploadModal from '../FileUploadModal/FileUploadModal';
+import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
 import tripService from '../../services/tripService.js';
 import {findCountryPosition, getDistanceFromLatLonInKm} from '../../utils/location.js';
-import './Trip.css';
+import './TripPage.css';
 import '../../style/tooltip.css';
 
 
-function Trip() {
+function TripPage() {
 
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
@@ -57,41 +57,41 @@ function Trip() {
   }
 
   return (
-    <div className="Trip">
-      <div className="Trip-img-container">
-        <img src={coverImage && `${coverImage.url}`} className="Trip-img" alt="" />
+    <div className="TripPage">
+      <div className="TripPage-img-container">
+        <img src={coverImage && `${coverImage.url}`} className="TripPage-img" alt="" />
         <button
-          className={`Trip-edit-coverImage ${allImages.length===0 && "disabled"}`}
+          className={`TripPage-edit-coverImage ${allImages.length===0 && "disabled"}`}
           onClick={() => setShowCoverImageSelectorModal(true)}
           disabled={allImages.length===0}
           >
-          <AddAPhotoIcon fontSize="small" className="Trip-edit-coverImage-icon" /> Edit cover image
+          <AddAPhotoIcon fontSize="small" className="TripPage-edit-coverImage-icon" /> Edit cover image
         </button>
-        <div className="Trip-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
-          <EditIcon className="Trip-edit-icon" />
+        <div className="TripPage-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
+          <EditIcon className="TripPage-edit-icon" />
           <div className="tooltip" >Edit trip</div>
         </div>
-        <div className={`Trip-title ${cityId !== undefined ? `Trip-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
-          <div className="Trip-title-border">
+        <div className={`TripPage-title ${cityId !== undefined ? `TripPage-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
+          <div className="TripPage-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
-            <div className="Trip-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>
+            <div className="TripPage-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>
             <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
-            <div className="Trip-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
+            <div className="TripPage-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
       </div>
-      <div className="Trip-info">
-        <div className="Trip-visitedCities-container">
-          <div className="Trip-visitedCities-title">VISITED CITIES</div>
-          <div className="Trip-visitedCities">
+      <div className="TripPage-info">
+        <div className="TripPage-visitedCities-container">
+          <div className="TripPage-visitedCities-title">VISITED CITIES</div>
+          <div className="TripPage-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (
-                <div className={`Trip-visitedCity ${city.cityId === selectedCity?.cityId ? `selected` : ``}`} key={city.cityId}>
-                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="Trip-visitedCityLink" >
+                <div className={`TripPage-visitedCity ${city.cityId === selectedCity?.cityId ? `selected` : ``}`} key={city.cityId}>
+                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="TripPage-visitedCityLink" >
                     <LocationOnIcon />
                     <div>{city.cityName}</div>
                   </Link>
-                  <div className="Trip-visitedCityIconEdit">
+                  <div className="TripPage-visitedCityIconEdit">
                     <EditIcon
                       fontSize="small"
                       onClick={() => navigate(`/trips/${selectedTrip.id}/${city.cityId}/edit`)} />
@@ -128,4 +128,4 @@ function Trip() {
   )
 }
 
-export default Trip;
+export default TripPage;

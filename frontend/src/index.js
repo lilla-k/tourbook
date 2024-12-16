@@ -7,7 +7,7 @@ import {
 import Root from './components/Root/Root';
 import Auth from './components/Auth/Auth';
 import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.js';
-import Trip from './components/Trip/Trip.js';
+import TripPage from './components/TripPage/TripPage.js';
 import TripsPage from './components/TripsPage/TripsPage.js';
 import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
@@ -43,11 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "trips/:tripId",
-        element: <Trip />,
+        element: <TripPage />,
       },
       {
         path: "trips/:tripId/:cityId",
-        element: <Trip />,
+        element: <TripPage />,
       },
       {
         path: "addTrip",
