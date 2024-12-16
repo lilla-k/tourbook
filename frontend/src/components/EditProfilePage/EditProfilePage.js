@@ -33,7 +33,7 @@ function EditProfilePage(){
 
     if (locationName) {
         const {lat, lng} = findCountryPosition(locationName);
-        const userData={
+        userData={
             location: {
                 name: locationName,
                 lat: lat,
