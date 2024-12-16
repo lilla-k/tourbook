@@ -89,9 +89,13 @@
 
 .Trip-title-border > div:first-child{
     font-size: 25px;
-    margin: 10px;
+    margin: 5px;
 }
 
+.Trip-distance{
+    font-size: 12px;
+    margin-bottom: 10px;
+}
 
 .Trip-date{
     font-size: 16px;

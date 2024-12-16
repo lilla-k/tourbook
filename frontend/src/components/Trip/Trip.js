@@ -1,16 +1,18 @@
-import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Button from '@mui/material/Button';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 import CityDetails from '../CityDetails/CityDetails';
 import CountryDetails from '../CountryDetails/CountryDetails';
 import ImageGrid from '../ImageGrid/ImageGrid';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
 import FileUploadModal from '../FileUploadModal/FileUploadModal';
 import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
-import tripService from '../../services/tripService.js'
+import tripService from '../../services/tripService.js';
+import {findCountryPosition, getDistanceFromLatLonInKm} from '../../utils/location.js';
 import './Trip.css';
 import '../../style/tooltip.css';
 
@@ -22,7 +24,6 @@ function Trip() {
 
   const navigate = useNavigate();
   const { trips, setTrips, setToaster, user } = useOutletContext();
-  console.log("trips", trips)
   const { tripId, cityId } = useParams();
   const selectedTrip = trips.find(trip => trip.id === tripId);
   if (selectedTrip === undefined){
@@ -34,9 +35,17 @@ function Trip() {
   }
 
   const allImages=selectedTrip.images;
-  console.log("allImages", allImages) 
   const cityImages = allImages?.filter(image => image.cityId === cityId);
   const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
+
+  console.log(user.location.name);
+  console.log(selectedTrip.country)
+  const {lat: lat1, lng: lng1} = findCountryPosition(user.location?.name);
+  const {lat: lat2, lng: lng2} = findCountryPosition(selectedTrip.country);
+  console.log(lat1, lng1, lat2, lng2)
+  
+  const distance=getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2)
+  console.log(distance, "distance")
 
   async function saveCoverImage(id) {
     console.log("id", id)
@@ -65,6 +74,7 @@ function Trip() {
         <div className={`Trip-title ${cityId !== undefined ? `Trip-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
           <div className="Trip-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
+            <div className="Trip-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>
             <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
             <div className="Trip-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>

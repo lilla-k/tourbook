@@ -13,9 +13,6 @@ function ProfilePage(){
     const {trips, user} = useOutletContext();
     const navigate = useNavigate();
 
-
-    console.log(user)
-
     return(
         <div className="ProfilePage">
             <div className="ProfilePage-card">

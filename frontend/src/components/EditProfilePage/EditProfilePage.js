@@ -10,7 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 
 import countries from '../../countries.js';
-import findCountryPosition from '../../utils/location.js';
+import {findCountryPosition} from '../../utils/location.js';
 import userServices from '../../services/userService.js';
 
 

@@ -4,7 +4,7 @@ import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/reac
 import { useNavigate, useOutletContext } from "react-router-dom";
 import './GoogleMaps.css';
 import MapStyle from './MapStyle.js';
-import findCountryPosition from '../../utils/location.js';
+import {findCountryPosition} from '../../utils/location.js';
 
 
 function GoogleMaps() {
