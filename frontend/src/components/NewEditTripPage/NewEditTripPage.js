@@ -11,11 +11,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {getTripTypes} from '../TripTypeIcons/tripTypeIcons.js';
 import countries from '../../countries.js';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './NewEditTripForm.css';
+import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.js';
 
-function NewEditTripForm() {
+function NewEditTripPage() {
 
     const navigate = useNavigate();
     const countriesArray = countries.map(country => country.name).sort();
@@ -77,50 +77,50 @@ function NewEditTripForm() {
     }
 
     return (
-        <div className="NewEditTripForm">
-            <div className="NewEditTripForm-header">
-                <div className="NewEditTripForm-headerStart">
-                    <div className="NewEditTripForm-arrowBackIcon">
+        <div className="NewEditTripPage">
+            <div className="NewEditTripPage-header">
+                <div className="NewEditTripPage-headerStart">
+                    <div className="NewEditTripPage-arrowBackIcon">
                         <ArrowBackIcon onClick={tripId ? () => navigate(`/trips/${selectedTrip.id}`) : () => navigate("/trips/")} />
                     </div>
-                    <div className="NewEditTripForm-title">{tripId?"Edit your trip": "Add a new trip"}</div>
+                    <div className="NewEditTripPage-title">{tripId?"Edit your trip": "Add a new trip"}</div>
                 </div>
                 {tripId &&
                     <Button
                         variant="outlined"
                         onClick={() => deleteConfirmation()}
                         color="error"
-                        className="NewEditTripForm-deleteButton"
+                        className="NewEditTripPage-deleteButton"
                     >
-                        <DeleteIcon className="NewEditTripForm-deleteIcon" fontSize="small" />
+                        <DeleteIcon className="NewEditTripPage-deleteIcon" fontSize="small" />
                         DELETE
                     </Button>
                 }
             </div>
             {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteTrip} onCancel={cancelDelete} type="trip" />}
-            <div className="NewEditTripForm-form">
-                <div className="NewEditTripForm-dates">
+            <div className="NewEditTripPage-form">
+                <div className="NewEditTripPage-dates">
                     <input
                         type="date"
                         value={startDate}
-                        className="NewEditTripForm-start"
+                        className="NewEditTripPage-start"
                         onChange={e => setStartDate(e.target.value)} />
                     {startDate && <input
                         type="date"
                         value={endDate}
                         min={startDate}
-                        className="NewEditTripForm-end"
+                        className="NewEditTripPage-end"
                         onChange={e => setEndDate(e.target.value)} />}
                 </div>
                 <Autocomplete
-                    className="NewEditTripForm-countrySelector"
+                    className="NewEditTripPage-countrySelector"
                     disablePortal
                     options={countriesArray}
                     value={country}
                     onChange={(e, selectedValue) => setCountry(selectedValue)}
                     renderInput={(params) => <TextField {...params} label="Country" />}
                 />
-                <FormControl className="NewEditTripForm-typeSelector">
+                <FormControl className="NewEditTripPage-typeSelector">
                     <InputLabel>Trip type</InputLabel>
                     <Select
                         value={tripType}
@@ -133,7 +133,7 @@ function NewEditTripForm() {
                         <MenuItem value={tripTypeArray[3]}>{tripTypeArray[3]}</MenuItem>
                     </Select>
                 </FormControl>
-                <div className="NewEditTripForm-countryInformation">
+                <div className="NewEditTripPage-countryInformation">
                     <TextField
                         label="Country Information"
                         placeholder="eg. language, population, religion, history"
@@ -143,7 +143,7 @@ function NewEditTripForm() {
                         onChange={e => setCountryInformation(e.target.value)}
                     />
                 </div>
-                <div className="NewEditTripForm-experience">
+                <div className="NewEditTripPage-experience">
                     <TextField
                         label="Your experience"
                         placeholder="eg. weather, unforgattable experiences"
@@ -153,7 +153,7 @@ function NewEditTripForm() {
                         onChange={e => setTripExperience(e.target.value)}
                     />
                 </div>
-                <div className="NewEditTripForm-saveButton">
+                <div className="NewEditTripPage-saveButton">
                     <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Save" : "Add"}</Button>
                 </div>
             </div>
@@ -161,4 +161,4 @@ function NewEditTripForm() {
     )
 }
 
-export default NewEditTripForm;
+export default NewEditTripPage;

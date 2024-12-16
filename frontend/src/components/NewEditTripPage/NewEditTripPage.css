@@ -1,10 +1,10 @@
-.NewEditTripForm{
+.NewEditTripPage{
     margin: auto;
     display: block;
     width: 600px;
 }
 
-.NewEditTripForm-header{
+.NewEditTripPage-header{
     display: flex;
     justify-content: space-between;
     color: var(--dark-grey);
@@ -13,29 +13,29 @@
     margin: 50px auto;
 }
 
-.NewEditTripForm-headerStart{
+.NewEditTripPage-headerStart{
     display: flex;
     gap: 20px;
 }
 
-.NewEditTripForm-arrowBackIcon{
+.NewEditTripPage-arrowBackIcon{
     cursor: pointer;
 }
 
 
-.NewEditTripForm-deleteIcon{
+.NewEditTripPage-deleteIcon{
     margin-right: 5px;
 }
 
-.NewEditTripForm-form{
+.NewEditTripPage-form{
     width: 100%;
 }
 
-.NewEditTripForm-form > *{
+.NewEditTripPage-form > *{
     margin: 30px 0;
 }
 
-.NewEditTripForm-start, .NewEditTripForm-end{
+.NewEditTripPage-start, .NewEditTripPage-end{
     color: rgba(0, 0, 0, 0.87);
     background-color: var(--beige);
     padding: 14px;
@@ -45,28 +45,28 @@
     font-size: 16px;
 }
 
-.NewEditTripForm-start:hover, .NewEditTripForm-end:hover{
+.NewEditTripPage-start:hover, .NewEditTripPage-end:hover{
     border-color: rgba(0, 0, 0, 0.87);
 }
 
-.NewEditTripForm-start:focus-visible, .NewEditTripForm-end:focus-visible{
+.NewEditTripPage-start:focus-visible, .NewEditTripPage-end:focus-visible{
     outline-color: rgb(25, 118, 210);
 }
 
 
-.NewEditTripForm-countrySelector{
+.NewEditTripPage-countrySelector{
     width: 300px;
 }
 
-.NewEditTripForm-typeSelector{
+.NewEditTripPage-typeSelector{
     width: 200px;
 }
 
-.NewEditTripForm-countryInformation > div, .NewEditTripForm-experience > div{
+.NewEditTripPage-countryInformation > div, .NewEditTripPage-experience > div{
     width: 100%;
 }
 
-.NewEditTripForm-saveButton{
+.NewEditTripPage-saveButton{
     width: 70px;
     margin: auto;
 }

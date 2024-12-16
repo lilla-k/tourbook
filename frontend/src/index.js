@@ -9,7 +9,7 @@ import Auth from './components/Auth/Auth';
 import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.js';
 import TripPage from './components/TripPage/TripPage.js';
 import TripsPage from './components/TripsPage/TripsPage.js';
-import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
+import NewEditTripPage from './components/NewEditTripPage/NewEditTripPage.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "addTrip",
-        element: <NewEditTripForm />,
+        element: <NewEditTripPage />,
       },
       {
         path: "trips/:tripId/addCity",
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: "trips/:tripId/edit",
-        element: <NewEditTripForm />,
+        element: <NewEditTripPage />,
       },
       {
         path: "trips/:tripId/:cityId/edit",
