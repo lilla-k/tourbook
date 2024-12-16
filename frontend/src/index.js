@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Root from './components/Root/Root';
 import Auth from './components/Auth/Auth';
-import GoogleMaps from './components/GoogleMaps/GoogleMaps.js';
+import GoogleMaps from './components/GoogleMapsPage/GoogleMapsPage.js';
 import Trip from './components/Trip/Trip.js';
 import Trips from './components/Trips/Trips.js';
 import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
