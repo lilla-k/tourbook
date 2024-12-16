@@ -1,4 +1,4 @@
-.Trips-title{
+.TripsPage-title{
     color: var(--light-green);
     font-weight: 700;
     font-size: 32px;
@@ -6,16 +6,16 @@
     text-align: center;
 }
 
-.Trips-addFirstTrip{
+.TripsPage-addFirstTrip{
     color: var(--light-green);
     font-size: 24px;
 }
 
-.Trips-addFirstTrip:hover{
+.TripsPage-addFirstTrip:hover{
     cursor: pointer;
 }
 
-.Trips-container{
+.TripsPage-container{
     max-width: 1000px;
     margin: auto;
     display: flex;
@@ -24,7 +24,7 @@
 }
 
 @media screen and (max-width: 1020px){
-    .Trips-container{
+    .TripsPage-container{
         max-width: 500px;
     }
 }

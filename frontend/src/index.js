@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import Root from './components/Root/Root';
 import Auth from './components/Auth/Auth';
-import GoogleMaps from './components/GoogleMapsPage/GoogleMapsPage.js';
+import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.js';
 import Trip from './components/Trip/Trip.js';
-import Trips from './components/Trips/Trips.js';
+import TripsPage from './components/TripsPage/TripsPage.js';
 import NewEditTripForm from './components/NewEditTripForm/NewEditTripForm.js';
 import NewEditCityForm from './components/NewEditCityForm/NewEditCityForm.js';
 import ErrorPage from "./components/ErrorPage/ErrorPage.js";
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <GoogleMaps />,
+        element: <GoogleMapsPage />,
       },
       {
         path: "users/:userId",
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "trips",
-        element: <Trips />,
+        element: <TripsPage />,
       },
       {
         path: "trips/:tripId",
