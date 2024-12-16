@@ -25,21 +25,17 @@ function EditProfilePage(){
 
     const [locationName, setLocationName] = useState(user.location?.name ? user.location.name : null);
     const [isPublicProfile, setIsPublicProfile] = useState(user.publicProfile? user.publicProfile: false);
-    if (locationName) {
 
-    }
-
-    let userData = null;
+    let userData = {
+        publicProfile: isPublicProfile
+    };
 
     if (locationName) {
         const {lat, lng} = findCountryPosition(locationName);
-        userData={
-            location: {
-                name: locationName,
-                lat: lat,
-                lng: lng
-            },
-            publicProfile: isPublicProfile
+        userData.location = {
+            name: locationName,
+            lat: lat,
+            lng: lng
         };
     }
     
@@ -48,6 +44,7 @@ function EditProfilePage(){
         await userServices.editUser(user.uid, userData);
         setToaster("successfully updated");
         setUserData(userData);
+        navigate(`/users/${user.uid}`);
     }
 
     return(

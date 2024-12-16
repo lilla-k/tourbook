@@ -35,7 +35,6 @@ function ProfilePage(){
                         <span>Lives in {user.location.name}</span> :
                         <Link to={`/users/${user.uid}/edit`} >Add location</Link>} 
                     </div>
-                    <div>{user.location?.lng}</div>
                     <div><FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>{trips.length} <Link to={`/trips`}>trips</Link></div>
                 </div>
                
