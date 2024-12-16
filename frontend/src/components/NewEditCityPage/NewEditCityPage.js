@@ -4,14 +4,13 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import './NewEditCityForm.css';
 import tripService from '../../services/tripService.js';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
-import TitleInput from '../TitleInput/TitleInput';
-import AttractionsForm from '../AttractionsForm/AttractionsForm'
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.js';
+import TitleInput from '../TitleInput/TitleInput.js';
+import AttractionsForm from '../AttractionsForm/AttractionsForm.js'
+import './NewEditCityPage.css';
 
-
-function NewEditCityForm() {
+function NewEditCityPage() {
 
   const navigate = useNavigate();
   const { tripId, cityId } = useParams();
@@ -68,10 +67,10 @@ function NewEditCityForm() {
     setDeleteModalVisible(true);
   }
 
-  return (<div className="NewEditCityForm" >
-    <div className="NewEditCityForm-header">
-      <div className="NewEditCityForm-headerStart">
-        <div className="NewEditCityForm-arrowBackIcon">
+  return (<div className="NewEditCityPage" >
+    <div className="NewEditCityPage-header">
+      <div className="NewEditCityPage-headerStart">
+        <div className="NewEditCityPage-arrowBackIcon">
           <ArrowBackIcon onClick={cityId ? () => navigate(`/trips/${selectedTrip.id}/${cityId}`) : () => navigate(`/trips/${selectedTrip.id}`)} />
         </div>
         {cityId ?
@@ -83,16 +82,16 @@ function NewEditCityForm() {
           variant="outlined"
           onClick={() => deleteConfirmation()}
           color="error"
-          className="NewEditCityForm-deleteButton"
+          className="NewEditCityPage-deleteButton"
         >
-          <DeleteIcon className="NewEditCityForm-deleteIcon" fontSize="small" />
+          <DeleteIcon className="NewEditCityPage-deleteIcon" fontSize="small" />
           DELETE
         </Button>
       }
     </div>
     {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteCity} onCancel={cancelDelete} type="city" />}
-    <div className="NewEditCityForm-form">
-      {cityId === undefined && <div className="NewEditCityForm-cityName">
+    <div className="NewEditCityPage-form">
+      {cityId === undefined && <div className="NewEditCityPage-cityName">
         <TextField
           label="City name"
           variant="outlined"
@@ -101,8 +100,8 @@ function NewEditCityForm() {
           autoFocus
         />
       </div>}
-      {!isCityNameValid() && <div className="NewEditCityForm-alreadyExist">This city is added already</div>}
-      <div className="NewEditCityForm-cityInformation">
+      {!isCityNameValid() && <div className="NewEditCityPage-alreadyExist">This city is added already</div>}
+      <div className="NewEditCityPage-cityInformation">
         <TextField
           label="City Information"
           placeholder="eg. population, interesting things"
@@ -113,7 +112,7 @@ function NewEditCityForm() {
         />
       </div>
       <AttractionsForm attractions={attractions} setAttractions={setAttractions}/>
-      <div className="NewEditCityForm-saveButton">
+      <div className="NewEditCityPage-saveButton">
         <Button
           variant="outlined"
           disabled={!isCityNameValid()}
@@ -125,4 +124,4 @@ function NewEditCityForm() {
   </div >)
 }
 
-export default NewEditCityForm;
+export default NewEditCityPage;
