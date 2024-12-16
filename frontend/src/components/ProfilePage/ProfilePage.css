@@ -10,8 +10,8 @@
 }
 
 .ProfilePage-ProfileImage{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 5px;
 }
 
@@ -47,8 +47,7 @@
     padding-right: 3px;
 }
 
-.ProfilePage-addLocationLink{
-    text-decoration: underline;
-    cursor: pointer;
+.ProfilePage-location{
+    margin: 5px 0;
 }
 
