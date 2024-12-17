@@ -76,7 +76,7 @@ function EditProfilePage(){
                     </Select>
                 </FormControl>
                 <div className="EditProfilePage-saveButton">
-                <Button variant="outlined" onClick={() => editUserData(userData)}>Save</Button>
+                    <Button variant="outlined" onClick={() => editUserData(userData)}>Save</Button>
                 </div>
             </div>
         </div>

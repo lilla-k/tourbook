@@ -1,7 +1,9 @@
 .EditProfilePage{
     margin: auto;
     display: block;
-    width: 400px;
+    width: 500px;
+    max-width: calc(100% - 10px);
+    padding: 10px;
 }
 
 .EditProfilePage-header{
@@ -9,7 +11,7 @@
     color: var(--dark-grey);
     font-weight: 700;
     font-size: 32px;
-    margin: 50px auto;
+    margin: 30px auto;
     gap: 30px;
 }
 
@@ -17,12 +19,18 @@
     cursor: pointer;
 }
 
-.EditProfilePage-form > *{
-    margin: 30px 0;
+.EditProfilePage-form{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
+
 
 .EditProfilePage-locationSelector{
     width: 300px;
+    margin: 30px 0;
 }
 
 .EditProfilePage-typeSelector{
@@ -30,8 +38,7 @@
 }
 
 .EditProfilePage-saveButton{
-    width: 30px;
-    margin: auto;
     margin-top: 30px;
+    align-self: flex-end;
 }
 
