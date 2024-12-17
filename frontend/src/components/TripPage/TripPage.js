@@ -38,14 +38,13 @@ function TripPage() {
   const cityImages = allImages?.filter(image => image.cityId === cityId);
   const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
 
-  console.log(user.location.name);
-  console.log(selectedTrip.country)
-  const {lat: lat1, lng: lng1} = findCountryPosition(user.location?.name);
-  const {lat: lat2, lng: lng2} = findCountryPosition(selectedTrip.country);
-  console.log(lat1, lng1, lat2, lng2)
+  let distance = 0;
+  if (user.location){
+    const {lat: lat1, lng: lng1} = findCountryPosition(user.location?.name);
+    const {lat: lat2, lng: lng2} = findCountryPosition(selectedTrip.country);
+    distance = getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
+  }
   
-  const distance=getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2)
-  console.log(distance, "distance")
 
   async function saveCoverImage(id) {
     console.log("id", id)
@@ -74,7 +73,7 @@ function TripPage() {
         <div className={`TripPage-title ${cityId !== undefined ? `TripPage-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
           <div className="TripPage-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
-            <div className="TripPage-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>
+            {distance>0 && <div className="TripPage-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>}
             <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
             <div className="TripPage-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
