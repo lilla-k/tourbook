@@ -30,9 +30,9 @@ function ProfilePage(){
                         <HomeIcon fontSize="small" className="ProfilePage-icon"/>
                         {user.location? 
                         <span>Lives in {user.location.name}</span> :
-                        <Link to={`/users/${user.uid}/edit`} >Add location</Link>} 
+                        <Link to={`/users/${user.uid}/edit`} className="ProfilePage-link" >Add location</Link>} 
                     </div>
-                    <div><FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>{trips.length} <Link to={`/trips`}>trips</Link></div>
+                    <div><FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>{trips.length} <Link to={`/trips`} className="ProfilePage-link">trips</Link></div>
                 </div>
                
             </div>
