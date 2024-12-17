@@ -3,8 +3,9 @@
     height: 100vh;
 }
 .ProfilePage-card{
-    margin: 100px auto;
-    width: 50%;
+    margin: 50px auto;
+    width: 600px;
+    max-width: calc(100% - 10px);
     display: flex;
     gap: 20px;  
 }
@@ -22,6 +23,8 @@
 .ProfilePage-title{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
     
 }
 .ProfilePage-name{
@@ -34,7 +37,7 @@
     border-radius: 5px;
     border: 1px solid var(--light-grey);
     font-size: 14px;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
 }
 
