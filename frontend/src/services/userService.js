@@ -1,5 +1,5 @@
 import firebaseApp from "./firebase";
-import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
 
@@ -16,7 +16,7 @@ const userServices = {
     },
     editUser: async function editUser(userId, userData) {
         const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, userData);
+        await setDoc(userRef, userData);
     }
 
 }
