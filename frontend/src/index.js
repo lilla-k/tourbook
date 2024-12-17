@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Root from './components/Root/Root';
 import Auth from './components/Auth/Auth';
 import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.js';
@@ -15,6 +12,8 @@ import ErrorPage from "./components/ErrorPage/ErrorPage.js";
 import GalleryPage from "./components/GalleryPage/GalleryPage.js";
 import ProfilePage from './components/ProfilePage/ProfilePage.js';
 import EditProfilePage from './components/EditProfilePage/EditProfilePage.js';
+import { ThemeProvider } from '@mui/material';
+import { theme } from './utils/theme.js';
 
 
 
@@ -22,7 +21,7 @@ import EditProfilePage from './components/EditProfilePage/EditProfilePage.js';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Auth><Root/></Auth>,
+    element: <ThemeProvider theme={theme}><Auth><Root/></Auth></ThemeProvider>,
     errorElement: <ErrorPage />,
     children: [
       {

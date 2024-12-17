@@ -1,10 +1,9 @@
+import { cloneElement } from 'react';
 import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
 import { useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
-import { cloneElement } from 'react';
 import SignIn from '../SignIn/SignIn.js';
-import { ThemeProvider } from '@mui/material';
-import { theme } from '../../utils/theme.js';
+
 
 const auth = getAuth(firebaseApp);
 setPersistence(auth, browserLocalPersistence);
@@ -32,11 +31,9 @@ const Auth = ({ children }) => {
     return clonedElement;
   }
   return (
-    <ThemeProvider theme={theme}>
       <div className="Auth">
         <SignIn signInWithGoogle={signInWithGoogle} signInWithEmailAndPassword={signInWithEmailAndPassword}/>
       </div>
-    </ThemeProvider>
   );
 };
 
