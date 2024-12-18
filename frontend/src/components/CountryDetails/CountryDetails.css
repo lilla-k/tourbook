@@ -1,3 +1,4 @@
 .CountryDetails{
-    flex-grow: 1;
+   flex-grow: 1;
+   min-width: 300px;
 }

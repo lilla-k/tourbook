@@ -81,7 +81,7 @@ function TripPage() {
       </div>
       <div className="TripPage-info">
         <div className="TripPage-visitedCities-container">
-          <div className="TripPage-visitedCities-title">VISITED CITIES</div>
+          <div className="TripPage-visitedCities-title">Visited cities</div>
           <div className="TripPage-visitedCities">
             {selectedTrip.visitedCities?.map(city => {
               return (

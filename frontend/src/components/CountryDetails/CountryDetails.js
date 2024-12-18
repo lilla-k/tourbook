@@ -9,7 +9,7 @@ import './CountryDetails.css';
 function CountryDetails({ selectedTrip }) {
 
 
-    const [selectedTab, setSelectedTab] = useState("country");
+    const [selectedTab, setSelectedTab] = useState("your experience");
 
     return (
         <div className="CountryDetails">
@@ -17,11 +17,11 @@ function CountryDetails({ selectedTrip }) {
                 <TabContext value={selectedTab}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <TabList onChange={(event, newValue)=>{setSelectedTab(newValue)}} aria-label="lab API tabs example">
+                            <Tab label="your experience" value="your experience" /> 
                             <Tab label={`About ${selectedTrip.country}`} value="country" />
-                            <Tab label="your experience" value="your experience" />
                         </TabList>
                     </Box>
-                    <TabPanel value="country">{selectedTrip.countryInformation}</TabPanel>
+                    <TabPanel value="country" sx={{pl: "2px"}}>{selectedTrip.countryInformation} </TabPanel>
                     <TabPanel value="your experience">{selectedTrip.tripExperience}</TabPanel>
                 </TabContext>
             </Box>

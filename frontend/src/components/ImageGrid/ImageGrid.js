@@ -34,10 +34,12 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
   function cancelDelete() {
     setSelectedImageToDelete(null);
   }
+  console.log(images)
+  console.log("length", images.length)
 
   return (
     <div className="ImageGrid">
-      <ImageList cols={cols} rowHeight={250}>
+      <ImageList cols={images.length===0?1:2} rowHeight={250}>
         {images?.map((image) => (
           <ImageListItem key={image.url}>
             <img
