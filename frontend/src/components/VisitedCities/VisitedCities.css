@@ -1,0 +1,58 @@
+.VisitedCities{
+    width: 180px;
+    min-height: 200px;
+    border-right: 1px solid var(--light-grey);
+    padding: 5px;
+}
+
+.VisitedCities-title{
+    padding: 10px 3px;
+    font-size: 26px;
+    white-space: nowrap;
+}
+
+.VisitedCities-container{
+    margin: 20px 0;
+}
+
+.VisitedCity{
+    background-color: var(--beige);
+    border: 2px dotted var(--light-grey);
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 5px 0;
+    margin: 5px 0;
+    display: flex;
+}
+
+.VisitedCity:hover{
+    background-color: rgba(232, 227, 227, 0.5);
+    cursor: pointer;
+}
+
+
+.selected:hover{
+    background-color: var(--light-grey);
+}
+
+.VisitedCityLink{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 170px;
+}
+
+.VisitedCity.selected{
+    background-color: var(--light-grey);
+}
+
+
+.VisitedCityIconEdit{
+    cursor: pointer;
+    display: none;
+}
+
+.VisitedCity:hover .VisitedCityIconEdit{
+    display: block;
+}

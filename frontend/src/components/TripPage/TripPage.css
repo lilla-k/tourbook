@@ -105,70 +105,12 @@
 
 .TripPage-info{
     display: flex;
-    gap: 50px;
+    gap: 40px;
     max-width: 1200px;
     width: calc(100% - 120px);
     margin: 20px auto;
 }
 
-.TripPage-visitedCities-container{
-    width: 180px;
-    min-height: 200px;
-    border-right: 1px solid var(--light-grey);
-    padding: 5px;
-}
-
-.TripPage-visitedCities-title{
-    padding: 10px 3px;
-    font-size: 26px;
-    white-space: nowrap;
-}
-
-.Trip-visitedCities{
-    margin: 20px 0;
-}
-
-.TripPage-visitedCity{
-    background-color: var(--beige);
-    border: 2px dotted var(--light-grey);
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 5px 0;
-    margin: 5px 0;
-    display: flex;
-}
-
-.TripPage-visitedCity:hover{
-    background-color: rgba(232, 227, 227, 0.5);
-    cursor: pointer;
-}
-
-
-.selected:hover{
-    background-color: var(--light-grey);
-}
-
-.TripPage-visitedCityLink{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    width: 170px;
-}
-
-.TripPage-visitedCity.selected{
-    background-color: var(--light-grey);
-}
-
-
-.TripPage-visitedCityIconEdit{
-    cursor: pointer;
-    display: none;
-}
-
-.TripPage-visitedCity:hover .TripPage-visitedCityIconEdit{
-    display: block;
-}
 
 .TripPage-details-arrow:hover {
     cursor: pointer;
@@ -183,6 +125,13 @@
     background-color: white;
     margin: 5px;
 }
+
+@media (max-width: 850px) {
+    .TripPage-info{
+        flex-direction: column;
+    }
+}
+
 
 
 

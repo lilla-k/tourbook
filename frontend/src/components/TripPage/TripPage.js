@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useParams, useOutletContext, Link, useNavigate } from 'react-router-dom';
+import { useParams, useOutletContext, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import Button from '@mui/material/Button';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import CityDetails from '../CityDetails/CityDetails.js';
 import CountryDetails from '../CountryDetails/CountryDetails.js';
@@ -13,8 +11,10 @@ import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
 import tripService from '../../services/tripService.js';
 import {findCountryPosition, getDistanceFromLatLonInKm} from '../../utils/location.js';
+import VisitedCities from '../VisitedCities/VisitedCities.js';
 import './TripPage.css';
 import '../../style/tooltip.css';
+
 
 
 function TripPage() {
@@ -81,27 +81,7 @@ function TripPage() {
         </div>
       </div>
       <div className="TripPage-info">
-        <div className="TripPage-visitedCities-container">
-          <div className="TripPage-visitedCities-title">Visited cities</div>
-          <div className="TripPage-visitedCities">
-            {selectedTrip.visitedCities?.map(city => {
-              return (
-                <div className={`TripPage-visitedCity ${city.cityId === selectedCity?.cityId ? `selected` : ``}`} key={city.cityId}>
-                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="TripPage-visitedCityLink" >
-                    <LocationOnIcon />
-                    <div>{city.cityName}</div>
-                  </Link>
-                  <div className="TripPage-visitedCityIconEdit">
-                    <EditIcon
-                      fontSize="small"
-                      onClick={() => navigate(`/trips/${selectedTrip.id}/${city.cityId}/edit`)} />
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-          <Button onClick={() => navigate(`/trips/${tripId}/addCity`)} variant="outlined">+ Add City</Button>
-        </div>
+        <VisitedCities selectedTrip={selectedTrip} selectedCity={selectedCity}/>
         {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
         <ImageGrid
           images={selectedCity === undefined ? allImages : cityImages}
