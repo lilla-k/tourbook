@@ -6,6 +6,7 @@ import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import tripService from '../../services/tripService.js';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
 
@@ -16,6 +17,9 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
   const coverImageSelecion = selection;
   const navigate = useNavigate();
   const { tripId } = useParams();
+
+  const isSmallScreen = useMediaQuery('(max-width:1300px)');
+  console.log(isSmallScreen);
 
   async function deleteImage() {
     console.log("delete image" + selectedImageToDelete);
@@ -38,8 +42,8 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
   console.log("length", images.length)
 
   return (
-    <div className="ImageGrid">
-      <ImageList cols={images.length===0?1:2} rowHeight={250}>
+    <div className="ImageGrid" style={{width: isSmallScreen?"300px":"600px"}}>
+      <ImageList cols={images.length===0|| isSmallScreen?1:2} rowHeight={250}>
         {images?.map((image) => (
           <ImageListItem key={image.url}>
             <img

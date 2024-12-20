@@ -152,15 +152,14 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: var(--dark-grey);
     cursor: pointer;
     width: 170px;
 }
 
 .TripPage-visitedCity.selected{
-    color: black;
     background-color: var(--light-grey);
 }
+
 
 .TripPage-visitedCityIconEdit{
     cursor: pointer;

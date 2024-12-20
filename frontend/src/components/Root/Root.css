@@ -28,4 +28,8 @@ html, body, #root{
   height: calc(100% - 65px);
 }
 
+a {
+  color: var(--dark-grey);
+}
+
 

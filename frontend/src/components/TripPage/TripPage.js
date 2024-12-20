@@ -44,6 +44,7 @@ function TripPage() {
     const {lat: lat2, lng: lng2} = findCountryPosition(selectedTrip.country);
     distance = getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
   }
+
   
 
   async function saveCoverImage(id) {
