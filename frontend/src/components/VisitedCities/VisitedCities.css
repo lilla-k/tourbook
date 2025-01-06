@@ -5,6 +5,10 @@
     padding: 5px;
 }
 
+.VisitedCities-citySelector{
+    width: 100%;
+}
+
 .VisitedCities-title{
     padding: 10px 3px;
     font-size: 26px;
@@ -56,3 +60,11 @@
 .VisitedCity:hover .VisitedCityIconEdit{
     display: block;
 }
+
+
+@media (max-width: 950px) {
+    .VisitedCities{
+        border-right: none;
+        min-height: 100px;
+    }
+ }
