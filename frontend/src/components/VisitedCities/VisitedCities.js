@@ -13,7 +13,7 @@ import './VisitedCities.css';
 function VisitedCities({ selectedTrip, selectedCity }) {
 
   console.log("selected trip", selectedTrip);
-  console.log("selected city", selectedCity.cityName);
+  console.log("selected city", selectedCity?.cityName);
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 
@@ -21,7 +21,7 @@ function VisitedCities({ selectedTrip, selectedCity }) {
   return (
     <div className="VisitedCities">
       {isSmallScreen ?
-        <FormControl className="VisitedCities-citySelector" >
+        selectedTrip.visitedCities?.length>0 && <FormControl className="VisitedCities-citySelector" >
           <InputLabel>City</InputLabel>
           <Select
             value={selectedCity?.cityId}

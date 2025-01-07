@@ -19,7 +19,6 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
   const { tripId } = useParams();
 
   const isSmallScreen = useMediaQuery('(max-width:1300px)');
-  console.log(isSmallScreen);
 
   async function deleteImage() {
     console.log("delete image" + selectedImageToDelete);
@@ -39,7 +38,6 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
     setSelectedImageToDelete(null);
   }
   console.log(images)
-  console.log("length", images.length)
 
   return (
     <div className="ImageGrid" style={{width: isSmallScreen?"300px":"600px"}}>
