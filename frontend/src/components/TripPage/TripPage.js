@@ -82,7 +82,7 @@ function TripPage() {
       </div>
       <div className="TripPage-info">
         <VisitedCities selectedTrip={selectedTrip} selectedCity={selectedCity}/>
-        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedCity={selectedCity} />}
+        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedTrip={selectedTrip} selectedCity={selectedCity} />}
         <ImageGrid
           images={selectedCity === undefined ? allImages : cityImages}
           selection={false}
