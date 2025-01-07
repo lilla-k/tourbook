@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import IconButton from '@mui/material/IconButton';
 
 import './VisitedCities.css';
 
@@ -21,17 +22,24 @@ function VisitedCities({ selectedTrip, selectedCity }) {
   return (
     <div className="VisitedCities">
       {isSmallScreen ?
-        selectedTrip.visitedCities?.length>0 && <FormControl className="VisitedCities-citySelector" >
-          <InputLabel>City</InputLabel>
-          <Select
-            value={selectedCity?.cityId}
-            label="City"  
-            onChange={(event) => navigate(`/trips/${selectedTrip.id}/${event.target.value}`)}
-            sx={{color: "#a19f9b"}}
-          >
-            {selectedTrip.visitedCities?.map(city => <MenuItem value={city.cityId} sx={{color: "#a19f9b"}}>{city.cityName}</MenuItem>)}
-          </Select>
-        </FormControl> :
+        selectedTrip.visitedCities?.length > 0 &&
+        <div>
+          <FormControl className="VisitedCities-citySelector" >
+            <InputLabel>City</InputLabel>
+            <Select
+              value={selectedCity?.cityId}
+              label="City"
+              onChange={(event) => navigate(`/trips/${selectedTrip.id}/${event.target.value}`)}
+              sx={{ color: "#a19f9b" }}
+            >
+              {selectedTrip.visitedCities?.map(city => <MenuItem value={city.cityId} sx={{ color: "#a19f9b" }}>{city.cityName}</MenuItem>)}
+            </Select>
+          </FormControl>
+          <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/${selectedCity?.cityId}/edit`)}>
+            <EditIcon fontSize="small" />
+          </IconButton>
+        </div>
+        :
         <div>
           <div className="VisitedCities-title">Visited cities</div>
           <div className="VisitedCities-container">
@@ -50,12 +58,12 @@ function VisitedCities({ selectedTrip, selectedCity }) {
                 </div>
               )
             })}
-           </div> 
-      </div>}
-      <Button 
-        onClick={() => navigate(`/trips/${selectedTrip.id}/addCity`)} 
+          </div>
+        </div>}
+      <Button
+        onClick={() => navigate(`/trips/${selectedTrip.id}/addCity`)}
         variant="outlined"
-        sx={{mt: "10px"}}
+        sx={{ mt: "10px" }}
       >+ Add City</Button>
     </div>
   )
