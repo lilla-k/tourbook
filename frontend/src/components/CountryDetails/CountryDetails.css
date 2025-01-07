@@ -3,7 +3,7 @@
    min-width: 200px;
 }
 
-@media (max-width: 950px) {
+@media (min-width: 650px) and (max-width: 950px) {
    .CountryDetails{
       min-width: 600px;
    }
