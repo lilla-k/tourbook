@@ -24,7 +24,7 @@ function VisitedCities({ selectedTrip, selectedCity }) {
       {isSmallScreen ?
         selectedTrip.visitedCities?.length > 0 &&
         <div>
-          <FormControl className="VisitedCities-citySelector" >
+          <FormControl className="VisitedCities-citySelector" size="small" >
             <InputLabel>City</InputLabel>
             <Select
               value={selectedCity?.cityId}
