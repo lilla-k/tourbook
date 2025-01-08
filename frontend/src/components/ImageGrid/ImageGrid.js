@@ -22,7 +22,7 @@ function ImageGrid({ images, selection, onClick, onNewClick, cols }) {
 
   async function deleteImage() {
     console.log("delete image" + selectedImageToDelete);
-    await tripService.deleteImage(tripId, selectedImageToDelete);
+    await tripService.deleteImage(user.uid, tripId, selectedImageToDelete);
     setSelectedImageToDelete(null)
     setToaster("successfully deleted");
     const trips = await tripService.getTrips(user.uid);

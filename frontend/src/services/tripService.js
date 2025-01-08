@@ -63,8 +63,8 @@ const tripServices = {
         const url = await getDownloadURL(imageRef);
         return {imageId, url};
     },
-    deleteImage: async function deleteImage(tripId, deletedImage) {
-        const imageRef = ref(storage, `images//${tripId}/${deletedImage.id}`);
+    deleteImage: async function deleteImage(userId, tripId, deletedImage) {
+        const imageRef = ref(storage, `images/${userId}/${tripId}/${deletedImage.id}`);
         deleteObject(imageRef).then(() => {
             console.log("File deleted successfully");
           }).catch((error) => {
