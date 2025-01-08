@@ -8,12 +8,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import {getTripTypes} from '../TripTypeIcons/tripTypeIcons.js';
 import countries from '../../countries.js';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.js';
+
 
 function NewEditTripPage() {
 
@@ -24,6 +27,8 @@ function NewEditTripPage() {
     const { tripId } = useParams();
     const { trips, setTrips, setToaster, user } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
+    const isSmallScreen = useMediaQuery('(max-width:950px)');
+
     const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
     const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
     const [country, setCountry] = useState(tripId ? selectedTrip.country : null);
@@ -93,7 +98,7 @@ function NewEditTripPage() {
                         className="NewEditTripPage-deleteButton"
                     >
                         <DeleteIcon className="NewEditTripPage-deleteIcon" fontSize="small" />
-                        DELETE
+                        {isSmallScreen? "": "DELETE"}
                     </Button>
                 }
             </div>
