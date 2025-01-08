@@ -1,5 +1,3 @@
-import './Root.css';
-import '@fontsource/roboto/700.css';
 import tripService from '../../services/tripService.js';
 import userService from '../../services/userService.js';
 import Header from '../Header/Header.js';
@@ -8,6 +6,9 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 
+import './Root.css';
+import '@fontsource/roboto/700.css';
+import '../../style/muiSelect.css';
 
 function Root({ user }) {
 

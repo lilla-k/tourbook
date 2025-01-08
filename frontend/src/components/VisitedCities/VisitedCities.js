@@ -30,9 +30,8 @@ function VisitedCities({ selectedTrip, selectedCity }) {
               value={selectedCity?.cityId}
               label="City"
               onChange={(event) => navigate(`/trips/${selectedTrip.id}/${event.target.value}`)}
-              sx={{ color: "#a19f9b" }}
             >
-              {selectedTrip.visitedCities?.map(city => <MenuItem value={city.cityId} sx={{ color: "#a19f9b" }}>{city.cityName}</MenuItem>)}
+              {selectedTrip.visitedCities?.map(city => <MenuItem value={city.cityId}>{city.cityName}</MenuItem>)}
             </Select>
           </FormControl>
           <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/${selectedCity?.cityId}/edit`)}>
