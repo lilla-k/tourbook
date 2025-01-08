@@ -10,13 +10,17 @@
 
 .Modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 700px;
+    max-width: 90%;
     max-height: 80%;
     border-radius: 5px;
     overflow: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .Modal-header{
