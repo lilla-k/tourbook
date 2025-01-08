@@ -56,15 +56,15 @@ const tripServices = {
             visitedCities: arrayRemove(deletedCity)
         });
     },
-    uploadImage: async function uploadImage(tripId, file) {
+    uploadImage: async function uploadImage(userId, tripId, file) {
         const imageId = crypto.randomUUID();
-        const imageRef = ref(storage, `images/${tripId}/${imageId}`);
+        const imageRef = ref(storage, `images/${userId}/${tripId}/${imageId}`);
         await uploadBytes(imageRef, file);
         const url = await getDownloadURL(imageRef);
         return {imageId, url};
     },
     deleteImage: async function deleteImage(tripId, deletedImage) {
-        const imageRef = ref(storage, `images/${tripId}/${deletedImage.id}`);
+        const imageRef = ref(storage, `images//${tripId}/${deletedImage.id}`);
         deleteObject(imageRef).then(() => {
             console.log("File deleted successfully");
           }).catch((error) => {

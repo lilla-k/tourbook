@@ -15,6 +15,7 @@ function FileUploadModal({onClose}) {
   const [title, setTitle] = useState("");
 
   const { setTrips, setToaster, user } = useOutletContext();
+  console.log("user id", user.uid)
   const { tripId, cityId } = useParams();
 
 
@@ -27,7 +28,7 @@ function FileUploadModal({onClose}) {
 
 
   async function uploadImage() {
-    const { imageId, url } = await tripService.uploadImage(tripId, file);
+    const { imageId, url } = await tripService.uploadImage(user.uid, tripId, file);
     await tripService.postImageData(tripId, {id: imageId, url, title, cityId: cityId === undefined ? null: cityId});
     setToaster("image uploaded");
     const trips = await tripService.getTrips(user.uid); 
