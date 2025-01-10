@@ -123,10 +123,10 @@ function NewEditTripPage() {
                     options={countriesArray}
                     value={country}
                     onChange={(e, selectedValue) => setCountry(selectedValue)}
-                    renderInput={(params) => <TextField {...params} label="Country" />}
+                    renderInput={(params) => <TextField {...params} label="Country *" />}
                 />
                 <FormControl className="NewEditTripPage-typeSelector">
-                    <InputLabel>Trip type</InputLabel>
+                    <InputLabel>Trip type *</InputLabel>
                     <Select
                         value={tripType}
                         label="Trip type"
@@ -159,7 +159,12 @@ function NewEditTripPage() {
                     />
                 </div>
                 <div className="NewEditTripPage-saveButton">
-                    <Button variant="outlined" onClick={tripId ? () => editTripData() : () => postTripData()}>{tripId ? "Save" : "Add"}</Button>
+                    <Button variant="outlined" 
+                        onClick = {tripId ? () => editTripData() : () => postTripData()}
+                        disabled = {startDate==="" || endDate==="" || country===null || tripType===""}
+                    >
+                        {tripId ? "Save" : "Add"}
+                    </Button>
                 </div>
             </div>
         </div>
