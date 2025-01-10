@@ -1,8 +1,9 @@
 
 .NewEditCityPage{
-    margin: auto;
+    margin: 50px auto;
     display: block;
     width: 700px;
+    max-width: 90%;
 }
 
 .NewEditCityPage-header{
@@ -11,7 +12,6 @@
     color: var(--dark-grey);
     font-weight: 700;
     font-size: 32px;
-    margin: 50px auto;
 }
 
 .NewEditCityPage-headerStart{
@@ -38,6 +38,7 @@
 
 .NewEditCityPage-form{
     width: 700px;
+    max-width: 100%;
     margin: 60px 0;
 }
 
