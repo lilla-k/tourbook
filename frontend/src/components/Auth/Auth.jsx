@@ -3,6 +3,7 @@ import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
 import { useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
 import SignIn from '../SignIn/SignIn.js';
+import Loading from '../Loading/Loading.js';
 
 
 const auth = getAuth(firebaseApp);
@@ -24,7 +25,7 @@ const Auth = ({ children }) => {
     );
   }
   if (googleLoading || emailLoading) {
-    return <p>Loading...</p>;
+    return <Loading/>;
   }
   if (googleUser || emailUser) {
     const clonedElement = cloneElement(children, { user: googleUser?.user || emailUser.user});
