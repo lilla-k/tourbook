@@ -138,16 +138,6 @@ function NewEditTripPage() {
                         <MenuItem value={tripTypeArray[3]}>{tripTypeArray[3]}</MenuItem>
                     </Select>
                 </FormControl>
-                <div className="NewEditTripPage-countryInformation">
-                    <TextField
-                        label="Country Information"
-                        placeholder="eg. language, population, religion, history"
-                        multiline
-                        rows={4}
-                        value={countryInformation}
-                        onChange={e => setCountryInformation(e.target.value)}
-                    />
-                </div>
                 <div className="NewEditTripPage-experience">
                     <TextField
                         label="Your experience"
@@ -156,6 +146,16 @@ function NewEditTripPage() {
                         rows={4}
                         value={tripExperience}
                         onChange={e => setTripExperience(e.target.value)}
+                    />
+                </div>
+                <div className="NewEditTripPage-countryInformation">
+                    <TextField
+                        label="Country Information"
+                        placeholder="eg. language, population, religion, history"
+                        multiline
+                        rows={4}
+                        value={countryInformation}
+                        onChange={e => setCountryInformation(e.target.value)}
                     />
                 </div>
                 <div className="NewEditTripPage-saveButton">
