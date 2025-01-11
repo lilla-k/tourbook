@@ -38,7 +38,7 @@ function TripCard({ tripId, tripType, countryName, coverImage, startDate }) {
                 }
                 <div className="TripCard-details">
                     <div className="TripCard-name">{countryName}</div>
-                    <div>{new Date(startDate).toLocaleDateString("en-EN")}</div>
+                    <div>{startDate.toLocaleDateString("en-EN")}</div>
                      <DeleteIcon className="TripCard-deleteIcon" onClick={deleteConfirmation} />
                 </div>
             </Link>

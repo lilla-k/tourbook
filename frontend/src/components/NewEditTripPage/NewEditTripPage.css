@@ -35,25 +35,6 @@
     margin: 30px 0;
 }
 
-.NewEditTripPage-start, .NewEditTripPage-end{
-    color: rgba(0, 0, 0, 0.87);
-    background-color: var(--beige);
-    padding: 14px;
-    margin-right: 10px;
-    border: 1px solid var(--dark-grey);
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.NewEditTripPage-start:hover, .NewEditTripPage-end:hover{
-    border-color: rgba(0, 0, 0, 0.87);
-}
-
-.NewEditTripPage-start:focus-visible, .NewEditTripPage-end:focus-visible{
-    outline-color: rgb(25, 118, 210);
-}
-
-
 .NewEditTripPage-countrySelector{
     width: 300px;
 }

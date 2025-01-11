@@ -43,7 +43,7 @@ function GalleryPage() {
             <div className="GalleryPage-fixedLayout">
                 <div className="GalleryPage-header">
                     <div className="GalleryPage-details">
-                        <div className="GalleryPage-country">{new Date(selectedTrip.startDate).getFullYear()} - {selectedTrip.country}</div>
+                        <div className="GalleryPage-country">{selectedTrip.startDate.getFullYear()} - {selectedTrip.country}</div>
                         <div>{selectedImage.title}</div>
                     </div>
                     <div className="GalleryPage-closeBtn">

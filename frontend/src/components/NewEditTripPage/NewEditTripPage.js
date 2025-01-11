@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,8 +11,11 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import {getTripTypes} from '../TripTypeIcons/tripTypeIcons.js';
+import { getTripTypes } from '../TripTypeIcons/tripTypeIcons.js';
 import countries from '../../countries.js';
 import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
@@ -29,13 +33,14 @@ function NewEditTripPage() {
     const selectedTrip = trips.find(trip => trip.id === tripId);
     const isSmallScreen = useMediaQuery('(max-width:950px)');
 
-    const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : "");
-    const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : "");
+    const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : null);
+    const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : null);
     const [country, setCountry] = useState(tripId ? selectedTrip.country : null);
     const [countryInformation, setCountryInformation] = useState(tripId ? selectedTrip.countryInformation : "");
     const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
     const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
 
     const tripData = {
         startDate: startDate,
@@ -48,8 +53,9 @@ function NewEditTripPage() {
         tripExperience: tripExperience
     }
 
+    console.log("tripData", tripData)
     async function postTripData() {
-        const tripId = await tripService.postTrip({...tripData, userId: user.uid }); // TODO: get userId from context
+        const tripId = await tripService.postTrip({ ...tripData, userId: user.uid }); // TODO: get userId from context
         setToaster("successfully created");
         const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
@@ -88,7 +94,7 @@ function NewEditTripPage() {
                     <div className="NewEditTripPage-arrowBackIcon">
                         <ArrowBackIcon onClick={tripId ? () => navigate(`/trips/${selectedTrip.id}`) : () => navigate("/trips/")} />
                     </div>
-                    <div className="NewEditTripPage-title">{tripId?"Edit your trip": "Add a new trip"}</div>
+                    <div className="NewEditTripPage-title">{tripId ? "Edit your trip" : "Add a new trip"}</div>
                 </div>
                 {tripId &&
                     <Button
@@ -98,24 +104,27 @@ function NewEditTripPage() {
                         className="NewEditTripPage-deleteButton"
                     >
                         <DeleteIcon className="NewEditTripPage-deleteIcon" fontSize="small" />
-                        {isSmallScreen? "": "DELETE"}
+                        {isSmallScreen ? "" : "DELETE"}
                     </Button>
                 }
             </div>
             {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteTrip} onCancel={cancelDelete} type="trip" />}
             <div className="NewEditTripPage-form">
                 <div className="NewEditTripPage-dates">
-                    <input
-                        type="date"
-                        value={startDate}
-                        className="NewEditTripPage-start"
-                        onChange={e => setStartDate(e.target.value)} />
-                    {startDate && <input
-                        type="date"
-                        value={endDate}
-                        min={startDate}
-                        className="NewEditTripPage-end"
-                        onChange={e => setEndDate(e.target.value)} />}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                label="Start date *"
+                                value={dayjs(startDate)}
+                                onChange={(newDate) => setStartDate(newDate)}
+                                className="NewEditTripPage-start"
+                            />
+                            {startDate && <DatePicker
+                                label="End date *"
+                                disablePast
+                                value={dayjs(endDate)}
+                                onChange={(newDate) => setEndDate(newDate)}  
+                            />}
+                    </LocalizationProvider>
                 </div>
                 <Autocomplete
                     className="NewEditTripPage-countrySelector"
@@ -159,9 +168,9 @@ function NewEditTripPage() {
                     />
                 </div>
                 <div className="NewEditTripPage-saveButton">
-                    <Button variant="outlined" 
-                        onClick = {tripId ? () => editTripData() : () => postTripData()}
-                        disabled = {startDate==="" || endDate==="" || country===null || tripType===""}
+                    <Button variant="outlined"
+                        onClick={tripId ? () => editTripData() : () => postTripData()}
+                        disabled={startDate === "" || endDate === "" || country === null || tripType === ""}
                     >
                         {tripId ? "Save" : "Add"}
                     </Button>

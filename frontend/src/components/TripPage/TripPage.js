@@ -70,7 +70,7 @@ function TripPage() {
             <div>{selectedTrip.country.toUpperCase()}</div>
             {distance > 0 && <div className="TripPage-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>}
             <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
-            <div className="TripPage-date">{new Date(selectedTrip.startDate).toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
+            <div className="TripPage-date">{selectedTrip.startDate.toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
         <button

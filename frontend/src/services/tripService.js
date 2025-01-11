@@ -1,6 +1,7 @@
 import firebaseApp from "./firebase";
 import { getFirestore, collection, query, where, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import {toISODateString, toDateObject} from '../utils/date.js';
 
 
 const db = getFirestore(firebaseApp);
@@ -13,10 +14,14 @@ const tripServices = {
         const q = query(collection(db, "trips"), where("userId", "==", userId));
         const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-        return tripList;
+        return tripList.map(trip => ({
+            ...trip,
+            startDate: toDateObject(trip.startDate),
+            endDate: toDateObject(trip.endDate),
+        }));
     },
     postTrip: async function postTrip(tripData) {
-        const docRef = await addDoc(collection(db, "trips"), tripData);
+        const docRef = await addDoc(collection(db, "trips"), {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)});
         return docRef.id;
     },
     postCity: async function postCity(tripId, cityData) {
