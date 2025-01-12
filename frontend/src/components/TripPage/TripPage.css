@@ -25,6 +25,7 @@
     padding: 9px;
     cursor: pointer;
     align-self: flex-end;
+    position: relative;
 }
 
 .TripPage-edit-icon-container:hover{
