@@ -116,7 +116,6 @@ function NewEditTripPage() {
                                 label="Start date *"
                                 value={dayjs(startDate)}
                                 onChange={(newDate) => setStartDate(newDate)}
-                                className="NewEditTripPage-start"
                             />
                             {startDate && <DatePicker
                                 label="End date *"
