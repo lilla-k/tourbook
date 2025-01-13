@@ -115,7 +115,7 @@ function NewEditCityPage() {
       <div className="NewEditCityPage-saveButton">
         <Button
           variant="outlined"
-          disabled={!isCityNameValid()}
+          disabled={!isCityNameValid() || cityName === ""}
           onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}
         </Button>
       </div>
