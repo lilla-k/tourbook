@@ -45,7 +45,7 @@ function NewEditCityPage() {
     navigate(`/trips/${tripId}/${cityId}`);
   }
 
-  function isCityNameValid() {
+  function doesCityNameExist() {
     const selectedTripCities = selectedTrip.visitedCities?.map(city => city.cityName);
     return !selectedTripCities?.includes(cityName) || cityName === selectedCity?.cityName;
   }
@@ -100,7 +100,7 @@ function NewEditCityPage() {
           autoFocus
         />
       </div>}
-      {!isCityNameValid() && <div className="NewEditCityPage-alreadyExist">This city is added already</div>}
+      {!doesCityNameExist() && <div className="NewEditCityPage-alreadyExist">This city is added already</div>}
       <div className="NewEditCityPage-cityInformation">
         <TextField
           label="City Information"
@@ -115,7 +115,7 @@ function NewEditCityPage() {
       <div className="NewEditCityPage-saveButton">
         <Button
           variant="outlined"
-          disabled={!isCityNameValid() || cityName === ""}
+          disabled={!doesCityNameExist() || cityName === ""}
           onClick={cityId ? () => editCityData() : () => postCityData()} >{cityId ? "Save" : "Add"}
         </Button>
       </div>
