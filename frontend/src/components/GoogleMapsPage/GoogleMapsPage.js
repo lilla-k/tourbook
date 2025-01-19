@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { APIProvider, Map, Marker, InfoWindow, useMarkerRef } from '@vis.gl/react-google-maps';
+import {Polygon} from '../Polygon/Polygon.js';
+
 import MapStyle from './MapStyle.js';
 import {findCountryPosition} from '../../utils/location.js';
 import './GoogleMapsPage.css';
@@ -32,8 +34,8 @@ function GoogleMapsPage() {
                 position={findCountryPosition(trip.country)}
                 onMouseOver={() => setSelectedTour(trip.id)}
                 onClick={() => navigate(`/trips/${trip.id}`)}
-
               />
+              <Polygon strokeWeight={1.5} fillColor="green" strokeColor="red" paths={[[{ lat: 42, lng: 17}, { lat: 42, lng: 0}, { lat: 0, lng: 17}]]} />
               {selectedTour === trip.id &&
                 <InfoWindow className="Map-InfoWindow" anchor={marker} >
                   <h2 className="Map-InfoWindow-title">{trip.country}</h2>
