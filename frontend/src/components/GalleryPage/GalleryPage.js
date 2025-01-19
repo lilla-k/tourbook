@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
+import { useEffect, useState } from 'react';
+import Loading from '../Loading/Loading';
 
 function GalleryPage() {
 
@@ -11,12 +13,17 @@ function GalleryPage() {
     console.log(imageId, "imageId")
     const { trips } = useOutletContext();
     const navigate = useNavigate();
+    const [ loading, setLoading ] = useState(true);
     const selectedTrip = trips.find(trip => trip.id === tripId);
     console.log(selectedTrip, "selectedTrip")
     const numberOfImages=selectedTrip.images.length;
     const selectedImage = selectedTrip.images.find(image => image.id === imageId)
     console.log(selectedImage, "selectedImage")
     const indexOfSelectedImage = selectedTrip.images.findIndex(image => image.id === imageId)
+
+    useEffect(() => {
+        setLoading(true);
+    }, [imageId])
 
 
     function showPreviousImage(){
@@ -39,7 +46,8 @@ function GalleryPage() {
 
     return (
         <div className="GalleryPage">
-            <img className="GalleryPage-selectedImage" alt="hello" src={selectedImage.url}></img>
+            <img className="GalleryPage-selectedImage" alt="hello" src={selectedImage.url} onLoad={() => setLoading(false)} />
+            <Loading hidden={!loading}/>
             <div className="GalleryPage-fixedLayout">
                 <div className="GalleryPage-header">
                     <div className="GalleryPage-details">

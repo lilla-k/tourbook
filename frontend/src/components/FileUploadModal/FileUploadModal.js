@@ -14,11 +14,8 @@ function FileUploadModal({onClose}) {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [title, setTitle] = useState("");
 
-  console.log("file", file);
-  console.log("previewUrl", previewUrl);
 
   const { setTrips, setToaster, user } = useOutletContext();
-  console.log("user id", user.uid)
   const { tripId, cityId } = useParams();
 
 

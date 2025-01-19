@@ -1,6 +1,6 @@
 import firebaseApp from "./firebase";
 import { getFirestore, collection, query, where, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject, updateMetadata } from "firebase/storage";
 import {toISODateString, toDateObject} from '../utils/date.js';
 
 
@@ -65,6 +65,7 @@ const tripServices = {
         const imageId = crypto.randomUUID();
         const imageRef = ref(storage, `images/${userId}/${tripId}/${imageId}`);
         await uploadBytes(imageRef, file);
+        await updateMetadata(imageRef, { cacheControl: 'private,max-age=86400' });
         const url = await getDownloadURL(imageRef);
         return {imageId, url};
     },

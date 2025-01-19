@@ -5,6 +5,12 @@
     height: 80px;
     top: 50%;
     left: 50%;
+    opacity: 1;
+    transition: opacity ease-in-out 0.2s 0.1s;
+}
+
+.lds-ellipsis.hidden {
+    opacity: 0;
 }
 
 .lds-ellipsis div {
