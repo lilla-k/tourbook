@@ -118,7 +118,7 @@ function NewEditTripPage() {
                             />
                             {startDate && <DatePicker
                                 label="End date *"
-                                disablePast
+                                minDate = {startDate}
                                 value={dayjs(endDate)}
                                 onChange={(newDate) => setEndDate(newDate)}  
                             />}
