@@ -10,9 +10,13 @@ export function findCountryPosition(country) {
 export function findCountryBorders(country){
   const countryObj = countries.find(c => c.properties.name === country);
   const depth = countryObj.geometry.coordinates[0][0][0][0] === undefined ? 2 : 3;
-  const coordinatesArray = depth === 3 ? countryObj.geometry.coordinates[0]: countryObj.geometry.coordinates;
+  const coordinatesArray = depth === 3 ? mergeCountryArrays(countryObj): countryObj.geometry.coordinates;
   const coordinateObjectsArray = coordinatesArray.map(a=>a.map(coorinateArray=> ({lat: coorinateArray[1], lng: coorinateArray[0]})));
   return coordinateObjectsArray;
+}
+
+function mergeCountryArrays(country){
+  return [].concat(...country.geometry.coordinates);
 }
 
 export const countryNames = countries.map(c=>c.properties.name).sort();
