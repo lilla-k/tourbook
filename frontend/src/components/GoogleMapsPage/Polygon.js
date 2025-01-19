@@ -63,7 +63,7 @@ import {
       return () => {
         polygon.setMap(null);
       };
-    }, [map]);
+    }, [map, polygon]);
   
     // attach and re-attach event-handlers when any of the properties change
     useEffect(() => {
@@ -88,7 +88,7 @@ import {
       return () => {
         gme.clearInstanceListeners(polygon);
       };
-    }, [polygon]);
+    }, [polygon, maps.event]);
   
     return polygon;
   }
@@ -99,7 +99,7 @@ import {
   export const Polygon = forwardRef((props, ref) => {
     const polygon = usePolygon(props);
   
-    useImperativeHandle(ref, () => polygon, []);
+    useImperativeHandle(ref, () => polygon, [polygon]);
   
     return null;
   });
