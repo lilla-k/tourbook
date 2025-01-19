@@ -7,7 +7,7 @@ import {
     useRef
   } from 'react';
   
-  import {GoogleMapsContext, useMapsLibrary} from '@vis.gl/react-google-maps';
+  import {GoogleMapsContext} from '@vis.gl/react-google-maps';
   
   function usePolygon(props) {
     const {
@@ -31,13 +31,7 @@ import {
       onMouseOut
     });
 
-    const maps = {
-        ...useMapsLibrary('core'),
-        ...useMapsLibrary('maps'),
-    };
-
-  
-    const polygon = useRef(new maps.Polygon()).current;
+    const polygon = useRef(new window.google.maps.Polygon()).current;
     // update PolygonOptions (note the dependencies aren't properly checked
     // here, we just assume that setOptions is smart enough to not waste a
     // lot of time updating values that didn't change)
@@ -70,7 +64,7 @@ import {
       if (!polygon) return;
   
       // Add event listeners
-      const gme = maps.event;
+      const gme = window.google.maps.event;
       [
         ['click', 'onClick'],
         ['drag', 'onDrag'],
@@ -88,7 +82,7 @@ import {
       return () => {
         gme.clearInstanceListeners(polygon);
       };
-    }, [polygon, maps.event]);
+    }, [polygon]);
   
     return polygon;
   }
