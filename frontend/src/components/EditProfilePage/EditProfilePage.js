@@ -8,11 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-
-import countries from '../../countries.js';
-import {findCountryPosition} from '../../utils/location.js';
+import {findCountryPosition, countryNames} from '../../utils/location.js';
 import userServices from '../../services/userService.js';
-
 
 import './EditProfilePage.css';
 
@@ -20,8 +17,7 @@ function EditProfilePage(){
 
     const navigate = useNavigate();
     const { user, setToaster, setUserData } = useOutletContext();
-    console.log(user);
-    const countriesArray = countries.map(country => country.name).sort();
+    
 
     const [locationName, setLocationName] = useState(user.location?.name ? user.location.name : null);
     const [isPublicProfile, setIsPublicProfile] = useState(user.publicProfile? user.publicProfile: false);
@@ -59,7 +55,7 @@ function EditProfilePage(){
                 <Autocomplete
                     className="EditProfilePage-locationSelector"
                     disablePortal
-                    options={countriesArray}
+                    options={countryNames}
                     value={locationName}
                     onChange={(e, selectedValue) => setLocationName(selectedValue)}
                     renderInput={(params) => <TextField {...params} label="Location" />}

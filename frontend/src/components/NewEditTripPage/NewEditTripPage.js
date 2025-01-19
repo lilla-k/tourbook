@@ -16,7 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { getTripTypes } from '../TripTypeIcons/tripTypeIcons.js';
-import countries from '../../countries.js';
+import {countryNames} from '../../utils/location.js';
 import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.js';
@@ -25,7 +25,6 @@ import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmati
 function NewEditTripPage() {
 
     const navigate = useNavigate();
-    const countriesArray = countries.map(country => country.name).sort();
     const tripTypeArray = getTripTypes();
     console.log(tripTypeArray)
     const { tripId } = useParams();
@@ -128,7 +127,7 @@ function NewEditTripPage() {
                 <Autocomplete
                     className="NewEditTripPage-countrySelector"
                     disablePortal
-                    options={countriesArray}
+                    options={countryNames}
                     value={country}
                     onChange={(e, selectedValue) => setCountry(selectedValue)}
                     renderInput={(params) => <TextField {...params} label="Country *" />}

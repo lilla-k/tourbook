@@ -1,21 +1,21 @@
 import countries from '../countries.js';
-import countryBorders from '../countryBorders.js';
 
 
 export function findCountryPosition(country) {
-    const countryObj = countries.find(c => c.name === country);
-    const coordinateObj = { lat: countryObj.lat, lng: countryObj.lng };
-    console.log(coordinateObj)
+    const countryObj = countries.find(c => c.properties.name === country);
+    const coordinateObj = { lat: countryObj.properties.label_y, lng: countryObj.properties.label_x };
     return coordinateObj;
 }
 
 export function findCountryBorders(country){
-  const countryObj = countryBorders.find(c => c.properties.name === country);
+  const countryObj = countries.find(c => c.properties.name === country);
   const depth = countryObj.geometry.coordinates[0][0][0][0] === undefined ? 2 : 3;
   const coordinatesArray = depth === 3 ? countryObj.geometry.coordinates[0]: countryObj.geometry.coordinates;
   const coordinateObjectsArray = coordinatesArray.map(a=>a.map(coorinateArray=> ({lat: coorinateArray[1], lng: coorinateArray[0]})));
   return coordinateObjectsArray;
 }
+
+export const countryNames = countries.map(c=>c.properties.name).sort();
 
 export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     console.log(lat1,lon1,lat2,lon2)
