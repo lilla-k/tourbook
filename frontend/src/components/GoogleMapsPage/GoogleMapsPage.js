@@ -12,6 +12,9 @@ function GoogleMapsPage() {
   const navigate = useNavigate();
   const { trips } = useOutletContext();
 
+  //strokeColor="red"
+  //strokeWeight={1.5} 
+
   return (
     <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
       <Map
@@ -25,7 +28,7 @@ function GoogleMapsPage() {
         {trips.map(trip => {
           return (
             <>
-              <Polygon strokeWeight={1.5} fillColor="green" strokeColor="red" paths={findCountryBorders(trip.country)} onClick={() => navigate(`/trips/${trip.id}`)}/>
+              <Polygon fillColor="#0d9cb3" strokeWeight={1.3} strokeColor="#76b4be" paths={findCountryBorders(trip.country)} onClick={() => navigate(`/trips/${trip.id}`)}/>
             </>
           )
         })}
