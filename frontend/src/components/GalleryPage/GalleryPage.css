@@ -30,9 +30,14 @@
     color: var(--dark-green);
 }
 
+.GalleryPage-details{
+    background-color: var(--beige);
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .GalleryPage-country{
     margin: 5px 0;
-    background-color: #eaeff1a2;
 }
 
 .GalleryPage-closeBtn{
