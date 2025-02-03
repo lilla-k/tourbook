@@ -1,34 +1,29 @@
 import { cloneElement } from 'react';
-import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
-import { useSignInWithGoogle, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import { useSignInWithGoogle, useSignInWithEmailAndPassword, useAuthState } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
 import SignIn from '../SignIn/SignIn.js';
 import Loading from '../Loading/Loading.js';
 
 
 const auth = getAuth(firebaseApp);
-setPersistence(auth, browserLocalPersistence);
-
 
 const Auth = ({ children }) => {
-
-  const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] = useSignInWithEmailAndPassword(auth);
-  // const [signOut] = useSignOut(auth);
-
-
-  if (googleError||emailError) {
+  const [user, loading, error] = useAuthState(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  if (error) {
     return (
       <div>
-        <p>Error: {googleError?.message||emailError.message}</p>
+        <p>Error: {error.message}</p>
       </div>
     );
   }
-  if (googleLoading || emailLoading) {
+  if (loading) {
     return <Loading/>;
   }
-  if (googleUser || emailUser) {
-    const clonedElement = cloneElement(children, { user: googleUser?.user || emailUser.user});
+  if (user) {
+    const clonedElement = cloneElement(children, { user: user});
     return clonedElement;
   }
   return (

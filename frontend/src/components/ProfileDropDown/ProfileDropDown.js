@@ -5,17 +5,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useSignOut } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
+import firebaseApp from '../../services/firebase';
 
-
+const auth = getAuth(firebaseApp)
 
 function ProfileDropDown({ user, open, accountElementRef, handleClose }) {
 
     const navigate = useNavigate();
+    const [signOut] = useSignOut(auth);
 
     const dropDownItems = [
         { icon: <PersonIcon />, content: user.displayName || user.email, onClick: () => navigate(`/users/${user.uid}`) },
         { icon: <LanguageIcon />, content: "HU", onClick: () => console.log("language") },
-        { icon: <LogoutIcon />, content: "Log Out", onClick: () => console.log("log out") }
+        { icon: <LogoutIcon />, content: "Log Out", onClick: () => signOut() }
     ]
 
     return (
