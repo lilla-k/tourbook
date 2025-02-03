@@ -26,7 +26,6 @@ function NewEditTripPage() {
 
     const navigate = useNavigate();
     const tripTypeArray = getTripTypes();
-    console.log(tripTypeArray)
     const { tripId } = useParams();
     const { trips, setTrips, setToaster, user } = useOutletContext();
     const selectedTrip = trips.find(trip => trip.id === tripId);
@@ -52,7 +51,6 @@ function NewEditTripPage() {
         tripExperience: tripExperience
     }
 
-    console.log("tripData", tripData)
     async function postTripData() {
         const tripId = await tripService.postTrip({ ...tripData, userId: user.uid }); // TODO: get userId from context
         setToaster("successfully created");
@@ -118,7 +116,7 @@ function NewEditTripPage() {
                             />
                             {startDate && <DatePicker
                                 label="End date *"
-                                minDate = {startDate}
+                                minDate = {dayjs(startDate)}
                                 value={dayjs(endDate)}
                                 onChange={(newDate) => setEndDate(newDate)}  
                             />}
@@ -168,7 +166,7 @@ function NewEditTripPage() {
                 <div className="NewEditTripPage-saveButton">
                     <Button variant="outlined"
                         onClick={tripId ? () => editTripData() : () => postTripData()}
-                        disabled={startDate === "" || endDate === "" || country === null || tripType === ""}
+                        disabled={startDate === null || endDate === null || country === null || tripType === ""}
                     >
                         {tripId ? "Save" : "Add"}
                     </Button>
