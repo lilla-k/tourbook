@@ -24,7 +24,7 @@ function Root({ user }) {
       const [trips, userData] = await Promise.all([tripService.getTrips(user.uid), userService.getUser(user.uid)]);
       setTrips(trips);
       setUserData(userData);
-      setMapCamera({...mapCamera, center: {lat: userData.location.lat, lng: userData.location.lng}});
+      setMapCamera(camera => ({...camera, center: {lat: userData.location.lat, lng: userData.location.lng}}));
       setLoading(false);
     })();
   }, [user])
