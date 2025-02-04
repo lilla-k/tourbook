@@ -10,16 +10,15 @@ import './GoogleMapsPage.css';
 function GoogleMapsPage() {
 
   const navigate = useNavigate();
-  const { trips } = useOutletContext();
-
-  //strokeColor="red"
-  //strokeWeight={1.5} 
-
+  const { trips, mapCamera, setMapCamera } = useOutletContext();
+  
   return (
     <APIProvider apiKey={'AIzaSyBm0QjFlzIeB_Cl_e7lCMPagSRYcNkzGZI'}>
       <Map
-        center={{ lat: 40, lng: 10.00678 }}
-        zoom={2.2}
+        center={mapCamera.center}
+        zoom={mapCamera.zoom}
+        onCenterChanged={(event)=>setMapCamera({ ...mapCamera, center: event.detail.center })}
+        onZoomChanged={(event)=>setMapCamera({ ...mapCamera, zoom: event.detail.zoom })}
         fullscreenControl={false}
         mapTypeControl={false}
         streetViewControl={false}
