@@ -7,6 +7,13 @@ import {toISODateString, toDateObject} from '../utils/date.js';
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
+function tripDataFromDatabaseObejct(trip){
+    return {...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate)}
+}
+
+function  tripDataToDatabaseObejct(tripData) {
+    return {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)}
+}
 
 // TODO: error handling
 const tripServices = {
@@ -14,14 +21,10 @@ const tripServices = {
         const q = query(collection(db, "users", userId, "trips"));
         const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-        return tripList.map(trip => ({
-            ...trip,
-            startDate: toDateObject(trip.startDate),
-            endDate: toDateObject(trip.endDate),
-        }));
+        return tripList.map(trip => (tripDataFromDatabaseObejct(trip)));
     },
     postTrip: async function postTrip(userId, tripData) {
-        const docRef = await addDoc(collection(db, "users", userId, "trips"), {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)});
+        const docRef = await addDoc(collection(db, "users", userId, "trips"), tripDataToDatabaseObejct(tripData));
         return docRef.id;
     },
     postCity: async function postCity(userId, tripId, cityData) {
@@ -40,7 +43,7 @@ const tripServices = {
     },
     editTrip: async function editTrip(userId, tripId, tripData) {
         const tripRef = doc(db, "users", userId, "trips", tripId);
-        await updateDoc(tripRef, tripData);
+        await updateDoc(tripRef, tripDataToDatabaseObejct(tripData));
     },
     editCity: async function editCity(userId, tripId, oldCityData, newCityData) { 
         const tripRef = doc(db, "users", userId, "trips", tripId);
