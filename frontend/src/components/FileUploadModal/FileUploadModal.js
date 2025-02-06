@@ -29,7 +29,7 @@ function FileUploadModal({onClose}) {
 
   async function uploadImage() {
     const { imageId, url } = await tripService.uploadImage(user.uid, tripId, file);
-    await tripService.postImageData(tripId, {id: imageId, url, title, cityId: cityId === undefined ? null: cityId});
+    await tripService.postImageData(user.uid, tripId, {id: imageId, url, title, cityId: cityId === undefined ? null: cityId});
     setToaster("image uploaded");
     const trips = await tripService.getTrips(user.uid); 
     setTrips(trips);

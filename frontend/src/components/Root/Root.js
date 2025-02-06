@@ -17,7 +17,6 @@ function Root({ user }) {
   const [toaster, setToaster] = useState("");
   const [userData, setUserData] = useState({});
   const [mapCamera, setMapCamera] = useState({zoom: 2.4, center: { lat: 40, lng: 10 }});
-  console.log(mapCamera)
 
   useEffect(() => {
     (async () => {

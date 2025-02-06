@@ -30,7 +30,7 @@ function NewEditCityPage() {
   }
 
   async function postCityData() {
-    const cityId = await tripService.postCity(tripId, cityData);
+    const cityId = await tripService.postCity(user.uid, tripId, cityData);
     setToaster("successfully created");
     const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
@@ -38,7 +38,7 @@ function NewEditCityPage() {
   }
 
   async function editCityData() {
-    await tripService.editCity(tripId, selectedCity, cityData);
+    await tripService.editCity(user.uid, tripId, selectedCity, cityData);
     setToaster("successfully updated");
     const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
@@ -52,7 +52,7 @@ function NewEditCityPage() {
 
   async function deleteCity() {
     setDeleteModalVisible(false);
-    await tripService.deleteCity(tripId, selectedCity);
+    await tripService.deleteCity(user.uid, tripId, selectedCity);
     setToaster("successfully deleted");
     const trips = await tripService.getTrips(user.uid);
     setTrips(trips);

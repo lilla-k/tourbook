@@ -1,5 +1,5 @@
 import firebaseApp from "./firebase";
-import { getFirestore, collection, query, where, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { getFirestore, collection, query, getDocs, addDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject, updateMetadata } from "firebase/storage";
 import {toISODateString, toDateObject} from '../utils/date.js';
 
@@ -11,7 +11,7 @@ const storage = getStorage(firebaseApp);
 // TODO: error handling
 const tripServices = {
     getTrips: async function getTrips(userId) {
-        const q = query(collection(db, "trips"), where("userId", "==", userId));
+        const q = query(collection(db, "users", userId, "trips"));
         const tripSnapshot = await getDocs(q);
         const tripList = tripSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
         return tripList.map(trip => ({
@@ -20,30 +20,30 @@ const tripServices = {
             endDate: toDateObject(trip.endDate),
         }));
     },
-    postTrip: async function postTrip(tripData) {
-        const docRef = await addDoc(collection(db, "trips"), {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)});
+    postTrip: async function postTrip(userId, tripData) {
+        const docRef = await addDoc(collection(db, "users", userId, "trips"), {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)});
         return docRef.id;
     },
-    postCity: async function postCity(tripId, cityData) {
+    postCity: async function postCity(userId, tripId, cityData) {
         const cityId = crypto.randomUUID()
-        const tripRef = doc(db, "trips", tripId);
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         await updateDoc(tripRef, {
             visitedCities: arrayUnion({ ...cityData, cityId: cityId })
         });
         return cityId;
     },
-    postImageData: async function postImageData(tripId, imageData){
-        const tripRef = doc(db, "trips", tripId);
+    postImageData: async function postImageData(userId, tripId, imageData){
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         await updateDoc(tripRef, {
             images: arrayUnion(imageData)
         });
     },
-    editTrip: async function editTrip(tripId, tripData) {
-        const tripRef = doc(db, "trips", tripId);
+    editTrip: async function editTrip(userId, tripId, tripData) {
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         await updateDoc(tripRef, tripData);
     },
-    editCity: async function editCity(tripId, oldCityData, newCityData) { 
-        const tripRef = doc(db, "trips", tripId);
+    editCity: async function editCity(userId, tripId, oldCityData, newCityData) { 
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         const cityId = oldCityData.cityId;
         await updateDoc(tripRef, {
             visitedCities: arrayRemove(oldCityData)
@@ -52,11 +52,11 @@ const tripServices = {
             visitedCities: arrayUnion({ ...newCityData, cityId: cityId })
         });
     },
-    deleteTrip: async function deleteTrip(tripId) {
-        await deleteDoc(doc(db, "trips", tripId));
+    deleteTrip: async function deleteTrip(userId, tripId) {
+        await deleteDoc(doc(db, "users", userId, "trips", tripId));
     },
-    deleteCity: async function deleteCity(tripId, deletedCity) {
-        const tripRef = doc(db, "trips", tripId);
+    deleteCity: async function deleteCity(userId,tripId, deletedCity) {
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         await updateDoc(tripRef, {
             visitedCities: arrayRemove(deletedCity)
         });
@@ -76,7 +76,7 @@ const tripServices = {
           }).catch((error) => {
             console.log("error occured");
           });
-        const tripRef = doc(db, "trips", tripId);
+        const tripRef = doc(db, "users", userId, "trips", tripId);
         await updateDoc(tripRef, {
             images: arrayRemove(deletedImage)
         });

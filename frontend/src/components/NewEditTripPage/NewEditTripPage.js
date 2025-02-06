@@ -52,7 +52,7 @@ function NewEditTripPage() {
     }
 
     async function postTripData() {
-        const tripId = await tripService.postTrip({ ...tripData, userId: user.uid }); // TODO: get userId from context
+        const tripId = await tripService.postTrip(user.uid, { ...tripData, userId: user.uid }); // TODO: get userId from context
         setToaster("successfully created");
         const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
@@ -60,7 +60,7 @@ function NewEditTripPage() {
     }
 
     async function editTripData() {
-        await tripService.editTrip(tripId, tripData);
+        await tripService.editTrip(user.uid, tripId, tripData);
         setToaster("successfully updated");
         const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
@@ -69,7 +69,7 @@ function NewEditTripPage() {
 
     async function deleteTrip() {
         setDeleteModalVisible(false);
-        await tripService.deleteTrip(tripId);
+        await tripService.deleteTrip(user.uid, tripId);
         setToaster("successfully deleted");
         const trips = await tripService.getTrips(user.uid);
         setTrips(trips);
