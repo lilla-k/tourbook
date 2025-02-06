@@ -18,6 +18,7 @@ function TripsPage(){
                 tripId={trip.id}
                 tripType={trip.tripType}
                 countryName={trip.country}
+                rating={trip.rating}
                 coverImage={trip.images.find(image=> image.id===trip.coverImageId)} 
                 startDate={trip.startDate}
                 />)}

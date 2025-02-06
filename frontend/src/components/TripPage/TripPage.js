@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, useOutletContext, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Rating from '@mui/material/Rating';
 
 import CityDetails from '../CityDetails/CityDetails.js';
 import CountryDetails from '../CountryDetails/CountryDetails.js';
@@ -73,13 +74,16 @@ function TripPage() {
             <div className="TripPage-date">{selectedTrip.startDate.toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
-        <button
-          className={`TripPage-edit-coverImage ${allImages.length === 0 && "disabled"}`}
-          onClick={() => setShowCoverImageSelectorModal(true)}
-          disabled={allImages.length === 0}
-        >
+        <div className="TripPage-heroBottom" >
+          <Rating value={selectedTrip.rating} readOnly onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)} className="TripPage-rating"/>
+          <button
+            className={`TripPage-edit-coverImage ${allImages.length === 0 && "disabled"}`}
+            onClick={() => setShowCoverImageSelectorModal(true)}
+            disabled={allImages.length === 0}
+          >
           <AddAPhotoIcon fontSize="small" className="TripPage-edit-coverImage-icon" /> Edit cover image
         </button>
+        </div>
       </div>
       <div className="TripPage-info">
         <VisitedCities selectedTrip={selectedTrip} selectedCity={selectedCity} />
@@ -93,18 +97,19 @@ function TripPage() {
         />
       </div>
       {
-        showCoverImageSelectorModal &&
-        <CoverImageSelectorModal
-          setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
-          images={allImages}
-          saveCoverImage={saveCoverImage}
-        />
-      }
-      {showFileUploadModal &&
-        <FileUploadModal
-          onClose={() => setShowFileUploadModal(false)}
-        />
-      }
+    showCoverImageSelectorModal &&
+      <CoverImageSelectorModal
+        setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
+        images={allImages}
+        saveCoverImage={saveCoverImage}
+      />
+  }
+  {
+    showFileUploadModal &&
+    <FileUploadModal
+      onClose={() => setShowFileUploadModal(false)}
+    />
+  }
     </div >
   )
 }

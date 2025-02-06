@@ -52,6 +52,10 @@
     width: 100%;
 }
 
+.NewEditTripPage-rating{
+    margin: 10px 0;
+}
+
 .NewEditTripPage-saveButton{
     width: 70px;
     margin: auto;

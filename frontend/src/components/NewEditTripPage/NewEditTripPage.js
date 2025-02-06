@@ -14,6 +14,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Rating from '@mui/material/Rating';
 
 import { getTripTypes } from '../TripTypeIcons/tripTypeIcons.js';
 import {countryNames} from '../../utils/location.js';
@@ -37,8 +38,8 @@ function NewEditTripPage() {
     const [countryInformation, setCountryInformation] = useState(tripId ? selectedTrip.countryInformation : "");
     const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : "");
     const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : "");
+    const [rating, setRating] = useState(tripId ? selectedTrip.rating : null)
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-
 
     const tripData = {
         startDate: startDate,
@@ -48,7 +49,8 @@ function NewEditTripPage() {
         images: [],
         coverImageId: null,
         countryInformation: countryInformation,
-        tripExperience: tripExperience
+        tripExperience: tripExperience,
+        rating: rating
     }
 
     async function postTripData() {
@@ -163,6 +165,10 @@ function NewEditTripPage() {
                         onChange={e => setCountryInformation(e.target.value)}
                     />
                 </div>
+                <Rating 
+                    className="NewEditTripPage-rating" 
+                    value={rating}  
+                    onChange={(event, newValue) => {setRating(newValue)}} />
                 <div className="NewEditTripPage-saveButton">
                     <Button variant="outlined"
                         onClick={tripId ? () => editTripData() : () => postTripData()}
