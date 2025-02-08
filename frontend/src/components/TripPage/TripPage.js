@@ -56,6 +56,13 @@ function TripPage() {
     setShowCoverImageSelectorModal(false);
   }
 
+  async function setRating(_, value) {
+    await tripService.editTrip(user.uid, selectedTrip.id, { rating: value });
+    setToaster('Successfully saved rating');
+    const trips = await tripService.getTrips(user.uid);
+    setTrips(trips);
+  }
+
   return (
     <div className="TripPage">
       <div 
@@ -74,7 +81,7 @@ function TripPage() {
           </div>
         </div>
         <div className="TripPage-heroBottom" >
-          <Rating value={selectedTrip.rating} readOnly onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)} className="TripPage-rating"/>
+          <Rating value={selectedTrip.rating} onChange={setRating}className="TripPage-rating"/>
           <button
             className={`TripPage-edit-coverImage ${allImages.length === 0 && "disabled"}`}
             onClick={() => setShowCoverImageSelectorModal(true)}
