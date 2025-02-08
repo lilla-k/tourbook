@@ -14,13 +14,13 @@ function TripsPage(){
                 {trips.length===0 && <div className="TripsPage-addFirstTrip" onClick={()=>navigate("/addTrip")}>+ Add your first trip</div>}
                 {trips.map(trip => 
                 <TripCard 
-                key={trip.id}
-                tripId={trip.id}
-                tripType={trip.tripType}
-                countryName={trip.country}
-                rating={trip.rating}
-                coverImage={trip.images.find(image=> image.id===trip.coverImageId)} 
-                startDate={trip.startDate}
+                    key={trip.id}
+                    tripId={trip.id}
+                    tripType={trip.tripType}
+                    countryName={trip.country}
+                    rating={trip.rating}
+                    coverImage={trip.images.find(image=> image.id===trip.coverImageId)} 
+                    startDate={trip.startDate}
                 />)}
 
             </div>
