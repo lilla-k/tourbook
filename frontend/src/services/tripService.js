@@ -11,8 +11,12 @@ function tripDataFromDatabaseObejct(trip){
     return {...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate)}
 }
 
-function  tripDataToDatabaseObejct(tripData) {
-    return {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)}
+function tripDataToDatabaseObejct(tripData) {
+    return {
+        ...tripData,
+        ...(tripData.startDate && { startDate: toISODateString(tripData.startDate) }),
+        ...(tripData.endDate && { endDate: toISODateString(tripData.endDate) }),
+    };
 }
 
 // TODO: error handling
