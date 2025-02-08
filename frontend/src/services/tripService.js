@@ -11,8 +11,12 @@ function tripDataFromDatabaseObejct(trip){
     return {...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate)}
 }
 
-function  tripDataToDatabaseObejct(tripData) {
-    return {...tripData, startDate: toISODateString(tripData.startDate), endDate: toISODateString(tripData.endDate)}
+function tripDataToDatabaseObejct(tripData) {
+    return {
+        ...tripData,
+        ...(tripData.startDate && { startDate: toISODateString(tripData.startDate) }),
+        ...(tripData.endDate && { endDate: toISODateString(tripData.endDate) }),
+    };
 }
 
 // TODO: error handling
@@ -43,8 +47,7 @@ const tripServices = {
     },
     editTrip: async function editTrip(userId, tripId, tripData) {
         const tripRef = doc(db, "users", userId, "trips", tripId);
-        const tripDataDatabaseObejct = tripData.startDate || tripData.endData?tripDataToDatabaseObejct(tripData):tripData;
-        await updateDoc(tripRef, tripDataDatabaseObejct);
+        await updateDoc(tripRef, tripDataToDatabaseObejct(tripData));
     },
     editCity: async function editCity(userId, tripId, oldCityData, newCityData) { 
         const tripRef = doc(db, "users", userId, "trips", tripId);
