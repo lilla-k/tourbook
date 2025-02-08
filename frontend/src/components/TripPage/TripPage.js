@@ -49,8 +49,7 @@ function TripPage() {
 
 
   async function saveCoverImage(id) {
-    console.log("id", id)
-    await tripService.editTrip(tripId, { coverImageId: id });
+    await tripService.editTrip(user.uid, tripId, { coverImageId: id });
     setToaster("cover image updated");
     const trips = await tripService.getTrips(user.uid);
     setTrips(trips);

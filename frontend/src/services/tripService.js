@@ -43,7 +43,8 @@ const tripServices = {
     },
     editTrip: async function editTrip(userId, tripId, tripData) {
         const tripRef = doc(db, "users", userId, "trips", tripId);
-        await updateDoc(tripRef, tripDataToDatabaseObejct(tripData));
+        const tripDataDatabaseObejct = tripData.startDate || tripData.endData?tripDataToDatabaseObejct(tripData):tripData;
+        await updateDoc(tripRef, tripDataDatabaseObejct);
     },
     editCity: async function editCity(userId, tripId, oldCityData, newCityData) { 
         const tripRef = doc(db, "users", userId, "trips", tripId);
