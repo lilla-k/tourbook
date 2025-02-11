@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import tripService from '../../services/tripService.js';
 import userService from '../../services/userService.js';
-import Header from '../Header/Header.js';
-import Loading from '../Loading/Loading.js';
+import Header from '../Header/Header.jsx';
+import Loading from '../Loading/Loading.jsx';
 
 import Snackbar from '@mui/material/Snackbar';
 

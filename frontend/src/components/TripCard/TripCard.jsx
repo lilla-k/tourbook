@@ -1,10 +1,10 @@
 import './TripCard.css';
 import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx'
 import tripService from '../../services/tripService.js'
 import { useOutletContext, Link } from 'react-router-dom';
-import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
+import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.jsx';
 import Rating from '@mui/material/Rating';
 
 

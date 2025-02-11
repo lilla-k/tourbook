@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Root from './components/Root/Root';
-import Auth from './components/Auth/Auth';
-import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.js';
-import TripPage from './components/TripPage/TripPage.js';
-import TripsPage from './components/TripsPage/TripsPage.js';
-import NewEditTripPage from './components/NewEditTripPage/NewEditTripPage.js';
-import NewEditCityPage from './components/NewEditCityPage/NewEditCityPage.js';
-import ErrorPage from "./components/ErrorPage/ErrorPage.js";
-import GalleryPage from "./components/GalleryPage/GalleryPage.js";
-import ProfilePage from './components/ProfilePage/ProfilePage.js';
-import EditProfilePage from './components/EditProfilePage/EditProfilePage.js';
+import Root from './components/Root/Root.jsx';
+import Auth from './components/Auth/Auth.jsx';
+import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.jsx';
+import TripPage from './components/TripPage/TripPage.jsx';
+import TripsPage from './components/TripsPage/TripsPage.jsx';
+import NewEditTripPage from './components/NewEditTripPage/NewEditTripPage.jsx';
+import NewEditCityPage from './components/NewEditCityPage/NewEditCityPage.jsx';
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
+import GalleryPage from "./components/GalleryPage/GalleryPage.jsx";
+import ProfilePage from './components/ProfilePage/ProfilePage.jsx';
+import EditProfilePage from './components/EditProfilePage/EditProfilePage.jsx';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './utils/theme.js';
 
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
 
     ],
   },
-], { basename: process.env.PUBLIC_URL });
+], { basename: import.meta.env.PUBLIC_URL });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={router} />);

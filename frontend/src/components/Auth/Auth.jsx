@@ -2,8 +2,8 @@ import { cloneElement } from 'react';
 import { getAuth } from 'firebase/auth';
 import { useSignInWithGoogle, useSignInWithEmailAndPassword, useAuthState } from 'react-firebase-hooks/auth';
 import firebaseApp from '../../services/firebase.js';
-import SignIn from '../SignIn/SignIn.js';
-import Loading from '../Loading/Loading.js';
+import SignIn from '../SignIn/SignIn.jsx';
+import Loading from '../Loading/Loading.jsx';
 
 
 const auth = getAuth(firebaseApp);

@@ -4,15 +4,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Rating from '@mui/material/Rating';
 
-import CityDetails from '../CityDetails/CityDetails.js';
-import CountryDetails from '../CountryDetails/CountryDetails.js';
-import ImageGrid from '../ImageGrid/ImageGrid.js';
-import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
-import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
-import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
+import CityDetails from '../CityDetails/CityDetails.jsx';
+import CountryDetails from '../CountryDetails/CountryDetails.jsx';
+import ImageGrid from '../ImageGrid/ImageGrid.jsx';
+import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.jsx';
+import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';
+import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.jsx';
 import tripService from '../../services/tripService.js';
 import { findCountryPosition, getDistanceFromLatLonInKm } from '../../utils/location.js';
-import VisitedCities from '../VisitedCities/VisitedCities.js';
+import VisitedCities from '../VisitedCities/VisitedCities.jsx';
 import './TripPage.css';
 import '../../style/tooltip.css';
 

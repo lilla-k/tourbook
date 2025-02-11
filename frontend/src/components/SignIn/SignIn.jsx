@@ -13,7 +13,7 @@ function SignIn({ signInWithGoogle, signInWithEmailAndPassword }) {
     return (
         <div
             className="SignIn"
-            style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/initial_background2.jpg)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+            style={{ backgroundImage: `url(${import.meta.env.PUBLIC_URL}/initial_background2.jpg)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
         >
             <div className="SignIn-content">
                 <div className="SignIn-header">Sign in to your account</div>

@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
-import {Polygon} from './Polygon.js';
-import MapStyle from './MapStyle.js';
+import {Polygon} from './Polygon.jsx';
+import MapStyle from './MapStyle.jsx';
 import {findCountryBorders} from '../../utils/location.js';
 import './GoogleMapsPage.css';
 

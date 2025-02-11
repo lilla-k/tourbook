@@ -1,5 +1,5 @@
 import { useOutletContext, useNavigate} from 'react-router-dom';
-import TripCard from '../TripCard/TripCard.js';
+import TripCard from '../TripCard/TripCard.jsx';
 import './TripsPage.css';
 
 function TripsPage(){

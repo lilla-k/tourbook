@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './ImageGrid.css';
 import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
-import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
+import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import tripService from '../../services/tripService.js';

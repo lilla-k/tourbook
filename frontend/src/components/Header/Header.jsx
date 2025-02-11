@@ -2,7 +2,7 @@ import { useNavigate, useResolvedPath } from "react-router-dom";
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PlaceIcon from '@mui/icons-material/Place';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import ProfileDropDown from "../ProfileDropDown/ProfileDropDown.js";
+import ProfileDropDown from "../ProfileDropDown/ProfileDropDown.jsx";
 import './Header.css';
 import '../../style/tooltip.css';
 import {useState, useRef} from 'react';

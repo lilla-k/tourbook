@@ -16,11 +16,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Rating from '@mui/material/Rating';
 
-import { getTripTypes } from '../TripTypeIcons/tripTypeIcons.js';
+import { getTripTypes } from '../TripTypeIcons/tripTypeIcons.jsx';
 import {countryNames} from '../../utils/location.js';
 import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.js';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx';
 
 
 function NewEditTripPage() {
