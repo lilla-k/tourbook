@@ -8,18 +8,17 @@ const tripTypes = {
   flight: <FlightIcon />,
   bus: <DirectionsBusIcon />,
   car: <DirectionsCarIcon />,
-  train: <TrainIcon/>
-}
-function getTripTypeIcons(type, size="large"){
+  train: <TrainIcon />,
+};
+function getTripTypeIcons(type, size = 'large') {
   const icon = tripTypes[type];
-  const clonedElement = cloneElement(icon, {fontSize: size});
+  const clonedElement = cloneElement(icon, { fontSize: size });
   return clonedElement;
 }
 
-export function getTripTypes(){
+export function getTripTypes() {
   const tripTypeArray = Object.keys(tripTypes);
   return tripTypeArray;
 }
 
 export default getTripTypeIcons;
-

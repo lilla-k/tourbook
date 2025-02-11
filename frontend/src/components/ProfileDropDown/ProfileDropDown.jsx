@@ -9,35 +9,37 @@ import { useSignOut } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '../../services/firebase';
 
-const auth = getAuth(firebaseApp)
+const auth = getAuth(firebaseApp);
 
-function ProfileDropDown({ user, open, accountElementRef, handleClose }) {
+function ProfileDropDown({
+  user, open, accountElementRef, handleClose,
+}) {
+  const navigate = useNavigate();
+  const [signOut] = useSignOut(auth);
 
-    const navigate = useNavigate();
-    const [signOut] = useSignOut(auth);
+  const dropDownItems = [
+    { icon: <PersonIcon />, content: user.displayName || user.email, onClick: () => navigate(`/users/${user.uid}`) },
+    { icon: <LanguageIcon />, content: 'HU', onClick: () => console.log('language') },
+    { icon: <LogoutIcon />, content: 'Log Out', onClick: () => signOut() },
+  ];
 
-    const dropDownItems = [
-        { icon: <PersonIcon />, content: user.displayName || user.email, onClick: () => navigate(`/users/${user.uid}`) },
-        { icon: <LanguageIcon />, content: "HU", onClick: () => console.log("language") },
-        { icon: <LogoutIcon />, content: "Log Out", onClick: () => signOut() }
-    ]
-
-    return (
-        <Menu
-            anchorEl={accountElementRef.current}
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        >
-            {dropDownItems.map(item => (
-                <MenuItem onClick={item.onClick} className="ProfileDropDown-item" key={item.content}>
-                    <div>{item.icon}</div><div>{item.content}</div>
-                </MenuItem>
-            ))}
-        </Menu>
-    )
+  return (
+    <Menu
+      anchorEl={accountElementRef.current}
+      open={open}
+      onClose={handleClose}
+      onClick={handleClose}
+      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+    >
+      {dropDownItems.map((item) => (
+        <MenuItem onClick={item.onClick} className="ProfileDropDown-item" key={item.content}>
+          <div>{item.icon}</div>
+          <div>{item.content}</div>
+        </MenuItem>
+      ))}
+    </Menu>
+  );
 }
 
-export default ProfileDropDown
+export default ProfileDropDown;
