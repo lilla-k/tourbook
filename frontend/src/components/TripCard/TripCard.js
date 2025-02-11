@@ -35,9 +35,9 @@ function TripCard({ tripId, tripType, countryName, rating, coverImage, startDate
             <Link to={`/trips/${tripId}`} className="TripCard-link">
                 {coverImage ?
                     <img className="TripCard-img" src={coverImage.url} alt="Trip" /> :
-                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon" >{getTripTypeIcons(tripType)}</div></div>
+                    <div className="TripCard-img TripCard-img-placeholder"><div className="TripCard-img-placeholderIcon">{getTripTypeIcons(tripType)}</div></div>
                 }
-               {rating===5&& <div className="TripCard-favorite">Favorite</div>}
+               {rating === 5 && <div className="TripCard-favorite">Favorite</div>}
                 <div className="TripCard-details">
                     <div className="TripCard-name">{countryName}</div>
                     <div>{startDate.toLocaleDateString("en-EN")}</div>
