@@ -1,4 +1,4 @@
-import countries from '../countries.js';
+import countries from '../countries.min.js';
 
 
 export function findCountryPosition(country) {
