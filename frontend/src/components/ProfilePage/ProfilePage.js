@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
+import countries from '../../countries.min.js'
 
 import './ProfilePage.css';
 
@@ -12,6 +13,18 @@ function ProfilePage(){
 
     const {trips, user} = useOutletContext();
     const navigate = useNavigate();
+
+    let visitedCountries = trips.map(trip => trip.country);
+    visitedCountries = visitedCountries.filter((item, index) => visitedCountries.indexOf(item) === index);
+    let visitedContinents = [];
+    visitedCountries.forEach(visitedCountry => {
+        countries.forEach(c=>{
+             if (visitedCountry === c.properties.name){
+                visitedContinents.push(c.properties.continent);
+             }
+        })
+    });
+    visitedContinents = visitedContinents.filter((item, index) => visitedContinents.indexOf(item) === index);
 
     return(
         <div className="ProfilePage">
@@ -32,7 +45,13 @@ function ProfilePage(){
                         <span>Lives in {user.location.name}</span> :
                         <Link to={`/users/${user.uid}/edit`} className="ProfilePage-link" >Add location</Link>} 
                     </div>
-                    <div><FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>{trips.length} <Link to={`/trips`} className="ProfilePage-link">trips</Link></div>
+                    <div>
+                        <FolderCopyIcon fontSize="small" className="ProfilePage-icon"/>
+                        {trips.length} 
+                        <Link to={`/trips`} className="ProfilePage-link"> trips </Link>
+                        in {visitedCountries.length} {visitedCountries.length === 1? "country " : "countries "}
+                        in {visitedContinents.length} {visitedContinents.length === 1? "continent " : "continents "}
+                    </div>
                 </div>
                
             </div>
