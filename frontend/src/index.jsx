@@ -68,7 +68,7 @@ const router = createBrowserRouter([
 
     ],
   },
-], { basename: import.meta.env.PUBLIC_URL });
+], { basename: import.meta.env.BASE_URL });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={router} />);
