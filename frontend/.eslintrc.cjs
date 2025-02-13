@@ -22,6 +22,7 @@ module.exports = {
         variables: true,
         allowNamedExports: false,
       }],
+      'react/prop-types': ['off']
     },
     parserOptions: {
       project: './tsconfig.json',

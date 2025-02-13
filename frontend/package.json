@@ -25,8 +25,9 @@
   },
   "scripts": {
     "start": "vite",
-    "lint": "eslint . -c eslintrc.cjs --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 20",
+    "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 20",
     "build": "tsc --checkjs false && vite build",
+    "typecheck": "tsc",
     "serve": "vite preview"
   },
   "browserslist": {
