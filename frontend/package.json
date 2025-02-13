@@ -54,5 +54,8 @@
     "vite": "^6.1.0",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "volta": {
+    "node": "22.14.0"
   }
 }
