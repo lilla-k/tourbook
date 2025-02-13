@@ -4,40 +4,39 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Rating from '@mui/material/Rating';
 
-import CityDetails from '../CityDetails/CityDetails.js';
-import CountryDetails from '../CountryDetails/CountryDetails.js';
-import ImageGrid from '../ImageGrid/ImageGrid.js';
-import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.js';
-import FileUploadModal from '../FileUploadModal/FileUploadModal.js';
-import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.js';
+import CityDetails from '../CityDetails/CityDetails.jsx';
+import CountryDetails from '../CountryDetails/CountryDetails.jsx';
+import ImageGrid from '../ImageGrid/ImageGrid.jsx';
+import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.jsx';
+import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';
+import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.jsx';
 import tripService from '../../services/tripService.js';
 import { findCountryPosition, getDistanceFromLatLonInKm } from '../../utils/location.js';
-import VisitedCities from '../VisitedCities/VisitedCities.js';
+import VisitedCities from '../VisitedCities/VisitedCities.jsx';
 import './TripPage.css';
 import '../../style/tooltip.css';
 
-
-
 function TripPage() {
-
   const [showCoverImageSelectorModal, setShowCoverImageSelectorModal] = useState(false);
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
   const navigate = useNavigate();
-  const { trips, setTrips, setToaster, user } = useOutletContext();
+  const {
+    trips, setTrips, setToaster, user,
+  } = useOutletContext();
   const { tripId, cityId } = useParams();
-  const selectedTrip = trips.find(trip => trip.id === tripId);
+  const selectedTrip = trips.find((trip) => trip.id === tripId);
   if (selectedTrip === undefined) {
     throw new Error("This trip doesn't exist!");
   }
-  const selectedCity = selectedTrip?.visitedCities?.find(c => cityId === c.cityId);
+  const selectedCity = selectedTrip?.visitedCities?.find((c) => cityId === c.cityId);
   if (selectedCity === undefined && cityId !== undefined) {
     throw new Error("This city doesn't exist!");
   }
 
   const allImages = selectedTrip.images;
-  const cityImages = allImages?.filter(image => image.cityId === cityId);
-  const coverImage = allImages?.find(image => image.id === selectedTrip.coverImageId);
+  const cityImages = allImages?.filter((image) => image.cityId === cityId);
+  const coverImage = allImages?.find((image) => image.id === selectedTrip.coverImageId);
 
   let distance = 0;
   if (user.location) {
@@ -46,11 +45,9 @@ function TripPage() {
     distance = getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
   }
 
-
-
   async function saveCoverImage(id) {
     await tripService.editTrip(user.uid, tripId, { coverImageId: id });
-    setToaster("cover image updated");
+    setToaster('cover image updated');
     const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     setShowCoverImageSelectorModal(false);
@@ -65,30 +62,38 @@ function TripPage() {
 
   return (
     <div className="TripPage">
-      <div 
-        className="TripPage-hero" 
-        style={{backgroundImage: coverImage ? `url(${coverImage.url})` : "linear-gradient(white, var(--light-grey))", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <div
+        className="TripPage-hero"
+        style={{ backgroundImage: coverImage ? `url(${coverImage.url})` : 'linear-gradient(white, var(--light-grey))', backgroundSize: 'cover', backgroundPosition: 'center' }}
+      >
         <div className="TripPage-edit-icon-container" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
           <EditIcon className="TripPage-edit-icon" fontSize="small" />
-          <div className="tooltip" >Edit trip</div>
+          <div className="tooltip">Edit trip</div>
         </div>
-        <div className={`TripPage-title ${cityId !== undefined ? `TripPage-title-cityDetails` : ``}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
+        <div className={`TripPage-title ${cityId !== undefined ? 'TripPage-title-cityDetails' : ''}`} onClick={() => navigate(`/trips/${selectedTrip.id}`)}>
           <div className="TripPage-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>
-            {distance > 0 && <div className="TripPage-distance">{`${Math.round(distance).toLocaleString()} km from home`} </div>}
-            <div>{getTripTypeIcons(selectedTrip.tripType, "medium")}</div>
+            {distance > 0 && (
+            <div className="TripPage-distance">
+              {`${Math.round(distance).toLocaleString()} km from home`}
+              {' '}
+            </div>
+            )}
+            <div>{getTripTypeIcons(selectedTrip.tripType, 'medium')}</div>
             <div className="TripPage-date">{selectedTrip.startDate.toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
-        <div className="TripPage-heroBottom" >
-          <Rating value={selectedTrip.rating} onChange={setRating}className="TripPage-rating"/>
+        <div className="TripPage-heroBottom">
+          <Rating value={selectedTrip.rating} onChange={setRating} className="TripPage-rating" />
           <button
-            className={`TripPage-edit-coverImage ${allImages.length === 0 && "disabled"}`}
+            className={`TripPage-edit-coverImage ${allImages.length === 0 && 'disabled'}`}
             onClick={() => setShowCoverImageSelectorModal(true)}
             disabled={allImages.length === 0}
           >
-          <AddAPhotoIcon fontSize="small" className="TripPage-edit-coverImage-icon" /> Edit cover image
-        </button>
+            <AddAPhotoIcon fontSize="small" className="TripPage-edit-coverImage-icon" />
+            {' '}
+            Edit cover image
+          </button>
         </div>
       </div>
       <div className="TripPage-info">
@@ -103,21 +108,25 @@ function TripPage() {
         />
       </div>
       {
-    showCoverImageSelectorModal &&
+    showCoverImageSelectorModal
+      && (
       <CoverImageSelectorModal
         setShowCoverImageSelectorModal={setShowCoverImageSelectorModal}
         images={allImages}
         saveCoverImage={saveCoverImage}
       />
+      )
   }
-  {
-    showFileUploadModal &&
+      {
+    showFileUploadModal
+    && (
     <FileUploadModal
       onClose={() => setShowFileUploadModal(false)}
     />
+    )
   }
-    </div >
-  )
+    </div>
+  );
 }
 
 export default TripPage;

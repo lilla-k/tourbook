@@ -1,23 +1,20 @@
 import { useState } from 'react';
-import { useParams, useOutletContext } from "react-router-dom";
+import { useParams, useOutletContext } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import CloseIcon from '@mui/icons-material/Close';
 import './FileUploadModal.css';
 import '../../style/modal.css';
-import tripService from '../../services/tripService.js'
+import tripService from '../../services/tripService.js';
 
-function FileUploadModal({onClose}) {
-
+function FileUploadModal({ onClose }) {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [title, setTitle] = useState("");
-
+  const [title, setTitle] = useState('');
 
   const { setTrips, setToaster, user } = useOutletContext();
   const { tripId, cityId } = useParams();
-
 
   function changeFileHandler(e) {
     if (e.target.files) {
@@ -26,16 +23,16 @@ function FileUploadModal({onClose}) {
     }
   }
 
-
   async function uploadImage() {
     const { imageId, url } = await tripService.uploadImage(user.uid, tripId, file);
-    await tripService.postImageData(user.uid, tripId, {id: imageId, url, title, cityId: cityId === undefined ? null: cityId});
-    setToaster("image uploaded");
-    const trips = await tripService.getTrips(user.uid); 
+    await tripService.postImageData(user.uid, tripId, {
+      id: imageId, url, title, cityId: cityId === undefined ? null : cityId,
+    });
+    setToaster('image uploaded');
+    const trips = await tripService.getTrips(user.uid);
     setTrips(trips);
     onClose();
   }
-
 
   return (
     <div className="Modal-background">
@@ -48,9 +45,11 @@ function FileUploadModal({onClose}) {
         </div>
         <div
           className="FileUploadModal-selectorContainer"
-          style={{ backgroundImage: `url(${previewUrl})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", backgroundPosition: "center" }}
+          style={{
+            backgroundImage: `url(${previewUrl})`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', backgroundPosition: 'center',
+          }}
         >
-          <div className={`FileUploadModal-selector ${previewUrl ? `FileUploadModal-selector-selected` : ``}`}>
+          <div className={`FileUploadModal-selector ${previewUrl ? 'FileUploadModal-selector-selected' : ''}`}>
             <PhotoSizeSelectActualIcon fontSize="small" />
             <div className="FileUploadModal-selector-title">Select photo</div>
             <div className="FileUploadModal-selector-size">Max file size 5mb</div>
@@ -63,21 +62,21 @@ function FileUploadModal({onClose}) {
             variant="outlined"
             value={title}
             size="small"
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="FileUploadModal-saveButton">
           <Button
             variant="outlined"
-            onClick={() => uploadImage()} 
-            disabled={!file}>
+            onClick={() => uploadImage()}
+            disabled={!file}
+          >
             Upload image
           </Button>
         </div>
       </div>
     </div>
-  )
-
+  );
 }
 
 export default FileUploadModal;
