@@ -4,12 +4,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
+import { getVisitedCountries, getVisitedContinents } from '../../utils/trips.js'
 
 import './ProfilePage.css';
 
 function ProfilePage() {
   const { trips, user } = useOutletContext();
   const navigate = useNavigate();
+
+  const visitedCountries = getVisitedCountries(trips);
+  const visitedContinents = getVisitedContinents(trips);
 
   return (
     <div className="ProfilePage">
@@ -41,8 +45,9 @@ function ProfilePage() {
           <div>
             <FolderCopyIcon fontSize="small" className="ProfilePage-icon" />
             {trips.length}
-            {' '}
-            <Link to="/trips" className="ProfilePage-link">trips</Link>
+            <Link to={`/trips`} className="ProfilePage-link"> trips </Link>
+            in {visitedCountries.length} {visitedCountries.length === 1 ? "country " : "countries "}
+            in {visitedContinents.length} {visitedContinents.length === 1 ? "continent " : "continents "}
           </div>
         </div>
 
