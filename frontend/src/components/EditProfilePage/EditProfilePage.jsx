@@ -34,6 +34,8 @@ function EditProfilePage() {
   }
 
   async function editUserData(userData) {
+    console.log(userData);
+    console.log(user.uid)
     await userServices.editUser(user.uid, userData);
     setToaster('successfully updated');
     setUserData(userData);

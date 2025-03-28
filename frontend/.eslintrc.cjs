@@ -9,6 +9,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {
+      'max-len': ['error', { "code": 160 }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
@@ -28,4 +29,3 @@ module.exports = {
       project: './tsconfig.json',
     },
   }
-  

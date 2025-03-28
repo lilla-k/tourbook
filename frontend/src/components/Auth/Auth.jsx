@@ -30,7 +30,10 @@ function Auth({ children }) {
   }
   return (
     <div className="Auth">
-      <SignIn signInWithGoogle={signInWithGoogle} signInWithEmailAndPassword={signInWithEmailAndPassword} />
+      <SignIn
+        signInWithGoogle={signInWithGoogle}
+        signInWithEmailAndPassword={signInWithEmailAndPassword}
+      />
     </div>
   );
 }
