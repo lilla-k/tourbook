@@ -3,7 +3,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import './AttractionsForm.css';
 
-function AttractionsForm({ attractions, setAttractions }) {
+type AttractionsFormProps = {
+  attractions: Array<string>;
+  setAttractions: (attractions: string[]) => void;
+};
+
+function AttractionsForm({ attractions, setAttractions }: AttractionsFormProps) {
   return (
     <div className="AttractionsForm-attractions">
       {attractions.map((attraction, index) => (
@@ -14,8 +19,8 @@ function AttractionsForm({ attractions, setAttractions }) {
             value={attraction}
             autoFocus={attractions.length > 1 && attractions.length === (index + 1) && attractions[attractions.length - 1] === ''}
             onChange={(e) => {
-              attractions[index] = e.target.value;
-              setAttractions([...attractions]);
+              const newAttractions = attractions.map((a, i) => (i === index ? e.target.value : a));
+              setAttractions(newAttractions);
             }}
             onBlur={(e) => {
               if (e.target.value === '') {
@@ -26,7 +31,7 @@ function AttractionsForm({ attractions, setAttractions }) {
           {attractions.length === (index + 1) && attractions[attractions.length - 1] !== '' && (
             <Button
               disabled={attractions[index].length === 0}
-              onClick={(e) => setAttractions([...attractions, ''])}
+              onClick={() => setAttractions([...attractions, ''])}
               sx={{ margin: '20px 0' }}
             >
               <AddCircleOutlineIcon className="AttractionsForm-addAttractionIcon" />

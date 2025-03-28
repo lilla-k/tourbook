@@ -12,7 +12,7 @@ const cleanedCountries = countries.map(country => ({
     },
     geometry: {
         coordinates: country.geometry.coordinates
-    }           
+    }
 }));
 
 fs.writeFileSync('./src/countries.min.js', `const countries = ${JSON.stringify(cleanedCountries, null, 2)};\n export default countries;`);
