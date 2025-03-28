@@ -1,6 +1,6 @@
 import './Loading.css';
 
-function Loading({ hidden }) {
+function Loading({ hidden = false }) {
   return (
     <div className={`lds-ellipsis ${hidden ? 'hidden' : ''}`}>
       <div />

@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading.jsx';
 
 const auth = getAuth(firebaseApp);
 
-function Auth({ children }) {
+function Auth({ children }: { children: React.JSX.Element }) {
   const [user, loading, error] = useAuthState(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);

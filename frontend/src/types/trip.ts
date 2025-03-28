@@ -1,6 +1,6 @@
 import type { Image } from './image.ts';
 
-export type Trip = {     // assignment? vagy ;
+export type Trip = {
   country: string;
   startDate: Date;
   endDate: Date;

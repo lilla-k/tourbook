@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import Root from './components/Root/Root.jsx';
-import Auth from './components/Auth/Auth.jsx';
+import Auth from './components/Auth/Auth.js';
 import GoogleMapsPage from './components/GoogleMapsPage/GoogleMapsPage.jsx';
 import TripPage from './components/TripPage/TripPage.jsx';
 import TripsPage from './components/TripsPage/TripsPage.jsx';
@@ -18,6 +18,7 @@ import { theme } from './utils/theme.js';
 const router = createBrowserRouter([
   {
     path: '/',
+    // @ts-ignore
     element: <ThemeProvider theme={theme}><Auth><Root /></Auth></ThemeProvider>,
     errorElement: <ErrorPage />,
     children: [
@@ -70,5 +71,8 @@ const router = createBrowserRouter([
   },
 ], { basename: import.meta.env.BASE_URL });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router} />);
+const div = document.getElementById('root');
+if (div) {
+  const root = ReactDOM.createRoot(div);
+  root.render(<RouterProvider router={router} />);
+}
