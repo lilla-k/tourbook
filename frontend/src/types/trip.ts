@@ -1,4 +1,5 @@
-import type { Image } from './image.ts';
+import type Image from './image.ts';
+import type City from './city.ts';
 
 export type Trip = {
   country: string;
@@ -6,10 +7,12 @@ export type Trip = {
   endDate: Date;
   countryInformation?: string;
   coverImageId?: string;
-  images?: Array<Image>;
+  images: Image[];
   tripExperience?: string;
   tripType?: string;
-  ranking: number;
+  rating?: number;
+  id: string;
+  visitedCities?: City[];
 };
 
 export type TripDatabaseObject = {
@@ -18,8 +21,10 @@ export type TripDatabaseObject = {
   endDate: string;
   countryInformation?: string;
   coverImageId?: string;
-  images?: Array<Image>;
+  images?: Image[];
   tripExperience?: string;
   tripType?: string;
-  ranking: number;
+  rating?: number;
+  id: string;
+  visitedCities?: City[];
 };

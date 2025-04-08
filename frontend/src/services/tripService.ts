@@ -15,7 +15,7 @@ const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
-  return { ...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate) };
+  return { ...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate), images: trip.images || [] };
 }
 
 function tripDataToDatabaseObject(tripData: Trip): TripDatabaseObject {
@@ -56,8 +56,9 @@ const tripServices = {
     });
   },
 
-  editTrip: async function editTrip(userId: string, tripId: string, tripData: Trip): Promise<void> {
+  editTrip: async function editTrip(userId: string, tripId: string, tripData: Partial<Trip>): Promise<void> {
     const tripRef = doc(db, 'users', userId, 'trips', tripId);
+    console.log(tripData);
     await updateDoc(tripRef, tripDataToDatabaseObject(tripData));
   },
 

@@ -28,12 +28,12 @@ function VisitedCities({ selectedTrip, selectedCity }) {
             <Select
               value={selectedCity?.cityId}
               label="City"
-              onChange={(event) => navigate(`/trips/${selectedTrip.id}/${event.target.value}`)}
+              onChange={(event) => navigate(`/trips/${selectedTrip.id}/cities/${event.target.value}`)}
             >
               {selectedTrip.visitedCities?.map((city) => <MenuItem value={city.cityId}>{city.cityName}</MenuItem>)}
             </Select>
           </FormControl>
-          <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/${selectedCity?.cityId}/edit`)}>
+          <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${selectedCity?.cityId}/edit`)}>
             <EditIcon fontSize="small" />
           </IconButton>
         </div>
@@ -44,14 +44,14 @@ function VisitedCities({ selectedTrip, selectedCity }) {
             <div className="VisitedCities-container">
               {selectedTrip.visitedCities?.map((city) => (
                 <div className={`VisitedCity ${city.cityId === selectedCity?.cityId ? 'selected' : ''}`} key={city.cityId}>
-                  <Link to={`/trips/${selectedTrip.id}/${city.cityId}`} className="VisitedCityLink">
+                  <Link to={`/trips/${selectedTrip.id}/cities/${city.cityId}`} className="VisitedCityLink">
                     <LocationOnIcon />
                     <div>{city.cityName}</div>
                   </Link>
                   <div className="VisitedCityIconEdit">
                     <EditIcon
                       fontSize="small"
-                      onClick={() => navigate(`/trips/${selectedTrip.id}/${city.cityId}/edit`)}
+                      onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${city.cityId}/edit`)}
                     />
                   </div>
                 </div>
