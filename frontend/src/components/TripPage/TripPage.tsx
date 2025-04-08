@@ -3,6 +3,7 @@ import { useParams, useOutletContext, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Rating from '@mui/material/Rating';
+import Fab from '@mui/material/Fab';
 
 import CityDetails from '../CityDetails/CityDetails.jsx';
 import CountryDetails from '../CountryDetails/CountryDetails.jsx';
@@ -91,11 +92,10 @@ function TripPage() {
           backgroundPosition: 'center',
         }}
       >
-        <div
-          className="TripPage-edit-icon-container"
-          onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}
-        >
-          <EditIcon className="TripPage-edit-icon" fontSize="small" />
+        <div className="TripPage-edit-icon-container">
+          <Fab color="primary" aria-label="edit" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
+            <EditIcon color="secondary" />
+          </Fab>
           <div className="tooltip">Edit trip</div>
         </div>
         <div
@@ -117,6 +117,7 @@ function TripPage() {
         <div className="TripPage-heroBottom">
           <Rating value={selectedTrip.rating} onChange={(_, rating) => setRating(rating)} className="TripPage-rating" />
           <button
+            type="button"
             className={`TripPage-edit-coverImage ${allImages.length === 0 && 'disabled'}`}
             onClick={() => setShowCoverImageSelectorModal(true)}
             disabled={allImages.length === 0}
