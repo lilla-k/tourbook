@@ -22,24 +22,26 @@ function VisitedCities({ selectedTrip, selectedCity }) {
       {isSmallScreen
         ? selectedTrip.visitedCities?.length > 0
         && (
-        <div>
-          <FormControl className="VisitedCities-citySelector" size="small">
-            <InputLabel>City</InputLabel>
-            <Select
-              value={selectedCity?.cityId}
-              label="City"
-              onChange={(event) => navigate(`/trips/${selectedTrip.id}/cities/${event.target.value}`)}
-            >
-              {selectedTrip.visitedCities?.map((city) => <MenuItem value={city.cityId}>{city.cityName}</MenuItem>)}
-            </Select>
-          </FormControl>
-          <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${selectedCity?.cityId}/edit`)}>
-            <EditIcon fontSize="small" />
-          </IconButton>
-        </div>
+          <div>
+            <Link to={`/trips/${selectedTrip.id}`} className="VisitedCities-country">{selectedTrip.country.toUpperCase()}</Link>
+            <FormControl className="VisitedCities-citySelector" size="small">
+              <InputLabel>City</InputLabel>
+              <Select
+                value={selectedCity?.cityId}
+                label="City"
+                onChange={(event) => navigate(`/trips/${selectedTrip.id}/cities/${event.target.value}`)}
+              >
+                {selectedTrip.visitedCities?.map((city) => <MenuItem value={city.cityId}>{city.cityName}</MenuItem>)}
+              </Select>
+            </FormControl>
+            <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${selectedCity?.cityId}/edit`)}>
+              <EditIcon fontSize="small" />
+            </IconButton>
+          </div>
         )
         : (
           <div>
+            <Link to={`/trips/${selectedTrip.id}`} className="VisitedCities-country">{selectedTrip.country.toUpperCase()}</Link>
             <div className="VisitedCities-title">Visited cities</div>
             <div className="VisitedCities-container">
               {selectedTrip.visitedCities?.map((city) => (

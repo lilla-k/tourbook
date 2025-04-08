@@ -99,8 +99,7 @@ function TripPage() {
           <div className="tooltip">Edit trip</div>
         </div>
         <div
-          className={`TripPage-title ${cityId !== undefined ? 'TripPage-title-cityDetails' : ''}`}
-          onClick={() => navigate(`/trips/${selectedTrip.id}`)}
+          className="TripPage-title"
         >
           <div className="TripPage-title-border">
             <div>{selectedTrip.country.toUpperCase()}</div>

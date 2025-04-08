@@ -34,10 +34,6 @@
     align-self: center;
 }
 
-.TripPage-title-cityDetails:hover{
-    cursor: pointer;
-}
-
 .TripPage-title-border{
     border: 3px solid var(--light-grey);
     padding: 35px 15px 5px 15px;
