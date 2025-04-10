@@ -22,23 +22,28 @@ import './NewEditTripPage.css';
 import tripService from '../../services/tripService.js';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx';
 
+import type { Trip } from '../../types/trip';
+import type { UserData } from '../../types/user';
+
 function NewEditTripPage() {
   const navigate = useNavigate();
   const tripTypeArray = getTripTypes();
   const { tripId } = useParams();
   const {
-    trips, setTrips, setToaster, user,
+    trips, setTrips, setToaster, userData,
+  }: {
+    trips: Trip[], setTrips: Function, setToaster: Function, userData: UserData
   } = useOutletContext();
-  const selectedTrip = trips.find((trip) => trip.id === tripId);
+  const trip = trips.find((t) => t.id === tripId);
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 
-  const [startDate, setStartDate] = useState(tripId ? selectedTrip.startDate : null);
-  const [endDate, setEndDate] = useState(tripId ? selectedTrip.endDate : null);
-  const [country, setCountry] = useState(tripId ? selectedTrip.country : null);
-  const [countryInformation, setCountryInformation] = useState(tripId ? selectedTrip.countryInformation : '');
-  const [tripExperience, setTripExperience] = useState(tripId ? selectedTrip.tripExperience : '');
-  const [tripType, setTripType] = useState(tripId ? selectedTrip.tripType : '');
-  const [rating, setRating] = useState(tripId ? selectedTrip.rating : null);
+  const [startDate, setStartDate] = useState<Date | undefined>(trip ? trip.startDate : undefined);
+  const [endDate, setEndDate] = useState(trip ? trip.endDate : undefined);
+  const [country, setCountry] = useState(trip ? trip.country : undefined);
+  const [countryInformation, setCountryInformation] = useState(trip ? trip.countryInformation : '');
+  const [tripExperience, setTripExperience] = useState(trip ? trip.tripExperience : '');
+  const [tripType, setTripType] = useState(trip ? trip.tripType : '');
+  const [rating, setRating] = useState(trip ? trip.rating : null);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const tripData = {
@@ -51,30 +56,42 @@ function NewEditTripPage() {
     countryInformation,
     tripExperience,
     rating,
+    visitedCities: [],
   };
 
+  function isValidTripData(t: Partial<Trip>): t is Trip {
+    if (t.startDate && t.endDate && t.country && t.tripType) {
+      return true;
+    }
+    return false;
+  }
+
   async function postTripData() {
-    const tripId = await tripService.postTrip(user.uid, { ...tripData, userId: user.uid }); // TODO: get userId from context
-    setToaster('successfully created');
-    const trips = await tripService.getTrips(user.uid);
-    setTrips(trips);
-    navigate(`/trips/${tripId}`);
+    if (isValidTripData(tripData)) {
+      const newTripId = await tripService.postTrip(userData.uid, tripData);
+      setToaster('successfully created');
+      const tripsFromDB = await tripService.getTrips(userData.uid);
+      setTrips(tripsFromDB);
+      navigate(`/trips/${newTripId}`);
+    } else {
+      throw new Error('Trip data is not valid!');
+    }
   }
 
-  async function editTripData() {
-    await tripService.editTrip(user.uid, tripId, tripData);
+  async function editTripData(id: string) {
+    await tripService.editTrip(userData.uid, id, tripData);
     setToaster('successfully updated');
-    const trips = await tripService.getTrips(user.uid);
-    setTrips(trips);
-    navigate(`/trips/${tripId}`);
+    const tripsFromDB = await tripService.getTrips(userData.uid);
+    setTrips(tripsFromDB);
+    navigate(`/trips/${id}`);
   }
 
-  async function deleteTrip() {
+  async function deleteTrip(id: string) {
     setDeleteModalVisible(false);
-    await tripService.deleteTrip(user.uid, tripId);
+    await tripService.deleteTrip(userData.uid, id);
     setToaster('successfully deleted');
-    const trips = await tripService.getTrips(user.uid);
-    setTrips(trips);
+    const tripsFromDB = await tripService.getTrips(userData.uid);
+    setTrips(tripsFromDB);
     navigate('/trips/');
   }
 
@@ -91,38 +108,38 @@ function NewEditTripPage() {
       <div className="NewEditTripPage-header">
         <div className="NewEditTripPage-headerStart">
           <div className="NewEditTripPage-arrowBackIcon">
-            <ArrowBackIcon onClick={tripId ? () => navigate(`/trips/${selectedTrip.id}`) : () => navigate('/trips/')} />
+            <ArrowBackIcon onClick={trip ? () => navigate(`/trips/${trip.id}`) : () => navigate('/trips/')} />
           </div>
           <div className="NewEditTripPage-title">{tripId ? 'Edit your trip' : 'Add a new trip'}</div>
         </div>
-        {tripId
-                    && (
-                    <Button
-                      variant="outlined"
-                      onClick={() => deleteConfirmation()}
-                      color="error"
-                      className="NewEditTripPage-deleteButton"
-                    >
-                      <DeleteIcon className="NewEditTripPage-deleteIcon" fontSize="small" />
-                      {isSmallScreen ? '' : 'DELETE'}
-                    </Button>
-                    )}
+        {trip
+          && (
+            <Button
+              variant="outlined"
+              onClick={() => deleteConfirmation()}
+              color="error"
+              className="NewEditTripPage-deleteButton"
+            >
+              <DeleteIcon className="NewEditTripPage-deleteIcon" fontSize="small" />
+              {isSmallScreen ? '' : 'DELETE'}
+            </Button>
+          )}
       </div>
-      {deleteModalVisible && <DeleteConfirmationModal onDelete={deleteTrip} onCancel={cancelDelete} type="trip" />}
+      {trip && deleteModalVisible && <DeleteConfirmationModal onDelete={() => deleteTrip(trip.id)} onCancel={() => cancelDelete} type="trip" />}
       <div className="NewEditTripPage-form">
         <div className="NewEditTripPage-dates">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Start date *"
               value={dayjs(startDate)}
-              onChange={(newDate) => setStartDate(newDate)}
+              onChange={(newDate) => setStartDate(!newDate?.isValid() ? undefined : newDate.toDate())}
             />
             {startDate && (
               <DatePicker
                 label="End date *"
                 minDate={dayjs(startDate)}
                 value={dayjs(endDate)}
-                onChange={(newDate) => setEndDate(newDate)}
+                onChange={(newDate) => setEndDate(!newDate?.isValid() ? undefined : newDate.toDate())}
               />
             )}
           </LocalizationProvider>
@@ -132,7 +149,8 @@ function NewEditTripPage() {
           disablePortal
           options={countryNames}
           value={country}
-          onChange={(e, selectedValue) => setCountry(selectedValue)}
+          onChange={(e, selectedValue) => setCountry(selectedValue || undefined)}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           renderInput={(params) => <TextField {...params} label="Country *" />}
         />
         <FormControl className="NewEditTripPage-typeSelector">
@@ -176,10 +194,10 @@ function NewEditTripPage() {
         <div className="NewEditTripPage-saveButton">
           <Button
             variant="outlined"
-            onClick={tripId ? () => editTripData() : () => postTripData()}
-            disabled={startDate === null || endDate === null || country === null || tripType === ''}
+            onClick={trip ? () => editTripData(trip.id) : () => postTripData()}
+            disabled={!isValidTripData(tripData)}
           >
-            {tripId ? 'Save' : 'Add'}
+            {trip ? 'Save' : 'Add'}
           </Button>
         </div>
       </div>

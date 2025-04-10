@@ -8,17 +8,23 @@ import firebaseApp from './firebase.js';
 import { toISODateString, toDateObject } from '../utils/date.js';
 
 import type { Trip, TripDatabaseObject } from '../types/trip';
-import type { City } from '../types/city';
-import type { Image } from '../types/image';
+import type City from '../types/city';
+import type Image from '../types/image';
 
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
-  return { ...trip, startDate: toDateObject(trip.startDate), endDate: toDateObject(trip.endDate), images: trip.images || [] };
+  return {
+    ...trip,
+    startDate: toDateObject(trip.startDate),
+    endDate: toDateObject(trip.endDate),
+    images: trip.images || [],
+    visitedCities: trip.visitedCities || [],
+  };
 }
 
-function tripDataToDatabaseObject(tripData: Trip): TripDatabaseObject {
+function tripDataToDatabaseObject(tripData: Partial<Trip>): Partial<TripDatabaseObject> {
   return {
     ...tripData,
     ...(tripData.startDate && { startDate: toISODateString(tripData.startDate) }),
@@ -35,7 +41,7 @@ const tripServices = {
     return tripList.map((trip) => (tripDataFromDatabaseObejct(trip)));
   },
 
-  postTrip: async function postTrip(userId: string, tripData: Trip): Promise<string> {
+  postTrip: async function postTrip(userId: string, tripData: Omit<Trip, 'id'>): Promise<string> {
     const docRef = await addDoc(collection(db, 'users', userId, 'trips'), tripDataToDatabaseObject(tripData));
     return docRef.id;
   },
@@ -58,7 +64,6 @@ const tripServices = {
 
   editTrip: async function editTrip(userId: string, tripId: string, tripData: Partial<Trip>): Promise<void> {
     const tripRef = doc(db, 'users', userId, 'trips', tripId);
-    console.log(tripData);
     await updateDoc(tripRef, tripDataToDatabaseObject(tripData));
   },
 

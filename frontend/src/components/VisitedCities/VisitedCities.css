@@ -8,7 +8,7 @@
 .VisitedCities-country{
   color: var(--light-green);
   margin-bottom: 20px;
-  display: inline-block;
+  display: block;
 }
 
 .VisitedCities-citySelector{

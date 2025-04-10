@@ -11,49 +11,49 @@ import IconButton from '@mui/material/IconButton';
 
 import './VisitedCities.css';
 
-function VisitedCities({ selectedTrip, selectedCity }) {
-  console.log('selected trip', selectedTrip);
-  console.log('selected city', selectedCity?.cityName);
+import type { Trip } from '../../types/trip';
+import type City from '../../types/city';
+
+function VisitedCities({ trip, city }: { trip: Trip, city: City | undefined }) {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 
   return (
     <div className="VisitedCities">
+      <Link to={`/trips/${trip.id}`} className="VisitedCities-country">{trip.country.toUpperCase()}</Link>
       {isSmallScreen
-        ? selectedTrip.visitedCities?.length > 0
+        ? trip.visitedCities?.length > 0
         && (
           <div>
-            <Link to={`/trips/${selectedTrip.id}`} className="VisitedCities-country">{selectedTrip.country.toUpperCase()}</Link>
             <FormControl className="VisitedCities-citySelector" size="small">
               <InputLabel>City</InputLabel>
               <Select
-                value={selectedCity?.cityId}
+                value={city?.cityId}
                 label="City"
-                onChange={(event) => navigate(`/trips/${selectedTrip.id}/cities/${event.target.value}`)}
+                onChange={(event) => navigate(`/trips/${trip.id}/cities/${event.target.value}`)}
               >
-                {selectedTrip.visitedCities?.map((city) => <MenuItem value={city.cityId}>{city.cityName}</MenuItem>)}
+                {trip.visitedCities?.map((c) => <MenuItem value={c.cityId}>{c.cityName}</MenuItem>)}
               </Select>
             </FormControl>
-            <IconButton onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${selectedCity?.cityId}/edit`)}>
+            <IconButton onClick={() => navigate(`/trips/${trip.id}/cities/${city?.cityId}/edit`)}>
               <EditIcon fontSize="small" />
             </IconButton>
           </div>
         )
         : (
           <div>
-            <Link to={`/trips/${selectedTrip.id}`} className="VisitedCities-country">{selectedTrip.country.toUpperCase()}</Link>
             <div className="VisitedCities-title">Visited cities</div>
             <div className="VisitedCities-container">
-              {selectedTrip.visitedCities?.map((city) => (
-                <div className={`VisitedCity ${city.cityId === selectedCity?.cityId ? 'selected' : ''}`} key={city.cityId}>
-                  <Link to={`/trips/${selectedTrip.id}/cities/${city.cityId}`} className="VisitedCityLink">
+              {trip.visitedCities?.map((c) => (
+                <div className={`VisitedCity ${c.cityId === city?.cityId ? 'selected' : ''}`} key={c.cityId}>
+                  <Link to={`/trips/${trip.id}/cities/${c.cityId}`} className="VisitedCityLink">
                     <LocationOnIcon />
-                    <div>{city.cityName}</div>
+                    <div>{c.cityName}</div>
                   </Link>
                   <div className="VisitedCityIconEdit">
                     <EditIcon
                       fontSize="small"
-                      onClick={() => navigate(`/trips/${selectedTrip.id}/cities/${city.cityId}/edit`)}
+                      onClick={() => navigate(`/trips/${trip.id}/cities/${c.cityId}/edit`)}
                     />
                   </div>
                 </div>
@@ -62,7 +62,7 @@ function VisitedCities({ selectedTrip, selectedCity }) {
           </div>
         )}
       <Button
-        onClick={() => navigate(`/trips/${selectedTrip.id}/addCity`)}
+        onClick={() => navigate(`/trips/${trip.id}/addCity`)}
         variant="outlined"
         sx={{ mt: '10px' }}
       >

@@ -21,21 +21,21 @@ import type { Trip } from '../../types/trip';
 import type City from '../../types/city';
 import type { UserData } from '../../types/user';
 
-function useSafeParams() {
+function useTripAndCity() {
   const { tripId, cityId } = useParams();
   const { trips }: { trips: Trip[] } = useOutletContext();
-  const selectedTrip = trips.find((trip) => trip.id === tripId);
-  const selectedCity = selectedTrip?.visitedCities?.find((c: City) => cityId === c.cityId);
+  const trip = trips.find((t) => t.id === tripId);
+  const city = trip?.visitedCities?.find((c: City) => cityId === c.cityId);
 
-  if (tripId === undefined || selectedTrip === undefined) {
+  if (tripId === undefined || trip === undefined) {
     throw new Error("This trip doesn't exist!");
   }
 
-  if (cityId && selectedCity === undefined) {
+  if (cityId && city === undefined) {
     throw new Error("This city doesn't exist!");
   }
   return {
-    tripId, cityId, selectedTrip, selectedCity,
+    trip, city,
   };
 }
 
@@ -45,8 +45,8 @@ function TripPage() {
 
   const navigate = useNavigate();
   const {
-    tripId, cityId, selectedTrip, selectedCity,
-  } = useSafeParams();
+    trip, city,
+  } = useTripAndCity();
 
   const {
     setTrips, setToaster, userData,
@@ -54,20 +54,20 @@ function TripPage() {
     setTrips: Function, setToaster: Function, userData: UserData
   } = useOutletContext();
 
-  const allImages = selectedTrip.images;
-  const cityImages = allImages.filter((image) => image.cityId === cityId);
-  const coverImage = allImages.find((image) => image.id === selectedTrip.coverImageId);
+  const allImages = trip.images;
+  const cityImages = allImages.filter((image) => image.cityId === city?.cityId);
+  const coverImage = allImages.find((image) => image.id === trip.coverImageId);
 
   let distance = 0;
   if (userData.location) {
     const { lat: lat1, lng: lng1 } = findCountryPosition(userData.location?.name);
-    const { lat: lat2, lng: lng2 } = findCountryPosition(selectedTrip.country);
+    const { lat: lat2, lng: lng2 } = findCountryPosition(trip.country);
     distance = getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
   }
 
   async function saveCoverImage(id: string) {
     // if (tripId === undefined) { return; }
-    await tripService.editTrip(userData.uid, tripId, { coverImageId: id });
+    await tripService.editTrip(userData.uid, trip.id, { coverImageId: id });
     setToaster('cover image updated');
     const tripsFromDB = await tripService.getTrips(userData.uid);
     setTrips(tripsFromDB);
@@ -76,7 +76,7 @@ function TripPage() {
 
   async function setRating(value: number | null) {
     if (!value) { return; }
-    await tripService.editTrip(userData.uid, selectedTrip.id, { rating: value });
+    await tripService.editTrip(userData.uid, trip.id, { rating: value });
     setToaster('Successfully saved rating');
     const tripsFromDB = await tripService.getTrips(userData.uid);
     setTrips(tripsFromDB);
@@ -93,7 +93,7 @@ function TripPage() {
         }}
       >
         <div className="TripPage-edit-icon-container">
-          <Fab color="primary" aria-label="edit" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>
+          <Fab color="primary" aria-label="edit" onClick={() => navigate(`/trips/${trip.id}/edit`)}>
             <EditIcon color="secondary" />
           </Fab>
           <div className="tooltip">Edit trip</div>
@@ -102,19 +102,19 @@ function TripPage() {
           className="TripPage-title"
         >
           <div className="TripPage-title-border">
-            <div>{selectedTrip.country.toUpperCase()}</div>
+            <div>{trip.country.toUpperCase()}</div>
             {distance > 0 && (
               <div className="TripPage-distance">
                 {`${Math.round(distance).toLocaleString()} km from home`}
                 {' '}
               </div>
             )}
-            <div>{getTripTypeIcons(selectedTrip.tripType, 'medium')}</div>
-            <div className="TripPage-date">{selectedTrip.startDate.toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
+            <div>{getTripTypeIcons(trip.tripType, 'medium')}</div>
+            <div className="TripPage-date">{trip.startDate.toLocaleString('en-us', { month: 'short', year: 'numeric' })}</div>
           </div>
         </div>
         <div className="TripPage-heroBottom">
-          <Rating value={selectedTrip.rating} onChange={(_, rating) => setRating(rating)} className="TripPage-rating" />
+          <Rating value={trip.rating} onChange={(_, rating) => setRating(rating)} className="TripPage-rating" />
           <button
             type="button"
             className={`TripPage-edit-coverImage ${allImages.length === 0 && 'disabled'}`}
@@ -128,12 +128,12 @@ function TripPage() {
         </div>
       </div>
       <div className="TripPage-info">
-        <VisitedCities selectedTrip={selectedTrip} selectedCity={selectedCity} />
-        {cityId === undefined ? <CountryDetails selectedTrip={selectedTrip} /> : <CityDetails selectedTrip={selectedTrip} selectedCity={selectedCity} />}
+        <VisitedCities trip={trip} city={city} />
+        {city === undefined ? <CountryDetails trip={trip} /> : <CityDetails trip={trip} city={city} />}
         <ImageGrid
-          images={selectedCity === undefined ? allImages : cityImages}
+          images={city === undefined ? allImages : cityImages}
           selection={false}
-          onClick={(imageId: string) => navigate(`/trips/${selectedTrip.id}/gallery/${imageId}`)}
+          onClick={(imageId: string) => navigate(`/trips/${trip.id}/gallery/${imageId}`)}
           onNewClick={() => setShowFileUploadModal(true)}
           cols={2}
         />

@@ -6,13 +6,13 @@ export type Trip = {
   startDate: Date;
   endDate: Date;
   countryInformation?: string;
-  coverImageId?: string;
+  coverImageId: string | null;
   images: Image[];
   tripExperience?: string;
-  tripType?: string;
-  rating?: number;
+  tripType: string;
+  rating: number | null;
   id: string;
-  visitedCities?: City[];
+  visitedCities: City[];
 };
 
 export type TripDatabaseObject = {
@@ -20,11 +20,11 @@ export type TripDatabaseObject = {
   startDate: string;
   endDate: string;
   countryInformation?: string;
-  coverImageId?: string;
-  images?: Image[];
+  coverImageId: string | null;
+  images: Image[];
   tripExperience?: string;
-  tripType?: string;
-  rating?: number;
+  tripType: string;
+  rating: number | null;
   id: string;
-  visitedCities?: City[];
+  visitedCities: City[];
 };

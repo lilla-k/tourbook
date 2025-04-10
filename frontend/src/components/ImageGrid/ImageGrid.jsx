@@ -5,7 +5,7 @@ import { ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.tsx';
 import tripService from '../../services/tripService.js';
 
 function ImageGrid({

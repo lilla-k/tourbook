@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 
 import './CityDetails.css';
 
-function CityDetails({ selectedTrip, selectedCity }) {
+function CityDetails({ trip, city }) {
   const [selectedTab, setSelectedTab] = useState('city');
   const navigate = useNavigate();
 
@@ -19,17 +19,17 @@ function CityDetails({ selectedTrip, selectedCity }) {
         <TabContext value={selectedTab}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={(event, newValue) => { setSelectedTab(newValue); }} aria-label="lab API tabs example">
-              <Tab label={`Discover ${selectedCity.cityName}`} value="city" />
+              <Tab label={`Discover ${city.cityName}`} value="city" />
               <Tab label="attractions" value="attractions" />
             </TabList>
           </Box>
           <TabPanel value="city">
-            {selectedCity.cityInformation
-                        || <Button variant="outlined" onClick={() => navigate(`/trips/${selectedTrip.id}/${selectedCity?.cityId}/edit`)}>+ Add information</Button> }
+            {city.cityInformation
+                        || <Button variant="outlined" onClick={() => navigate(`/trips/${trip.id}/${city?.cityId}/edit`)}>+ Add information</Button> }
           </TabPanel>
           <TabPanel value="attractions">
             <div className="CityDetails-attractions">
-              {selectedCity.attractions.filter((attr) => attr !== '').map((attraction) => <div className="CityDetails-attraction" key={attraction}>{attraction}</div>)}
+              {city.attractions.filter((attr) => attr !== '').map((attraction) => <div className="CityDetails-attraction" key={attraction}>{attraction}</div>)}
             </div>
           </TabPanel>
         </TabContext>

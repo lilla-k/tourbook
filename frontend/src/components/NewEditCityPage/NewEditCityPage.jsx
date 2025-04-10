@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import tripService from '../../services/tripService.js';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.tsx';
 import TitleInput from '../TitleInput/TitleInput.jsx';
 import AttractionsForm from '../AttractionsForm/AttractionsForm.jsx';
 import './NewEditCityPage.css';

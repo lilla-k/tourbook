@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useOutletContext, Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.tsx';
 import tripService from '../../services/tripService.js';
 import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.jsx';
 

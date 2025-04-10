@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 import './CountryDetails.css';
 
-function CountryDetails({ selectedTrip }) {
+function CountryDetails({ trip }) {
   const [selectedTab, setSelectedTab] = useState('your experience');
   const navigate = useNavigate();
 
@@ -21,16 +21,16 @@ function CountryDetails({ selectedTrip }) {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={(event, newValue) => { setSelectedTab(newValue); }} aria-label="lab API tabs example">
               <Tab label="your experience" value="your experience" />
-              <Tab label={`About ${selectedTrip.country}`} value="country" />
+              <Tab label={`About ${trip.country}`} value="country" />
             </TabList>
           </Box>
           <TabPanel value="country" sx={{ pl: '2px' }}>
-            {selectedTrip.countryInformation}
+            {trip.countryInformation}
             {' '}
           </TabPanel>
           <TabPanel value="your experience">
-            {selectedTrip.tripExperience
-                        || <Button variant="outlined" onClick={() => navigate(`/trips/${selectedTrip.id}/edit`)}>+ Add information</Button> }
+            {trip.tripExperience
+                        || <Button variant="outlined" onClick={() => navigate(`/trips/${trip.id}/edit`)}>+ Add information</Button> }
           </TabPanel>
         </TabContext>
       </Box>
