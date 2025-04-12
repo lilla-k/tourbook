@@ -1,5 +1,5 @@
 type Image = {
-  cityId?: string,
+  cityId?: string | null,
   id: string,
   title: string,
   url: string

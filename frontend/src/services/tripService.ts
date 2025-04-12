@@ -32,9 +32,8 @@ function tripDataToDatabaseObject(tripData: Partial<Trip>): Partial<TripDatabase
   };
 }
 
-// TODO: error handling
 const tripServices = {
-  getTrips: async function getTrips(userId: string): Promise<Trip[]> { // Promise<Array<Trip>>
+  getTrips: async function getTrips(userId: string): Promise<Trip[]> {
     const q = query(collection(db, 'users', userId, 'trips'));
     const tripSnapshot = await getDocs(q);
     const tripList = tripSnapshot.docs.map((document) => ({ ...document.data(), id: document.id })) as unknown as TripDatabaseObject[];

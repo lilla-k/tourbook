@@ -5,8 +5,8 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Rating from '@mui/material/Rating';
 import Fab from '@mui/material/Fab';
 
-import CityDetails from '../CityDetails/CityDetails.jsx';
-import CountryDetails from '../CountryDetails/CountryDetails.jsx';
+import CityDetails from '../CityDetails/CityDetails.js';
+import CountryDetails from '../CountryDetails/CountryDetails.js';
 import ImageGrid from '../ImageGrid/ImageGrid.jsx';
 import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelectorModal.jsx';
 import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';

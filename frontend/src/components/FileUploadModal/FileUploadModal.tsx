@@ -8,28 +8,40 @@ import './FileUploadModal.css';
 import '../../style/modal.css';
 import tripService from '../../services/tripService.js';
 
-function FileUploadModal({ onClose }) {
-  const [file, setFile] = useState();
-  const [previewUrl, setPreviewUrl] = useState(null);
+import type { UserData } from '../../types/user.js';
+
+function useTripId() {
+  const { tripId } = useParams();
+  if (tripId === undefined) {
+    throw new Error("This trip doesn't exist");
+  }
+  return tripId;
+}
+
+function FileUploadModal({ onClose }: { onClose: () => void }) {
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState('');
   const [title, setTitle] = useState('');
 
-  const { setTrips, setToaster, user } = useOutletContext();
-  const { tripId, cityId } = useParams();
+  const { setTrips, setToaster, userData }: { setTrips: Function, setToaster: Function, userData: UserData } = useOutletContext();
+  const { cityId } = useParams();
+  const tripId = useTripId();
 
-  function changeFileHandler(e) {
-    if (e.target.files) {
-      setFile(e.target.files[0]);
-      setPreviewUrl(URL.createObjectURL(e.target.files[0]));
+  function changeFileHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) {
+      return;
     }
+    setFile(e.target.files[0]);
+    setPreviewUrl(URL.createObjectURL(e.target.files[0]));
   }
 
-  async function uploadImage() {
-    const { imageId, url } = await tripService.uploadImage(user.uid, tripId, file);
-    await tripService.postImageData(user.uid, tripId, {
+  async function uploadImage(id: string, f: File) {
+    const { imageId, url } = await tripService.uploadImage(userData.uid, id, f);
+    await tripService.postImageData(userData.uid, id, {
       id: imageId, url, title, cityId: cityId === undefined ? null : cityId,
     });
     setToaster('image uploaded');
-    const trips = await tripService.getTrips(user.uid);
+    const trips = await tripService.getTrips(userData.uid);
     setTrips(trips);
     onClose();
   }
@@ -39,9 +51,9 @@ function FileUploadModal({ onClose }) {
       <div className="Modal-content">
         <div className="Modal-header">
           <div>Select a photo</div>
-          <div className="Modal-closeBtn" onClick={onClose}>
+          <button className="Modal-closeBtn" type="button" onClick={onClose}>
             <CloseIcon />
-          </div>
+          </button>
         </div>
         <div
           className="FileUploadModal-selectorContainer"
@@ -68,7 +80,7 @@ function FileUploadModal({ onClose }) {
         <div className="FileUploadModal-saveButton">
           <Button
             variant="outlined"
-            onClick={() => uploadImage()}
+            onClick={() => file && uploadImage(tripId, file)}
             disabled={!file}
           >
             Upload image

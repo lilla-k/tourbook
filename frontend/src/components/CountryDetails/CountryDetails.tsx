@@ -10,7 +10,9 @@ import Button from '@mui/material/Button';
 
 import './CountryDetails.css';
 
-function CountryDetails({ trip }) {
+import type { Trip } from '../../types/trip';
+
+function CountryDetails({ trip }: { trip: Trip }) {
   const [selectedTab, setSelectedTab] = useState('your experience');
   const navigate = useNavigate();
 

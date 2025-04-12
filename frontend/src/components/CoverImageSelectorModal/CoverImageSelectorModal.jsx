@@ -1,7 +1,8 @@
 import './CoverImageSelectorModal.css';
 import '../../style/modal.css';
 import CloseIcon from '@mui/icons-material/Close';
-import ImageGrid from '../ImageGrid/ImageGrid';
+import Button from '@mui/material/Button';
+import ImageGrid from '../ImageGrid/ImageGrid.jsx';
 
 function CoverImageSelectorModal({ images, setShowCoverImageSelectorModal, saveCoverImage }) {
   return (
@@ -9,6 +10,7 @@ function CoverImageSelectorModal({ images, setShowCoverImageSelectorModal, saveC
       <div className="Modal-content">
         <div className="Modal-header">
           <div>Select a cover image</div>
+          <Button variant="outlined">Outlined</Button>
           <div
             className="Modal-closeBtn"
             onClick={() => setShowCoverImageSelectorModal(false)}
