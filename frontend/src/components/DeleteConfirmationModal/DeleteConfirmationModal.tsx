@@ -9,7 +9,7 @@ function DeleteConfirmationModal({ onDelete, onCancel, type }: { onDelete: Funct
       <div className="Modal-content">
         <div className="Modal-header">
           <div>Confirm Delete</div>
-          <button className="Modal-closeBtn" type="button" onClick={() => onCancel}><CloseIcon /></button>
+          <button className="Modal-closeBtn" type="button" onClick={() => onCancel()}><CloseIcon /></button>
         </div>
         <p className="DeleteConfirmationModal-confirmation">
           Are you sure you want to delete this
@@ -19,7 +19,7 @@ function DeleteConfirmationModal({ onDelete, onCancel, type }: { onDelete: Funct
         <hr />
         <div className="DeleteConfirmationModal-buttons">
           <Button onClick={() => onDelete} color="error" variant="contained">Delete</Button>
-          <Button onClick={() => onCancel}>Cancel</Button>
+          <Button onClick={() => onCancel()}>Cancel</Button>
         </div>
       </div>
     </div>

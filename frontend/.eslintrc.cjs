@@ -23,7 +23,8 @@ module.exports = {
         variables: true,
         allowNamedExports: false,
       }],
-      'react/prop-types': ['off']
+      'react/prop-types': ['off'],
+      'react/require-default-props': ['off'],
     },
     parserOptions: {
       project: './tsconfig.json',

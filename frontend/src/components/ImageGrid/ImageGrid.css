@@ -26,7 +26,8 @@
 .ImageGrid-plusBtn{
     cursor: pointer;
     font-size: 30px;
-    height: 164px;
+    height: 250px;
+    color: var(--dark-grey);
     border: 1px solid var(--light-grey);
     background: var(--light-grey);
     display: flex;

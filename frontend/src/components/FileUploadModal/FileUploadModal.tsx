@@ -8,7 +8,7 @@ import './FileUploadModal.css';
 import '../../style/modal.css';
 import tripService from '../../services/tripService.js';
 
-import type { UserData } from '../../types/user.js';
+import type Context from '../../types/context.js';
 
 function useTripId() {
   const { tripId } = useParams();
@@ -23,7 +23,7 @@ function FileUploadModal({ onClose }: { onClose: () => void }) {
   const [previewUrl, setPreviewUrl] = useState('');
   const [title, setTitle] = useState('');
 
-  const { setTrips, setToaster, userData }: { setTrips: Function, setToaster: Function, userData: UserData } = useOutletContext();
+  const { setTrips, setToaster, userData } = useOutletContext<Context>();
   const { cityId } = useParams();
   const tripId = useTripId();
 

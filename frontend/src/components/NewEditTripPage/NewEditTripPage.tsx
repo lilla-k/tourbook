@@ -23,7 +23,7 @@ import tripService from '../../services/tripService.js';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal.jsx';
 
 import type { Trip } from '../../types/trip';
-import type { UserData } from '../../types/user';
+import type Context from '../../types/context.js';
 
 function NewEditTripPage() {
   const navigate = useNavigate();
@@ -31,9 +31,7 @@ function NewEditTripPage() {
   const { tripId } = useParams();
   const {
     trips, setTrips, setToaster, userData,
-  }: {
-    trips: Trip[], setTrips: Function, setToaster: Function, userData: UserData
-  } = useOutletContext();
+  } = useOutletContext<Context>();
   const trip = trips.find((t) => t.id === tripId);
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 

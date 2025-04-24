@@ -10,43 +10,43 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { findCountryPosition, countryNames } from '../../utils/location.js';
 import userServices from '../../services/userService.js';
-
 import './EditProfilePage.css';
+
+import type Context from '../../types/context.js';
+import type { UserSettings } from '../../types/user';
 
 function EditProfilePage() {
   const navigate = useNavigate();
-  const { user, setToaster, setUserData } = useOutletContext();
+  const { userData, setToaster, setUserSettings } = useOutletContext<Context>();
 
-  const [locationName, setLocationName] = useState(user.location?.name ? user.location.name : null);
-  const [isPublicProfile, setIsPublicProfile] = useState(user.publicProfile ? user.publicProfile : false);
+  const [locationName, setLocationName] = useState(userData.location?.name ? userData.location.name : null);
+  const [visibility, setVisibility] = useState<string>(userData.visibility ? 'private' : 'public');
 
-  const userData = {
-    publicProfile: isPublicProfile,
+  const userSettings: UserSettings = {
+    visibility,
   };
 
   if (locationName) {
     const { lat, lng } = findCountryPosition(locationName);
-    userData.location = {
+    userSettings.location = {
       name: locationName,
       lat,
       lng,
     };
   }
 
-  async function editUserData(userData) {
-    console.log(userData);
-    console.log(user.uid)
-    await userServices.editUser(user.uid, userData);
+  async function editUserData(settings: UserSettings) {
+    await userServices.editUser(userData.uid, settings);
     setToaster('successfully updated');
-    setUserData(userData);
-    navigate(`/users/${user.uid}`);
+    setUserSettings(userSettings);
+    navigate(`/users/${userData.uid}`);
   }
 
   return (
     <div className="EditProfilePage">
       <div className="EditProfilePage-header">
         <div className="EditProfilePage-arrowBackIcon">
-          <ArrowBackIcon onClick={() => navigate(`/users/${user.uid}`)} />
+          <ArrowBackIcon onClick={() => navigate(`/users/${userData.uid}`)} />
         </div>
         <div className="EditProfilePage-title">Edit your profile</div>
       </div>
@@ -57,21 +57,22 @@ function EditProfilePage() {
           options={countryNames}
           value={locationName}
           onChange={(e, selectedValue) => setLocationName(selectedValue)}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           renderInput={(params) => <TextField {...params} label="Location" />}
         />
         <FormControl className="EditProfilePage-typeSelector">
           <InputLabel>Trip visibility</InputLabel>
           <Select
-            value={isPublicProfile}
+            value={visibility}
             label="Trip visibility"
-            onChange={(event) => setIsPublicProfile(event.target.value)}
+            onChange={(event) => setVisibility(event.target.value === 'private' ? 'private' : 'public')}
           >
-            <MenuItem value={false}>private</MenuItem>
-            <MenuItem value>public</MenuItem>
+            <MenuItem value="private">private</MenuItem>
+            <MenuItem value="public">public</MenuItem>
           </Select>
         </FormControl>
         <div className="EditProfilePage-saveButton">
-          <Button variant="contained" onClick={() => editUserData(userData)}>Save</Button>
+          <Button variant="contained" onClick={() => editUserData(userSettings)}>Save</Button>
         </div>
       </div>
     </div>

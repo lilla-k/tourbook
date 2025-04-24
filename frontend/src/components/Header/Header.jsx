@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person';
 
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import ProfileDropDown from '../ProfileDropDown/ProfileDropDown.jsx';
+import ProfileDropDown from '../ProfileDropDown/ProfileDropDown.js';
 import firebaseApp from '../../services/firebase.js';
 
 const auth = getAuth(firebaseApp);

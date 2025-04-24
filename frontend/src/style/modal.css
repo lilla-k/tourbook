@@ -9,7 +9,7 @@
 }
 
 .Modal-content {
-    background-color: #fefefe;
+    background-color: var(--beige);
     padding: 20px;
     border: 1px solid #888;
     width: 700px;
@@ -35,11 +35,14 @@
 .Modal-closeBtn{
     height: 36px;
     width: 36px;
-    padding: 6px;
+    padding: 5px;
+    border: white;
     border-radius: 50%;
+    color: var(--dark-green);
 }
 
 .Modal-closeBtn:hover{
-    background-color:#ccc9c5;
+    background-color: var(--dark-green);
+    color: white;
     cursor: pointer;
 }

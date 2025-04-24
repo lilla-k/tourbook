@@ -66,7 +66,6 @@ function TripPage() {
   }
 
   async function saveCoverImage(id: string) {
-    // if (tripId === undefined) { return; }
     await tripService.editTrip(userData.uid, trip.id, { coverImageId: id });
     setToaster('cover image updated');
     const tripsFromDB = await tripService.getTrips(userData.uid);
@@ -130,13 +129,15 @@ function TripPage() {
       <div className="TripPage-info">
         <VisitedCities trip={trip} city={city} />
         {city === undefined ? <CountryDetails trip={trip} /> : <CityDetails trip={trip} city={city} />}
-        <ImageGrid
-          images={city === undefined ? allImages : cityImages}
-          selection={false}
-          onClick={(imageId: string) => navigate(`/trips/${trip.id}/gallery/${imageId}`)}
-          onNewClick={() => setShowFileUploadModal(true)}
-          cols={2}
-        />
+        <div className="TripPage-ImageGrid">
+          <ImageGrid
+            images={city === undefined ? allImages : cityImages}
+            selection={false}
+            onClick={(imageId: string) => navigate(`/trips/${trip.id}/gallery/${imageId}`)}
+            onNewClick={() => setShowFileUploadModal(true)}
+            tripId={trip.id}
+          />
+        </div>
       </div>
       {
         showCoverImageSelectorModal
