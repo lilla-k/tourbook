@@ -20,6 +20,7 @@ import '../../style/tooltip.css';
 import type { Trip } from '../../types/trip';
 import type City from '../../types/city';
 import type { UserData } from '../../types/user';
+import type Image from '../../types/image';
 
 function useTripAndCity() {
   const { tripId, cityId } = useParams();
@@ -81,6 +82,14 @@ function TripPage() {
     setTrips(tripsFromDB);
   }
 
+  async function deleteImage(image: Image) {
+    await tripService.deleteImage(userData.uid, trip.id, image);
+    setToaster('successfully deleted');
+    const tripsFromDB = await tripService.getTrips(userData.uid);
+    setTrips(tripsFromDB);
+    navigate(`/trips/${trip.id}`);
+  }
+
   return (
     <div className="TripPage">
       <div
@@ -132,10 +141,10 @@ function TripPage() {
         <div className="TripPage-ImageGrid">
           <ImageGrid
             images={city === undefined ? allImages : cityImages}
-            selection={false}
             onClick={(imageId: string) => navigate(`/trips/${trip.id}/gallery/${imageId}`)}
             onNewClick={() => setShowFileUploadModal(true)}
-            tripId={trip.id}
+            onDelete={(image) => deleteImage(image)}
+            showTitle
           />
         </div>
       </div>

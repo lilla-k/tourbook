@@ -18,7 +18,7 @@ function DeleteConfirmationModal({ onDelete, onCancel, type }: { onDelete: Funct
         </p>
         <hr />
         <div className="DeleteConfirmationModal-buttons">
-          <Button onClick={() => onDelete} color="error" variant="contained">Delete</Button>
+          <Button onClick={() => onDelete()} color="error" variant="contained">Delete</Button>
           <Button onClick={() => onCancel()}>Cancel</Button>
         </div>
       </div>

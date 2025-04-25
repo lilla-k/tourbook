@@ -22,7 +22,7 @@ function CoverImageSelectorModal(
           </button>
         </div>
         <hr />
-        <ImageGrid images={images} selection onClick={saveCoverImage} />
+        <ImageGrid images={images} onClick={saveCoverImage} showTitle={false} />
       </div>
     </div>
   );

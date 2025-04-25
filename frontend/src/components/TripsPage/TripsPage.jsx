@@ -10,7 +10,8 @@ function TripsPage() {
     <div className="TripsPage">
       <div className="TripsPage-title">My trips</div>
       <div className="TripsPage-container">
-        {trips.length === 0 && <div className="TripsPage-addFirstTrip" onClick={() => navigate('/addTrip')}>+ Add your first trip</div>}
+        {trips.length === 0
+        && <button className="TripsPage-addFirstTrip" onClick={() => navigate('/addTrip')} type="button">+ Add your first trip</button>}
         {trips.map((trip) => (
           <TripCard
             key={trip.id}
