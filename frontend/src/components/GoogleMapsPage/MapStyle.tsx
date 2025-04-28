@@ -10,7 +10,7 @@ function MapStyle() {
     map.setOptions({ styles: mapStyleDefinition });
   }, [map]);
 
-  return <></>;
+  return <> </>;
 }
 
 export default MapStyle;

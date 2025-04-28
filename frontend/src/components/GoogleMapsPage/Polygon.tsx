@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import {
   forwardRef,
   useContext,
@@ -9,7 +10,18 @@ import {
 
 import { GoogleMapsContext } from '@vis.gl/react-google-maps';
 
-function usePolygon(props) {
+type EventName = 'click' | 'drag' | 'dragstart' | 'dragend' | 'mouseover' | 'mouseout';
+type EventHandlerName = 'onClick' | 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onMouseOver' | 'onMouseOut';
+type PolygonProps = google.maps.PolygonOptions & {
+  onClick?: Function,
+  onDrag?: Function,
+  onDragStart?: Function,
+  onDragEnd?: Function,
+  onMouseOver?: Function,
+  onMouseOut?: Function,
+};
+
+function usePolygon(props: PolygonProps) {
   const {
     onClick,
     onDrag,
@@ -17,19 +29,8 @@ function usePolygon(props) {
     onDragEnd,
     onMouseOver,
     onMouseOut,
-    encodedPaths,
     ...polygonOptions
   } = props;
-    // This is here to avoid triggering the useEffect below when the callbacks change (which happen if the user didn't memoize them)
-  const callbacks = useRef({});
-  Object.assign(callbacks.current, {
-    onClick,
-    onDrag,
-    onDragStart,
-    onDragEnd,
-    onMouseOver,
-    onMouseOut,
-  });
 
   const polygon = useRef(new window.google.maps.Polygon()).current;
   // update PolygonOptions (note the dependencies aren't properly checked
@@ -46,33 +47,42 @@ function usePolygon(props) {
   // create polygon instance and add to the map once the map is available
   useEffect(() => {
     if (!map) {
-      if (map === undefined) console.error('<Polygon> has to be inside a Map component.');
+      if (map === undefined) throw new Error('<Polygon> has to be inside a Map component.');
 
-      return;
+      return () => {};
     }
 
     polygon.setMap(map);
 
-    return () => {
-      polygon.setMap(null);
-    };
+    return () => polygon.setMap(null);
   }, [map, polygon]);
 
   // attach and re-attach event-handlers when any of the properties change
   useEffect(() => {
-    if (!polygon) return;
+    if (!polygon) return () => {};
 
     // Add event listeners
     const gme = window.google.maps.event;
-    [
+    const mapping: [EventName, EventHandlerName][] = [
       ['click', 'onClick'],
       ['drag', 'onDrag'],
       ['dragstart', 'onDragStart'],
       ['dragend', 'onDragEnd'],
       ['mouseover', 'onMouseOver'],
       ['mouseout', 'onMouseOut'],
-    ].forEach(([eventName, eventCallback]) => {
-      gme.addListener(polygon, eventName, (e) => {
+    ];
+    const callbacks = {
+      current: {
+        onClick,
+        onDrag,
+        onDragStart,
+        onDragEnd,
+        onMouseOver,
+        onMouseOut,
+      },
+    };
+    mapping.forEach(([eventName, eventCallback]) => {
+      gme.addListener(polygon, eventName, (e: Event) => {
         const callback = callbacks.current[eventCallback];
         if (callback) callback(e);
       });
@@ -81,7 +91,7 @@ function usePolygon(props) {
     return () => {
       gme.clearInstanceListeners(polygon);
     };
-  }, [polygon]);
+  }, [polygon, onClick, onDrag, onDragStart, onDragEnd, onMouseOver, onMouseOut]);
 
   return polygon;
 }
@@ -89,10 +99,12 @@ function usePolygon(props) {
 /**
    * Component to render a polygon on a map
    */
-export const Polygon = forwardRef((props, ref) => {
+const Polygon = forwardRef<google.maps.Polygon, PolygonProps>((props, ref) => {
   const polygon = usePolygon(props);
 
   useImperativeHandle(ref, () => polygon, [polygon]);
 
   return null;
 });
+
+export default Polygon;

@@ -17,14 +17,14 @@ import VisitedCities from '../VisitedCities/VisitedCities.jsx';
 import './TripPage.css';
 import '../../style/tooltip.css';
 
-import type { Trip } from '../../types/trip';
 import type City from '../../types/city';
 import type { UserData } from '../../types/user';
 import type Image from '../../types/image';
+import type Context from '../../types/context.js';
 
 function useTripAndCity() {
   const { tripId, cityId } = useParams();
-  const { trips }: { trips: Trip[] } = useOutletContext();
+  const { trips } = useOutletContext<Context>();
   const trip = trips.find((t) => t.id === tripId);
   const city = trip?.visitedCities?.find((c: City) => cityId === c.cityId);
 

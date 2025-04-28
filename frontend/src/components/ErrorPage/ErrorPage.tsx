@@ -10,7 +10,7 @@ function ErrorPage() {
         <h1>Oops!</h1>
         <p>We are sorry, but an unexpected error has occurred.</p>
         <p>
-          <i>{error.message}</i>
+          <i>{error instanceof Error ? error.message : 'unknown error'}</i>
         </p>
       </div>
     </div>

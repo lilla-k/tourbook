@@ -35,7 +35,7 @@ function NewEditTripPage() {
   const trip = trips.find((t) => t.id === tripId);
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 
-  const [startDate, setStartDate] = useState<Date | undefined>(trip ? trip.startDate : undefined);
+  const [startDate, setStartDate] = useState(trip ? trip.startDate : undefined);
   const [endDate, setEndDate] = useState(trip ? trip.endDate : undefined);
   const [country, setCountry] = useState(trip ? trip.country : undefined);
   const [countryInformation, setCountryInformation] = useState(trip ? trip.countryInformation : '');
