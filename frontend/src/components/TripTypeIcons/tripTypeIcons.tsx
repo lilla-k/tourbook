@@ -3,6 +3,7 @@ import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import TrainIcon from '@mui/icons-material/Train';
 import FlightIcon from '@mui/icons-material/Flight';
 import { cloneElement } from 'react';
+import type { TripType } from '../../types/trip.js';
 
 const tripTypes = {
   flight: <FlightIcon />,
@@ -10,7 +11,8 @@ const tripTypes = {
   car: <DirectionsCarIcon />,
   train: <TrainIcon />,
 };
-function getTripTypeIcons(type, size = 'large') {
+
+function getTripTypeIcons(type: TripType, size = 'large') {
   const icon = tripTypes[type];
   const clonedElement = cloneElement(icon, { fontSize: size });
   return clonedElement;

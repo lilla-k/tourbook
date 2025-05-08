@@ -4,11 +4,15 @@ import {
   MemoryRouter, Routes, Route, Outlet,
 } from 'react-router-dom';
 
-import EditProfilePage from './EditProfilePage';
+import EditProfilePage from './EditProfilePage.js';
+import type Context from '../../types/context.js';
 
 function RenderRouteWithOutletContext({
   context,
   children,
+} : {
+  context: Context,
+  children: [],
 }) {
   return (
     <MemoryRouter>

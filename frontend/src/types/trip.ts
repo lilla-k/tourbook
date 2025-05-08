@@ -9,11 +9,13 @@ export type Trip = {
   coverImageId: string | null;
   images: Image[];
   tripExperience?: string;
-  tripType: string;
+  tripType: TripType;
   rating: number | null;
   id: string;
   visitedCities: City[];
 };
+
+export type TripType = 'bus' | 'flight' | 'train' | 'car';
 
 export type TripDatabaseObject = {
   country: string;
@@ -23,7 +25,7 @@ export type TripDatabaseObject = {
   coverImageId: string | null;
   images: Image[];
   tripExperience?: string;
-  tripType: string;
+  tripType: TripType;
   rating: number | null;
   id: string;
   visitedCities: City[];

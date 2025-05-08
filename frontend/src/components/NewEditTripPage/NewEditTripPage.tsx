@@ -24,6 +24,7 @@ import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmati
 
 import type { Trip } from '../../types/trip';
 import type Context from '../../types/context.js';
+import type { TripType } from '../../types/trip.js';
 
 function NewEditTripPage() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function NewEditTripPage() {
     trips, setTrips, setToaster, userData,
   } = useOutletContext<Context>();
   const trip = trips.find((t) => t.id === tripId);
+  if (tripId && trip === undefined) {
+    throw new Error("This trip doesn't exist");
+  }
   const isSmallScreen = useMediaQuery('(max-width:950px)');
 
   const [startDate, setStartDate] = useState(trip ? trip.startDate : undefined);
@@ -40,7 +44,7 @@ function NewEditTripPage() {
   const [country, setCountry] = useState(trip ? trip.country : undefined);
   const [countryInformation, setCountryInformation] = useState(trip ? trip.countryInformation : '');
   const [tripExperience, setTripExperience] = useState(trip ? trip.tripExperience : '');
-  const [tripType, setTripType] = useState(trip ? trip.tripType : '');
+  const [tripType, setTripType] = useState<TripType | undefined>(trip ? trip.tripType : undefined);
   const [rating, setRating] = useState(trip ? trip.rating : null);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
@@ -108,7 +112,7 @@ function NewEditTripPage() {
           <div className="NewEditTripPage-arrowBackIcon">
             <ArrowBackIcon onClick={trip ? () => navigate(`/trips/${trip.id}`) : () => navigate('/trips/')} />
           </div>
-          <div className="NewEditTripPage-title">{tripId ? 'Edit your trip' : 'Add a new trip'}</div>
+          <div className="NewEditTripPage-title">{trip ? 'Edit your trip' : 'Add a new trip'}</div>
         </div>
         {trip
           && (
@@ -156,7 +160,7 @@ function NewEditTripPage() {
           <Select
             value={tripType}
             label="Trip type"
-            onChange={(event) => setTripType(event.target.value)}
+            onChange={(event) => setTripType(event.target.value as TripType)}
           >
             <MenuItem value={tripTypeArray[0]}>{tripTypeArray[0]}</MenuItem>
             <MenuItem value={tripTypeArray[1]}>{tripTypeArray[1]}</MenuItem>

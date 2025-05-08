@@ -3,8 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 
-function SignIn({ signInWithGoogle, signInWithEmailAndPassword }:
-{ signInWithGoogle: Function, signInWithEmailAndPassword: Function }) {
+function SignIn({ signInWithGoogle, signInWithEmailAndPassword }:{ signInWithGoogle: Function, signInWithEmailAndPassword: Function }) {
   const [showSignInInputs, setShowSignInInputs] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,8 +31,24 @@ function SignIn({ signInWithGoogle, signInWithEmailAndPassword }:
         </Button>
         {showSignInInputs && (
           <div className="SignIn-emailForm">
-            <TextField id="outlined-basic" type="email" label="Email address" value={email} onChange={(event) => setEmail(event.target.value)} variant="outlined" sx={{ display: 'block', width: '100%' }} />
-            <TextField id="outlined-basic" type="password" label="Password" value={password} onChange={(event) => setPassword(event.target.value)} variant="outlined" sx={{ display: 'block', margin: '10px auto' }} />
+            <TextField
+              id="outlined-basic"
+              type="email"
+              label="Email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              variant="outlined"
+              sx={{ display: 'block', width: '100%' }}
+            />
+            <TextField
+              id="outlined-basic"
+              type="password"
+              label="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              variant="outlined"
+              sx={{ display: 'block', margin: '10px auto' }}
+            />
             <Button
               variant="contained"
               className="SignIn-emailBtn"

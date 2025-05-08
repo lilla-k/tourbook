@@ -5,7 +5,7 @@ module.exports = {
       'airbnb-typescript',
       'plugin:react-hooks/recommended',
     ],
-    ignorePatterns: ['build', '.eslintrc.cjs', 'vite.config.js', 'tsconfog.json'],
+    ignorePatterns: ['build', '.eslintrc.cjs', 'vite.config.js', 'tsconfog.json', 'clean-countries.js', 'countries.mjs', 'countries.min.js', '*.test.tsx'],
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {

@@ -13,7 +13,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import GalleryPage from './components/GalleryPage/GalleryPage.jsx';
 import ProfilePage from './components/ProfilePage/ProfilePage.jsx';
 import EditProfilePage from './components/EditProfilePage/EditProfilePage.jsx';
-import { theme } from './utils/theme.js';
+import theme from './utils/theme.js';
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         element: <NewEditTripPage />,
       },
       {
-        path: 'trips/:tripId/:cityId/edit',
+        path: 'trips/:tripId/cities/:cityId/edit',
         element: <NewEditCityPage />,
       },
       {

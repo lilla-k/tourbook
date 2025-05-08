@@ -1,9 +1,11 @@
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import TripCard from '../TripCard/TripCard.jsx';
+import TripCard from '../TripCard/TripCard.js';
 import './TripsPage.css';
 
+import type Context from '../../types/context.js';
+
 function TripsPage() {
-  const { trips } = useOutletContext();
+  const { trips } = useOutletContext<Context>();
   const navigate = useNavigate();
 
   return (
@@ -15,12 +17,7 @@ function TripsPage() {
         {trips.map((trip) => (
           <TripCard
             key={trip.id}
-            tripId={trip.id}
-            tripType={trip.tripType}
-            countryName={trip.country}
-            rating={trip.rating}
-            coverImage={trip.images.find((image) => image.id === trip.coverImageId)}
-            startDate={trip.startDate}
+            trip={trip}
           />
         ))}
 

@@ -1,6 +1,6 @@
 import './TitleInput.css';
 
-function TitleInput({ value, onChange }) {
+function TitleInput({ value, onChange }: { value: string, onChange: (input: string) => void }) {
   return (
     <div>
       <input

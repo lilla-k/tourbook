@@ -25,10 +25,11 @@ function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
 }
 
 function tripDataToDatabaseObject(tripData: Partial<Trip>): Partial<TripDatabaseObject> {
+  const { startDate, endDate, ...data } = tripData;
   return {
-    ...tripData,
-    ...(tripData.startDate && { startDate: toISODateString(tripData.startDate) }),
-    ...(tripData.endDate && { endDate: toISODateString(tripData.endDate) }),
+    ...data,
+    ...(startDate && { startDate: toISODateString(startDate) }),
+    ...(endDate && { endDate: toISODateString(endDate) }),
   };
 }
 
@@ -45,7 +46,7 @@ const tripServices = {
     return docRef.id;
   },
 
-  postCity: async function postCity(userId: string, tripId: string, cityData: City): Promise<string> {
+  postCity: async function postCity(userId: string, tripId: string, cityData: Omit<City, 'cityId'>): Promise<string> {
     const cityId = crypto.randomUUID();
     const tripRef = doc(db, 'users', userId, 'trips', tripId);
     await updateDoc(tripRef, {
@@ -66,7 +67,7 @@ const tripServices = {
     await updateDoc(tripRef, tripDataToDatabaseObject(tripData));
   },
 
-  editCity: async function editCity(userId: string, tripId: string, oldCityData: City, newCityData: City): Promise<void> {
+  editCity: async function editCity(userId: string, tripId: string, oldCityData: City, newCityData: Omit<City, 'cityId'>): Promise<void> {
     const tripRef = doc(db, 'users', userId, 'trips', tripId);
     const { cityId } = oldCityData;
     await updateDoc(tripRef, {
@@ -88,7 +89,7 @@ const tripServices = {
     });
   },
 
-  uploadImage: async function uploadImage(userId:string, tripId:string, file: File): Promise<{ imageId: string, url: string }> {
+  uploadImage: async function uploadImage(userId: string, tripId: string, file: File): Promise<{ imageId: string, url: string }> {
     const imageId = crypto.randomUUID();
     const imageRef = ref(storage, `images/${userId}/${tripId}/${imageId}`);
     await uploadBytes(imageRef, file);
@@ -97,17 +98,17 @@ const tripServices = {
     return { imageId, url };
   },
 
-  deleteImage: async function deleteImage(userId:string, tripId: string, deletedImage: Image) {
+  deleteImage: async function deleteImage(userId: string, tripId: string, deletedImage: Image) {
     const imageRef = ref(storage, `images/${userId}/${tripId}/${deletedImage.id}`);
-    deleteObject(imageRef).then(() => {
-      console.log('File deleted successfully');
-    }).catch((error) => {
-      console.log('error occured');
-    });
-    const tripRef = doc(db, 'users', userId, 'trips', tripId);
-    await updateDoc(tripRef, {
-      images: arrayRemove(deletedImage),
-    });
+    try {
+      await deleteObject(imageRef);
+      const tripRef = doc(db, 'users', userId, 'trips', tripId);
+      await updateDoc(tripRef, {
+        images: arrayRemove(deletedImage),
+      });
+    } catch (error) {
+      throw new Error('failed to delete"');
+    }
   },
 };
 
