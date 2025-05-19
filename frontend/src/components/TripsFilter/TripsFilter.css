@@ -1,0 +1,14 @@
+.TripsFilter{
+  max-width: 950px;
+  margin: auto;
+  padding: 10px 0;
+  border-top: 2px solid var(--light-grey);
+  border-bottom: 2px solid var(--light-grey);
+  display: flex;
+  flex-direction: row;
+}
+
+.TripsFilter-filterIcon{
+  align-self: center;
+}
+

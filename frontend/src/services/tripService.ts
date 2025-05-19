@@ -14,7 +14,7 @@ import type Image from '../types/image';
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
+export function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
   return {
     ...trip,
     startDate: toDateObject(trip.startDate),
@@ -24,7 +24,7 @@ function tripDataFromDatabaseObejct(trip: TripDatabaseObject): Trip {
   };
 }
 
-function tripDataToDatabaseObject(tripData: Partial<Trip>): Partial<TripDatabaseObject> {
+export function tripDataToDatabaseObject(tripData: Partial<Trip>): Partial<TripDatabaseObject> {
   const { startDate, endDate, ...data } = tripData;
   return {
     ...data,

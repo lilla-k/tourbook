@@ -1,30 +1,30 @@
-.TripsPage-title{
-    color: var(--light-green);
-    font-weight: 700;
-    font-size: 32px;
-    margin: 30px auto;
-    text-align: center;
+.TripsPage-title {
+  color: var(--light-green);
+  font-weight: 700;
+  font-size: 32px;
+  margin: 30px auto;
+  text-align: center;
 }
 
-.TripsPage-addFirstTrip{
-    color: var(--light-green);
-    font-size: 24px;
+.TripsPage-addFirstTrip {
+  color: var(--light-green);
+  font-size: 24px;
 }
 
-.TripsPage-addFirstTrip:hover{
-    cursor: pointer;
+.TripsPage-addFirstTrip:hover {
+  cursor: pointer;
 }
 
-.TripsPage-container{
-    max-width: 1000px;
-    margin: auto;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+.TripsPage-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1020px){
-    .TripsPage-container{
-        max-width: 500px;
-    }
+@media screen and (max-width: 1020px) {
+  .TripsPage-container {
+    max-width: 500px;
+  }
 }
