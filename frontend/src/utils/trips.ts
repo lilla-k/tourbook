@@ -1,10 +1,10 @@
 import { getCountry } from './location.js';
 import type { Trip } from '../types/trip.js';
 
-function getContinent(country: string): string {
+export function getContinent(country: string): string {
   const countryObj = getCountry(country);
   const { continent } = countryObj.properties;
-  if (continent === undefined) {
+  if (continent !== undefined) {
     return continent;
   }
   return '';

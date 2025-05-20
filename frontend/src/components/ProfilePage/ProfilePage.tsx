@@ -51,6 +51,7 @@ function ProfilePage() {
             in&thinsp;
             {visitedCountries.length}
             {visitedCountries.length === 1 ? ' country ' : ' countries '}
+            in&thinsp;
             {visitedContinents.length}
             {visitedContinents.length === 1 ? ' continent ' : ' continents'}
           </div>

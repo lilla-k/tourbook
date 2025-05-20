@@ -6,15 +6,18 @@ import './TripsFilter.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 function TripsFilter({
-  yearOptions, setSelectedYear, typeOptions, setSelectedType,
+  yearOptions, setSelectedYear, typeOptions, setSelectedType, continentOptions, setSelectedContinent,
 }:{
-  yearOptions: number[], setSelectedYear: Function, typeOptions: string[], setSelectedType: Function,
+  yearOptions: number[], setSelectedYear: Function, typeOptions: string[], setSelectedType: Function, continentOptions: string[], setSelectedContinent: Function
 }) {
   const handleFilterYear = (event: SelectChangeEvent) => {
     setSelectedYear(event.target.value as string);
   };
   const handleFilterType = (event: SelectChangeEvent) => {
     setSelectedType(event.target.value as string);
+  };
+  const handleFilterContinent = (event: SelectChangeEvent) => {
+    setSelectedContinent(event.target.value as string);
   };
 
   return (
@@ -38,6 +41,16 @@ function TripsFilter({
         >
           <MenuItem value={undefined}>None</MenuItem>
           {typeOptions.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+        </Select>
+      </FormControl>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-label">Continent</InputLabel>
+        <Select
+          label="Continent"
+          onChange={handleFilterContinent}
+        >
+          <MenuItem value={undefined}>None</MenuItem>
+          {continentOptions.map((continent) => <MenuItem value={continent}>{continent}</MenuItem>)}
         </Select>
       </FormControl>
     </div>

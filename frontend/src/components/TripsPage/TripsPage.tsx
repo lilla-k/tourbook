@@ -3,6 +3,7 @@ import { useState } from 'react';
 import TripCard from '../TripCard/TripCard.js';
 import './TripsPage.css';
 import TripsFilter from '../TripsFilter/TripsFilter.js';
+import { getContinent } from '../../utils/trips.js';
 import type Context from '../../types/context.js';
 
 function TripsPage() {
@@ -14,6 +15,10 @@ function TripsPage() {
   const typeOptions = [...new Set(trips.map((trip) => trip.tripType))];
   const [selectedType, setSelectedType] = useState(undefined);
 
+  const countryOptions = trips.map((trip) => trip.country);
+  const continentOptions = [...new Set(countryOptions.map((c) => getContinent(c)))];
+  const [selectedContinent, setSelectedContinent] = useState(undefined);
+
   return (
     <div className="TripsPage">
       <div className="TripsPage-title">My trips</div>
@@ -22,6 +27,8 @@ function TripsPage() {
         setSelectedYear={setSelectedYear}
         typeOptions={typeOptions}
         setSelectedType={setSelectedType}
+        continentOptions={continentOptions}
+        setSelectedContinent={setSelectedContinent}
       />
       <div className="TripsPage-container">
         {trips.length === 0
@@ -31,6 +38,8 @@ function TripsPage() {
               return trip.startDate.getFullYear() === selectedYear;
             } if (selectedType) {
               return trip.tripType === selectedType;
+            } if (selectedContinent) {
+              return getContinent(trip.country) === selectedContinent;
             }
             return trip;
           }).map((trip) => (
