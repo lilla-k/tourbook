@@ -6,43 +6,43 @@ import TripsFilter from '../TripsFilter/TripsFilter.js';
 import { getContinent } from '../../utils/trips.js';
 import type Context from '../../types/context.js';
 
+type TripFilterState = {
+  year?: number,
+  type?: string,
+  rating?: number | null,
+  continent?: string
+};
+
 function TripsPage() {
   const navigate = useNavigate();
   const { trips } = useOutletContext<Context>();
-  const yearOptions = [...new Set(trips.map((trip) => trip.startDate.getFullYear()))];
-  const [selectedYear, setSelectedYear] = useState(undefined);
 
-  const typeOptions = [...new Set(trips.map((trip) => trip.tripType))];
-  const [selectedType, setSelectedType] = useState(undefined);
+  const [filter, setFilter] = useState<TripFilterState>({
+    year: undefined,
+    type: undefined,
+    rating: null,
+    continent: undefined,
+  });
 
-  const countryOptions = trips.map((trip) => trip.country);
-  const continentOptions = [...new Set(countryOptions.map((c) => getContinent(c)))];
-  const [selectedContinent, setSelectedContinent] = useState(undefined);
+  const filteredTrips = trips.filter((trip) => (
+    (filter.year ? filter.year === trip.startDate.getFullYear() : true)
+    && (filter.type ? trip.tripType === filter.type : true)
+    && (filter.rating ? trip.rating === filter.rating : true)
+    && (filter.continent ? filter.continent === getContinent(trip.country) : true)
+  ));
 
   return (
     <div className="TripsPage">
       <div className="TripsPage-title">My trips</div>
       <TripsFilter
-        yearOptions={yearOptions}
-        setSelectedYear={setSelectedYear}
-        typeOptions={typeOptions}
-        setSelectedType={setSelectedType}
-        continentOptions={continentOptions}
-        setSelectedContinent={setSelectedContinent}
+        trips={trips}
+        filter={filter}
+        setFilter={setFilter}
       />
       <div className="TripsPage-container">
         {trips.length === 0
           ? <button className="TripsPage-addFirstTrip" onClick={() => navigate('/addTrip')} type="button">+ Add your first trip</button>
-          : trips.filter((trip) => {
-            if (selectedYear) {
-              return trip.startDate.getFullYear() === selectedYear;
-            } if (selectedType) {
-              return trip.tripType === selectedType;
-            } if (selectedContinent) {
-              return getContinent(trip.country) === selectedContinent;
-            }
-            return trip;
-          }).map((trip) => (
+          : filteredTrips.map((trip) => (
             <TripCard
               key={trip.id}
               trip={trip}

@@ -4,20 +4,32 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import './TripsFilter.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import type { Trip } from '../../types/trip.js';
+import { getVisitedCountries, getContinent } from '../../utils/trips.js';
 
-function TripsFilter({
-  yearOptions, setSelectedYear, typeOptions, setSelectedType, continentOptions, setSelectedContinent,
-}:{
-  yearOptions: number[], setSelectedYear: Function, typeOptions: string[], setSelectedType: Function, continentOptions: string[], setSelectedContinent: Function
-}) {
+type TripFilterState = {
+  year?: number,
+  type?: string,
+  rating?: number | null,
+  continent?: string
+};
+
+function TripsFilter({ trips, filter, setFilter }: { trips: Trip[], filter: TripFilterState, setFilter: Function }) {
+  const yearOptions = [...new Set(trips.map((trip) => trip.startDate.getFullYear()))];
+  const typeOptions = [...new Set(trips.map((trip) => trip.tripType))];
+  const ratingOptions = [...new Set(trips.map((trip) => trip.rating).filter((rating) => rating !== null))];
+  const continentOptions = [...new Set(getVisitedCountries(trips).map((c) => getContinent(c)))];
   const handleFilterYear = (event: SelectChangeEvent) => {
-    setSelectedYear(event.target.value as string);
+    setFilter({ ...filter, year: event.target.value });
   };
   const handleFilterType = (event: SelectChangeEvent) => {
-    setSelectedType(event.target.value as string);
+    setFilter({ ...filter, type: event.target.value });
+  };
+  const handleFilterRating = (event: SelectChangeEvent) => {
+    setFilter({ ...filter, rating: event.target.value });
   };
   const handleFilterContinent = (event: SelectChangeEvent) => {
-    setSelectedContinent(event.target.value as string);
+    setFilter({ ...filter, continent: event.target.value });
   };
 
   return (
@@ -41,6 +53,16 @@ function TripsFilter({
         >
           <MenuItem value={undefined}>None</MenuItem>
           {typeOptions.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+        </Select>
+      </FormControl>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-label">Rating</InputLabel>
+        <Select
+          label="Rating"
+          onChange={handleFilterRating}
+        >
+          <MenuItem value={undefined}>None</MenuItem>
+          {ratingOptions.map((rating) => <MenuItem value={rating}>{rating}</MenuItem>)}
         </Select>
       </FormControl>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
