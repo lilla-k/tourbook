@@ -40,7 +40,7 @@ function TripCard({ trip }: { trip: Trip }) {
         {trip.rating === 5 && <div className="TripCard-favorite">Favorite</div>}
         <div className="TripCard-details">
           <div className="TripCard-name">{trip.country}</div>
-          <div>{trip.startDate.toLocaleDateString('en-EN')}</div>
+          <div>{trip.startDate.toLocaleDateString()}</div>
           <Rating value={trip.rating} readOnly size="small" />
           <DeleteIcon className="TripCard-deleteIcon" onClick={(event) => deleteConfirmation(event)} />
         </div>
