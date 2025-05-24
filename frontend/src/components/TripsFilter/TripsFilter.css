@@ -9,7 +9,15 @@
 }
 
 .TripsFilter-filterIcon{
-  align-self: center;
-  margin: 0 10px;
+  align-self: flex-end;
+  margin: 15px;
+}
+
+.TripsFilter-gap{
+  flex-grow: 1;
+}
+
+.TripsFilter-sort{
+  align-self: flex-end;
 }
 

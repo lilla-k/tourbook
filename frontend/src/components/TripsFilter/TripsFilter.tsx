@@ -14,7 +14,11 @@ type TripFilterState = {
   continent?: string
 };
 
-function TripsFilter({ trips, filter, setFilter }: { trips: Trip[], filter: TripFilterState, setFilter: Function }) {
+function TripsFilter({
+  trips, filter, setFilter, setSortType, location,
+} : {
+  trips: Trip[], filter: TripFilterState, setFilter: Function, setSortType: Function, location: string | undefined
+}) {
   const yearOptions = [...new Set(trips.map((trip) => trip.startDate.getFullYear()))];
   const typeOptions = [...new Set(trips.map((trip) => trip.tripType))];
   const ratingOptions = [...new Set(trips.map((trip) => trip.rating).filter((rating) => rating !== null))];
@@ -30,6 +34,9 @@ function TripsFilter({ trips, filter, setFilter }: { trips: Trip[], filter: Trip
   };
   const handleFilterContinent = (event: SelectChangeEvent) => {
     setFilter({ ...filter, continent: event.target.value });
+  };
+  const handleSorting = (event: SelectChangeEvent) => {
+    setSortType(event.target.value);
   };
 
   return (
@@ -73,6 +80,20 @@ function TripsFilter({ trips, filter, setFilter }: { trips: Trip[], filter: Trip
         >
           <MenuItem value={undefined}>None</MenuItem>
           {continentOptions.map((continent) => <MenuItem value={continent}>{continent}</MenuItem>)}
+        </Select>
+      </FormControl>
+      <div className="TripsFilter-gap" />
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} className="TripsFilter-sort">
+        <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+        <Select
+          label="Continent"
+          onChange={handleSorting}
+          defaultValue="date"
+        >
+          <MenuItem value="date">Date</MenuItem>
+          <MenuItem value="rating">Rating</MenuItem>
+          <MenuItem value="name">Country name</MenuItem>
+          {location && <MenuItem value="distance">Distance from home</MenuItem>}
         </Select>
       </FormControl>
     </div>

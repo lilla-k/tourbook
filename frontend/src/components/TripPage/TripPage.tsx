@@ -12,7 +12,7 @@ import CoverImageSelectorModal from '../CoverImageSelectorModal/CoverImageSelect
 import FileUploadModal from '../FileUploadModal/FileUploadModal.jsx';
 import getTripTypeIcons from '../TripTypeIcons/tripTypeIcons.jsx';
 import tripService from '../../services/tripService.js';
-import { findCountryPosition, getDistanceFromLatLonInKm } from '../../utils/location.js';
+import { getDistanceFromLocation } from '../../utils/location.js';
 import VisitedCities from '../VisitedCities/VisitedCities.jsx';
 import './TripPage.css';
 import '../../style/tooltip.css';
@@ -61,9 +61,7 @@ function TripPage() {
 
   let distance = 0;
   if (userData.location) {
-    const { lat: lat1, lng: lng1 } = findCountryPosition(userData.location?.name);
-    const { lat: lat2, lng: lng2 } = findCountryPosition(trip.country);
-    distance = getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
+    distance = getDistanceFromLocation(userData.location?.name, trip.country);
   }
 
   async function saveCoverImage(id: string) {

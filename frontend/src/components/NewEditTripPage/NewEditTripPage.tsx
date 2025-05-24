@@ -60,11 +60,14 @@ function NewEditTripPage() {
     rating,
     visitedCities: [],
   };
-
+//t.startDate && t.endDate && t.country && t.tripType
   function isValidTripData(t: Partial<Trip>): t is Trip {
+    console.log(t.startDate)
     if (t.startDate && t.endDate && t.country && t.tripType) {
+      console.log("valid data")
       return true;
     }
+    console.log("not valid")
     return false;
   }
 

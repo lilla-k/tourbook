@@ -45,3 +45,9 @@ export function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: numb
 function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
 }
+
+export function getDistanceFromLocation(location: string, visitedCountry: string) {
+  const { lat: lat1, lng: lng1 } = findCountryPosition(location);
+  const { lat: lat2, lng: lng2 } = findCountryPosition(visitedCountry);
+  return getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2);
+}
