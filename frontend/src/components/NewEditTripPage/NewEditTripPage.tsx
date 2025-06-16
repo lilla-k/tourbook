@@ -53,21 +53,18 @@ function NewEditTripPage() {
     endDate,
     country,
     tripType,
-    images: [],
-    coverImageId: null,
+    images: trip ? trip.images : [],
+    coverImageId: trip ? trip.coverImageId : null,
     countryInformation,
     tripExperience,
     rating,
-    visitedCities: [],
+    visitedCities: trip ? trip.visitedCities : [],
   };
-//t.startDate && t.endDate && t.country && t.tripType
+
   function isValidTripData(t: Partial<Trip>): t is Trip {
-    console.log(t.startDate)
     if (t.startDate && t.endDate && t.country && t.tripType) {
-      console.log("valid data")
       return true;
     }
-    console.log("not valid")
     return false;
   }
 
